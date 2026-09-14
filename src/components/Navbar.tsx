@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useCurrency } from '../context/CurrencyContext';
 import { 
@@ -40,6 +40,11 @@ export const Navbar: React.FC<NavbarProps> = ({
   const { language, setLanguage, t } = useLanguage();
   const { currency, setCurrency } = useCurrency();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const navLinks = [
     { href: '#leaderboard', label: language === 'vi' ? `Bảng ${totalModels} Model` : `All ${totalModels} Models`, icon: TableProperties },
@@ -86,8 +91,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               {totalModels} {language === 'vi' ? 'mô hình được theo dõi' : 'models tracked'}
             </span>
             <span className="text-slate-600 hidden sm:inline">•</span>
-            <span className="text-slate-400 text-[11px] hidden sm:inline">
-              {language === 'vi' ? 'Cập nhật:' : 'Updated:'} {formatLastSync(lastSyncedAt)} (tự động mỗi 15 phút)
+            <span className="text-slate-400 text-[11px] hidden sm:inline" suppressHydrationWarning>
+              {language === 'vi' ? 'Cập nhật:' : 'Updated:'} {mounted ? formatLastSync(lastSyncedAt) : 'Vừa xong'} (tự động mỗi 15 phút)
             </span>
           </div>
 

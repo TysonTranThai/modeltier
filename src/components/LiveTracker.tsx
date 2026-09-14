@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ProviderStatus } from '../types';
 import { PROVIDERS_DATA } from '../data/providers';
 import { useLanguage } from '../context/LanguageContext';
@@ -21,6 +21,11 @@ export const LiveTracker: React.FC = () => {
   const [providers, setProviders] = useState<ProviderStatus[]>(PROVIDERS_DATA);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [lastRefreshed, setLastRefreshed] = useState<Date>(new Date());
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleRefresh = async () => {
     setIsRefreshing(true);
@@ -76,8 +81,9 @@ export const LiveTracker: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-xs text-slate-500">
-              {language === 'vi' ? 'Cập nhật lúc:' : 'Updated:'} {lastRefreshed.toLocaleTimeString()}
+            <span className="text-xs text-slate-500" suppressHydrationWarning>
+              {language === 'vi' ? 'Cập nhật lúc:' : 'Updated:'}{' '}
+              {mounted ? lastRefreshed.toLocaleTimeString() : '--:--:--'}
             </span>
             <button
               onClick={handleRefresh}
