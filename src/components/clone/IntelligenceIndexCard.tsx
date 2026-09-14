@@ -288,8 +288,8 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
                     onClick={() => onSelectModel && onSelectModel(model)}
                     className="group relative flex flex-col items-center cursor-pointer w-9 sm:w-10 h-full justify-end flex-shrink-0"
                   >
-                    {/* Hover Floating Tooltip */}
-                    <div className="opacity-0 group-hover:opacity-100 pointer-events-none absolute -top-14 z-30 transition-opacity bg-[#120703] border border-[#FF6B35]/60 text-[#FFF6EE] rounded-xl px-3.5 py-2 text-xs shadow-2xl whitespace-nowrap">
+                    {/* Hover Floating Tooltip with Smooth Scale & Backdrop Blur */}
+                    <div className="opacity-0 group-hover:opacity-100 pointer-events-none absolute -top-14 z-30 transition-all duration-200 transform scale-95 group-hover:scale-100 group-hover:-translate-y-1.5 bg-[#120703]/95 backdrop-blur-md border border-[#FF6B35]/60 text-[#FFF6EE] rounded-xl px-3.5 py-2 text-xs shadow-2xl whitespace-nowrap">
                       <div className="font-bold text-[#FFF6EE] flex items-center gap-1.5">
                         <span className="text-[#FF8452]">#{idx + 1}</span>
                         <span>{model.name}</span>
@@ -301,7 +301,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
 
                     {/* Score Number Floating ABOVE the bar (No collision) */}
                     <div className="mb-1.5 flex items-center justify-center">
-                      <span className="font-mono text-[11px] font-bold text-[#FFF6EE] group-hover:text-[#FF8452] transition-colors drop-shadow-sm select-none">
+                      <span className="font-mono text-[11px] font-bold text-[#FFF6EE] group-hover:text-[#FF8452] group-hover:scale-110 transition-all drop-shadow-sm select-none">
                         {scoreInt}
                       </span>
                     </div>
@@ -312,7 +312,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
                         height: `${heightPercent}%`,
                         backgroundColor: barColor,
                       }}
-                      className="w-full rounded-t-lg transition-all group-hover:brightness-125 group-hover:shadow-lg shadow-sm relative"
+                      className="w-full rounded-t-lg transition-all duration-500 ease-out group-hover:brightness-125 group-hover:scale-y-[1.02] group-hover:shadow-glow-orange shadow-sm relative"
                     >
                       {/* Subtle Glassmorphic Highlight inside top of bar */}
                       <div className="absolute top-0 inset-x-0 h-1 bg-white/25 rounded-t-lg pointer-events-none" />
@@ -421,10 +421,10 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
         <div className="flex flex-wrap items-center gap-2 rounded-2xl bg-[#160B06] p-1.5 text-xs font-semibold text-[#C7B299] border border-[#3D2216]">
           <button
             onClick={() => setActiveSubTab('open_weights')}
-            className={`rounded-xl px-4 py-2 transition-all ${
+            className={`rounded-xl px-4 py-2 transition-all duration-200 ${
               activeSubTab === 'open_weights'
-                ? 'bg-[#FF6B35] text-white shadow-sm font-bold'
-                : 'text-[#A89280] hover:text-[#FFF6EE]'
+                ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange font-bold scale-[1.02]'
+                : 'text-[#A89280] hover:text-[#FFF6EE] hover:bg-[#24120A]'
             }`}
           >
             {language === 'vi' ? 'Trọng số Mở / Độc quyền' : 'Open Weights / Proprietary'}
@@ -432,10 +432,10 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
 
           <button
             onClick={() => setActiveSubTab('reasoning')}
-            className={`rounded-xl px-4 py-2 transition-all ${
+            className={`rounded-xl px-4 py-2 transition-all duration-200 ${
               activeSubTab === 'reasoning'
-                ? 'bg-[#FF6B35] text-white shadow-sm font-bold'
-                : 'text-[#A89280] hover:text-[#FFF6EE]'
+                ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange font-bold scale-[1.02]'
+                : 'text-[#A89280] hover:text-[#FFF6EE] hover:bg-[#24120A]'
             }`}
           >
             {language === 'vi' ? 'Mô hình Suy luận (Reasoning)' : 'Reasoning / Non-Reasoning'}
@@ -443,10 +443,10 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
 
           <button
             onClick={() => setActiveSubTab('modalities')}
-            className={`rounded-xl px-4 py-2 transition-all ${
+            className={`rounded-xl px-4 py-2 transition-all duration-200 ${
               activeSubTab === 'modalities'
-                ? 'bg-[#FF6B35] text-white shadow-sm font-bold'
-                : 'text-[#A89280] hover:text-[#FFF6EE]'
+                ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange font-bold scale-[1.02]'
+                : 'text-[#A89280] hover:text-[#FFF6EE] hover:bg-[#24120A]'
             }`}
           >
             {language === 'vi' ? 'Văn bản / Đa phương thức' : 'Text Only / Multimodal Inputs'}
@@ -454,10 +454,10 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
 
           <button
             onClick={() => setActiveSubTab('country')}
-            className={`rounded-xl px-4 py-2 transition-all ${
+            className={`rounded-xl px-4 py-2 transition-all duration-200 ${
               activeSubTab === 'country'
-                ? 'bg-[#FF6B35] text-white shadow-sm font-bold'
-                : 'text-[#A89280] hover:text-[#FFF6EE]'
+                ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange font-bold scale-[1.02]'
+                : 'text-[#A89280] hover:text-[#FFF6EE] hover:bg-[#24120A]'
             }`}
           >
             {language === 'vi' ? 'Theo Quốc gia' : 'By Country'}

@@ -274,27 +274,27 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
                 <div
                   key={model.id || index}
                   onClick={() => onSelectModel(model)}
-                  className="group relative flex w-24 sm:w-28 flex-shrink-0 cursor-pointer flex-col items-center justify-end rounded-xl p-2 hover:bg-[#2F1910] transition-all"
+                  className="group relative flex w-24 sm:w-28 flex-shrink-0 cursor-pointer flex-col items-center justify-end rounded-xl p-2.5 hover:bg-[#2F1910]/90 hover:-translate-y-1.5 hover:shadow-card-espresso transition-all duration-300"
                 >
                   {/* Rank Podium Badge */}
                   <div className="absolute top-0 flex flex-col items-center">
                     {index === 0 && (
-                      <span className="rounded-full bg-gradient-to-r from-amber-500 to-[#FF6B35] px-2 py-0.5 text-[10px] font-bold text-white shadow-glow-orange">
+                      <span className="rounded-full bg-gradient-to-r from-amber-500 to-[#FF6B35] px-2 py-0.5 text-[10px] font-bold text-white shadow-glow-orange animate-pulse">
                         #1 🥇
                       </span>
                     )}
                     {index === 1 && (
-                      <span className="rounded-full bg-slate-300 text-slate-950 px-2 py-0.5 text-[10px] font-bold">
+                      <span className="rounded-full bg-slate-300 text-slate-950 px-2 py-0.5 text-[10px] font-bold shadow-sm">
                         #2 🥈
                       </span>
                     )}
                     {index === 2 && (
-                      <span className="rounded-full bg-amber-700 text-amber-100 px-2 py-0.5 text-[10px] font-bold">
+                      <span className="rounded-full bg-amber-700 text-amber-100 px-2 py-0.5 text-[10px] font-bold shadow-sm">
                         #3 🥉
                       </span>
                     )}
                     {index > 2 && (
-                      <span className="text-[10px] font-mono text-[#8A7262]">
+                      <span className="text-[10px] font-mono text-[#8A7262] group-hover:text-[#FFF6EE] transition-colors">
                         #{index + 1}
                       </span>
                     )}
@@ -302,7 +302,7 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
 
                   {/* Value Above Bar */}
                   <div className="mb-2 text-center">
-                    <span className={`text-sm font-bold font-mono ${isTop3 ? 'text-[#FF8452]' : 'text-[#FFF6EE]'}`}>
+                    <span className={`text-sm font-bold font-mono transition-transform group-hover:scale-110 inline-block ${isTop3 ? 'text-[#FF8452]' : 'text-[#FFF6EE]'}`}>
                       {num}
                     </span>
                     <span className="block text-[9px] text-[#A89280] truncate">
@@ -317,10 +317,10 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
                         height: `${ratio}%`,
                         backgroundColor: isTop3 ? undefined : barColor,
                       }}
-                      className={`w-full max-w-[40px] rounded-t-lg transition-all duration-300 group-hover:scale-y-105 ${
+                      className={`w-full max-w-[40px] rounded-t-lg transition-all duration-500 ease-out group-hover:scale-y-105 ${
                         isTop3
                           ? 'bg-gradient-to-t from-[#E64A19] to-[#FF6B35] shadow-glow-orange'
-                          : 'opacity-90 group-hover:opacity-100'
+                          : 'opacity-90 group-hover:opacity-100 group-hover:brightness-110'
                       }`}
                     />
                   </div>

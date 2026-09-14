@@ -56,6 +56,48 @@ body {
   font-size: 11px;
 }
 
+/* Subtle Technical Grid Background */
+.bg-tech-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 107, 53, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 107, 53, 0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+/* Ambient Radial Glow */
+.ambient-glow-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Button Shimmer Sheen */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: all 0.6s ease;
+}
+.btn-shimmer:hover::after {
+  left: 150%;
+}
+
 /* Glow animations */
 @keyframes orange-pulse {
   0%, 100% { opacity: 0.8; transform: scale(1); }
@@ -65,3 +107,13 @@ body {
 .animate-orange-pulse {
   animation: orange-pulse 3s infinite ease-in-out;
 }
+
+/* Respect user accessibility preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+

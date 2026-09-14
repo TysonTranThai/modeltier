@@ -46,30 +46,10 @@ export default function HomePage() {
   const [battleModelA, setBattleModelA] = useState<Model | undefined>(unifiedModels[0] || MODELS_DATA[0]);
   const [battleModelB, setBattleModelB] = useState<Model | undefined>(unifiedModels[2] || MODELS_DATA[2]);
 
-  // Periodic polling check
-  useEffect(() => {
-    const fetchLatestLiveData = async () => {
-      try {
-        const res = await fetch('/api/live-data');
-        if (res.ok) {
-          const data = await res.json();
-          if (data && data.totalModels) {
-            setLiveData(data);
-          }
-        }
-      } catch {
-        // silent fallback
-      }
-    };
-
-    const interval = setInterval(fetchLatestLiveData, 2 * 60 * 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   const [syncToast, setSyncToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
-  // Manual Trigger Sync from artificialanalysis.ai
-  const handleTriggerSync = async () => {
+  // Trigger Sync from artificialanalysis.ai
+  const handleTriggerSync = React.useCallback(async () => {
     setIsSyncing(true);
     try {
       const res = await fetch('/api/sync', { method: 'POST' });
@@ -109,7 +89,34 @@ export default function HomePage() {
     } finally {
       setIsSyncing(false);
     }
-  };
+  }, []);
+
+  // Automatic sync every time the site is opened on open, plus periodic polling
+  useEffect(() => {
+    const fetchLatestLiveData = async () => {
+      try {
+        const res = await fetch('/api/live-data');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.totalModels) {
+            setLiveData(data);
+          }
+        }
+      } catch {
+        // silent fallback
+      }
+    };
+
+    // 1. Initial quick load from local cache
+    fetchLatestLiveData();
+
+    // 2. Trigger automatic sync whenever the site is opened
+    handleTriggerSync();
+
+    // 3. Periodic polling every 2 minutes
+    const interval = setInterval(fetchLatestLiveData, 2 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, [handleTriggerSync]);
 
   const handleSelectModelBySlug = (slug: string) => {
     const cleanSlug = slug.toLowerCase().trim();

@@ -62,7 +62,7 @@ export const TierList: React.FC<TierListProps> = ({
         language === 'vi'
           ? 'Thông minh nhất thế giới, lý luận siêu phàm, giải toán và viết code chuyên gia.'
           : 'Most capable frontier models, expert reasoning, deep logic, top tier coding.',
-      color: 'border-[#FF6B35]/60 bg-[#28140B]/90',
+      color: 'border-[#FF6B35]/60 bg-[#28140B]/90 animate-border-pulse shadow-glow-orange-lg',
       bgBadge: 'bg-gradient-to-r from-[#FF6B35] to-amber-500 text-white shadow-glow-orange',
     },
     {
@@ -129,7 +129,7 @@ export const TierList: React.FC<TierListProps> = ({
           return (
             <div
               key={tier.id}
-              className={`rounded-3xl border p-6 sm:p-8 backdrop-blur-md shadow-card-espresso ${tier.color}`}
+              className={`rounded-3xl border p-6 sm:p-8 backdrop-blur-md shadow-card-espresso transition-all duration-300 ${tier.color}`}
             >
               {/* Tier Heading Row */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#381E12]">

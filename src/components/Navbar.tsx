@@ -158,26 +158,26 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Right: Mode Switcher & Ledger Signature Outlined Pill */}
         <div className="flex items-center gap-3 sm:gap-4">
           {/* Dual Mode Switcher Pill */}
-          <div className="flex items-center rounded-full bg-[#201009] border border-[#3D1E11] p-0.5 text-xs font-medium">
+          <div className="flex items-center rounded-full bg-[#1A0C06] border border-[#3D1E11] p-0.5 text-xs font-medium shadow-inner">
             <button
               onClick={() => setViewMode('simplified')}
-              className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
+              className={`px-3.5 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
                 viewMode === 'simplified'
-                  ? 'bg-[#FF6B35] text-white font-semibold shadow-sm'
+                  ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white font-semibold shadow-glow-orange scale-[1.02]'
                   : 'text-[#A89280] hover:text-[#FFF6EE]'
               }`}
             >
-              {language === 'vi' ? 'Dễ hiểu' : 'Simple'}
+              {language === 'vi' ? '⚡ Dễ hiểu' : '⚡ Simple'}
             </button>
             <button
               onClick={() => setViewMode('clone')}
-              className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
+              className={`px-3.5 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
                 viewMode === 'clone'
-                  ? 'bg-[#FF6B35] text-white font-semibold shadow-sm'
+                  ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white font-semibold shadow-glow-orange scale-[1.02]'
                   : 'text-[#A89280] hover:text-[#FFF6EE]'
               }`}
             >
-              Benchmark Pro
+              🔬 Benchmark Pro
             </button>
           </div>
 

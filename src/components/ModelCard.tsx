@@ -61,7 +61,7 @@ export const ModelCard: React.FC<ModelCardProps> = ({
   };
 
   return (
-    <div className="group relative flex flex-col justify-between rounded-2xl border border-[#472718] bg-[#24130C]/90 p-5 shadow-card-espresso transition-all duration-200 hover:-translate-y-1 hover:border-[#FF6B35]/60 hover:shadow-glow-orange">
+    <div className="group relative flex flex-col justify-between rounded-2xl border border-[#472718] bg-[#24130C]/90 p-5 shadow-card-espresso transition-all duration-300 hover:-translate-y-1.5 hover:border-[#FF6B35]/80 hover:shadow-glow-orange-lg">
       <div>
         {/* Card Header: Creator, Name & Badges */}
         <div className="flex items-start justify-between gap-3">

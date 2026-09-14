@@ -1,7 +1,7 @@
 {
   "source": "https://artificialanalysis.ai",
-  "syncedAt": "2026-09-14T06:19:37.471Z",
-  "durationMs": 3615,
+  "syncedAt": "2026-09-14T14:10:36.044Z",
+  "durationMs": 1521,
   "totalModels": 650,
   "highlights": {
     "intelligence": [
@@ -64,22 +64,22 @@
     "speed": [
       {
         "label": "Gemini 3.8 Flash (high)",
-        "medianOutputSpeed": 302.880829017534,
+        "medianOutputSpeed": 277.52044180913,
         "detailsUrl": "/models/gemini-3-8-flash"
       },
       {
         "label": "Muse Spark 1.3 (max)",
-        "medianOutputSpeed": 232.634359328758,
+        "medianOutputSpeed": 227.596858582481,
         "detailsUrl": "/models/muse-spark-1-3"
       },
       {
         "label": "DeepSeek V4.1 Flash (max)",
-        "medianOutputSpeed": 227.785421288682,
+        "medianOutputSpeed": 214.390636341402,
         "detailsUrl": "/models/deepseek-v4-1-flash"
       },
       {
         "label": "GPT-5.6 Luna (max)",
-        "medianOutputSpeed": 119.663746726209,
+        "medianOutputSpeed": 117.256234572115,
         "detailsUrl": "/models/gpt-5-6-luna"
       },
       {
@@ -89,32 +89,32 @@
       },
       {
         "label": "GLM-5.3 (max)",
-        "medianOutputSpeed": 72.4753321152803,
+        "medianOutputSpeed": 72.0139111728563,
         "detailsUrl": "/models/glm-5-3"
       },
       {
         "label": "Claude Fable 5.1 (max with fallback)",
-        "medianOutputSpeed": 67.1437994196803,
+        "medianOutputSpeed": 65.0884428260935,
         "detailsUrl": "/models/claude-fable-5-1"
       },
       {
         "label": "GPT-6 Astra (max)",
-        "medianOutputSpeed": 60.1098214246931,
+        "medianOutputSpeed": 59.8005776416736,
         "detailsUrl": "/models/gpt-6-astra"
       },
       {
         "label": "Grok 4.6 (high)",
-        "medianOutputSpeed": 59.9873916724206,
+        "medianOutputSpeed": 58.5035284934629,
         "detailsUrl": "/models/grok-4-6"
       },
       {
         "label": "Claude Opus 5 (max)",
-        "medianOutputSpeed": 52.7000184554387,
+        "medianOutputSpeed": 52.1193333493458,
         "detailsUrl": "/models/claude-opus-5"
       },
       {
         "label": "Kimi K3 (max)",
-        "medianOutputSpeed": 36.972789520053,
+        "medianOutputSpeed": 36.675545882511,
         "detailsUrl": "/models/kimi-k3"
       }
     ],

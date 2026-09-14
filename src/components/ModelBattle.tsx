@@ -156,40 +156,45 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
 
         {/* Battle Arena Cards */}
         <div className="max-w-4xl mx-auto rounded-3xl border border-[#3D2216] bg-[#24130C]/90 p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
-          {/* Top Overview Cards */}
-          <div className="grid grid-cols-2 gap-4 pb-6 border-b border-[#3D2216] text-center">
-            <div className="p-3.5 rounded-2xl bg-[#FF6B35]/10 border border-[#FF6B35]/30 flex flex-col justify-between">
-              <div>
-                <span className="text-xs font-bold text-[#FF8452] uppercase">{modelA.creator}</span>
-                <h3 className="text-lg sm:text-2xl font-black text-[#FFF6EE] mt-0.5">{modelA.name}</h3>
-                <div className="text-xs font-medium text-[#D8C4B6] mt-2 line-clamp-2">
-                  {language === 'vi' ? modelA.vietnameseSummary : modelA.englishSummary}
-                </div>
-              </div>
-              <button
-                onClick={() => onSelectDetails(modelA)}
-                className="mt-3 inline-flex items-center justify-center gap-1 text-[11px] font-semibold text-[#FF8452] hover:text-[#FFF6EE] bg-[#2E170E] hover:bg-[#3D2216] border border-[#FF6B35]/30 rounded-lg py-1 px-3 transition-colors self-center"
-              >
-                <span>{language === 'vi' ? 'Xem chi tiết' : 'View details'}</span>
-                <ArrowRight className="h-3 w-3" />
-              </button>
+          {/* Top Overview Cards with Glowing VS Badge */}
+          <div className="relative">
+            <div className="hidden sm:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#FF6B35] to-[#E64A19] text-white font-black text-xs shadow-glow-orange border-2 border-[#1E0F09] animate-orange-pulse">
+              VS
             </div>
-
-            <div className="p-3.5 rounded-2xl bg-amber-950/20 border border-amber-500/30 flex flex-col justify-between">
-              <div>
-                <span className="text-xs font-bold text-amber-400 uppercase">{modelB.creator}</span>
-                <h3 className="text-lg sm:text-2xl font-black text-[#FFF6EE] mt-0.5">{modelB.name}</h3>
-                <div className="text-xs font-medium text-[#D8C4B6] mt-2 line-clamp-2">
-                  {language === 'vi' ? modelB.vietnameseSummary : modelB.englishSummary}
+            <div className="grid grid-cols-2 gap-4 pb-6 border-b border-[#3D2216] text-center">
+              <div className="p-3.5 rounded-2xl bg-[#FF6B35]/10 border border-[#FF6B35]/30 flex flex-col justify-between">
+                <div>
+                  <span className="text-xs font-bold text-[#FF8452] uppercase">{modelA.creator}</span>
+                  <h3 className="text-lg sm:text-2xl font-black text-[#FFF6EE] mt-0.5">{modelA.name}</h3>
+                  <div className="text-xs font-medium text-[#D8C4B6] mt-2 line-clamp-2">
+                    {language === 'vi' ? modelA.vietnameseSummary : modelA.englishSummary}
+                  </div>
                 </div>
+                <button
+                  onClick={() => onSelectDetails(modelA)}
+                  className="mt-3 inline-flex items-center justify-center gap-1 text-[11px] font-semibold text-[#FF8452] hover:text-[#FFF6EE] bg-[#2E170E] hover:bg-[#3D2216] border border-[#FF6B35]/30 rounded-lg py-1 px-3 transition-colors self-center"
+                >
+                  <span>{language === 'vi' ? 'Xem chi tiết' : 'View details'}</span>
+                  <ArrowRight className="h-3 w-3" />
+                </button>
               </div>
-              <button
-                onClick={() => onSelectDetails(modelB)}
-                className="mt-3 inline-flex items-center justify-center gap-1 text-[11px] font-semibold text-amber-300 hover:text-[#FFF6EE] bg-amber-900/40 hover:bg-amber-800 border border-amber-700/50 rounded-lg py-1 px-3 transition-colors self-center"
-              >
-                <span>{language === 'vi' ? 'Xem chi tiết' : 'View details'}</span>
-                <ArrowRight className="h-3 w-3" />
-              </button>
+
+              <div className="p-3.5 rounded-2xl bg-amber-950/20 border border-amber-500/30 flex flex-col justify-between">
+                <div>
+                  <span className="text-xs font-bold text-amber-400 uppercase">{modelB.creator}</span>
+                  <h3 className="text-lg sm:text-2xl font-black text-[#FFF6EE] mt-0.5">{modelB.name}</h3>
+                  <div className="text-xs font-medium text-[#D8C4B6] mt-2 line-clamp-2">
+                    {language === 'vi' ? modelB.vietnameseSummary : modelB.englishSummary}
+                  </div>
+                </div>
+                <button
+                  onClick={() => onSelectDetails(modelB)}
+                  className="mt-3 inline-flex items-center justify-center gap-1 text-[11px] font-semibold text-amber-300 hover:text-[#FFF6EE] bg-amber-900/40 hover:bg-amber-800 border border-amber-700/50 rounded-lg py-1 px-3 transition-colors self-center"
+                >
+                  <span>{language === 'vi' ? 'Xem chi tiết' : 'View details'}</span>
+                  <ArrowRight className="h-3 w-3" />
+                </button>
+              </div>
             </div>
           </div>
 
@@ -211,10 +216,10 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <div className="h-2 rounded-full bg-[#2A160E] overflow-hidden flex justify-end">
-                  <div className="h-full bg-[#FF6B35] rounded-full" style={{ width: `${modelA.intelligenceScore}%` }} />
+                  <div className="h-full bg-[#FF6B35] rounded-full transition-all duration-700 ease-out" style={{ width: `${modelA.intelligenceScore}%` }} />
                 </div>
                 <div className="h-2 rounded-full bg-[#2A160E] overflow-hidden">
-                  <div className="h-full bg-amber-500 rounded-full" style={{ width: `${modelB.intelligenceScore}%` }} />
+                  <div className="h-full bg-amber-500 rounded-full transition-all duration-700 ease-out" style={{ width: `${modelB.intelligenceScore}%` }} />
                 </div>
               </div>
             </div>
@@ -234,10 +239,10 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <div className="h-2 rounded-full bg-[#2A160E] overflow-hidden flex justify-end">
-                  <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${modelA.vietnameseRating}%` }} />
+                  <div className="h-full bg-emerald-500 rounded-full transition-all duration-700 ease-out" style={{ width: `${modelA.vietnameseRating}%` }} />
                 </div>
                 <div className="h-2 rounded-full bg-[#2A160E] overflow-hidden">
-                  <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${modelB.vietnameseRating}%` }} />
+                  <div className="h-full bg-emerald-500 rounded-full transition-all duration-700 ease-out" style={{ width: `${modelB.vietnameseRating}%` }} />
                 </div>
               </div>
             </div>
@@ -257,10 +262,10 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <div className="h-2 rounded-full bg-[#2A160E] overflow-hidden flex justify-end">
-                  <div className="h-full bg-amber-500 rounded-full" style={{ width: `${Math.min(100, (modelA.outputSpeed / 250) * 100)}%` }} />
+                  <div className="h-full bg-amber-500 rounded-full transition-all duration-700 ease-out" style={{ width: `${Math.min(100, (modelA.outputSpeed / 250) * 100)}%` }} />
                 </div>
                 <div className="h-2 rounded-full bg-[#2A160E] overflow-hidden">
-                  <div className="h-full bg-amber-500 rounded-full" style={{ width: `${Math.min(100, (modelB.outputSpeed / 250) * 100)}%` }} />
+                  <div className="h-full bg-amber-500 rounded-full transition-all duration-700 ease-out" style={{ width: `${Math.min(100, (modelB.outputSpeed / 250) * 100)}%` }} />
                 </div>
               </div>
             </div>

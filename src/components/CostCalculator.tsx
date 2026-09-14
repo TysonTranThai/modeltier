@@ -286,7 +286,7 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
                       <td className="p-4 hidden md:table-cell w-48">
                         <div className="h-2 w-full overflow-hidden rounded-full bg-[#180D07] border border-[#3D2216]">
                           <div
-                            className={`h-full rounded-full ${
+                            className={`h-full rounded-full transition-all duration-500 ease-out ${
                               isCheapest ? 'bg-emerald-400' : percentOfMax > 60 ? 'bg-[#FF6B35]' : 'bg-amber-400'
                             }`}
                             style={{ width: `${percentOfMax}%` }}

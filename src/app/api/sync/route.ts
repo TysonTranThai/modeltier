@@ -5,11 +5,18 @@ import path from 'path';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
+let activeSyncPromise: Promise<any> | null = null;
+
 export async function POST() {
   try {
     // Dynamically require and run scrapeAll
     const { scrapeAll } = require('../../../../scripts/scrape-artificialanalysis');
-    const result = await scrapeAll();
+    if (!activeSyncPromise) {
+      activeSyncPromise = scrapeAll().finally(() => {
+        activeSyncPromise = null;
+      });
+    }
+    const result = await activeSyncPromise;
 
     return NextResponse.json({
       success: true,
