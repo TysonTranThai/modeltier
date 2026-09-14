@@ -7,19 +7,18 @@ import { useCurrency } from '../context/CurrencyContext';
 import { 
   Search, 
   ArrowUpDown, 
-  ExternalLink, 
+  TableProperties, 
   Sparkles, 
   Zap, 
   DollarSign, 
-  Clock, 
-  Layers, 
   ChevronLeft, 
   ChevronRight,
-  Filter,
+  ExternalLink,
+  Layers,
   Info
 } from 'lucide-react';
 
-interface ArtificialLeaderboardProps {
+interface ModelLeaderboardProps {
   models: ScrapedModel[];
   searchQuery: string;
   setSearchQuery: (q: string) => void;
@@ -29,7 +28,7 @@ interface ArtificialLeaderboardProps {
 type SortField = 'intelligence' | 'cost' | 'speed' | 'latency' | 'name' | 'vietnamese';
 type SortOrder = 'asc' | 'desc';
 
-export const ArtificialLeaderboard: React.FC<ArtificialLeaderboardProps> = ({
+export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
   models,
   searchQuery,
   setSearchQuery,
@@ -58,7 +57,6 @@ export const ArtificialLeaderboard: React.FC<ArtificialLeaderboardProps> = ({
   const filteredModels = useMemo(() => {
     return models
       .filter((m) => {
-        // Search
         const q = searchQuery.toLowerCase().trim();
         const matchesSearch =
           q === '' ||
@@ -68,11 +66,9 @@ export const ArtificialLeaderboard: React.FC<ArtificialLeaderboardProps> = ({
 
         if (!matchesSearch) return false;
 
-        // Type filter
         if (filterType === 's_tier') return m.tier === 'S';
         if (filterType === 'a_tier') return m.tier === 'A';
         if (filterType === 'open_weights') return m.isOpenWeights;
-        if (filterType === 'proprietary') return !m.isOpenWeights;
         if (filterType === 'speed') return m.outputSpeed >= 100;
         if (filterType === 'budget') return m.costPerTaskUSD > 0 && m.costPerTaskUSD <= 1.0;
         if (filterType === 'vietnamese') return m.vietnameseRating >= 90;
@@ -122,36 +118,37 @@ export const ArtificialLeaderboard: React.FC<ArtificialLeaderboardProps> = ({
     ? filteredModels
     : filteredModels.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
-  const getTierPill = (tier: Tier) => {
+  const getTierBadgeStyle = (tier: Tier) => {
     switch (tier) {
       case 'S':
-        return 'bg-red-950 text-red-300 border-red-800/40';
+        return 'bg-red-500/20 text-red-300 border-red-500/40';
       case 'A':
-        return 'bg-amber-950 text-amber-300 border-amber-800/40';
+        return 'bg-amber-500/20 text-amber-300 border-amber-500/40';
       case 'B':
-        return 'bg-emerald-950 text-emerald-300 border-emerald-800/40';
+        return 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40';
       case 'C':
-        return 'bg-blue-950 text-blue-300 border-blue-800/40';
+        return 'bg-blue-500/20 text-blue-300 border-blue-500/40';
     }
   };
 
   return (
     <section id="leaderboard" className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-20">
       {/* Table Header Controls */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-neutral-800 pb-5 mb-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-5 mb-6">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="font-serif text-2xl font-medium text-white">
-              {language === 'vi' ? 'Bảng Xếp Hạng Tổng Hợp (LLM Leaderboard)' : 'LLM Leaderboard'}
-            </span>
-            <span className="rounded-full bg-neutral-800 px-2.5 py-0.5 text-xs text-neutral-400 font-mono">
-              {filteredModels.length} / {models.length} models
+            <TableProperties className="h-5 w-5 text-violet-400" />
+            <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              {language === 'vi' ? 'Bảng Xếp Hạng Đầy Đủ 300+ Mô Hình' : 'Full 300+ Models Live Leaderboard'}
+            </h2>
+            <span className="rounded-full bg-slate-800 px-2.5 py-0.5 text-xs text-slate-400 font-mono font-bold">
+              {filteredModels.length} models
             </span>
           </div>
-          <p className="text-xs text-neutral-400">
+          <p className="text-xs text-slate-400">
             {language === 'vi'
-              ? 'Toàn bộ mô hình được đo lường độc lập bởi Artificial Analysis • Tự động cập nhật mỗi 15 phút'
-              : 'Complete dataset measured independently by Artificial Analysis · Real-time telemetry'}
+              ? 'Dữ liệu được đo lường độc lập và đồng bộ tự động mỗi 15 phút'
+              : 'Measured independently and synchronized automatically every 15 minutes'}
           </p>
         </div>
 
@@ -164,15 +161,15 @@ export const ArtificialLeaderboard: React.FC<ArtificialLeaderboardProps> = ({
             { id: 'vietnamese', label: '🇻🇳 Tiếng Việt tốt' },
             { id: 'speed', label: '⚡ Nhanh (>100 tps)' },
             { id: 'budget', label: '💰 Giá rẻ (<$1)' },
-            { id: 'open_weights', label: 'Mã nguồn mở' },
+            { id: 'open_weights', label: '🔓 Mã nguồn mở' },
           ].map((f) => (
             <button
               key={f.id}
               onClick={() => { setFilterType(f.id); setCurrentPage(1); }}
-              className={`rounded-lg px-2.5 py-1 text-xs font-medium transition-colors ${
+              className={`rounded-xl px-3 py-1 text-xs font-semibold transition-colors ${
                 filterType === f.id
-                  ? 'bg-purple-600 text-white shadow-sm'
-                  : 'bg-neutral-900 text-neutral-400 hover:text-white hover:bg-neutral-800 border border-neutral-800'
+                  ? 'bg-violet-600 text-white shadow-sm'
+                  : 'bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-800'
               }`}
             >
               {f.label}
@@ -182,71 +179,71 @@ export const ArtificialLeaderboard: React.FC<ArtificialLeaderboardProps> = ({
       </div>
 
       {/* Leaderboard Table */}
-      <div className="overflow-hidden rounded-xl border border-neutral-800 bg-neutral-950 shadow-2xl">
+      <div className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 shadow-2xl">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="border-b border-neutral-800 bg-neutral-900/90 text-neutral-400 font-semibold sticky top-0 z-10">
+            <thead className="border-b border-slate-800 bg-slate-950/80 text-slate-400 font-semibold sticky top-0 z-10">
               <tr>
                 <th
                   onClick={() => handleSort('name')}
-                  className="p-3 pl-4 sm:pl-6 cursor-pointer hover:text-white transition-colors"
+                  className="p-3.5 pl-4 sm:pl-6 cursor-pointer hover:text-white transition-colors"
                 >
                   <div className="flex items-center gap-1.5">
-                    <span>Model ({filteredModels.length})</span>
+                    <span>Mô hình ({filteredModels.length})</span>
                     <ArrowUpDown className="h-3 w-3" />
                   </div>
                 </th>
-                <th className="p-3 hidden sm:table-cell">Context</th>
-                <th className="p-3 hidden md:table-cell">Creator</th>
+                <th className="p-3.5 hidden sm:table-cell">Ngữ cảnh</th>
+                <th className="p-3.5 hidden md:table-cell">Nhà phát triển</th>
                 <th
                   onClick={() => handleSort('intelligence')}
-                  className="p-3 cursor-pointer hover:text-white transition-colors text-right"
+                  className="p-3.5 cursor-pointer hover:text-white transition-colors text-right"
                 >
-                  <div className="flex items-center justify-end gap-1 text-purple-300 font-bold">
-                    <span>Intelligence</span>
+                  <div className="flex items-center justify-end gap-1 text-violet-300 font-bold">
+                    <span>Điểm Thông Minh</span>
                     <ArrowUpDown className="h-3 w-3" />
                   </div>
                 </th>
                 <th
                   onClick={() => handleSort('cost')}
-                  className="p-3 cursor-pointer hover:text-white transition-colors text-right"
+                  className="p-3.5 cursor-pointer hover:text-white transition-colors text-right"
                 >
-                  <div className="flex items-center justify-end gap-1 text-orange-300 font-bold">
-                    <span>Cost / Task</span>
+                  <div className="flex items-center justify-end gap-1 text-emerald-300 font-bold">
+                    <span>Chi Phí ({currency})</span>
                     <ArrowUpDown className="h-3 w-3" />
                   </div>
                 </th>
                 <th
                   onClick={() => handleSort('speed')}
-                  className="p-3 cursor-pointer hover:text-white transition-colors text-right"
+                  className="p-3.5 cursor-pointer hover:text-white transition-colors text-right"
                 >
                   <div className="flex items-center justify-end gap-1 text-amber-300 font-bold">
-                    <span>Speed (tps)</span>
+                    <span>Tốc Độ (tps)</span>
                     <ArrowUpDown className="h-3 w-3" />
                   </div>
                 </th>
                 <th
                   onClick={() => handleSort('latency')}
-                  className="p-3 hidden lg:table-cell cursor-pointer hover:text-white transition-colors text-right"
+                  className="p-3.5 hidden lg:table-cell cursor-pointer hover:text-white transition-colors text-right"
                 >
                   <div className="flex items-center justify-end gap-1 text-cyan-300">
-                    <span>TTFT (s)</span>
+                    <span>Độ Trễ TTFT</span>
                     <ArrowUpDown className="h-3 w-3" />
                   </div>
                 </th>
                 <th
                   onClick={() => handleSort('vietnamese')}
-                  className="p-3 cursor-pointer hover:text-white transition-colors text-right"
+                  className="p-3.5 cursor-pointer hover:text-white transition-colors text-right"
                 >
                   <div className="flex items-center justify-end gap-1 text-emerald-400 font-bold">
-                    <span>🇻🇳 VN Rating</span>
+                    <span>🇻🇳 Tiếng Việt</span>
                     <ArrowUpDown className="h-3 w-3" />
                   </div>
                 </th>
-                <th className="p-3 pr-4 sm:pr-6 text-right">Links</th>
+                <th className="p-3.5 pr-4 sm:pr-6 text-right">Chi tiết</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-900 text-neutral-300">
+            <tbody className="divide-y divide-slate-800/60 text-slate-300">
               {displayedModels.map((m, idx) => {
                 const rank = (currentPage - 1) * pageSize + idx + 1;
 
@@ -254,29 +251,29 @@ export const ArtificialLeaderboard: React.FC<ArtificialLeaderboardProps> = ({
                   <tr
                     key={m.id}
                     onClick={() => onSelectModel(m)}
-                    className="hover:bg-neutral-900/60 transition-colors cursor-pointer group"
+                    className="hover:bg-slate-800/40 transition-colors cursor-pointer group"
                   >
                     {/* Model Name & Rank */}
-                    <td className="p-3 pl-4 sm:pl-6">
+                    <td className="p-3.5 pl-4 sm:pl-6">
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-mono text-neutral-500 w-5">
+                        <span className="text-[10px] font-mono text-slate-500 w-5">
                           {rank}.
                         </span>
                         <div className="min-w-0">
                           <div className="flex items-center gap-1.5 flex-wrap">
-                            <span className="font-bold text-neutral-100 group-hover:text-purple-300 transition-colors truncate">
+                            <span className="font-bold text-white group-hover:text-violet-300 transition-colors truncate">
                               {m.name}
                             </span>
-                            <span className={`px-1.5 py-0.2 rounded text-[9px] font-black border ${getTierPill(m.tier)}`}>
+                            <span className={`px-1.5 py-0.2 rounded text-[9px] font-black border ${getTierBadgeStyle(m.tier)}`}>
                               {m.tier}
                             </span>
                             {m.isOpenWeights && (
-                              <span className="bg-neutral-800 text-neutral-400 px-1 py-0.2 rounded text-[9px]">
+                              <span className="bg-slate-800 text-slate-400 px-1 py-0.2 rounded text-[9px]">
                                 OSS
                               </span>
                             )}
                           </div>
-                          <span className="text-[10px] text-neutral-500 block sm:hidden">
+                          <span className="text-[10px] text-slate-500 block sm:hidden">
                             {m.creator} • {m.contextWindow}
                           </span>
                         </div>
@@ -284,56 +281,53 @@ export const ArtificialLeaderboard: React.FC<ArtificialLeaderboardProps> = ({
                     </td>
 
                     {/* Context Window */}
-                    <td className="p-3 hidden sm:table-cell text-neutral-400 font-mono">
+                    <td className="p-3.5 hidden sm:table-cell text-slate-400 font-mono">
                       {m.contextWindow}
                     </td>
 
                     {/* Creator */}
-                    <td className="p-3 hidden md:table-cell text-neutral-400">
+                    <td className="p-3.5 hidden md:table-cell text-slate-300">
                       {m.creator}
                     </td>
 
                     {/* Intelligence Index */}
-                    <td className="p-3 text-right font-mono font-bold text-white">
+                    <td className="p-3.5 text-right font-mono font-bold text-white">
                       {m.intelligenceScoreRaw !== '--' ? m.intelligenceScoreRaw : '—'}
                     </td>
 
                     {/* Cost per Task */}
-                    <td className="p-3 text-right font-mono text-neutral-300 truncate">
+                    <td className="p-3.5 text-right font-mono text-emerald-400 font-semibold truncate">
                       {m.costPerTaskUSD > 0
                         ? formatCost(m.costPerTaskUSD)
                         : (m.costPerTaskRaw || '—')}
                     </td>
 
                     {/* Speed */}
-                    <td className="p-3 text-right font-mono text-amber-400">
+                    <td className="p-3.5 text-right font-mono text-amber-400 font-semibold">
                       {m.outputSpeedRaw !== '--' ? `${m.outputSpeedRaw}` : '—'}
                     </td>
 
                     {/* Latency */}
-                    <td className="p-3 hidden lg:table-cell text-right font-mono text-neutral-400">
+                    <td className="p-3.5 hidden lg:table-cell text-right font-mono text-slate-400">
                       {m.latencyRaw !== '--' ? `${m.latencyRaw}s` : '—'}
                     </td>
 
                     {/* Vietnamese Rating */}
-                    <td className="p-3 text-right font-mono font-bold text-emerald-400">
+                    <td className="p-3.5 text-right font-mono font-bold text-emerald-400">
                       {m.vietnameseRating}/100
                     </td>
 
                     {/* Action Links */}
-                    <td className="p-3 pr-4 sm:pr-6 text-right">
-                      <div className="flex items-center justify-end gap-1.5">
-                        <a
-                          href={m.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="rounded p-1 text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors"
-                          title="View on Artificial Analysis"
-                        >
-                          <ExternalLink className="h-3.5 w-3.5" />
-                        </a>
-                      </div>
+                    <td className="p-3.5 pr-4 sm:pr-6 text-right">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onSelectModel(m);
+                        }}
+                        className="rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1 text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-700 transition-colors"
+                      >
+                        {language === 'vi' ? 'Xem' : 'View'}
+                      </button>
                     </td>
                   </tr>
                 );
@@ -343,7 +337,7 @@ export const ArtificialLeaderboard: React.FC<ArtificialLeaderboardProps> = ({
         </div>
 
         {/* Table Pagination & Count */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-4 border-t border-neutral-800 bg-neutral-950 text-xs text-neutral-400">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-4 border-t border-slate-800 bg-slate-950 text-xs text-slate-400">
           <div>
             {language === 'vi' ? (
               <>
@@ -361,7 +355,7 @@ export const ArtificialLeaderboard: React.FC<ArtificialLeaderboardProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="rounded-lg border border-neutral-800 bg-neutral-900 px-3 py-1 text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors"
+              className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-1.5 text-slate-300 hover:text-white hover:bg-slate-800 transition-colors font-medium"
             >
               {showAll ? (language === 'vi' ? 'Phân trang' : 'Paginate') : (language === 'vi' ? 'Xem tất cả 301' : 'Show All 301')}
             </button>
@@ -371,7 +365,7 @@ export const ArtificialLeaderboard: React.FC<ArtificialLeaderboardProps> = ({
                 <button
                   onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="rounded-lg border border-neutral-800 bg-neutral-900 p-1 text-neutral-300 disabled:opacity-30 hover:bg-neutral-800"
+                  className="rounded-lg border border-slate-800 bg-slate-900 p-1.5 text-slate-300 disabled:opacity-30 hover:bg-slate-800"
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </button>
@@ -381,7 +375,7 @@ export const ArtificialLeaderboard: React.FC<ArtificialLeaderboardProps> = ({
                 <button
                   onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                   disabled={currentPage === totalPages}
-                  className="rounded-lg border border-neutral-800 bg-neutral-900 p-1 text-neutral-300 disabled:opacity-30 hover:bg-neutral-800"
+                  className="rounded-lg border border-slate-800 bg-slate-900 p-1.5 text-slate-300 disabled:opacity-30 hover:bg-slate-800"
                 >
                   <ChevronRight className="h-4 w-4" />
                 </button>

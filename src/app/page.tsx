@@ -3,39 +3,39 @@
 import React, { useState, useEffect } from 'react';
 import initialLiveData from '../data/live_data.json';
 import { MODELS_DATA } from '@/data/models';
-import { LiveDataPayload, ScrapedModel, Model, ViewMode, CategoryFilter } from '@/types';
+import { LiveDataPayload, ScrapedModel, Model, CategoryFilter } from '@/types';
 
-// Artificial Analysis Exact Clone Components
-import { ArtificialNavbar } from '@/components/ArtificialNavbar';
-import { ArtificialHero } from '@/components/ArtificialHero';
-import { ArtificialHighlights } from '@/components/ArtificialHighlights';
-import { ArtificialBanners } from '@/components/ArtificialBanners';
+// Core Clean ModelTier Components
+import { Navbar } from '@/components/Navbar';
+import { Hero } from '@/components/Hero';
+import { Highlights } from '@/components/Highlights';
 import { ScatterPlotArena } from '@/components/ScatterPlotArena';
-import { ArtificialLeaderboard } from '@/components/ArtificialLeaderboard';
-import { ArtificialDetailModal } from '@/components/ArtificialDetailModal';
-
-// Simplified Vietnamese Toolkit Components
+import { ModelLeaderboard } from '@/components/ModelLeaderboard';
 import { TierList } from '@/components/TierList';
 import { ModelRecommender } from '@/components/ModelRecommender';
 import { CostCalculator } from '@/components/CostCalculator';
 import { ModelBattle } from '@/components/ModelBattle';
 import { LiveTracker } from '@/components/LiveTracker';
 import { PlainExplainer } from '@/components/PlainExplainer';
+import { ArtificialDetailModal } from '@/components/ArtificialDetailModal';
 import { ModelDetailModal } from '@/components/ModelDetailModal';
 import { Footer } from '@/components/Footer';
 
 export default function HomePage() {
   const [liveData, setLiveData] = useState<LiveDataPayload>(initialLiveData as any);
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [viewMode, setViewMode] = useState<ViewMode>('clone');
-  const [isSyncing, setIsSyncing] = useState<boolean>(false);
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>('all');
+  const [isSyncing, setIsSyncing] = useState<boolean>(false);
 
-  // Selected models for modals
+  // Selected models for detail modals
   const [selectedScrapedModel, setSelectedScrapedModel] = useState<ScrapedModel | null>(null);
   const [selectedCuratedModel, setSelectedCuratedModel] = useState<Model | null>(null);
 
-  // Background auto-refresh check every 2 minutes
+  // Battle models
+  const [battleModelA, setBattleModelA] = useState<Model | undefined>(MODELS_DATA[0]);
+  const [battleModelB, setBattleModelB] = useState<Model | undefined>(MODELS_DATA[2]);
+
+  // Periodic polling check
   useEffect(() => {
     const fetchLatestLiveData = async () => {
       try {
@@ -47,7 +47,7 @@ export default function HomePage() {
           }
         }
       } catch {
-        // silent fallback to current data
+        // silent fallback
       }
     };
 
@@ -61,8 +61,6 @@ export default function HomePage() {
     try {
       const res = await fetch('/api/sync', { method: 'POST' });
       if (res.ok) {
-        const result = await res.json();
-        // Refresh live data
         const dataRes = await fetch('/api/live-data');
         if (dataRes.ok) {
           const fresh = await dataRes.json();
@@ -83,14 +81,24 @@ export default function HomePage() {
     }
   };
 
+  const handleSelectCompare = (model: Model) => {
+    if (battleModelA?.id !== model.id) {
+      setBattleModelB(model);
+    } else {
+      setBattleModelA(model);
+    }
+    const element = document.querySelector('#battle');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div className="flex min-h-screen flex-col bg-black text-neutral-100 font-sans selection:bg-purple-600 selection:text-white">
-      {/* Top Navbar */}
-      <ArtificialNavbar
+    <div className="flex min-h-screen flex-col bg-slate-950 text-slate-100 font-sans selection:bg-violet-600 selection:text-white">
+      {/* Top ModelTier Navbar */}
+      <Navbar
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-        viewMode={viewMode}
-        setViewMode={setViewMode}
         totalModels={liveData.totalModels}
         lastSyncedAt={liveData.syncedAt}
         onTriggerSync={handleTriggerSync}
@@ -98,110 +106,77 @@ export default function HomePage() {
       />
 
       <main className="flex-1">
-        {/* ========================================================= */}
-        {/* 1. EXACT ARTIFICIAL ANALYSIS CLONE VIEW                    */}
-        {/* ========================================================= */}
-        {(viewMode === 'clone' || viewMode === 'both') && (
-          <div className="animate-in fade-in duration-300">
-            {/* Hero with Headline & News */}
-            <ArtificialHero
-              articles={liveData.articles}
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-              totalModels={liveData.totalModels}
-            />
+        {/* Hero with Search & Live Counters */}
+        <Hero
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          activeCategory={activeCategory}
+          setActiveCategory={setActiveCategory}
+          modelCount={liveData.totalModels}
+        />
 
-            {/* Highlights 3-Card Grid (Intelligence, Speed, Cost) */}
-            <ArtificialHighlights
-              intelligenceData={liveData.highlights.intelligence}
-              speedData={liveData.highlights.speed}
-              costData={liveData.highlights.costPerTask}
-              onSelectModel={handleSelectModelBySlug}
-            />
+        {/* Highlights 3-Card Grid (Real Data: Intelligence, Speed, Cost) */}
+        <Highlights
+          intelligenceData={liveData.highlights.intelligence}
+          speedData={liveData.highlights.speed}
+          costData={liveData.highlights.costPerTask}
+          onSelectModel={handleSelectModelBySlug}
+        />
 
-            {/* Optima & Model Recommender Banners & Changelog Feed */}
-            <ArtificialBanners
-              changelog={liveData.changelog}
-              onTriggerRecommender={() => {
-                setViewMode('simplified');
-                setTimeout(() => {
-                  document.querySelector('#finder')?.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
-              }}
-            />
+        {/* Interactive 2D Scatter Plot & Pareto Frontier */}
+        <div id="scatterplot" className="scroll-mt-20">
+          <ScatterPlotArena
+            models={liveData.models}
+            onSelectModel={(m) => setSelectedScrapedModel(m)}
+          />
+        </div>
 
-            {/* Quality vs Speed / Quality vs Cost Scatter Plot Arena */}
-            <ScatterPlotArena
-              models={liveData.models}
-              onSelectModel={(m) => setSelectedScrapedModel(m)}
-            />
+        {/* Full 301 Models Leaderboard Table */}
+        <ModelLeaderboard
+          models={liveData.models}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          onSelectModel={(m) => setSelectedScrapedModel(m)}
+        />
 
-            {/* Full 301 Models Leaderboard Table */}
-            <ArtificialLeaderboard
-              models={liveData.models}
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-              onSelectModel={(m) => setSelectedScrapedModel(m)}
-            />
-          </div>
-        )}
+        {/* S/A/B/C Practical Tier List */}
+        <TierList
+          models={MODELS_DATA}
+          activeCategory={activeCategory}
+          searchQuery={searchQuery}
+          onSelectDetails={(model) => setSelectedCuratedModel(model)}
+          onSelectCompare={handleSelectCompare}
+          onResetFilters={() => { setSearchQuery(''); setActiveCategory('all'); }}
+        />
 
-        {/* ========================================================= */}
-        {/* 2. SIMPLIFIED VIETNAMESE S/A/B/C TOOLKIT VIEW              */}
-        {/* ========================================================= */}
-        {(viewMode === 'simplified' || viewMode === 'both') && (
-          <div className="border-t border-neutral-800 pt-10 animate-in fade-in duration-300 bg-slate-950/40">
-            <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-6">
-              <div className="rounded-2xl border border-purple-500/30 bg-purple-950/20 p-4 text-xs text-purple-200 flex items-center justify-between flex-wrap gap-2">
-                <span className="font-bold">
-                  ⭐ Chế độ dành cho người mới: Phân loại theo Tier S/A/B/C, trắc nghiệm tìm AI và tính tiền VNĐ
-                </span>
-                <button
-                  onClick={() => setViewMode('clone')}
-                  className="rounded-lg bg-neutral-900 border border-neutral-700 px-2.5 py-1 text-[11px] font-semibold text-white hover:bg-neutral-800"
-                >
-                  ← Trở về giao diện chuẩn Artificial Analysis
-                </button>
-              </div>
-            </div>
+        {/* Interactive "Find My AI" Wizard */}
+        <ModelRecommender
+          models={MODELS_DATA}
+          onSelectDetails={(model) => setSelectedCuratedModel(model)}
+        />
 
-            {/* S/A/B/C Tier List */}
-            <TierList
-              models={MODELS_DATA}
-              activeCategory={activeCategory}
-              searchQuery={searchQuery}
-              onSelectDetails={(model) => setSelectedCuratedModel(model)}
-              onResetFilters={() => { setSearchQuery(''); setActiveCategory('all'); }}
-            />
+        {/* Real-World Cost Calculator (VND & USD) */}
+        <CostCalculator
+          models={MODELS_DATA}
+          onSelectDetails={(model) => setSelectedCuratedModel(model)}
+        />
 
-            {/* Interactive "Find My AI" Wizard */}
-            <ModelRecommender
-              models={MODELS_DATA}
-              onSelectDetails={(model) => setSelectedCuratedModel(model)}
-            />
+        {/* Head-to-Head 1-vs-1 Model Battle Arena */}
+        <ModelBattle
+          models={MODELS_DATA}
+          initialModelA={battleModelA}
+          initialModelB={battleModelB}
+          onSelectDetails={(model) => setSelectedCuratedModel(model)}
+        />
 
-            {/* Real-World Cost Calculator (VND & USD) */}
-            <CostCalculator
-              models={MODELS_DATA}
-              onSelectDetails={(model) => setSelectedCuratedModel(model)}
-            />
+        {/* Live Provider Latency & Speed Radar */}
+        <LiveTracker />
 
-            {/* Head-to-Head 1-vs-1 Model Battle Arena */}
-            <ModelBattle
-              models={MODELS_DATA}
-              onSelectDetails={(model) => setSelectedCuratedModel(model)}
-            />
-
-            {/* Live Provider Radar & Telemetry Tracker */}
-            <LiveTracker />
-
-            {/* Plain Language Explainer Guide */}
-            <PlainExplainer />
-          </div>
-        )}
+        {/* Plain Language Explainer Guide */}
+        <PlainExplainer />
       </main>
 
-      {/* Modals */}
+      {/* Detail Modals */}
       <ArtificialDetailModal
         model={selectedScrapedModel}
         onClose={() => setSelectedScrapedModel(null)}
@@ -210,9 +185,10 @@ export default function HomePage() {
       <ModelDetailModal
         model={selectedCuratedModel}
         onClose={() => setSelectedCuratedModel(null)}
+        onSelectCompare={handleSelectCompare}
       />
 
-      {/* Footer */}
+      {/* Clean Footer with Artificial Analysis Reference at the Bottom */}
       <Footer />
     </div>
   );
