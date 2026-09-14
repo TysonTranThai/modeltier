@@ -52,28 +52,28 @@ export const TierList: React.FC<TierListProps> = ({
   const tiers: { id: Tier; title: string; description: string; color: string; bgBadge: string }[] = [
     {
       id: 'S',
-      title: 'S-Tier (Thần Thoại / Đỉnh Cao)',
+      title: language === 'vi' ? 'S-Tier (Thần Thoại / Đỉnh Cao)' : 'S-Tier (Apex / Elite)',
       description: t.tierList.tierSDescription,
       color: 'text-red-400',
       bgBadge: 'bg-red-500/10 text-red-300 border-red-500/30'
     },
     {
       id: 'A',
-      title: 'A-Tier (Xuất Sắc / Khuyên Dùng)',
+      title: language === 'vi' ? 'A-Tier (Xuất Sắc / Khuyên Dùng)' : 'A-Tier (Outstanding / Recommended)',
       description: t.tierList.tierADescription,
       color: 'text-amber-400',
       bgBadge: 'bg-amber-500/10 text-amber-300 border-amber-500/30'
     },
     {
       id: 'B',
-      title: 'B-Tier (Thực Dụng / Tiết Kiệm)',
+      title: language === 'vi' ? 'B-Tier (Thực Dụng / Tiết Kiệm)' : 'B-Tier (Pragmatic / Budget)',
       description: t.tierList.tierBDescription,
       color: 'text-emerald-400',
       bgBadge: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30'
     },
     {
       id: 'C',
-      title: 'C-Tier (Cơ Bản / Chạy Cục Bộ)',
+      title: language === 'vi' ? 'C-Tier (Cơ Bản / Chạy Cục Bộ)' : 'C-Tier (Basic / Local & Lightweight)',
       description: t.tierList.tierCDescription,
       color: 'text-blue-400',
       bgBadge: 'bg-blue-500/10 text-blue-300 border-blue-500/30'

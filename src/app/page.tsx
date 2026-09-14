@@ -176,7 +176,7 @@ export default function HomePage() {
           />
         </div>
 
-        {/* Full 301 Models Leaderboard Table */}
+        {/* Full Models Leaderboard Table */}
         <ModelLeaderboard
           models={liveData.models}
           searchQuery={searchQuery}

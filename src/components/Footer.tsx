@@ -86,12 +86,14 @@ export const Footer: React.FC = () => {
             </h4>
             <div className="space-y-2 text-slate-400">
               <div className="rounded-xl bg-slate-900 p-3 border border-slate-800">
-                <span className="text-[11px] text-slate-500 block">Tỉ giá tham chiếu VNĐ:</span>
+                <span className="text-[11px] text-slate-500 block">
+                  {language === 'vi' ? 'Tỉ giá tham chiếu VNĐ:' : 'Reference Exchange Rate:'}
+                </span>
                 <span className="text-sm font-bold text-emerald-400 mt-0.5 block">
                   1 USD = {exchangeRate.toLocaleString('vi-VN')} VNĐ
                 </span>
                 <span className="text-[10px] text-slate-500 block mt-1">
-                  Tự động đồng bộ: Mỗi 15 phút
+                  {language === 'vi' ? 'Tự động đồng bộ: Mỗi 15 phút' : 'Auto Sync: Every 15 minutes'}
                 </span>
               </div>
             </div>

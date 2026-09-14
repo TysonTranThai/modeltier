@@ -244,7 +244,40 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800/60 text-slate-300">
-              {displayedModels.map((m, idx) => {
+              {displayedModels.length === 0 ? (
+                <tr>
+                  <td colSpan={9} className="py-16 text-center">
+                    <div className="flex flex-col items-center justify-center space-y-3 px-4">
+                      <div className="rounded-full bg-slate-800 p-4 text-slate-400">
+                        <Search className="h-6 w-6" />
+                      </div>
+                      <p className="text-sm font-semibold text-white">
+                        {language === 'vi' 
+                          ? 'Không tìm thấy mô hình nào phù hợp' 
+                          : 'No models found matching your criteria'}
+                      </p>
+                      <p className="text-xs text-slate-400 max-w-md leading-relaxed">
+                        {language === 'vi'
+                          ? 'Hãy thử tìm kiếm với từ khóa khác hoặc xóa bộ lọc để xem đầy đủ danh sách các mô hình.'
+                          : 'Try searching with different terms or reset your filters to see all available models.'}
+                      </p>
+                      {(searchQuery || filterType !== 'all') && (
+                        <button
+                          onClick={() => {
+                            setSearchQuery('');
+                            setFilterType('all');
+                            setCurrentPage(1);
+                          }}
+                          className="mt-2 rounded-xl bg-violet-600 px-4 py-2 text-xs font-semibold text-white shadow-lg shadow-violet-600/30 hover:bg-violet-500 transition-colors"
+                        >
+                          {language === 'vi' ? 'Xóa bộ lọc & tìm kiếm' : 'Reset filters & search'}
+                        </button>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ) : (
+                displayedModels.map((m, idx) => {
                 const rank = (currentPage - 1) * pageSize + idx + 1;
 
                 return (
@@ -331,7 +364,8 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                     </td>
                   </tr>
                 );
-              })}
+              })
+              )}
             </tbody>
           </table>
         </div>

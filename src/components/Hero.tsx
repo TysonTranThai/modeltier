@@ -160,7 +160,10 @@ export const Hero: React.FC<HeroProps> = ({
               return (
                 <button
                   key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
+                  onClick={() => {
+                    setActiveCategory(category.id);
+                    document.querySelector('#tierlist')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className={`rounded-xl px-3.5 py-1.5 text-xs font-semibold transition-all ${
                     isActive
                       ? 'bg-violet-600 text-white shadow-md shadow-violet-600/30 scale-105 ring-1 ring-white/30'

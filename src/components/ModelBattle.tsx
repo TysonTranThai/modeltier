@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Model } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { useCurrency } from '../context/CurrencyContext';
@@ -38,6 +38,26 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
   const [modelBId, setModelBId] = useState<string>(
     initialModelB?.id || 'gpt-4o'
   );
+
+  useEffect(() => {
+    if (initialModelA?.id) {
+      setModelAId(initialModelA.id);
+      if (initialModelA.id === modelBId) {
+        const other = models.find((m) => m.id !== initialModelA.id);
+        if (other) setModelBId(other.id);
+      }
+    }
+  }, [initialModelA?.id]);
+
+  useEffect(() => {
+    if (initialModelB?.id) {
+      setModelBId(initialModelB.id);
+      if (initialModelB.id === modelAId) {
+        const other = models.find((m) => m.id !== initialModelB.id);
+        if (other) setModelAId(other.id);
+      }
+    }
+  }, [initialModelB?.id]);
 
   const modelA = models.find((m) => m.id === modelAId) || models[0];
   const modelB = models.find((m) => m.id === modelBId) || models[1];
@@ -117,20 +137,38 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
         <div className="max-w-4xl mx-auto rounded-3xl border border-slate-800 bg-slate-900/80 p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
           {/* Top Overview Cards */}
           <div className="grid grid-cols-2 gap-4 pb-6 border-b border-slate-800 text-center">
-            <div className="p-3 rounded-2xl bg-violet-950/20 border border-violet-500/30">
-              <span className="text-xs font-bold text-violet-400 uppercase">{modelA.creator}</span>
-              <h3 className="text-lg sm:text-2xl font-black text-white mt-0.5">{modelA.name}</h3>
-              <div className="text-xs font-medium text-slate-300 mt-2 line-clamp-2">
-                {language === 'vi' ? modelA.vietnameseSummary : modelA.englishSummary}
+            <div className="p-3.5 rounded-2xl bg-violet-950/20 border border-violet-500/30 flex flex-col justify-between">
+              <div>
+                <span className="text-xs font-bold text-violet-400 uppercase">{modelA.creator}</span>
+                <h3 className="text-lg sm:text-2xl font-black text-white mt-0.5">{modelA.name}</h3>
+                <div className="text-xs font-medium text-slate-300 mt-2 line-clamp-2">
+                  {language === 'vi' ? modelA.vietnameseSummary : modelA.englishSummary}
+                </div>
               </div>
+              <button
+                onClick={() => onSelectDetails(modelA)}
+                className="mt-3 inline-flex items-center justify-center gap-1 text-[11px] font-semibold text-violet-300 hover:text-white bg-violet-900/40 hover:bg-violet-800 border border-violet-700/50 rounded-lg py-1 px-3 transition-colors self-center"
+              >
+                <span>{language === 'vi' ? 'Xem chi tiết' : 'View details'}</span>
+                <ArrowRight className="h-3 w-3" />
+              </button>
             </div>
 
-            <div className="p-3 rounded-2xl bg-amber-950/20 border border-amber-500/30">
-              <span className="text-xs font-bold text-amber-400 uppercase">{modelB.creator}</span>
-              <h3 className="text-lg sm:text-2xl font-black text-white mt-0.5">{modelB.name}</h3>
-              <div className="text-xs font-medium text-slate-300 mt-2 line-clamp-2">
-                {language === 'vi' ? modelB.vietnameseSummary : modelB.englishSummary}
+            <div className="p-3.5 rounded-2xl bg-amber-950/20 border border-amber-500/30 flex flex-col justify-between">
+              <div>
+                <span className="text-xs font-bold text-amber-400 uppercase">{modelB.creator}</span>
+                <h3 className="text-lg sm:text-2xl font-black text-white mt-0.5">{modelB.name}</h3>
+                <div className="text-xs font-medium text-slate-300 mt-2 line-clamp-2">
+                  {language === 'vi' ? modelB.vietnameseSummary : modelB.englishSummary}
+                </div>
               </div>
+              <button
+                onClick={() => onSelectDetails(modelB)}
+                className="mt-3 inline-flex items-center justify-center gap-1 text-[11px] font-semibold text-amber-300 hover:text-white bg-amber-900/40 hover:bg-amber-800 border border-amber-700/50 rounded-lg py-1 px-3 transition-colors self-center"
+              >
+                <span>{language === 'vi' ? 'Xem chi tiết' : 'View details'}</span>
+                <ArrowRight className="h-3 w-3" />
+              </button>
             </div>
           </div>
 

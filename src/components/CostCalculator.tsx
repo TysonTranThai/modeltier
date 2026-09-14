@@ -71,6 +71,14 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
   const maxCost = calculatedRows[calculatedRows.length - 1]?.totalVND || 1;
 
   const getVietnameseAnalogy = (vndAmount: number) => {
+    if (language === 'en') {
+      if (vndAmount <= 5000) return '🍵 Less than a cup of iced tea (< $0.20)';
+      if (vndAmount <= 30000) return '🥖 About a street sandwich / banh mi (~$1)';
+      if (vndAmount <= 60000) return '🍜 About a bowl of hot noodle soup (~$2)';
+      if (vndAmount <= 200000) return '☕ About 2-3 specialty coffees (~$8)';
+      if (vndAmount <= 500000) return '🍱 A modest team lunch feast (~$20)';
+      return '💼 Equivalent to enterprise tier subscription';
+    }
     if (vndAmount <= 5000) return '🍵 Rẻ hơn 1 ly trà đá vỉa hè (dưới 5k)';
     if (vndAmount <= 30000) return '🥖 Bằng 1 chiếc bánh mì pate giòn';
     if (vndAmount <= 60000) return '🍜 Bằng 1 tô phở bò đặc biệt';

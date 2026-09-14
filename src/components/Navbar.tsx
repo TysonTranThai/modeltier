@@ -192,9 +192,18 @@ export const Navbar: React.FC<NavbarProps> = ({
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
               <input
                 type="text"
-                placeholder={language === 'vi' ? 'Tìm trong 300+ model...' : 'Search 300+ models...'}
+                placeholder={language === 'vi' ? `Tìm trong ${totalModels} mô hình...` : `Search ${totalModels} models...`}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    setMobileMenuOpen(false);
+                    const el = document.querySelector('#leaderboard');
+                    if (el) {
+                      el.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }
+                }}
                 className="w-full rounded-xl border border-slate-800 bg-slate-900 py-2 pl-9 pr-4 text-xs text-white placeholder-slate-500 focus:border-violet-500 focus:outline-none"
               />
             </div>
