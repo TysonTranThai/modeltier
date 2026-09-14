@@ -155,7 +155,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-950 text-slate-100 font-sans selection:bg-violet-600 selection:text-white">
+    <div className="flex min-h-screen flex-col bg-[#170C07] text-[#FFF6EE] font-sans selection:bg-[#FF6B35] selection:text-white">
       {/* Top ModelTier Navbar */}
       <Navbar
         searchQuery={searchQuery}
@@ -171,13 +171,13 @@ export default function HomePage() {
         <div className="fixed bottom-6 right-6 z-50 animate-in slide-in-from-bottom-4 duration-300 max-w-md">
           <div className={`flex items-center gap-3 px-4 py-3 rounded-2xl shadow-2xl border text-xs font-semibold backdrop-blur-md ${
             syncToast.type === 'success'
-              ? 'bg-emerald-950/95 text-emerald-200 border-emerald-500/50 shadow-emerald-950/50'
-              : 'bg-rose-950/95 text-rose-200 border-rose-500/50 shadow-rose-950/50'
+              ? 'bg-[#1E0F09]/95 text-emerald-300 border-[#3D2216] shadow-black/60'
+              : 'bg-[#2E100D]/95 text-rose-300 border-rose-900/50 shadow-black/60'
           }`}>
             <span className="flex-1 leading-relaxed">{syncToast.message}</span>
             <button
               onClick={() => setSyncToast(null)}
-              className="rounded-lg p-1 text-slate-400 hover:bg-slate-800 hover:text-white"
+              className="rounded-lg p-1 text-[#A89280] hover:bg-[#2A160E] hover:text-[#FFF6EE]"
             >
               ✕
             </button>

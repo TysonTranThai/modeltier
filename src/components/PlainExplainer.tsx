@@ -36,18 +36,18 @@ export const PlainExplainer: React.FC = () => {
   const ActiveIcon = getIcon(activeTerm.iconName);
 
   return (
-    <section id="glossary" className="py-14 lg:py-20 bg-slate-950/60 border-t border-slate-800/80 scroll-mt-16 relative">
+    <section id="glossary" className="py-14 lg:py-20 bg-[#180D07]/60 border-t border-[#3D2216] scroll-mt-16 relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full bg-violet-500/10 px-3.5 py-1 text-xs font-semibold text-violet-300 border border-violet-500/20 mb-3">
+          <div className="inline-flex items-center gap-2 rounded-full bg-[#FF6B35]/10 px-3.5 py-1 text-xs font-semibold text-[#FF8452] border border-[#FF6B35]/20 mb-3">
             <BookOpen className="h-4 w-4" />
             <span>{language === 'vi' ? 'Cẩm nang cho người không chuyên' : 'AI for Everyone'}</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#FFF6EE] tracking-tight">
             {t.glossarySection.title}
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-slate-400">
+          <p className="mt-3 text-sm sm:text-base text-[#A89280]">
             {t.glossarySection.subtitle}
           </p>
         </div>
@@ -66,18 +66,18 @@ export const PlainExplainer: React.FC = () => {
                   onClick={() => setActiveTermId(item.id)}
                   className={`w-full flex items-center gap-3 p-3.5 rounded-2xl border text-left transition-all ${
                     isSelected
-                      ? 'border-violet-500 bg-violet-600/15 text-white ring-1 ring-violet-500/30'
-                      : 'border-slate-800 bg-slate-900/60 text-slate-300 hover:border-slate-700 hover:bg-slate-800'
+                      ? 'border-[#FF6B35] bg-[#FF6B35]/15 text-[#FFF6EE] ring-1 ring-[#FF6B35]/30'
+                      : 'border-[#3D2216] bg-[#24130C]/60 text-[#D8C4B6] hover:border-[#FF6B35]/40 hover:bg-[#24130C]'
                   }`}
                 >
-                  <div className={`p-2 rounded-xl shrink-0 ${isSelected ? 'bg-violet-600 text-white' : 'bg-slate-800 text-slate-400'}`}>
+                  <div className={`p-2 rounded-xl shrink-0 ${isSelected ? 'bg-[#FF6B35] text-[#FFF6EE]' : 'bg-[#180D07] border border-[#3D2216] text-[#A89280]'}`}>
                     <Icon className="h-4 w-4" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="text-xs sm:text-sm font-bold truncate">
                       {language === 'vi' ? item.term.vi : item.term.en}
                     </div>
-                    <div className="text-[11px] text-slate-400 line-clamp-1 mt-0.5">
+                    <div className="text-[11px] text-[#A89280] line-clamp-1 mt-0.5">
                       {language === 'vi' ? item.subtitle.vi : item.subtitle.en}
                     </div>
                   </div>
@@ -87,26 +87,26 @@ export const PlainExplainer: React.FC = () => {
           </div>
 
           {/* Detailed Spotlight Explanation */}
-          <div className="lg:col-span-7 rounded-3xl border border-slate-800 bg-slate-900/90 p-6 sm:p-8 shadow-2xl backdrop-blur-xl flex flex-col justify-between">
+          <div className="lg:col-span-7 rounded-3xl border border-[#3D2216] bg-[#24130C]/90 p-6 sm:p-8 shadow-2xl backdrop-blur-xl flex flex-col justify-between">
             <div>
               {/* Header */}
               <div className="flex items-start gap-3 mb-5">
-                <div className="p-3 rounded-2xl bg-gradient-to-br from-violet-600 to-indigo-600 text-white shadow-lg shadow-violet-600/20">
+                <div className="p-3 rounded-2xl bg-gradient-to-br from-[#FF6B35] to-[#E64A19] text-white shadow-lg shadow-[#FF6B35]/25">
                   <ActiveIcon className="h-6 w-6" />
                 </div>
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-black text-white">
+                  <h3 className="text-xl sm:text-2xl font-black text-[#FFF6EE]">
                     {language === 'vi' ? activeTerm.term.vi : activeTerm.term.en}
                   </h3>
-                  <p className="text-xs text-violet-300 font-medium mt-1">
+                  <p className="text-xs text-[#FF8452] font-medium mt-1">
                     {language === 'vi' ? activeTerm.subtitle.vi : activeTerm.subtitle.en}
                   </p>
                 </div>
               </div>
 
               {/* Simple Definition */}
-              <div className="rounded-2xl bg-slate-950/60 p-4 border border-slate-800/80 mb-5">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">
+              <div className="rounded-2xl bg-[#180D07]/60 p-4 border border-[#3D2216] mb-5">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#A89280] block mb-1">
                   {language === 'vi' ? 'Định nghĩa đơn giản:' : 'Simple Definition:'}
                 </span>
                 <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
@@ -132,7 +132,7 @@ export const PlainExplainer: React.FC = () => {
                 <Check className="h-4 w-4" />
                 <span>{t.glossarySection.whyItMattersBadge}</span>
               </div>
-              <p className="text-xs text-slate-300 leading-relaxed">
+              <p className="text-xs text-[#D8C4B6] leading-relaxed">
                 {language === 'vi' ? activeTerm.whyItMatters.vi : activeTerm.whyItMatters.en}
               </p>
             </div>

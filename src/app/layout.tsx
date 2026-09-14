@@ -43,7 +43,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi" className="dark scroll-smooth">
-      <body className="min-h-screen bg-slate-950 text-slate-100 antialiased selection:bg-violet-500 selection:text-white">
+      <body className="min-h-screen bg-[#170C07] text-[#FFF6EE] antialiased selection:bg-[#FF6B35] selection:text-white font-sans">
         <LanguageProvider>
           <CurrencyProvider>
             <ViewModeProvider>

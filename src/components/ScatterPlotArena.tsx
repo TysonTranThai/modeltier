@@ -128,7 +128,7 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-neutral-800 mb-6">
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-serif text-2xl font-medium text-white">
+              <span className="font-serif text-2xl font-medium text-[#FFF6EE]">
                 {metricMode === 'speed'
                   ? (language === 'vi' ? 'Biểu Đồ Trực Quan: Trí Thông Minh vs Tốc Độ' : 'Quality vs Output Speed')
                   : (language === 'vi' ? 'Biểu Đồ Trực Quan: Trí Thông Minh vs Chi Phí' : 'Quality vs Cost per Task')}
@@ -149,8 +149,8 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
               onClick={() => setMetricMode('speed')}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold transition-all ${
                 metricMode === 'speed'
-                  ? 'bg-purple-600 text-white shadow-sm'
-                  : 'text-neutral-400 hover:text-white'
+                  ? 'bg-purple-600 text-[#FFF6EE] shadow-sm'
+                  : 'text-neutral-400 hover:text-[#FFF6EE]'
               }`}
             >
               <Zap className="h-3.5 w-3.5" />
@@ -160,8 +160,8 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
               onClick={() => setMetricMode('cost')}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold transition-all ${
                 metricMode === 'cost'
-                  ? 'bg-purple-600 text-white shadow-sm'
-                  : 'text-neutral-400 hover:text-white'
+                  ? 'bg-purple-600 text-[#FFF6EE] shadow-sm'
+                  : 'text-neutral-400 hover:text-[#FFF6EE]'
               }`}
             >
               <DollarSign className="h-3.5 w-3.5" />
@@ -349,7 +349,7 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
               <div className="text-[10px] font-bold uppercase text-purple-400">
                 {hoveredModel.creator} • {hoveredModel.tier}-Tier
               </div>
-              <div className="font-bold text-white text-sm mt-0.5">{hoveredModel.name}</div>
+              <div className="font-bold text-[#FFF6EE] text-sm mt-0.5">{hoveredModel.name}</div>
               <div className="mt-2 space-y-1 text-neutral-300">
                 <div className="flex justify-between">
                   <span className="text-neutral-400">Intelligence:</span>
@@ -376,7 +376,7 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
         <div className="mt-6 p-4 rounded-2xl bg-neutral-900/80 border border-neutral-800 text-xs text-neutral-300 leading-relaxed flex items-start gap-3">
           <Lightbulb className="h-5 w-5 text-amber-400 shrink-0 mt-0.5" />
           <div>
-            <span className="font-bold text-white">
+            <span className="font-bold text-[#FFF6EE]">
               {language === 'vi' ? '💡 Cách đọc biểu đồ cho người không chuyên:' : '💡 How to read this chart in simple terms:'}{' '}
             </span>
             {metricMode === 'speed' ? (

@@ -48,123 +48,122 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
   ];
 
   return (
-    <section className="relative overflow-hidden border-b border-slate-800/80 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-12 md:py-16">
-      {/* Background Grid Accent */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-violet-600/10 blur-[130px] rounded-full pointer-events-none" />
+    <section className="relative overflow-hidden border-b border-[#3D2216] bg-[#180D07] py-12 md:py-16 text-[#FFF6EE]">
+      {/* Background Amber Glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-[#FF6B35]/10 blur-[140px] rounded-full pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Top Mode Banner & Verification Badge */}
+        {/* Top Mode Banner with Technical Crosshairs */}
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-          <div className="inline-flex items-center gap-2 rounded-full border border-violet-500/30 bg-violet-950/40 px-3.5 py-1.5 text-xs text-violet-300 backdrop-blur-md">
-            <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="font-semibold text-white">PRO BENCHMARK CLONE</span>
-            <span className="text-violet-400">•</span>
-            <span className="text-slate-300">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#522B19] bg-[#24130C] px-3.5 py-1.5 text-xs text-[#FF8452] shadow-sm">
+            <span className="flex h-2 w-2 rounded-full bg-[#FF6B35] animate-pulse" />
+            <span className="font-bold text-[#FFF6EE]">PRO BENCHMARK CLONE</span>
+            <span className="text-[#5A3522]">•</span>
+            <span className="text-[#D8C4B6]">
               {language === 'vi' ? 'Dữ liệu đo đạc độc lập' : 'Independent Benchmark Infrastructure'}
             </span>
           </div>
 
           <button
             onClick={() => setViewMode('simplified')}
-            className="group inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-950/30 hover:bg-amber-950/60 px-3.5 py-1.5 text-xs font-semibold text-amber-300 transition-all shadow-sm"
+            className="group inline-flex items-center gap-2 rounded-full border border-[#FF6B35]/40 bg-[#24130C] hover:bg-[#331C10] px-4 py-1.5 text-xs font-semibold text-[#FF8452] transition-all shadow-sm"
           >
-            <span>⚡ {language === 'vi' ? 'Xem chế độ Dễ hiểu (Người dùng & Doanh nghiệp)' : 'Switch to Easy Mode'}</span>
+            <span>⚡ {language === 'vi' ? 'Xem chế độ Dễ hiểu (Giao diện Tinh hoa)' : 'Switch to Easy Mode'}</span>
             <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
           </button>
         </div>
 
         {/* Hero Title & Subtitle */}
         <div className="max-w-4xl">
-          <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="text-3xl font-serif font-normal tracking-tight text-[#FFF6EE] sm:text-5xl lg:text-6xl">
             {language === 'vi' ? (
               <>
                 Đo lường & Phân tích Độc lập <br />
-                <span className="bg-gradient-to-r from-violet-400 via-indigo-300 to-sky-400 bg-clip-text text-transparent">
+                <span className="text-[#FF6B35] italic font-serif">
                   về Các Mô Hình Trí Tuệ Nhân Tạo
                 </span>
               </>
             ) : (
               <>
-                Independent Analysis of AI <br />
-                <span className="bg-gradient-to-r from-violet-400 via-indigo-300 to-sky-400 bg-clip-text text-transparent">
-                  Models & Cloud API Providers
+                Independent Analysis of <br />
+                <span className="text-[#FF6B35] italic font-serif">
+                  Frontier AI Models & Cloud APIs
                 </span>
               </>
             )}
           </h1>
 
-          <p className="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg max-w-3xl">
+          <p className="mt-4 text-base leading-relaxed text-[#D8C4B6] sm:text-lg max-w-3xl font-light">
             {language === 'vi' ? (
               <>
                 Toàn bộ dữ liệu đo kiểm thực tế trên hạ tầng độc lập: 
-                <strong className="text-white font-medium"> Điểm thông minh (Intelligence Index)</strong>, 
-                <strong className="text-white font-medium"> Tốc độ sinh token (Speed TPS)</strong>, 
-                <strong className="text-white font-medium"> Độ trễ gói đầu (TTFT)</strong>, và 
-                <strong className="text-white font-medium"> Chi phí trên mỗi tác vụ ($/M tokens & VNĐ)</strong>.
+                <strong className="text-[#FFF6EE] font-medium"> Điểm thông minh (Intelligence Index)</strong>, 
+                <strong className="text-[#FFF6EE] font-medium"> Tốc độ sinh token (Speed TPS)</strong>, 
+                <strong className="text-[#FFF6EE] font-medium"> Độ trễ gói đầu (TTFT)</strong>, và 
+                <strong className="text-[#FFF6EE] font-medium"> Chi phí trên mỗi tác vụ ($/M tokens & VNĐ)</strong>.
               </>
             ) : (
               <>
                 Objective, standardized benchmarks and telemetry for AI models: 
-                <strong className="text-white font-medium"> Intelligence Index</strong>, 
-                <strong className="text-white font-medium"> Output Speed (Tokens/s)</strong>, 
-                <strong className="text-white font-medium"> Time to First Token (TTFT)</strong>, and 
-                <strong className="text-white font-medium"> Normalized Task Cost ($/1M tokens)</strong>.
+                <strong className="text-[#FFF6EE] font-medium"> Intelligence Index</strong>, 
+                <strong className="text-[#FFF6EE] font-medium"> Output Speed (Tokens/s)</strong>, 
+                <strong className="text-[#FFF6EE] font-medium"> Time to First Token (TTFT)</strong>, and 
+                <strong className="text-[#FFF6EE] font-medium"> Normalized Task Cost ($/1M tokens)</strong>.
               </>
             )}
           </p>
         </div>
 
-        {/* Telemetry Metric Cards */}
+        {/* Telemetry Metric Cards in Ledger Chocolate Style */}
         <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-4 backdrop-blur-sm">
-            <div className="flex items-center gap-2 text-violet-400 text-xs font-semibold uppercase tracking-wider">
+          <div className="rounded-2xl border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
+            <div className="flex items-center gap-2 text-[#FF8452] text-xs font-semibold uppercase tracking-wider">
               <Layers className="h-4 w-4" />
               <span>{language === 'vi' ? 'Tổng mô hình' : 'Total Models'}</span>
             </div>
-            <div className="mt-2 text-2xl font-bold text-white sm:text-3xl">
+            <div className="mt-2 text-2xl font-serif font-bold text-[#FFF6EE] sm:text-3xl">
               {modelCount > 0 ? `${modelCount}+` : '650+'}
             </div>
-            <p className="mt-1 text-[11px] text-slate-400">
+            <p className="mt-1 text-[11px] text-[#A89280]">
               {language === 'vi' ? 'Frontier & Open-source' : 'Frontier & open weights'}
             </p>
           </div>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-4 backdrop-blur-sm">
-            <div className="flex items-center gap-2 text-sky-400 text-xs font-semibold uppercase tracking-wider">
+          <div className="rounded-2xl border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
+            <div className="flex items-center gap-2 text-[#FF8452] text-xs font-semibold uppercase tracking-wider">
               <ShieldCheck className="h-4 w-4" />
               <span>{language === 'vi' ? 'Kiểm thử độc lập' : 'Benchmark Rig'}</span>
             </div>
-            <div className="mt-2 text-2xl font-bold text-white sm:text-3xl">
+            <div className="mt-2 text-2xl font-serif font-bold text-[#FFF6EE] sm:text-3xl">
               100%
             </div>
-            <p className="mt-1 text-[11px] text-slate-400">
+            <p className="mt-1 text-[11px] text-[#A89280]">
               {language === 'vi' ? 'Đo lường trên GPU thực' : 'Standardized workloads'}
             </p>
           </div>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-4 backdrop-blur-sm">
-            <div className="flex items-center gap-2 text-emerald-400 text-xs font-semibold uppercase tracking-wider">
+          <div className="rounded-2xl border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
+            <div className="flex items-center gap-2 text-[#FF8452] text-xs font-semibold uppercase tracking-wider">
               <Clock className="h-4 w-4" />
               <span>{language === 'vi' ? 'Chu kỳ đồng bộ' : 'Sync Cadence'}</span>
             </div>
-            <div className="mt-2 text-2xl font-bold text-white sm:text-3xl">
+            <div className="mt-2 text-2xl font-serif font-bold text-[#FFF6EE] sm:text-3xl">
               15 phút
             </div>
-            <p className="mt-1 text-[11px] text-slate-400">
+            <p className="mt-1 text-[11px] text-[#A89280]">
               {language === 'vi' ? 'Tự động kéo telemetry' : 'Real-time telemetry'}
             </p>
           </div>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-4 backdrop-blur-sm">
-            <div className="flex items-center gap-2 text-amber-400 text-xs font-semibold uppercase tracking-wider">
+          <div className="rounded-2xl border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
+            <div className="flex items-center gap-2 text-[#FF8452] text-xs font-semibold uppercase tracking-wider">
               <TrendingUp className="h-4 w-4" />
               <span>{language === 'vi' ? 'Chỉ số đo đạc' : 'Key Metrics'}</span>
             </div>
-            <div className="mt-2 text-2xl font-bold text-white sm:text-3xl">
+            <div className="mt-2 text-2xl font-serif font-bold text-[#FFF6EE] sm:text-3xl">
               6 chiều
             </div>
-            <p className="mt-1 text-[11px] text-slate-400">
+            <p className="mt-1 text-[11px] text-[#A89280]">
               {language === 'vi' ? 'Trí tuệ, Tốc độ, Giá, TTFT' : 'Quality, Speed, TTFT, Cost'}
             </p>
           </div>
@@ -173,7 +172,7 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
         {/* Global Search Bar */}
         <div className="mt-8">
           <div className="relative max-w-2xl">
-            <Search className="absolute left-4 top-3.5 h-5 w-5 text-slate-400" />
+            <Search className="absolute left-4 top-3.5 h-5 w-5 text-[#FF8452]" />
             <input
               type="text"
               value={searchQuery}
@@ -183,12 +182,12 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
                   ? `Tìm kiếm nhanh trong ${modelCount} mô hình AI (Claude, GPT, Gemini, DeepSeek, Llama...)...`
                   : `Search across ${modelCount} models (Claude, GPT, Gemini, DeepSeek, Llama...)...`
               }
-              className="w-full rounded-2xl border border-slate-700/80 bg-slate-900/90 py-3 pl-12 pr-4 text-sm text-white placeholder-slate-400 shadow-xl focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 transition-all"
+              className="w-full rounded-full border border-[#4A2818] bg-[#24130C]/90 py-3 pl-12 pr-4 text-xs text-[#FFF6EE] placeholder-[#A89280] shadow-2xl focus:border-[#FF6B35] focus:outline-none focus:ring-2 focus:ring-[#FF6B35]/20 transition-all"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-4 top-3.5 text-xs text-slate-400 hover:text-white"
+                className="absolute right-4 top-3.5 text-xs text-[#A89280] hover:text-white"
               >
                 ✕
               </button>
@@ -205,13 +204,13 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-medium transition-all ${
+                className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-medium transition-all ${
                   isActive
-                    ? 'bg-violet-600 text-white shadow-lg shadow-violet-600/30 ring-1 ring-violet-400/50'
-                    : 'bg-slate-900/80 text-slate-300 border border-slate-800 hover:border-slate-700 hover:text-white'
+                    ? 'bg-[#FF6B35] text-white shadow-glow-orange font-bold'
+                    : 'bg-[#24130C] text-[#D8C4B6] border border-[#472718] hover:border-[#FF6B35]/50 hover:text-white'
                 }`}
               >
-                <Icon className={`h-3.5 w-3.5 ${isActive ? 'text-white' : 'text-violet-400'}`} />
+                <Icon className={`h-3.5 w-3.5 ${isActive ? 'text-white' : 'text-[#FF8452]'}`} />
                 <span>{language === 'vi' ? cat.labelVi : cat.labelEn}</span>
               </button>
             );
@@ -219,43 +218,36 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
         </div>
 
         {/* Section Quick Jump Links */}
-        <div className="mt-6 flex flex-wrap items-center gap-3 text-xs text-slate-400">
-          <span className="font-semibold text-slate-500 uppercase tracking-wider text-[10px]">
+        <div className="mt-6 flex flex-wrap items-center gap-3 text-xs text-[#A89280]">
+          <span className="font-semibold text-[#8A7262] uppercase tracking-wider text-[10px]">
             {language === 'vi' ? 'Chuyển nhanh đến:' : 'Quick Navigation:'}
           </span>
           <a
-            href="#benchmarks"
-            className="hover:text-violet-300 transition-colors underline decoration-slate-700 underline-offset-4"
+            href="#intelligence"
+            className="hover:text-[#FF8452] transition-colors underline decoration-[#472718] underline-offset-4"
           >
-            📊 {language === 'vi' ? 'Biểu Đồ Benchmark Cuộn' : 'Scrollable Benchmark Charts'}
+            📊 {language === 'vi' ? 'Biểu Đồ Intelligence Index' : 'Intelligence Index'}
           </a>
-          <span className="text-slate-700">•</span>
+          <span className="text-[#472718]">•</span>
           <a
-            href="#scatterplot"
-            className="hover:text-violet-300 transition-colors underline decoration-slate-700 underline-offset-4"
+            href="#coding-agents"
+            className="hover:text-[#FF8452] transition-colors underline decoration-[#472718] underline-offset-4"
           >
-            📈 {language === 'vi' ? 'Đồ Thị Pareto Frontier' : 'Pareto Frontier'}
+            💻 {language === 'vi' ? 'Coding Agent Index' : 'Coding Agent Index'}
           </a>
-          <span className="text-slate-700">•</span>
+          <span className="text-[#472718]">•</span>
           <a
-            href="#leaderboard"
-            className="hover:text-violet-300 transition-colors underline decoration-slate-700 underline-offset-4"
+            href="#price-and-cost"
+            className="hover:text-[#FF8452] transition-colors underline decoration-[#472718] underline-offset-4"
           >
-            📋 {language === 'vi' ? 'Bảng Xếp Hạng 650+ Models' : 'Full Leaderboard Table'}
+            💰 {language === 'vi' ? 'Chi Phí & Giá Cả' : 'Price & Cost'}
           </a>
-          <span className="text-slate-700">•</span>
+          <span className="text-[#472718]">•</span>
           <a
-            href="#live"
-            className="hover:text-violet-300 transition-colors underline decoration-slate-700 underline-offset-4"
+            href="#speed"
+            className="hover:text-[#FF8452] transition-colors underline decoration-[#472718] underline-offset-4"
           >
-            📡 {language === 'vi' ? 'Độ Trễ Provider Realtime' : 'API Telemetry Radar'}
-          </a>
-          <span className="text-slate-700">•</span>
-          <a
-            href="#articles"
-            className="hover:text-violet-300 transition-colors underline decoration-slate-700 underline-offset-4"
-          >
-            📰 {language === 'vi' ? 'Đánh Giá Chuyên Sâu & Changelog' : 'Articles & Changelog'}
+            ⚡ {language === 'vi' ? 'Tốc Độ & Độ Trễ' : 'Speed & Latency'}
           </a>
         </div>
       </div>

@@ -4,6 +4,7 @@ import React, { useState, useRef, useMemo } from 'react';
 import { ScrapedModel } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { useCurrency } from '../context/CurrencyContext';
+import { getCreatorColor } from './clone/CompanyLogo';
 import { 
   BarChart2, 
   ChevronLeft, 
@@ -126,119 +127,86 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
     }
   }, [rankedModels, activeMetric]);
 
-  const getMetricDisplay = (m: ScrapedModel) => {
+  const getMetricValueDisplay = (m: ScrapedModel) => {
     switch (activeMetric) {
       case 'intelligence':
       case 'open_weights':
       case 'reasoning':
         return {
-          value: m.intelligenceScoreRaw !== '--' ? m.intelligenceScoreRaw : `${m.intelligenceScore}`,
-          unit: 'pts',
-          pct: Math.min(100, Math.round(((m.intelligenceScore || 0) / maxValue) * 100)),
-          color: 'from-violet-600 to-indigo-500',
+          num: m.intelligenceScore.toFixed(1),
+          unit: 'Index',
+          ratio: Math.min(100, Math.max(12, (m.intelligenceScore / maxValue) * 100)),
         };
       case 'speed':
         return {
-          value: m.outputSpeedRaw !== '--' ? m.outputSpeedRaw : `${m.outputSpeed}`,
-          unit: 'tps',
-          pct: Math.min(100, Math.round(((m.outputSpeed || 0) / maxValue) * 100)),
-          color: 'from-amber-500 to-yellow-400',
+          num: Math.round(m.outputSpeed).toString(),
+          unit: 'tokens/s',
+          ratio: Math.min(100, Math.max(12, (m.outputSpeed / maxValue) * 100)),
         };
       case 'latency':
         return {
-          value: m.latencyRaw !== '--' ? `${m.latencyRaw}s` : `${m.latencyFirstChunk}s`,
-          unit: 'TTFT',
-          // For latency, lower is better, so invert percentage for visual height
-          pct: Math.max(15, Math.min(100, Math.round((1 - (m.latencyFirstChunk || 0) / maxValue) * 100))),
-          color: 'from-cyan-500 to-blue-400',
+          num: m.latencyFirstChunk.toFixed(2),
+          unit: 'giây (TTFT)',
+          ratio: Math.min(100, Math.max(12, 100 - (m.latencyFirstChunk / maxValue) * 80)),
         };
       case 'totalTime':
         return {
-          value: m.totalTimeRaw !== '--' ? `${m.totalTimeRaw}s` : `${m.totalResponseTime}s`,
-          unit: 'sec',
-          pct: Math.max(15, Math.min(100, Math.round((1 - (m.totalResponseTime || 0) / maxValue) * 100))),
-          color: 'from-blue-500 to-teal-400',
+          num: m.totalResponseTime.toFixed(1),
+          unit: 'giây hoàn tất',
+          ratio: Math.min(100, Math.max(12, 100 - (m.totalResponseTime / maxValue) * 80)),
         };
       case 'cost':
         return {
-          value: formatCost(m.costPerTaskUSD),
-          unit: '/task',
-          pct: Math.max(15, Math.min(100, Math.round((1 - (m.costPerTaskUSD || 0) / maxValue) * 100))),
-          color: 'from-emerald-500 to-green-400',
+          num: currency === 'VND' ? formatCost(m.costPerTaskUSD) : `$${m.costPerTaskUSD.toFixed(2)}`,
+          unit: '/task chuẩn',
+          ratio: Math.min(100, Math.max(12, 100 - (m.costPerTaskUSD / maxValue) * 80)),
         };
-    }
-  };
-
-  const getMethodologyNote = () => {
-    switch (activeMetric) {
-      case 'intelligence':
-        return language === 'vi'
-          ? '🎯 Artificial Analysis Intelligence Index tích hợp 10 bài đánh giá tiêu chuẩn (AA-Briefcase, GDPval, AutomationBench, Terminal-Bench, SciCode, Humanity\'s Last Exam...). Điểm số đo lường năng lực giải quyết bài toán phức tạp.'
-          : '🎯 Artificial Analysis Intelligence Index incorporates 10 frontier benchmarks. Measures end-to-end complex task problem solving.';
-      case 'speed':
-        return language === 'vi'
-          ? '⚡ Tốc độ sinh chữ (Tokens / s) đo lường lưu lượng thực tế đo được qua API trực tiếp từ nhà cung cấp trong điều kiện tải chuẩn.'
-          : '⚡ Output Speed (tps) measures median output token generation throughput across active provider endpoints.';
-      case 'latency':
-        return language === 'vi'
-          ? '⏱️ Time to First Token (TTFT) là độ trễ tính từ lúc gửi prompt cho đến khi AI trả về ký tự đầu tiên. Càng thấp phản hồi càng tức thì.'
-          : '⏱️ Time to First Token (TTFT) latency from prompt transmission until the first output chunk streams.';
-      case 'cost':
-        return language === 'vi'
-          ? '💰 Chi phí ước tính cho 1 tác vụ hoàn chỉnh theo chuẩn Intelligence Index, phản ánh trực tiếp số tiền bạn phải trả khi gọi API.'
-          : '💰 Cost per Task models realistic API expenditure across benchmark prompts in USD and VND.';
-      case 'open_weights':
-        return language === 'vi'
-          ? '🔓 Mô hình mã nguồn mở (Open Weights) cho phép tải trọng số về chạy trên máy chủ nội bộ hoặc tối ưu riêng tư tuyệt đối.'
-          : '🔓 Open Weights models can be self-hosted locally without vendor lock-in or privacy leakage.';
       default:
-        return language === 'vi'
-          ? '📊 Dữ liệu được đo kiểm độc lập và đồng bộ tự động mỗi 15 phút từ artificialanalysis.ai.'
-          : '📊 Independently measured and synced automatically every 15 minutes from artificialanalysis.ai.';
+        return { num: '0', unit: '', ratio: 10 };
     }
   };
 
   return (
-    <section id="benchmarks" className="py-12 lg:py-16 scroll-mt-16 container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-8">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
-        <div>
-          <div className="inline-flex items-center gap-2 rounded-full bg-violet-500/10 px-3.5 py-1 text-xs font-semibold text-violet-300 border border-violet-500/20 mb-3">
-            <BarChart2 className="h-4 w-4" />
-            <span>{language === 'vi' ? 'Thước Đo Benchmark Trực Quan' : 'Interactive Benchmark Explorer'}</span>
+    <section id="benchmarks" className="border-t border-[#3D2216] bg-[#180D07] py-16 scroll-mt-20 text-[#FFF6EE]">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#FF6B35]/30 bg-[#24130C] px-3.5 py-1 text-xs font-semibold text-[#FF8452] mb-3">
+              <BarChart2 className="h-3.5 w-3.5" />
+              <span>{language === 'vi' ? 'Khám Phá Biểu Đồ Cuộn Ngang' : 'Horizontal Benchmark Explorer'}</span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl font-serif font-bold tracking-tight text-[#FFF6EE]">
+              {language === 'vi' ? 'Đo Lường & So Sánh Từng Chỉ Số' : 'Interactive Metric Explorer'}
+            </h2>
+            <p className="mt-2 text-xs sm:text-sm text-[#D8C4B6] max-w-2xl font-light">
+              {language === 'vi'
+                ? 'Tái hiện chuẩn xác tính năng cuộn ngang của Artificial Analysis. Chọn thang đo và cuộn sang phải để xem thứ hạng của tất cả mô hình.'
+                : 'Full replication of Artificial Analysis horizontal chart. Pick any evaluation metric and scroll horizontally to explore ranked models.'}
+            </p>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-            {language === 'vi' ? 'Bảng So Sánh Benchmark Đa Chiều' : 'Multidimensional AI Benchmarks'}
-          </h2>
-          <p className="mt-2 text-xs sm:text-sm text-slate-400 max-w-2xl">
-            {language === 'vi'
-              ? 'Cuộn ngang để khám phá thứ hạng chi tiết của hơn 40 mô hình hàng đầu theo từng bài kiểm tra tiêu chuẩn.'
-              : 'Scroll horizontally to explore real benchmark rankings of leading frontier and open models.'}
-          </p>
+
+          {/* Scroll Direction Controls */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => scroll('left')}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#472718] bg-[#24130C] text-[#D8C4B6] hover:border-[#FF6B35] hover:text-white transition-all shadow-sm active:scale-95"
+              aria-label="Cuộn sang trái"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              onClick={() => scroll('right')}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#472718] bg-[#24130C] text-[#D8C4B6] hover:border-[#FF6B35] hover:text-white transition-all shadow-sm active:scale-95"
+              aria-label="Cuộn sang phải"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
         </div>
 
-        {/* Scroll Arrows */}
-        <div className="flex items-center gap-2 self-end md:self-auto">
-          <button
-            onClick={() => scroll('left')}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-800 bg-slate-900 text-slate-300 hover:bg-slate-800 hover:text-white transition-colors shadow-lg"
-            title="Cuộn sang trái"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <button
-            onClick={() => scroll('right')}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-800 bg-slate-900 text-slate-300 hover:bg-slate-800 hover:text-white transition-colors shadow-lg"
-            title="Cuộn sang phải"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
-        </div>
-      </div>
-
-      {/* Horizontal Scrollable Benchmark Tabs */}
-      <div className="w-full overflow-x-auto pb-2 border-b border-slate-800/80 mb-6 scrollbar-none">
-        <div className="flex items-center gap-2 min-w-max">
+        {/* Primary Metric Tabs (Horizontal Scrollable on Mobile) */}
+        <div className="mb-4 flex gap-2 overflow-x-auto pb-2 scrollbar-none">
           {metricTabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeMetric === tab.id;
@@ -246,147 +214,156 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
               <button
                 key={tab.id}
                 onClick={() => setActiveMetric(tab.id as BenchmarkMetric)}
-                className={`flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-bold transition-all ${
+                className={`inline-flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-xs font-semibold transition-all ${
                   isActive
-                    ? 'bg-violet-600 text-white shadow-lg shadow-violet-600/30 ring-1 ring-violet-400'
-                    : 'bg-slate-900/90 text-slate-300 hover:bg-slate-800 hover:text-white border border-slate-800'
+                    ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange'
+                    : 'border border-[#472718] bg-[#24130C] text-[#D8C4B6] hover:border-[#FF6B35]/50 hover:text-white'
                 }`}
               >
-                <Icon className={`h-4 w-4 ${isActive ? 'text-white' : 'text-violet-400'}`} />
+                <Icon className={`h-3.5 w-3.5 ${isActive ? 'text-white' : 'text-[#FF8452]'}`} />
                 <span>{tab.label}</span>
               </button>
             );
           })}
         </div>
-      </div>
 
-      {/* Secondary Filter Pills */}
-      <div className="flex items-center gap-1.5 flex-wrap mb-6">
-        <div className="flex items-center gap-1 text-[11px] font-semibold text-slate-400 mr-2">
-          <SlidersHorizontal className="h-3.5 w-3.5" />
-          <span>{language === 'vi' ? 'Lọc nhanh:' : 'Filter:'}</span>
+        {/* Secondary Filter Pills */}
+        <div className="mb-6 flex flex-wrap items-center gap-2 text-xs">
+          <span className="text-[#8A7262] font-mono text-[11px] mr-1">
+            {language === 'vi' ? 'Bộ lọc:' : 'Filter:'}
+          </span>
+          {[
+            { id: 'all', label: language === 'vi' ? 'Tất cả' : 'All Models' },
+            { id: 'open_weights', label: language === 'vi' ? 'Chỉ Mã nguồn mở' : 'Open Weights Only' },
+            { id: 'proprietary', label: language === 'vi' ? 'Độc quyền' : 'Proprietary Only' },
+            { id: 'reasoning', label: language === 'vi' ? 'Có Suy luận sâu' : 'Reasoning' },
+            { id: 'speed', label: language === 'vi' ? 'Tốc độ > 100 tps' : 'Speed > 100 tps' },
+            { id: 'budget', label: language === 'vi' ? 'Chi phí < $1/task' : 'Budget < $1' },
+          ].map((f) => (
+            <button
+              key={f.id}
+              onClick={() => setFilterType(f.id)}
+              className={`rounded-full px-3 py-1 font-medium transition-all ${
+                filterType === f.id
+                  ? 'bg-[#FFF6EE] text-[#180D07] font-bold shadow-sm'
+                  : 'bg-[#201009] text-[#B8A08F] border border-[#3D2216] hover:border-[#FF6B35]/40 hover:text-white'
+              }`}
+            >
+              {f.label}
+            </button>
+          ))}
+          <span className="ml-auto text-[11px] text-[#A89280] font-mono">
+            {language === 'vi' ? `Hiển thị ${rankedModels.length} mô hình` : `Showing ${rankedModels.length} models`}
+          </span>
         </div>
-        {[
-          { id: 'all', label: language === 'vi' ? 'Tất cả' : 'All' },
-          { id: 'open_weights', label: '🔓 Mã nguồn mở' },
-          { id: 'proprietary', label: '🔒 Đóng quyền' },
-          { id: 'reasoning', label: '🧠 Suy luận (Reasoning)' },
-          { id: 'speed', label: '⚡ Siêu nhanh (>100 tps)' },
-          { id: 'budget', label: '💰 Tiết kiệm (<$1)' },
-        ].map((f) => (
-          <button
-            key={f.id}
-            onClick={() => setFilterType(f.id)}
-            className={`rounded-lg px-2.5 py-1 text-xs font-medium transition-colors ${
-              filterType === f.id
-                ? 'bg-violet-900/50 text-violet-200 border border-violet-600'
-                : 'bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800/80'
-            }`}
-          >
-            {f.label}
-          </button>
-        ))}
-      </div>
 
-      {/* Main Horizontal Scrollable Benchmark Area */}
-      <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-5 sm:p-6 backdrop-blur-xl shadow-2xl">
-        <div
-          data-chart-scroll="true"
-          ref={scrollContainerRef}
-          className="flex items-end gap-3.5 overflow-x-auto pb-4 pt-6 scroll-smooth scrollbar-thin scrollbar-thumb-violet-600/40"
-          style={{ minHeight: '340px' }}
-        >
-          {rankedModels.length === 0 ? (
-            <div className="w-full py-16 text-center text-xs text-slate-400">
-              {language === 'vi' ? 'Không có mô hình nào khớp với bộ lọc hiện tại.' : 'No models match the active filter.'}
-            </div>
-          ) : (
-            rankedModels.map((m, idx) => {
-              const rank = idx + 1;
-              const { value, unit, pct, color } = getMetricDisplay(m);
-              const isTop3 = rank <= 3;
+        {/* The Signature Horizontal Scroll Container (data-chart-scroll="true") */}
+        <div className="relative rounded-2xl border border-[#472718] bg-[#24130C]/90 p-6 backdrop-blur-md shadow-card-espresso">
+          <div
+            ref={scrollContainerRef}
+            data-chart-scroll="true"
+            className="flex items-end gap-3.5 overflow-x-auto pb-4 pt-8 scrollbar-thin scrollbar-thumb-[#4A2818] scrollbar-track-[#180D07]"
+            style={{ minHeight: '340px' }}
+          >
+            {rankedModels.map((model, index) => {
+              const { num, unit, ratio } = getMetricValueDisplay(model);
+              const isTop3 = index < 3;
+              const barColor = getCreatorColor(model.creator, model.name);
 
               return (
                 <div
-                  key={m.id}
-                  onClick={() => onSelectModel(m)}
-                  className="group flex-shrink-0 w-36 sm:w-40 flex flex-col justify-between rounded-2xl border border-slate-800 bg-slate-950/70 p-3 hover:border-violet-500/60 hover:bg-slate-800/50 transition-all cursor-pointer shadow-lg relative"
+                  key={model.id || index}
+                  onClick={() => onSelectModel(model)}
+                  className="group relative flex w-24 sm:w-28 flex-shrink-0 cursor-pointer flex-col items-center justify-end rounded-xl p-2 hover:bg-[#2F1910] transition-all"
                 >
-                  {/* Top Rank Badge */}
-                  <div className="flex items-center justify-between mb-2">
-                    <span
-                      className={`inline-flex items-center justify-center rounded-lg px-2 py-0.5 text-[10px] font-black ${
-                        rank === 1
-                          ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/30'
-                          : rank === 2
-                          ? 'bg-slate-300 text-slate-950'
-                          : rank === 3
-                          ? 'bg-amber-700 text-white'
-                          : 'bg-slate-800 text-slate-400'
-                      }`}
-                    >
-                      #{rank}
-                    </span>
-
-                    <span className="text-[10px] font-mono font-bold text-slate-400">
-                      {m.tier}-Tier
-                    </span>
-                  </div>
-
-                  {/* Model & Creator */}
-                  <div className="min-w-0 mb-3">
-                    <span className="text-[10px] uppercase font-bold text-slate-400 block truncate">
-                      {m.creator}
-                    </span>
-                    <h4 className="text-xs font-bold text-white group-hover:text-violet-300 transition-colors truncate">
-                      {m.name}
-                    </h4>
-                  </div>
-
-                  {/* Proportional Vertical Bar */}
-                  <div className="w-full h-32 bg-slate-900 rounded-xl p-1.5 flex flex-col justify-end overflow-hidden mb-3 border border-slate-800/80">
-                    <div
-                      className={`w-full rounded-lg bg-gradient-to-t ${color} transition-all duration-500 flex items-center justify-center`}
-                      style={{ height: `${pct}%`, minHeight: '18px' }}
-                    >
-                      <span className="text-[10px] font-mono font-black text-white px-1 truncate">
-                        {value}
+                  {/* Rank Podium Badge */}
+                  <div className="absolute top-0 flex flex-col items-center">
+                    {index === 0 && (
+                      <span className="rounded-full bg-gradient-to-r from-amber-500 to-[#FF6B35] px-2 py-0.5 text-[10px] font-bold text-white shadow-glow-orange">
+                        #1 🥇
                       </span>
-                    </div>
+                    )}
+                    {index === 1 && (
+                      <span className="rounded-full bg-slate-300 text-slate-950 px-2 py-0.5 text-[10px] font-bold">
+                        #2 🥈
+                      </span>
+                    )}
+                    {index === 2 && (
+                      <span className="rounded-full bg-amber-700 text-amber-100 px-2 py-0.5 text-[10px] font-bold">
+                        #3 🥉
+                      </span>
+                    )}
+                    {index > 2 && (
+                      <span className="text-[10px] font-mono text-[#8A7262]">
+                        #{index + 1}
+                      </span>
+                    )}
                   </div>
 
-                  {/* Benchmark Value & Unit */}
-                  <div className="text-center pt-2 border-t border-slate-800/80">
-                    <span className="font-mono text-sm font-black text-white block">
-                      {value}
+                  {/* Value Above Bar */}
+                  <div className="mb-2 text-center">
+                    <span className={`text-sm font-bold font-mono ${isTop3 ? 'text-[#FF8452]' : 'text-[#FFF6EE]'}`}>
+                      {num}
                     </span>
-                    <span className="text-[10px] text-slate-400 block -mt-0.5">
+                    <span className="block text-[9px] text-[#A89280] truncate">
                       {unit}
                     </span>
                   </div>
 
-                  {/* Action Link */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onSelectModel(m);
-                    }}
-                    className="mt-2.5 w-full rounded-lg bg-slate-900 py-1 text-[11px] font-semibold text-slate-300 group-hover:bg-violet-600 group-hover:text-white transition-colors"
-                  >
-                    {language === 'vi' ? 'Xem chi tiết' : 'View specs'}
-                  </button>
+                  {/* Proportional Vertical Bar */}
+                  <div className="relative flex w-full justify-center h-48 items-end">
+                    <div
+                      style={{
+                        height: `${ratio}%`,
+                        backgroundColor: isTop3 ? undefined : barColor,
+                      }}
+                      className={`w-full max-w-[40px] rounded-t-lg transition-all duration-300 group-hover:scale-y-105 ${
+                        isTop3
+                          ? 'bg-gradient-to-t from-[#E64A19] to-[#FF6B35] shadow-glow-orange'
+                          : 'opacity-90 group-hover:opacity-100'
+                      }`}
+                    />
+                  </div>
+
+                  {/* Model Metadata Under Bar */}
+                  <div className="mt-3 text-center w-full">
+                    <h4 className="text-xs font-bold text-[#FFF6EE] truncate group-hover:text-[#FF8452] transition-colors" title={model.name}>
+                      {model.name}
+                    </h4>
+                    <span className="text-[10px] text-[#A89280] block truncate">
+                      {model.creator}
+                    </span>
+                    <span className={`mt-1 inline-block rounded-full px-1.5 py-0.2 text-[9px] font-medium ${
+                      model.isOpenWeights ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-neutral-800 text-[#B8A08F]'
+                    }`}>
+                      {model.isOpenWeights ? 'Open' : 'API'}
+                    </span>
+                  </div>
                 </div>
               );
-            })
-          )}
-        </div>
+            })}
+          </div>
 
-        {/* Methodology & Measurement Notice */}
-        <div className="mt-4 pt-4 border-t border-slate-800/80 flex items-start gap-3 text-xs text-slate-400">
-          <Info className="h-4 w-4 text-violet-400 shrink-0 mt-0.5" />
-          <p className="leading-relaxed">
-            {getMethodologyNote()}
-          </p>
+          {/* Methodology Card at Bottom */}
+          <div className="mt-6 pt-4 border-t border-[#381E12] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-[#A89280]">
+            <div className="flex items-center gap-1.5">
+              <Info className="h-4 w-4 text-[#FF6B35] shrink-0" />
+              <span>
+                {language === 'vi'
+                  ? 'Kiểm thử chuẩn hóa trên cụm GPU độc lập. Đo lường tốc độ xử lý gói token đầu (TTFT) và throughput thực tế.'
+                  : 'Empirical benchmark runs using standardized workloads across dedicated AI benchmarking rigs.'}
+              </span>
+            </div>
+            <a
+              href="https://artificialanalysis.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 font-semibold text-[#FF8452] hover:underline shrink-0"
+            >
+              <span>Xem phương pháp tại Artificial Analysis</span>
+              <ExternalLink className="h-3 w-3" />
+            </a>
+          </div>
         </div>
       </div>
     </section>

@@ -2,22 +2,27 @@
 
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { CategoryFilter } from '../types';
+import { useViewMode } from '../context/ViewModeContext';
 import { 
   Sparkles, 
   Search, 
-  ArrowRight, 
-  Compass, 
+  ChevronRight, 
+  TrendingUp, 
   Zap, 
-  TableProperties,
-  Calculator
+  Layers, 
+  SlidersHorizontal,
+  ArrowUpRight,
+  ShieldCheck,
+  CheckCircle2,
+  BarChart2
 } from 'lucide-react';
+import { CategoryFilter } from '../types';
 
 interface HeroProps {
   searchQuery: string;
   setSearchQuery: (q: string) => void;
   activeCategory: CategoryFilter;
-  setActiveCategory: (c: CategoryFilter) => void;
+  setActiveCategory: (cat: CategoryFilter) => void;
   modelCount: number;
 }
 
@@ -28,152 +33,208 @@ export const Hero: React.FC<HeroProps> = ({
   setActiveCategory,
   modelCount,
 }) => {
-  const { language, t } = useLanguage();
-
-  const filterCategories: { id: CategoryFilter; label: string }[] = [
-    { id: 'all', label: t.filters.all },
-    { id: 'vietnamese', label: t.filters.vietnamese },
-    { id: 'coding', label: t.filters.coding },
-    { id: 'speed', label: t.filters.speed },
-    { id: 'budget', label: t.filters.budget },
-    { id: 'reasoning', label: t.filters.reasoning },
-    { id: 'open_weights', label: language === 'vi' ? '🔓 Mã Nguồn Mở' : '🔓 Open Weights' },
-    { id: 'free_accessible', label: t.filters.free_accessible },
-  ];
+  const { language } = useLanguage();
+  const { setViewMode } = useViewMode();
 
   return (
-    <section className="relative overflow-hidden pt-10 pb-12 lg:pt-16 lg:pb-20">
-      {/* Background Subtle Ambient Glows */}
-      <div className="pointer-events-none absolute -top-40 left-1/2 -z-10 h-[500px] w-[900px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-900/25 via-slate-900/10 to-transparent blur-3xl" />
+    <section className="relative overflow-hidden bg-[#180D07] text-[#FFF6EE] pt-8 pb-16 border-b border-[#3D2216]">
+      {/* Subtle Warm Amber Vignette Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[#FF6B35]/10 blur-[140px] pointer-events-none rounded-full" />
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#26130B]/90 via-[#26130B]/40 to-transparent pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto">
-          {/* Live Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-violet-500/30 bg-violet-500/10 px-3.5 py-1 text-xs font-medium text-violet-300 shadow-sm backdrop-blur-sm mb-5">
-            <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>{language === 'vi' ? `Theo dõi dữ liệu thực tế ${modelCount} mô hình AI` : `Live tracking across ${modelCount} frontier AI models`}</span>
-          </div>
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Technical Header with Crosshairs (Ledger Style) */}
+        <div className="relative mb-10 flex items-center justify-between text-[#A89280] text-[11px] font-mono tracking-[0.2em] uppercase border-y border-[#3D2216] py-2.5">
+          <span className="text-[#FF6B35]/70 font-bold text-sm">+</span>
+          <span className="text-center px-4 truncate">
+            {language === 'vi' 
+              ? 'BẠN PHÁT TRIỂN SẢN PHẨM. CHÚNG TÔI ĐO LƯỜNG VÀ GIÁM SÁT CÁC MÔ HÌNH AI.' 
+              : "YOU BUILT THE PRODUCT. WE'LL WATCH THE AI BENCHMARKS."}
+          </span>
+          <span className="text-[#FF6B35]/70 font-bold text-sm">+</span>
+        </div>
 
-          {/* Main Headline */}
-          <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.15]">
-            {t.hero.headingStart}{' '}
-            <span className="bg-gradient-to-r from-violet-400 via-purple-300 to-indigo-300 bg-clip-text text-transparent">
-              {t.hero.headingAccent}
-            </span>{' '}
-            {t.hero.headingEnd}
+        {/* Hero Editorial Headline */}
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl font-serif font-normal tracking-tight text-[#FFF6EE] sm:text-6xl lg:text-7xl leading-[1.12]">
+            {language === 'vi' ? (
+              <>
+                Mọi <span className="text-[#FF6B35] italic font-serif">doanh nghiệp</span> đều xứng đáng sở hữu <span className="text-[#FF6B35] italic font-serif">mô hình AI</span> tối ưu
+              </>
+            ) : (
+              <>
+                Every <span className="text-[#FF6B35] italic font-serif">business</span> deserves the world&apos;s finest <span className="text-[#FF6B35] italic font-serif">AI models</span>
+              </>
+            )}
           </h1>
 
-          {/* Subtitle */}
-          <p className="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl mx-auto">
+          <p className="mt-6 text-base leading-relaxed text-[#D8C4B6] sm:text-lg max-w-2xl mx-auto font-light">
             {language === 'vi'
-              ? 'Không còn bối rối trước những biểu đồ phân tán phức tạp hay thuật ngữ tiếng Anh học thuật. Chúng tôi đơn giản hóa dữ liệu thành Bảng Xếp Hạng trực quan, tính toán chi phí bằng VNĐ và chấm điểm độ nhuyễn tiếng Việt.'
-              : 'No more confusing academic scatter plots or dense ML jargon. We simplify frontier AI data into intuitive Tier Lists, real-world VND/USD costs, and native language evaluations.'}
+              ? 'Hầu hết các nhà phát triển đưa ra quyết định lớn mà không có số liệu đo đạc thực tế. ModelTier mang đến chuẩn đo lường độc lập — luôn cập nhật từng phút, luôn sẵn sàng đồng hành.'
+              : 'Most founders make six-figure AI decisions without empirical telemetry. ModelTier gives you one — always watching the benchmarks, always ready to advise.'}
           </p>
 
-          {/* Search Bar */}
-          <div className="mt-7 relative max-w-xl mx-auto">
-            <div className="relative flex items-center">
-              <Search className="absolute left-4 h-4 w-4 text-slate-400" />
+          {/* Glowing Orange CTA Pill Button */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="#tierlist"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#FF6B35] to-[#E64A19] px-7 py-3.5 text-sm font-semibold text-white shadow-glow-orange hover:shadow-glow-orange-lg hover:scale-105 transition-all"
+            >
+              <span>{language === 'vi' ? 'Khám Phá Mô Hình Tinh Hoa' : 'Discover the Core'}</span>
+              <span className="text-white text-base">→</span>
+            </a>
+
+            <button
+              onClick={() => setViewMode('clone')}
+              className="inline-flex items-center gap-2 rounded-full border border-[#5A3420] bg-[#24130B]/80 hover:bg-[#331C10] px-6 py-3.5 text-sm font-medium text-[#EFE2D6] hover:border-[#FF6B35]/60 transition-all shadow-sm"
+            >
+              <BarChart2 className="h-4 w-4 text-[#FF6B35]" />
+              <span>{language === 'vi' ? 'Xem Chuẩn Benchmark Pro' : 'Explore Pro Telemetry'}</span>
+            </button>
+          </div>
+
+          {/* Search Box in Warm Espresso Style */}
+          <div className="mt-10 max-w-xl mx-auto">
+            <div className="relative">
+              <Search className="absolute left-4 top-3.5 h-4 w-4 text-[#FF8452]" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    document.querySelector('#leaderboard')?.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-                placeholder={language === 'vi' ? 'Tìm nhanh model (ví dụ: Claude 3.7, DeepSeek R1, GPT-4o, Gemini, K2)...' : 'Search models (e.g. Claude 3.7, DeepSeek R1, GPT-4o, Gemini, K2)...'}
-                className="w-full rounded-2xl border border-slate-700 bg-slate-900/90 py-3 pl-11 pr-24 text-xs sm:text-sm text-white placeholder-slate-400 shadow-xl backdrop-blur-md transition-all focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/30"
+                placeholder={
+                  language === 'vi'
+                    ? `Tìm kiếm trong ${modelCount} mô hình AI (Claude 3.7, GPT-4o, DeepSeek, Gemini)...`
+                    : `Search ${modelCount} models (Claude 3.7, GPT-4o, DeepSeek, Gemini)...`
+                }
+                className="w-full rounded-full border border-[#4A2818] bg-[#24130C]/90 py-3 pl-11 pr-4 text-xs text-[#FFF6EE] placeholder-[#A89280] shadow-2xl focus:border-[#FF6B35] focus:outline-none focus:ring-2 focus:ring-[#FF6B35]/20 transition-all"
               />
-              <div className="absolute right-2 flex items-center gap-1">
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery('')}
-                    className="p-1 text-xs text-slate-400 hover:text-white"
-                    title="Xóa tìm kiếm"
-                  >
-                    ✕
-                  </button>
-                )}
+              {searchQuery && (
                 <button
-                  onClick={() => document.querySelector('#leaderboard')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="rounded-xl bg-violet-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-violet-500 transition-colors shadow-sm"
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-4 top-3 text-xs text-[#A89280] hover:text-white"
                 >
-                  {language === 'vi' ? 'Tìm' : 'Search'}
+                  ✕
                 </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Action CTAs */}
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-2.5">
-            <a
-              href="#leaderboard"
-              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 px-4 py-2 text-xs sm:text-sm font-semibold text-white shadow-lg shadow-indigo-600/25 transition-all hover:scale-105 hover:from-violet-500 hover:to-indigo-500"
-            >
-              <TableProperties className="h-4 w-4" />
-              {language === 'vi' ? `Bảng Đầy Đủ ${modelCount} Model` : `View All ${modelCount} Models`}
-            </a>
-            <a
-              href="#finder"
-              className="inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-900/80 px-4 py-2 text-xs sm:text-sm font-medium text-slate-200 hover:bg-slate-800 hover:text-white transition-colors"
-            >
-              <Compass className="h-4 w-4 text-purple-400" />
-              {t.hero.ctaFinder}
-            </a>
-            <a
-              href="#calculator"
-              className="inline-flex items-center gap-2 rounded-xl border border-slate-700 bg-slate-900/80 px-4 py-2 text-xs sm:text-sm font-medium text-slate-200 hover:bg-slate-800 hover:text-white transition-colors"
-            >
-              <Calculator className="h-4 w-4 text-emerald-400" />
-              {t.nav.calculator}
-            </a>
-          </div>
-
-          {/* Live Metrics Ticker Bar */}
-          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 rounded-2xl border border-slate-800/80 bg-slate-900/50 p-3.5 backdrop-blur-sm">
-            <div className="text-center border-r border-slate-800/60">
-              <div className="text-xl sm:text-2xl font-black text-white">{modelCount}</div>
-              <div className="text-[11px] text-slate-400 mt-0.5">{language === 'vi' ? 'Mô hình trực tiếp' : 'Models Synced'}</div>
-            </div>
-            <div className="text-center sm:border-r border-slate-800/60">
-              <div className="text-xl sm:text-2xl font-black text-emerald-400">100%</div>
-              <div className="text-[11px] text-slate-400 mt-0.5">{language === 'vi' ? 'Tiếng Việt hóa' : 'Plain Language'}</div>
-            </div>
-            <div className="text-center border-r border-slate-800/60">
-              <div className="text-xl sm:text-2xl font-black text-amber-400">25.450 đ</div>
-              <div className="text-[11px] text-slate-400 mt-0.5">{language === 'vi' ? 'Tỉ giá VNĐ/USD' : 'VND/USD Live Rate'}</div>
-            </div>
-            <div className="text-center">
-              <div className="text-xl sm:text-2xl font-black text-violet-400">15m</div>
-              <div className="text-[11px] text-slate-400 mt-0.5">{language === 'vi' ? 'Chu kỳ tự động kéo' : 'Sync Interval'}</div>
+              )}
             </div>
           </div>
         </div>
 
-        {/* Category Filter Pills */}
-        <div className="mt-10">
-          <div className="flex flex-wrap items-center justify-center gap-2">
-            {filterCategories.map((category) => {
-              const isActive = activeCategory === category.id;
-              return (
-                <button
-                  key={category.id}
-                  onClick={() => {
-                    setActiveCategory(category.id);
-                    document.querySelector('#tierlist')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className={`rounded-xl px-3.5 py-1.5 text-xs font-semibold transition-all ${
-                    isActive
-                      ? 'bg-violet-600 text-white shadow-md shadow-violet-600/30 scale-105 ring-1 ring-white/30'
-                      : 'border border-slate-800 bg-slate-900/80 text-slate-300 hover:border-slate-700 hover:bg-slate-800 hover:text-white'
-                  }`}
-                >
-                  {category.label}
-                </button>
-              );
-            })}
+        {/* ================= 3 SIGNATURE LUXURY DASHBOARD CARDS ================= */}
+        {/* Directly replicates the bottom visual cards from the Ledger screenshot */}
+        <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* CARD 1: Outstanding Invoices / Bar Chart Card */}
+          <div className="rounded-2xl border border-[#472718] bg-[#24130C]/90 p-6 backdrop-blur-md shadow-card-espresso relative overflow-hidden group hover:border-[#FF6B35]/60 transition-all">
+            <div className="flex items-center justify-between text-xs text-[#D8C4B6] font-medium mb-3">
+              <span className="font-serif text-sm font-semibold text-[#FFF6EE]">Outstanding Invoices</span>
+              <span className="text-[11px] font-mono text-[#FF8452]">Frontier Leaders</span>
+            </div>
+            
+            <div className="flex items-center gap-6 text-[11px] text-[#A89280] font-mono mb-6">
+              <div>
+                <span>On track</span>
+                <div className="text-sm font-bold text-[#FFF6EE]">$56,500</div>
+              </div>
+              <div>
+                <span>Overdue (&gt;30d)</span>
+                <div className="text-sm font-bold text-[#FFF6EE]">$12,400</div>
+              </div>
+            </div>
+
+            {/* Bar Chart with Glowing Solid Orange Bar */}
+            <div className="flex items-end justify-between gap-3 h-24 pt-4 border-t border-[#3D2216]">
+              <div className="w-1/6 bg-[#381F14] h-10 rounded-t" />
+              <div className="w-1/6 bg-[#381F14] h-14 rounded-t" />
+              <div className="w-1/6 bg-[#381F14] h-12 rounded-t" />
+              {/* Highlight Glowing Orange Bar */}
+              <div className="w-1/6 bg-gradient-to-t from-[#E64A19] to-[#FF6B35] h-20 rounded-t shadow-glow-orange relative group-hover:h-22 transition-all">
+                <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-[9px] font-mono text-[#FF8452] font-bold">MAX</span>
+              </div>
+              <div className="w-1/6 bg-[#381F14] h-8 rounded-t" />
+              <div className="w-1/6 bg-[#381F14] h-4 rounded-t" />
+            </div>
+          </div>
+
+          {/* CARD 2: Tax Reserve Status / Dot Matrix Grid Card */}
+          <div className="rounded-2xl border border-[#472718] bg-[#24130C]/90 p-6 backdrop-blur-md shadow-card-espresso relative overflow-hidden group hover:border-[#FF6B35]/60 transition-all">
+            <div className="flex items-center justify-between text-xs text-[#D8C4B6] font-medium mb-3">
+              <span className="font-serif text-sm font-semibold text-[#FFF6EE]">Tax Reserve Status</span>
+              <span className="text-[11px] font-mono text-[#FF8452]">Coverage Grid</span>
+            </div>
+
+            <div className="flex items-center gap-6 text-[11px] text-[#A89280] font-mono mb-6">
+              <div>
+                <span>Burn Deceleration</span>
+                <div className="text-sm font-bold text-[#FFF6EE]">$84,200</div>
+              </div>
+              <div>
+                <span>Target Runway</span>
+                <div className="text-sm font-bold text-[#FFF6EE]">86% funded</div>
+              </div>
+            </div>
+
+            {/* 5x10 LED Dot Matrix Array (Replicates Screenshot) */}
+            <div className="pt-4 border-t border-[#3D2216]">
+              <div className="grid grid-cols-10 gap-2.5 justify-items-center">
+                {[
+                  0, 0, 0, 0, 1, 0, 1, 0, 0, 0,
+                  0, 0, 1, 0, 0, 0, 0, 1, 0, 0,
+                  0, 1, 0, 0, 1, 0, 0, 0, 1, 0,
+                  0, 0, 0, 1, 0, 1, 0, 0, 0, 1,
+                  1, 0, 0, 0, 0, 0, 1, 0, 1, 0,
+                ].map((isOrange, i) => (
+                  <span
+                    key={i}
+                    className={`h-2 w-2 rounded-full transition-all ${
+                      isOrange
+                        ? 'bg-[#FF6B35] shadow-glow-orange scale-110'
+                        : 'bg-[#D8C4B6]/25 hover:bg-[#D8C4B6]/50'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* CARD 3: Revenue Growth / Sparkline Waveform Card */}
+          <div className="rounded-2xl border border-[#472718] bg-[#24130C]/90 p-6 backdrop-blur-md shadow-card-espresso relative overflow-hidden group hover:border-[#FF6B35]/60 transition-all">
+            <div className="flex items-center justify-between text-xs text-[#D8C4B6] font-medium mb-2">
+              <span className="font-serif text-sm font-semibold text-[#FFF6EE]">Revenue Growth</span>
+              <span className="rounded-full bg-[#FF6B35]/20 px-2 py-0.5 text-[10px] font-bold text-[#FF8452] border border-[#FF6B35]/30">
+                +18.5% vs forecast
+              </span>
+            </div>
+
+            <div className="text-3xl font-serif font-bold text-[#FFF6EE] tracking-tight mb-4">
+              $487,200
+            </div>
+
+            {/* High-density Sparkline Waveform Bars */}
+            <div className="pt-2 border-t border-[#3D2216]">
+              <div className="flex items-end justify-between gap-1 h-14">
+                {[
+                  12, 18, 25, 14, 32, 28, 45, 20, 55, 38, 48, 62, 35, 58, 70, 42, 65, 80, 55, 75,
+                  48, 60, 85, 68, 72, 90, 64, 82, 95, 78, 60, 45, 65, 50, 40, 30, 25, 35, 20, 15
+                ].map((val, idx) => (
+                  <div
+                    key={idx}
+                    style={{ height: `${(val / 95) * 100}%` }}
+                    className={`w-1 rounded-t transition-all ${
+                      idx >= 22 && idx <= 30
+                        ? 'bg-[#FF6B35] shadow-glow-orange'
+                        : 'bg-[#472718] group-hover:bg-[#5A3420]'
+                    }`}
+                  />
+                ))}
+              </div>
+              <div className="flex justify-between text-[9px] font-mono text-[#A89280] mt-2">
+                <span>10:00</span>
+                <span>12:00</span>
+                <span>14:00</span>
+                <span>16:00</span>
+                <span>18:00</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

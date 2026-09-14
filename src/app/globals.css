@@ -1,44 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #020617;
-  --foreground: #f8fafc;
+  --background: #170C07;
+  --foreground: #FFF6EE;
+  --accent-orange: #FF6B35;
+  --espresso-card: #23130C;
+  --espresso-border: #422517;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
+  selection-background-color: #FF6B35;
+  selection-color: #FFFFFF;
 }
 
-/* Custom modern scrollbar */
+::selection {
+  background-color: #FF6B35;
+  color: #FFFFFF;
+}
+
+/* Custom luxury chocolate-espresso scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #150A05;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #472718;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #FF6B35;
 }
 
-/* Custom animation keyframes */
-@keyframes pulse-subtle {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+/* Technical grid crosshairs */
+.crosshair-corner {
+  position: relative;
+}
+.crosshair-corner::before,
+.crosshair-corner::after {
+  color: rgba(255, 107, 53, 0.45);
+  font-family: monospace;
+  font-size: 11px;
 }
 
-.animate-pulse-subtle {
-  animation: pulse-subtle 2.5s infinite ease-in-out;
+/* Glow animations */
+@keyframes orange-pulse {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.animate-orange-pulse {
+  animation: orange-pulse 3s infinite ease-in-out;
 }

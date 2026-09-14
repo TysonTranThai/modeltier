@@ -58,148 +58,169 @@ export const TierList: React.FC<TierListProps> = ({
     {
       id: 'S',
       title: language === 'vi' ? 'S-Tier (Thần Thoại / Đỉnh Cao)' : 'S-Tier (Apex / Elite)',
-      description: t.tierList.tierSDescription,
-      color: 'text-red-400',
-      bgBadge: 'bg-red-500/10 text-red-300 border-red-500/30'
+      description:
+        language === 'vi'
+          ? 'Thông minh nhất thế giới, lý luận siêu phàm, giải toán và viết code chuyên gia.'
+          : 'Most capable frontier models, expert reasoning, deep logic, top tier coding.',
+      color: 'border-[#FF6B35]/60 bg-[#28140B]/90',
+      bgBadge: 'bg-gradient-to-r from-[#FF6B35] to-amber-500 text-white shadow-glow-orange',
     },
     {
       id: 'A',
-      title: language === 'vi' ? 'A-Tier (Xuất Sắc / Khuyên Dùng)' : 'A-Tier (Outstanding / Recommended)',
-      description: t.tierList.tierADescription,
-      color: 'text-amber-400',
-      bgBadge: 'bg-amber-500/10 text-amber-300 border-amber-500/30'
+      title: language === 'vi' ? 'A-Tier (Chiến Thần Đa Năng)' : 'A-Tier (All-Round Champions)',
+      description:
+        language === 'vi'
+          ? 'Cân bằng hoàn hảo giữa tốc độ, độ thông minh và chi phí. Lựa chọn số 1 cho 90% nhu cầu.'
+          : 'Sweet spot of speed, cost, and high intelligence for 90% of business tasks.',
+      color: 'border-amber-500/50 bg-[#24130C]/90',
+      bgBadge: 'bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 font-bold',
     },
     {
       id: 'B',
-      title: language === 'vi' ? 'B-Tier (Thực Dụng / Tiết Kiệm)' : 'B-Tier (Pragmatic / Budget)',
-      description: t.tierList.tierBDescription,
-      color: 'text-emerald-400',
-      bgBadge: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30'
+      title: language === 'vi' ? 'B-Tier (Tia Chớp Giá Rẻ)' : 'B-Tier (Speed & Budget Workhorses)',
+      description:
+        language === 'vi'
+          ? 'Tốc độ cực nhanh, giá siêu rẻ hoặc miễn phí. Lý tưởng cho xử lý dữ liệu hàng loạt và CSKH.'
+          : 'High throughput, ultra low cost or free. Ideal for high-volume automated pipelines.',
+      color: 'border-emerald-500/40 bg-[#20110A]/90',
+      bgBadge: 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white',
     },
     {
       id: 'C',
-      title: language === 'vi' ? 'C-Tier (Cơ Bản / Chạy Cục Bộ)' : 'C-Tier (Basic / Local & Lightweight)',
-      description: t.tierList.tierCDescription,
-      color: 'text-blue-400',
-      bgBadge: 'bg-blue-500/10 text-blue-300 border-blue-500/30'
-    }
+      title: language === 'vi' ? 'C-Tier (Cơ Bản / Nhỏ Gọn)' : 'C-Tier (Lightweight / Legacy)',
+      description:
+        language === 'vi'
+          ? 'Mô hình nhỏ gọn chạy được trên laptop cá nhân, điện thoại hoặc phục vụ tác vụ đơn giản.'
+          : 'Lightweight models capable of on-device inference or dedicated lightweight tasks.',
+      color: 'border-sky-500/40 bg-[#1C0F08]/90',
+      bgBadge: 'bg-gradient-to-r from-sky-500 to-blue-500 text-white',
+    },
   ];
 
   return (
-    <section id="tierlist" className="py-12 lg:py-16 scroll-mt-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full bg-violet-500/10 px-3.5 py-1 text-xs font-semibold text-violet-300 border border-violet-500/20 mb-3">
-            <Award className="h-4 w-4" />
-            <span>{t.tierList.title}</span>
-          </div>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-            {language === 'vi' ? 'Phân Cấp Mô Hình AI Thực Chiến' : 'Practical AI Model Tier List'}
-          </h2>
-          <p className="mt-3 text-sm sm:text-base text-slate-400">
-            {t.tierList.subtitle}
-          </p>
+    <section id="tierlist" className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 scroll-mt-20 text-[#FFF6EE]">
+      {/* Section Header */}
+      <div className="mb-10 text-center max-w-3xl mx-auto">
+        <div className="inline-flex items-center gap-2 rounded-full border border-[#FF6B35]/30 bg-[#24130C] px-3.5 py-1 text-xs font-semibold text-[#FF8452] mb-3">
+          <Award className="h-3.5 w-3.5" />
+          <span>{language === 'vi' ? 'Phân Hạng Thực Tiễn 2026' : 'Practical Tier Rankings 2026'}</span>
         </div>
+        <h2 className="text-3xl sm:text-5xl font-serif font-bold tracking-tight text-[#FFF6EE]">
+          {t.tierList.title}
+        </h2>
+        <p className="mt-3 text-sm leading-relaxed text-[#D8C4B6] font-light">
+          {t.tierList.subtitle}
+        </p>
+      </div>
 
-        {/* Empty State */}
-        {filteredModels.length === 0 ? (
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-12 text-center max-w-lg mx-auto">
-            <AlertCircle className="mx-auto h-12 w-12 text-slate-500" />
-            <h3 className="mt-4 text-base font-semibold text-white">
-              {language === 'vi' ? 'Không tìm thấy mô hình phù hợp' : 'No matching models found'}
-            </h3>
-            <p className="mt-2 text-xs text-slate-400">
-              {language === 'vi' 
-                ? 'Hãy thử thay đổi từ khóa tìm kiếm hoặc bỏ bớt các bộ lọc danh mục.'
-                : 'Try adjusting your search terms or clearing the active category filters.'}
-            </p>
-            <button
-              onClick={onResetFilters}
-              className="mt-5 inline-flex items-center gap-2 rounded-xl bg-violet-600 px-4 py-2 text-xs font-semibold text-white shadow hover:bg-violet-500 transition-colors"
+      {/* Tiers Container */}
+      <div className="space-y-12">
+        {tiers.map((tier) => {
+          const tierModels = filteredModels.filter((m) => m.tier === tier.id);
+          const isExpanded = !!expandedTiers[tier.id];
+          const displayedTierModels = (searchQuery.trim() !== '' || activeCategory !== 'all' || isExpanded)
+            ? tierModels
+            : tierModels.slice(0, 6);
+
+          if (tierModels.length === 0 && searchQuery) {
+            return null;
+          }
+
+          return (
+            <div
+              key={tier.id}
+              className={`rounded-3xl border p-6 sm:p-8 backdrop-blur-md shadow-card-espresso ${tier.color}`}
             >
-              <RefreshCw className="h-3.5 w-3.5" />
-              {language === 'vi' ? 'Đặt lại bộ lọc' : 'Reset Filters'}
-            </button>
-          </div>
-        ) : (
-          <div className="space-y-14">
-            {tiers.map((tierInfo) => {
-              const tierModels = filteredModels.filter((m) => m.tier === tierInfo.id);
-              if (tierModels.length === 0) return null;
-
-              return (
-                <div key={tierInfo.id} className="relative">
-                  {/* Tier Header Banner */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4 mb-6">
-                    <div className="flex items-center gap-3">
-                      <span className={`inline-flex items-center justify-center rounded-xl px-3 py-1 text-sm font-black border ${tierInfo.bgBadge}`}>
-                        {tierInfo.id}-Tier
-                      </span>
-                      <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-                        {tierInfo.title}
-                      </h3>
-                      <span className="rounded-full bg-slate-800 px-2 py-0.5 text-xs font-semibold text-slate-400">
-                        {tierModels.length}
-                      </span>
-                    </div>
-                    <p className="text-xs text-slate-400 max-w-xl">
-                      {tierInfo.description}
+              {/* Tier Heading Row */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#381E12]">
+                <div className="flex items-center gap-4">
+                  <span className={`flex h-12 w-12 items-center justify-center rounded-2xl text-2xl font-black ${tier.bgBadge}`}>
+                    {tier.id}
+                  </span>
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#FFF6EE]">
+                      {tier.title}
+                    </h3>
+                    <p className="text-xs text-[#D8C4B6] font-light mt-0.5">
+                      {tier.description}
                     </p>
                   </div>
-
-                  {/* Grid of Model Cards */}
-                  {(() => {
-                    const isSearching = searchQuery.trim() !== '' || activeCategory !== 'all';
-                    const isExpanded = isSearching || !!expandedTiers[tierInfo.id];
-                    const visibleModels = isExpanded ? tierModels : tierModels.slice(0, 6);
-
-                    return (
-                      <>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                          {visibleModels.map((model) => (
-                            <ModelCard
-                              key={model.id}
-                              model={model}
-                              onSelectDetails={onSelectDetails}
-                              onSelectCompare={onSelectCompare}
-                            />
-                          ))}
-                        </div>
-
-                        {tierModels.length > 6 && !isSearching && (
-                          <div className="mt-6 text-center">
-                            <button
-                              onClick={() => toggleExpand(tierInfo.id)}
-                              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-900 px-4 py-2 text-xs font-semibold text-violet-300 hover:text-white hover:bg-slate-800 transition-colors shadow-lg"
-                            >
-                              {isExpanded ? (
-                                <>
-                                  <ChevronUp className="h-3.5 w-3.5" />
-                                  <span>{language === 'vi' ? 'Thu gọn' : 'Collapse'}</span>
-                                </>
-                              ) : (
-                                <>
-                                  <ChevronDown className="h-3.5 w-3.5" />
-                                  <span>
-                                    {language === 'vi'
-                                      ? `Xem thêm ${tierModels.length - 6} mô hình ${tierInfo.id}-Tier khác`
-                                      : `Show ${tierModels.length - 6} more ${tierInfo.id}-Tier models`}
-                                  </span>
-                                </>
-                              )}
-                            </button>
-                          </div>
-                        )}
-                      </>
-                    );
-                  })()}
                 </div>
-              );
-            })}
-          </div>
-        )}
+
+                <div className="flex items-center gap-2">
+                  <span className="rounded-full bg-[#180D07] px-3 py-1 text-xs font-mono font-semibold text-[#FF8452] border border-[#381E12]">
+                    {tierModels.length} {language === 'vi' ? 'mô hình' : 'models'}
+                  </span>
+                </div>
+              </div>
+
+              {/* Models Grid */}
+              {tierModels.length > 0 ? (
+                <div className="mt-6">
+                  <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {displayedTierModels.map((model) => (
+                      <ModelCard
+                        key={model.id}
+                        model={model}
+                        onSelectDetails={onSelectDetails}
+                        onSelectCompare={onSelectCompare}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Show more button if tier has more than 6 models */}
+                  {tierModels.length > 6 && !searchQuery && activeCategory === 'all' && (
+                    <div className="mt-6 text-center">
+                      <button
+                        onClick={() => toggleExpand(tier.id)}
+                        className="inline-flex items-center gap-2 rounded-full border border-[#472718] bg-[#1A0E08] px-5 py-2 text-xs font-semibold text-[#FF8452] hover:border-[#FF6B35] hover:text-white transition-all shadow-sm"
+                      >
+                        {isExpanded ? (
+                          <>
+                            <span>{language === 'vi' ? `Thu gọn (hiển thị 6 / ${tierModels.length})` : `Show less (6 / ${tierModels.length})`}</span>
+                            <ChevronUp className="h-3.5 w-3.5" />
+                          </>
+                        ) : (
+                          <>
+                            <span>{language === 'vi' ? `Xem thêm ${tierModels.length - 6} mô hình ${tier.id}-Tier khác` : `Show ${tierModels.length - 6} more ${tier.id}-Tier models`}</span>
+                            <ChevronDown className="h-3.5 w-3.5" />
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="mt-6 text-center py-8 text-xs text-[#A89280]">
+                  {language === 'vi' ? 'Không có mô hình nào khớp bộ lọc trong Tier này.' : 'No models match your filter in this tier.'}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
+
+      {/* No Results Fallback */}
+      {filteredModels.length === 0 && (
+        <div className="mt-12 rounded-3xl border border-[#472718] bg-[#24130C]/90 p-12 text-center shadow-card-espresso">
+          <AlertCircle className="mx-auto h-12 w-12 text-[#FF6B35]" />
+          <h3 className="mt-4 text-lg font-serif font-bold text-[#FFF6EE]">
+            {language === 'vi' ? 'Không tìm thấy mô hình phù hợp' : 'No models found'}
+          </h3>
+          <p className="mt-2 text-xs text-[#D8C4B6]">
+            {language === 'vi'
+              ? `Không có kết quả nào cho từ khóa "${searchQuery}". Vui lòng thử lại.`
+              : `No models match the search term "${searchQuery}". Please try another keyword.`}
+          </p>
+          <button
+            onClick={onResetFilters}
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#FF6B35] px-6 py-2.5 text-xs font-bold text-white shadow-glow-orange hover:brightness-110 transition-all"
+          >
+            <RefreshCw className="h-3.5 w-3.5" />
+            <span>{language === 'vi' ? 'Đặt lại bộ lọc' : 'Reset filters'}</span>
+          </button>
+        </div>
+      )}
     </section>
   );
 };

@@ -78,23 +78,23 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
   };
 
   return (
-    <div id="artificial-analysis-intelligence-index" className="scroll-mt-24 rounded-2xl border border-neutral-200 bg-white p-6 sm:p-8 text-neutral-900 shadow-sm transition-all">
+    <div id="artificial-analysis-intelligence-index" className="scroll-mt-24 rounded-2xl border border-[#472718] bg-[#24130C]/95 p-6 sm:p-8 text-[#FFF6EE] shadow-card-espresso transition-all">
       {/* Top Header & Toolbar Row */}
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 pb-6">
         {/* Left Title & Description */}
         <div className="max-w-2xl">
-          <h3 className="text-2xl font-serif font-semibold tracking-tight text-neutral-950 flex items-center gap-1.5">
+          <h3 className="text-2xl font-serif font-bold tracking-tight text-[#FFF6EE] flex items-center gap-1.5">
             <a 
               href="https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index"
               target="_blank" 
               rel="noopener noreferrer"
-              className="hover:underline flex items-center gap-1 group"
+              className="hover:underline flex items-center gap-1.5 group"
             >
               <span>Artificial Analysis Intelligence Index</span>
-              <ArrowUpRight className="h-4 w-4 text-neutral-400 group-hover:text-black transition-colors" />
+              <ArrowUpRight className="h-4 w-4 text-[#FF8452] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
           </h3>
-          <p className="mt-2 text-xs leading-relaxed text-neutral-500 font-normal max-w-xl">
+          <p className="mt-2 text-xs leading-relaxed text-[#B8A08F] font-light max-w-xl">
             Artificial Analysis Intelligence Index v4.3 incorporates 10 evaluations: AA-Briefcase, GDPval-AA v2, AutomationBench-AA, Terminal-Bench v4.0, SciCode, Humanity&apos;s Last Exam, GDP.pdf, CritPt, AA-Omniscience, AA-LCR v1.1
           </p>
         </div>
@@ -105,16 +105,16 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
             {/* Copy Link */}
             <button
               onClick={handleCopyLink}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-neutral-200 bg-white text-neutral-700 hover:border-neutral-900 hover:text-black transition-colors"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#472718] bg-[#1E0F09] text-[#D8C4B6] hover:border-[#FF6B35] hover:text-white transition-colors"
               title="Copy link"
             >
-              {copiedLink ? <Check className="h-4 w-4 text-emerald-600" /> : <Link2 className="h-4 w-4" />}
+              {copiedLink ? <Check className="h-4 w-4 text-emerald-400" /> : <Link2 className="h-4 w-4" />}
             </button>
 
             {/* Download Image */}
             <button
               onClick={() => window.print()}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-neutral-200 bg-white text-neutral-700 hover:border-neutral-900 hover:text-black transition-colors"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#472718] bg-[#1E0F09] text-[#D8C4B6] hover:border-[#FF6B35] hover:text-white transition-colors"
               title="Print or Save Chart"
             >
               <ImageDown className="h-4 w-4" />
@@ -125,8 +125,8 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
               onClick={() => setViewFormat(viewFormat === 'chart' ? 'table' : 'chart')}
               className={`flex h-8 w-8 items-center justify-center rounded-lg border transition-colors ${
                 viewFormat === 'table'
-                  ? 'border-neutral-900 bg-neutral-900 text-white'
-                  : 'border-neutral-200 bg-white text-neutral-700 hover:border-neutral-900 hover:text-black'
+                  ? 'border-[#FF6B35] bg-[#FF6B35] text-white shadow-glow-orange'
+                  : 'border-[#472718] bg-[#1E0F09] text-[#D8C4B6] hover:border-[#FF6B35] hover:text-white'
               }`}
               title="Toggle Table View"
             >
@@ -137,14 +137,14 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
             <div className="relative">
               <button
                 onClick={() => setShowSelectorDropdown(!showSelectorDropdown)}
-                className="inline-flex h-8 items-center gap-2 rounded-lg border border-neutral-200 bg-white px-3 text-xs font-medium text-neutral-800 hover:border-neutral-900 transition-colors shadow-sm"
+                className="inline-flex h-8 items-center gap-2 rounded-lg border border-[#472718] bg-[#1E0F09] px-3 text-xs font-semibold text-[#FFF6EE] hover:border-[#FF6B35] transition-colors shadow-sm"
               >
                 <span>{modelLimit} of {models.length} models</span>
-                <ChevronsUpDown className="h-3.5 w-3.5 text-neutral-400" />
+                <ChevronsUpDown className="h-3.5 w-3.5 text-[#FF8452]" />
               </button>
 
               {showSelectorDropdown && (
-                <div className="absolute right-0 top-10 z-30 w-44 rounded-xl border border-neutral-200 bg-white p-1 text-xs shadow-xl animate-in fade-in zoom-in-95">
+                <div className="absolute right-0 top-10 z-30 w-44 rounded-xl border border-[#472718] bg-[#24130C] p-1 text-xs shadow-2xl animate-in fade-in zoom-in-95">
                   {[10, 15, 20, 26, 40, 60].map((num) => (
                     <button
                       key={num}
@@ -153,11 +153,11 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
                         setShowSelectorDropdown(false);
                       }}
                       className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left font-medium transition-colors ${
-                        modelLimit === num ? 'bg-neutral-100 text-black font-bold' : 'text-neutral-600 hover:bg-neutral-50'
+                        modelLimit === num ? 'bg-[#FF6B35] text-white font-bold' : 'text-[#D8C4B6] hover:bg-[#331C10]'
                       }`}
                     >
                       <span>Top {num} models</span>
-                      {modelLimit === num && <Check className="h-3.5 w-3.5 text-black" />}
+                      {modelLimit === num && <Check className="h-3.5 w-3.5 text-white" />}
                     </button>
                   ))}
                   <button
@@ -166,17 +166,17 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
                       setShowSelectorDropdown(false);
                     }}
                     className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left font-medium transition-colors ${
-                      modelLimit === models.length ? 'bg-neutral-100 text-black font-bold' : 'text-neutral-600 hover:bg-neutral-50'
+                      modelLimit === models.length ? 'bg-[#FF6B35] text-white font-bold' : 'text-[#D8C4B6] hover:bg-[#331C10]'
                     }`}
                   >
                     <span>All {models.length} models</span>
-                    {modelLimit === models.length && <Check className="h-3.5 w-3.5 text-black" />}
+                    {modelLimit === models.length && <Check className="h-3.5 w-3.5 text-white" />}
                   </button>
                 </div>
               )}
             </div>
 
-            {/* Filter */}
+            {/* Filter Funnel */}
             <button
               onClick={() => {
                 const nextTab: Record<SubTab, SubTab> = {
@@ -187,7 +187,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
                 };
                 setActiveSubTab(nextTab[activeSubTab]);
               }}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-neutral-200 bg-white text-neutral-700 hover:border-neutral-900 hover:text-black transition-colors"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#472718] bg-[#1E0F09] text-[#D8C4B6] hover:border-[#FF6B35] hover:text-white transition-colors"
               title="Rotate Sub-Filter"
             >
               <Filter className="h-4 w-4" />
@@ -196,7 +196,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
             {/* Sliders */}
             <button
               onClick={() => setModelLimit(modelLimit === 26 ? 15 : 26)}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-neutral-200 bg-white text-neutral-700 hover:border-neutral-900 hover:text-black transition-colors"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#472718] bg-[#1E0F09] text-[#D8C4B6] hover:border-[#FF6B35] hover:text-white transition-colors"
               title="Reset or Adjust Limit"
             >
               <SlidersHorizontal className="h-4 w-4" />
@@ -207,13 +207,13 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
           <div className="flex items-center gap-3">
             <button
               onClick={() => setModelLimit(Math.min(models.length, modelLimit + 10))}
-              className="inline-flex items-center gap-1 text-xs font-semibold text-neutral-800 hover:text-black transition-colors"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-[#FF8452] hover:text-white transition-colors"
             >
               <Plus className="h-3.5 w-3.5" />
               <span>Add model from specific provider</span>
             </button>
-            <span className="text-neutral-300">•</span>
-            <div className="flex items-center gap-1 font-serif text-xs font-semibold text-purple-700">
+            <span className="text-[#472718]">•</span>
+            <div className="flex items-center gap-1 font-serif text-xs font-semibold text-[#FF6B35]">
               <span>⁂ Artificial Analysis</span>
             </div>
           </div>
@@ -224,16 +224,16 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
       {viewFormat === 'chart' ? (
         <div className="relative pt-6 pb-20 overflow-x-auto min-h-[460px]">
           {/* Subtle Horizontal Grid Lines */}
-          <div className="absolute inset-x-0 top-6 bottom-24 flex flex-col justify-between pointer-events-none text-[10px] text-neutral-300 font-mono">
-            <div className="border-b border-neutral-100 w-full flex justify-end pr-2">{Math.round(maxScore)}</div>
-            <div className="border-b border-neutral-100 w-full flex justify-end pr-2">{Math.round((maxScore * 3) / 4)}</div>
-            <div className="border-b border-neutral-100 w-full flex justify-end pr-2">{Math.round(maxScore / 2)}</div>
-            <div className="border-b border-neutral-100 w-full flex justify-end pr-2">{Math.round(maxScore / 4)}</div>
-            <div className="border-b border-neutral-200 w-full flex justify-end pr-2">0</div>
+          <div className="absolute inset-x-0 top-6 bottom-24 flex flex-col justify-between pointer-events-none text-[10px] text-[#8A7262] font-mono">
+            <div className="border-b border-[#381E12] w-full flex justify-end pr-2">{Math.round(maxScore)}</div>
+            <div className="border-b border-[#381E12] w-full flex justify-end pr-2">{Math.round((maxScore * 3) / 4)}</div>
+            <div className="border-b border-[#381E12] w-full flex justify-end pr-2">{Math.round(maxScore / 2)}</div>
+            <div className="border-b border-[#381E12] w-full flex justify-end pr-2">{Math.round(maxScore / 4)}</div>
+            <div className="border-b border-[#472718] w-full flex justify-end pr-2">0</div>
           </div>
 
           {/* Vertical Bars Container */}
-          <div className="relative flex items-end justify-start gap-2.5 sm:gap-3 px-4 min-w-max h-[300px] z-10">
+          <div className="relative flex items-end justify-start gap-2.5 sm:gap-3.5 px-4 min-w-max h-[300px] z-10">
             {displayModels.map((model, idx) => {
               const heightPercent = Math.max(8, Math.min(100, (model.intelligenceScore / maxScore) * 100));
               const barColor = getCreatorColor(model.creator, model.name);
@@ -246,12 +246,12 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
                   className="group relative flex flex-col items-center cursor-pointer w-7 sm:w-8 h-full justify-end"
                 >
                   {/* Hover Floating Tooltip */}
-                  <div className="opacity-0 group-hover:opacity-100 pointer-events-none absolute -top-16 z-30 transition-opacity bg-neutral-900 text-white rounded-xl px-3 py-1.5 text-xs shadow-2xl whitespace-nowrap">
-                    <div className="font-bold text-white flex items-center gap-1.5">
+                  <div className="opacity-0 group-hover:opacity-100 pointer-events-none absolute -top-16 z-30 transition-opacity bg-[#140A06] border border-[#FF6B35]/40 text-[#FFF6EE] rounded-xl px-3 py-1.5 text-xs shadow-2xl whitespace-nowrap">
+                    <div className="font-bold text-[#FFF6EE] flex items-center gap-1.5">
                       <span>#{idx + 1} {model.name}</span>
                     </div>
-                    <div className="text-[11px] text-neutral-300">
-                      Score: <strong className="text-emerald-400 font-mono">{model.intelligenceScore.toFixed(1)}</strong> • {model.creator}
+                    <div className="text-[11px] text-[#D8C4B6]">
+                      Score: <strong className="text-[#FF8452] font-mono">{model.intelligenceScore.toFixed(1)}</strong> • {model.creator}
                     </div>
                   </div>
 
@@ -261,7 +261,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
                       height: `${heightPercent}%`,
                       backgroundColor: barColor,
                     }}
-                    className="w-full rounded-t-md relative flex items-end justify-center pb-2 transition-all group-hover:scale-y-105 group-hover:brightness-110 shadow-sm"
+                    className="w-full rounded-t-md relative flex items-end justify-center pb-2 transition-all group-hover:scale-y-105 group-hover:brightness-125 shadow-sm"
                   >
                     {/* Score inside bar */}
                     <span className="text-[11px] font-bold text-white tracking-tight drop-shadow-sm select-none">
@@ -276,7 +276,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
 
                   {/* 45-degree Angled Model Label Text */}
                   <div className="absolute top-[330px] left-1/2 -translate-x-1/2 w-36 origin-top-left transform -rotate-45 pointer-events-none">
-                    <span className="text-[11px] font-medium text-neutral-700 whitespace-nowrap block truncate group-hover:text-black group-hover:font-semibold transition-colors">
+                    <span className="text-[11px] font-medium text-[#D8C4B6] whitespace-nowrap block truncate group-hover:text-[#FF8452] group-hover:font-semibold transition-colors">
                       {model.name} {model.effort ? `(${model.effort})` : ''}
                     </span>
                   </div>
@@ -286,14 +286,14 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
           </div>
 
           {/* Bottom Footnote Line */}
-          <div className="mt-28 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-400">
+          <div className="mt-28 pt-4 border-t border-[#381E12] flex items-center justify-between text-xs text-[#A89280]">
             <div className="flex items-center gap-1">
-              <Info className="h-3.5 w-3.5" />
+              <Info className="h-3.5 w-3.5 text-[#FF6B35]" />
               <span>Artificial Analysis Intelligence Index</span>
             </div>
             <button 
               onClick={() => setModelLimit(Math.min(models.length, modelLimit + 10))}
-              className="p-1 hover:text-black transition-colors"
+              className="p-1 hover:text-white transition-colors"
               title="Add more models"
             >
               <Plus className="h-4 w-4" />
@@ -305,7 +305,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
         <div className="overflow-x-auto py-4">
           <table className="w-full text-left text-xs border-collapse">
             <thead>
-              <tr className="border-b border-neutral-200 text-neutral-500 font-semibold uppercase tracking-wider">
+              <tr className="border-b border-[#381E12] text-[#A89280] font-semibold uppercase tracking-wider font-mono">
                 <th className="py-2.5 px-3">#</th>
                 <th className="py-2.5 px-3">Model</th>
                 <th className="py-2.5 px-3">Creator</th>
@@ -315,25 +315,25 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
                 <th className="py-2.5 px-3">License</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-100">
+            <tbody className="divide-y divide-[#381E12]">
               {displayModels.map((m, idx) => (
                 <tr 
                   key={m.id || idx}
                   onClick={() => onSelectModel && onSelectModel(m)}
-                  className="hover:bg-neutral-50 cursor-pointer transition-colors"
+                  className="hover:bg-[#2F1910] cursor-pointer transition-colors"
                 >
-                  <td className="py-2.5 px-3 font-mono text-neutral-400">#{idx + 1}</td>
-                  <td className="py-2.5 px-3 font-semibold text-neutral-900 flex items-center gap-2">
+                  <td className="py-2.5 px-3 font-mono text-[#8A7262]">#{idx + 1}</td>
+                  <td className="py-2.5 px-3 font-semibold text-[#FFF6EE] flex items-center gap-2">
                     <CompanyLogo creator={m.creator} size={14} />
                     <span>{m.name}</span>
                   </td>
-                  <td className="py-2.5 px-3 text-neutral-600">{m.creator}</td>
-                  <td className="py-2.5 px-3 font-bold text-violet-700 font-mono">{m.intelligenceScore.toFixed(1)}</td>
-                  <td className="py-2.5 px-3 text-neutral-600">{m.outputSpeed > 0 ? `${Math.round(m.outputSpeed)} tps` : '—'}</td>
-                  <td className="py-2.5 px-3 text-neutral-600 font-mono">${m.costPerTaskUSD.toFixed(2)}</td>
+                  <td className="py-2.5 px-3 text-[#D8C4B6]">{m.creator}</td>
+                  <td className="py-2.5 px-3 font-bold text-[#FF8452] font-mono">{m.intelligenceScore.toFixed(1)}</td>
+                  <td className="py-2.5 px-3 text-[#D8C4B6]">{m.outputSpeed > 0 ? `${Math.round(m.outputSpeed)} tps` : '—'}</td>
+                  <td className="py-2.5 px-3 text-[#D8C4B6] font-mono">${m.costPerTaskUSD.toFixed(2)}</td>
                   <td className="py-2.5 px-3">
                     <span className={`px-2 py-0.5 rounded-full text-[10px] font-semibold ${
-                      m.isOpenWeights ? 'bg-emerald-50 text-emerald-700' : 'bg-neutral-100 text-neutral-600'
+                      m.isOpenWeights ? 'bg-emerald-500/20 text-emerald-300' : 'bg-[#180D07] text-[#A89280]'
                     }`}>
                       {m.isOpenWeights ? 'Open' : 'Proprietary'}
                     </span>
@@ -346,14 +346,14 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
       )}
 
       {/* 4 Bottom Filter Segment Tabs (Exact match to screenshot) */}
-      <div className="mt-8 border-t border-neutral-100 pt-6">
-        <div className="flex flex-wrap items-center gap-2 rounded-xl bg-neutral-100/80 p-1 text-xs font-semibold text-neutral-700">
+      <div className="mt-8 border-t border-[#381E12] pt-6">
+        <div className="flex flex-wrap items-center gap-2 rounded-xl bg-[#1A0E08] p-1.5 text-xs font-semibold text-[#D8C4B6] border border-[#3D2216]">
           <button
             onClick={() => setActiveSubTab('open_weights')}
             className={`rounded-lg px-4 py-2 transition-all ${
               activeSubTab === 'open_weights'
-                ? 'bg-white text-black shadow-sm ring-1 ring-neutral-200'
-                : 'text-neutral-600 hover:text-black'
+                ? 'bg-[#FF6B35] text-white shadow-glow-orange font-bold'
+                : 'text-[#B8A08F] hover:text-[#FFF6EE]'
             }`}
           >
             Open Weights / Proprietary
@@ -363,8 +363,8 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
             onClick={() => setActiveSubTab('reasoning')}
             className={`rounded-lg px-4 py-2 transition-all ${
               activeSubTab === 'reasoning'
-                ? 'bg-white text-black shadow-sm ring-1 ring-neutral-200'
-                : 'text-neutral-600 hover:text-black'
+                ? 'bg-[#FF6B35] text-white shadow-glow-orange font-bold'
+                : 'text-[#B8A08F] hover:text-[#FFF6EE]'
             }`}
           >
             Reasoning / Non-Reasoning
@@ -374,8 +374,8 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
             onClick={() => setActiveSubTab('modalities')}
             className={`rounded-lg px-4 py-2 transition-all ${
               activeSubTab === 'modalities'
-                ? 'bg-white text-black shadow-sm ring-1 ring-neutral-200'
-                : 'text-neutral-600 hover:text-black'
+                ? 'bg-[#FF6B35] text-white shadow-glow-orange font-bold'
+                : 'text-[#B8A08F] hover:text-[#FFF6EE]'
             }`}
           >
             Text Only / Multimodal Inputs
@@ -385,8 +385,8 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
             onClick={() => setActiveSubTab('country')}
             className={`rounded-lg px-4 py-2 transition-all ${
               activeSubTab === 'country'
-                ? 'bg-white text-black shadow-sm ring-1 ring-neutral-200'
-                : 'text-neutral-600 hover:text-black'
+                ? 'bg-[#FF6B35] text-white shadow-glow-orange font-bold'
+                : 'text-[#B8A08F] hover:text-[#FFF6EE]'
             }`}
           >
             By Country
@@ -396,23 +396,23 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
         {/* Sub-tab active pill toggles */}
         <div className="mt-3 flex items-center gap-2 px-1 text-xs">
           {activeSubTab === 'open_weights' && (
-            <div className="flex items-center gap-1.5 text-neutral-600">
-              <span className="text-neutral-400 text-[11px]">Filter:</span>
+            <div className="flex items-center gap-1.5 text-[#D8C4B6]">
+              <span className="text-[#8A7262] text-[11px] font-mono">Filter:</span>
               <button
                 onClick={() => setOpenWeightsFilter('all')}
-                className={`px-2.5 py-0.5 rounded-full ${openWeightsFilter === 'all' ? 'bg-neutral-900 text-white' : 'bg-neutral-100 hover:bg-neutral-200'}`}
+                className={`px-3 py-1 rounded-full text-xs ${openWeightsFilter === 'all' ? 'bg-[#FF6B35] text-white font-bold' : 'bg-[#1E0F09] text-[#B8A08F] hover:text-white border border-[#381E12]'}`}
               >
                 All
               </button>
               <button
                 onClick={() => setOpenWeightsFilter('open')}
-                className={`px-2.5 py-0.5 rounded-full ${openWeightsFilter === 'open' ? 'bg-emerald-600 text-white' : 'bg-neutral-100 hover:bg-neutral-200'}`}
+                className={`px-3 py-1 rounded-full text-xs ${openWeightsFilter === 'open' ? 'bg-emerald-600 text-white font-bold' : 'bg-[#1E0F09] text-[#B8A08F] hover:text-white border border-[#381E12]'}`}
               >
                 Open Weights Only
               </button>
               <button
                 onClick={() => setOpenWeightsFilter('proprietary')}
-                className={`px-2.5 py-0.5 rounded-full ${openWeightsFilter === 'proprietary' ? 'bg-neutral-900 text-white' : 'bg-neutral-100 hover:bg-neutral-200'}`}
+                className={`px-3 py-1 rounded-full text-xs ${openWeightsFilter === 'proprietary' ? 'bg-[#FF6B35] text-white font-bold' : 'bg-[#1E0F09] text-[#B8A08F] hover:text-white border border-[#381E12]'}`}
               >
                 Proprietary Only
               </button>
@@ -420,23 +420,23 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
           )}
 
           {activeSubTab === 'reasoning' && (
-            <div className="flex items-center gap-1.5 text-neutral-600">
-              <span className="text-neutral-400 text-[11px]">Filter:</span>
+            <div className="flex items-center gap-1.5 text-[#D8C4B6]">
+              <span className="text-[#8A7262] text-[11px] font-mono">Filter:</span>
               <button
                 onClick={() => setReasoningFilter('all')}
-                className={`px-2.5 py-0.5 rounded-full ${reasoningFilter === 'all' ? 'bg-neutral-900 text-white' : 'bg-neutral-100 hover:bg-neutral-200'}`}
+                className={`px-3 py-1 rounded-full text-xs ${reasoningFilter === 'all' ? 'bg-[#FF6B35] text-white font-bold' : 'bg-[#1E0F09] text-[#B8A08F] hover:text-white border border-[#381E12]'}`}
               >
                 All
               </button>
               <button
                 onClick={() => setReasoningFilter('reasoning')}
-                className={`px-2.5 py-0.5 rounded-full ${reasoningFilter === 'reasoning' ? 'bg-purple-600 text-white' : 'bg-neutral-100 hover:bg-neutral-200'}`}
+                className={`px-3 py-1 rounded-full text-xs ${reasoningFilter === 'reasoning' ? 'bg-purple-600 text-white font-bold' : 'bg-[#1E0F09] text-[#B8A08F] hover:text-white border border-[#381E12]'}`}
               >
                 Reasoning Only
               </button>
               <button
                 onClick={() => setReasoningFilter('standard')}
-                className={`px-2.5 py-0.5 rounded-full ${reasoningFilter === 'standard' ? 'bg-neutral-900 text-white' : 'bg-neutral-100 hover:bg-neutral-200'}`}
+                className={`px-3 py-1 rounded-full text-xs ${reasoningFilter === 'standard' ? 'bg-[#FF6B35] text-white font-bold' : 'bg-[#1E0F09] text-[#B8A08F] hover:text-white border border-[#381E12]'}`}
               >
                 Standard Models
               </button>
@@ -444,23 +444,23 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
           )}
 
           {activeSubTab === 'modalities' && (
-            <div className="flex items-center gap-1.5 text-neutral-600">
-              <span className="text-neutral-400 text-[11px]">Filter:</span>
+            <div className="flex items-center gap-1.5 text-[#D8C4B6]">
+              <span className="text-[#8A7262] text-[11px] font-mono">Filter:</span>
               <button
                 onClick={() => setModalityFilter('all')}
-                className={`px-2.5 py-0.5 rounded-full ${modalityFilter === 'all' ? 'bg-neutral-900 text-white' : 'bg-neutral-100 hover:bg-neutral-200'}`}
+                className={`px-3 py-1 rounded-full text-xs ${modalityFilter === 'all' ? 'bg-[#FF6B35] text-white font-bold' : 'bg-[#1E0F09] text-[#B8A08F] hover:text-white border border-[#381E12]'}`}
               >
                 All
               </button>
               <button
                 onClick={() => setModalityFilter('vision')}
-                className={`px-2.5 py-0.5 rounded-full ${modalityFilter === 'vision' ? 'bg-sky-600 text-white' : 'bg-neutral-100 hover:bg-neutral-200'}`}
+                className={`px-3 py-1 rounded-full text-xs ${modalityFilter === 'vision' ? 'bg-sky-600 text-white font-bold' : 'bg-[#1E0F09] text-[#B8A08F] hover:text-white border border-[#381E12]'}`}
               >
                 Multimodal (Vision)
               </button>
               <button
                 onClick={() => setModalityFilter('text')}
-                className={`px-2.5 py-0.5 rounded-full ${modalityFilter === 'text' ? 'bg-neutral-900 text-white' : 'bg-neutral-100 hover:bg-neutral-200'}`}
+                className={`px-3 py-1 rounded-full text-xs ${modalityFilter === 'text' ? 'bg-[#FF6B35] text-white font-bold' : 'bg-[#1E0F09] text-[#B8A08F] hover:text-white border border-[#381E12]'}`}
               >
                 Text Only
               </button>
@@ -468,29 +468,29 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
           )}
 
           {activeSubTab === 'country' && (
-            <div className="flex items-center gap-1.5 text-neutral-600">
-              <span className="text-neutral-400 text-[11px]">Filter:</span>
+            <div className="flex items-center gap-1.5 text-[#D8C4B6]">
+              <span className="text-[#8A7262] text-[11px] font-mono">Filter:</span>
               <button
                 onClick={() => setCountryFilter('all')}
-                className={`px-2.5 py-0.5 rounded-full ${countryFilter === 'all' ? 'bg-neutral-900 text-white' : 'bg-neutral-100 hover:bg-neutral-200'}`}
+                className={`px-3 py-1 rounded-full text-xs ${countryFilter === 'all' ? 'bg-[#FF6B35] text-white font-bold' : 'bg-[#1E0F09] text-[#B8A08F] hover:text-white border border-[#381E12]'}`}
               >
                 All Countries
               </button>
               <button
                 onClick={() => setCountryFilter('us')}
-                className={`px-2.5 py-0.5 rounded-full ${countryFilter === 'us' ? 'bg-blue-600 text-white' : 'bg-neutral-100 hover:bg-neutral-200'}`}
+                className={`px-3 py-1 rounded-full text-xs ${countryFilter === 'us' ? 'bg-blue-600 text-white font-bold' : 'bg-[#1E0F09] text-[#B8A08F] hover:text-white border border-[#381E12]'}`}
               >
                 🇺🇸 United States
               </button>
               <button
                 onClick={() => setCountryFilter('cn')}
-                className={`px-2.5 py-0.5 rounded-full ${countryFilter === 'cn' ? 'bg-red-600 text-white' : 'bg-neutral-100 hover:bg-neutral-200'}`}
+                className={`px-3 py-1 rounded-full text-xs ${countryFilter === 'cn' ? 'bg-red-600 text-white font-bold' : 'bg-[#1E0F09] text-[#B8A08F] hover:text-white border border-[#381E12]'}`}
               >
                 🇨🇳 China
               </button>
               <button
                 onClick={() => setCountryFilter('fr')}
-                className={`px-2.5 py-0.5 rounded-full ${countryFilter === 'fr' ? 'bg-indigo-600 text-white' : 'bg-neutral-100 hover:bg-neutral-200'}`}
+                className={`px-3 py-1 rounded-full text-xs ${countryFilter === 'fr' ? 'bg-indigo-600 text-white font-bold' : 'bg-[#1E0F09] text-[#B8A08F] hover:text-white border border-[#381E12]'}`}
               >
                 🇫🇷 France (Mistral)
               </button>

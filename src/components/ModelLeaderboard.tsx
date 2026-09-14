@@ -134,18 +134,18 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
   return (
     <section id="leaderboard" className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-20">
       {/* Table Header Controls */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-5 mb-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#3D2216] pb-5 mb-6">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <TableProperties className="h-5 w-5 text-violet-400" />
-            <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+            <TableProperties className="h-5 w-5 text-[#FF8452]" />
+            <h2 className="text-xl sm:text-2xl font-bold text-[#FFF6EE] tracking-tight">
               {language === 'vi' ? `Bảng Xếp Hạng Toàn Bộ ${models.length} Mô Hình` : `Full ${models.length} Models Live Leaderboard`}
             </h2>
-            <span className="rounded-full bg-slate-800 px-2.5 py-0.5 text-xs text-slate-400 font-mono font-bold">
+            <span className="rounded-full bg-[#180D07] border border-[#3D2216] px-2.5 py-0.5 text-xs text-[#A89280] font-mono font-bold">
               {filteredModels.length} models
             </span>
           </div>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-[#A89280]">
             {language === 'vi'
               ? 'Dữ liệu được đo lường độc lập và đồng bộ tự động mỗi 15 phút'
               : 'Measured independently and synchronized automatically every 15 minutes'}
@@ -168,8 +168,8 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
               onClick={() => { setFilterType(f.id); setCurrentPage(1); }}
               className={`rounded-xl px-3 py-1 text-xs font-semibold transition-colors ${
                 filterType === f.id
-                  ? 'bg-violet-600 text-white shadow-sm'
-                  : 'bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-800'
+                  ? 'bg-[#FF6B35] text-[#FFF6EE] shadow-sm'
+                  : 'bg-[#24130C] text-[#D8C4B6] hover:text-[#FFF6EE] hover:bg-[#2E170E] border border-[#3D2216]'
               }`}
             >
               {f.label}
@@ -179,14 +179,14 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
       </div>
 
       {/* Leaderboard Table */}
-      <div className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 shadow-2xl">
+      <div className="overflow-hidden rounded-2xl border border-[#3D2216] bg-[#24130C]/90 shadow-2xl">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="border-b border-slate-800 bg-slate-950/80 text-slate-400 font-semibold sticky top-0 z-10">
+            <thead className="border-b border-[#3D2216] bg-[#180D07]/80 text-[#A89280] font-semibold sticky top-0 z-10">
               <tr>
                 <th
                   onClick={() => handleSort('name')}
-                  className="p-3.5 pl-4 sm:pl-6 cursor-pointer hover:text-white transition-colors"
+                  className="p-3.5 pl-4 sm:pl-6 cursor-pointer hover:text-[#FFF6EE] transition-colors"
                 >
                   <div className="flex items-center gap-1.5">
                     <span>Mô hình ({filteredModels.length})</span>
@@ -197,16 +197,16 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                 <th className="p-3.5 hidden md:table-cell">Nhà phát triển</th>
                 <th
                   onClick={() => handleSort('intelligence')}
-                  className="p-3.5 cursor-pointer hover:text-white transition-colors text-right"
+                  className="p-3.5 cursor-pointer hover:text-[#FFF6EE] transition-colors text-right"
                 >
-                  <div className="flex items-center justify-end gap-1 text-violet-300 font-bold">
+                  <div className="flex items-center justify-end gap-1 text-[#FF8452] font-bold">
                     <span>Điểm Thông Minh</span>
                     <ArrowUpDown className="h-3 w-3" />
                   </div>
                 </th>
                 <th
                   onClick={() => handleSort('cost')}
-                  className="p-3.5 cursor-pointer hover:text-white transition-colors text-right"
+                  className="p-3.5 cursor-pointer hover:text-[#FFF6EE] transition-colors text-right"
                 >
                   <div className="flex items-center justify-end gap-1 text-emerald-300 font-bold">
                     <span>Chi Phí ({currency})</span>
@@ -215,7 +215,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                 </th>
                 <th
                   onClick={() => handleSort('speed')}
-                  className="p-3.5 cursor-pointer hover:text-white transition-colors text-right"
+                  className="p-3.5 cursor-pointer hover:text-[#FFF6EE] transition-colors text-right"
                 >
                   <div className="flex items-center justify-end gap-1 text-amber-300 font-bold">
                     <span>Tốc Độ (tps)</span>
@@ -224,7 +224,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                 </th>
                 <th
                   onClick={() => handleSort('latency')}
-                  className="p-3.5 hidden lg:table-cell cursor-pointer hover:text-white transition-colors text-right"
+                  className="p-3.5 hidden lg:table-cell cursor-pointer hover:text-[#FFF6EE] transition-colors text-right"
                 >
                   <div className="flex items-center justify-end gap-1 text-cyan-300">
                     <span>Độ Trễ TTFT</span>
@@ -233,7 +233,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                 </th>
                 <th
                   onClick={() => handleSort('vietnamese')}
-                  className="p-3.5 cursor-pointer hover:text-white transition-colors text-right"
+                  className="p-3.5 cursor-pointer hover:text-[#FFF6EE] transition-colors text-right"
                 >
                   <div className="flex items-center justify-end gap-1 text-emerald-400 font-bold">
                     <span>🇻🇳 Tiếng Việt</span>
@@ -243,20 +243,20 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                 <th className="p-3.5 pr-4 sm:pr-6 text-right">Chi tiết</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60 text-slate-300">
+            <tbody className="divide-y divide-[#2E170E] text-[#D8C4B6]">
               {displayedModels.length === 0 ? (
                 <tr>
                   <td colSpan={9} className="py-16 text-center">
                     <div className="flex flex-col items-center justify-center space-y-3 px-4">
-                      <div className="rounded-full bg-slate-800 p-4 text-slate-400">
+                      <div className="rounded-full bg-[#180D07] border border-[#3D2216] p-4 text-[#A89280]">
                         <Search className="h-6 w-6" />
                       </div>
-                      <p className="text-sm font-semibold text-white">
+                      <p className="text-sm font-semibold text-[#FFF6EE]">
                         {language === 'vi' 
                           ? 'Không tìm thấy mô hình nào phù hợp' 
                           : 'No models found matching your criteria'}
                       </p>
-                      <p className="text-xs text-slate-400 max-w-md leading-relaxed">
+                      <p className="text-xs text-[#A89280] max-w-md leading-relaxed">
                         {language === 'vi'
                           ? 'Hãy thử tìm kiếm với từ khóa khác hoặc xóa bộ lọc để xem đầy đủ danh sách các mô hình.'
                           : 'Try searching with different terms or reset your filters to see all available models.'}
@@ -268,7 +268,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                             setFilterType('all');
                             setCurrentPage(1);
                           }}
-                          className="mt-2 rounded-xl bg-violet-600 px-4 py-2 text-xs font-semibold text-white shadow-lg shadow-violet-600/30 hover:bg-violet-500 transition-colors"
+                          className="mt-2 rounded-xl bg-[#FF6B35] px-4 py-2 text-xs font-semibold text-white shadow-lg shadow-[#FF6B35]/25 hover:bg-[#FF8452] transition-colors"
                         >
                           {language === 'vi' ? 'Xóa bộ lọc & tìm kiếm' : 'Reset filters & search'}
                         </button>
@@ -284,24 +284,24 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                   <tr
                     key={m.id}
                     onClick={() => onSelectModel(m)}
-                    className="hover:bg-slate-800/40 transition-colors cursor-pointer group"
+                    className="hover:bg-[#2E170E]/50 transition-colors cursor-pointer group"
                   >
                     {/* Model Name & Rank */}
                     <td className="p-3.5 pl-4 sm:pl-6">
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-mono text-slate-500 w-5">
+                        <span className="text-[10px] font-mono text-[#A89280] w-5">
                           {rank}.
                         </span>
                         <div className="min-w-0">
                           <div className="flex items-center gap-1.5 flex-wrap">
-                            <span className="font-bold text-white group-hover:text-violet-300 transition-colors truncate">
+                            <span className="font-bold text-[#FFF6EE] group-hover:text-[#FF8452] transition-colors truncate">
                               {m.name}
                             </span>
                             <span className={`px-1.5 py-0.2 rounded text-[9px] font-black border ${getTierBadgeStyle(m.tier)}`}>
                               {m.tier}
                             </span>
                             {m.isOpenWeights && (
-                              <span className="bg-slate-800 text-slate-400 px-1 py-0.2 rounded text-[9px]">
+                              <span className="bg-[#180D07] border border-[#3D2216] text-[#A89280] px-1 py-0.2 rounded text-[9px]">
                                 OSS
                               </span>
                             )}
@@ -314,17 +314,17 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                     </td>
 
                     {/* Context Window */}
-                    <td className="p-3.5 hidden sm:table-cell text-slate-400 font-mono">
+                    <td className="p-3.5 hidden sm:table-cell text-[#A89280] font-mono">
                       {m.contextWindow}
                     </td>
 
                     {/* Creator */}
-                    <td className="p-3.5 hidden md:table-cell text-slate-300">
+                    <td className="p-3.5 hidden md:table-cell text-[#D8C4B6]">
                       {m.creator}
                     </td>
 
                     {/* Intelligence Index */}
-                    <td className="p-3.5 text-right font-mono font-bold text-white">
+                    <td className="p-3.5 text-right font-mono font-bold text-[#FFF6EE]">
                       {m.intelligenceScoreRaw !== '--' ? m.intelligenceScoreRaw : '—'}
                     </td>
 
@@ -341,7 +341,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                     </td>
 
                     {/* Latency */}
-                    <td className="p-3.5 hidden lg:table-cell text-right font-mono text-slate-400">
+                    <td className="p-3.5 hidden lg:table-cell text-right font-mono text-[#A89280]">
                       {m.latencyRaw !== '--' ? `${m.latencyRaw}s` : '—'}
                     </td>
 
@@ -357,7 +357,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                           e.stopPropagation();
                           onSelectModel(m);
                         }}
-                        className="rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1 text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-700 transition-colors"
+                        className="rounded-lg border border-[#472718] bg-[#24130C] px-2.5 py-1 text-xs font-semibold text-[#D8C4B6] hover:text-[#FFF6EE] hover:bg-[#3D2216] transition-colors"
                       >
                         {language === 'vi' ? 'Xem' : 'View'}
                       </button>
@@ -371,17 +371,17 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
         </div>
 
         {/* Table Pagination & Count */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-4 border-t border-slate-800 bg-slate-950 text-xs text-slate-400">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-4 border-t border-[#3D2216] bg-[#180D07] text-xs text-[#A89280]">
           <div>
             {language === 'vi' ? (
               <>
-                Hiển thị <span className="font-bold text-white">{displayedModels.length}</span> trên tổng số{' '}
-                <span className="font-bold text-white">{filteredModels.length}</span> mô hình
+                Hiển thị <span className="font-bold text-[#FFF6EE]">{displayedModels.length}</span> trên tổng số{' '}
+                <span className="font-bold text-[#FFF6EE]">{filteredModels.length}</span> mô hình
               </>
             ) : (
               <>
-                Showing <span className="font-bold text-white">{displayedModels.length}</span> of{' '}
-                <span className="font-bold text-white">{filteredModels.length}</span> models
+                Showing <span className="font-bold text-[#FFF6EE]">{displayedModels.length}</span> of{' '}
+                <span className="font-bold text-[#FFF6EE]">{filteredModels.length}</span> models
               </>
             )}
           </div>
@@ -389,7 +389,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-1.5 text-slate-300 hover:text-white hover:bg-slate-800 transition-colors font-medium"
+              className="rounded-lg border border-[#3D2216] bg-[#24130C] px-3 py-1.5 text-[#D8C4B6] hover:text-[#FFF6EE] hover:bg-[#2E170E] transition-colors font-medium"
             >
               {showAll ? (language === 'vi' ? 'Phân trang' : 'Paginate') : (language === 'vi' ? `Xem tất cả ${filteredModels.length}` : `Show All ${filteredModels.length}`)}
             </button>
@@ -399,7 +399,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                 <button
                   onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="rounded-lg border border-slate-800 bg-slate-900 p-1.5 text-slate-300 disabled:opacity-30 hover:bg-slate-800"
+                  className="rounded-lg border border-[#3D2216] bg-[#24130C] p-1.5 text-[#D8C4B6] disabled:opacity-30 hover:bg-[#2E170E]"
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </button>
@@ -409,7 +409,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                 <button
                   onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                   disabled={currentPage === totalPages}
-                  className="rounded-lg border border-slate-800 bg-slate-900 p-1.5 text-slate-300 disabled:opacity-30 hover:bg-slate-800"
+                  className="rounded-lg border border-[#3D2216] bg-[#24130C] p-1.5 text-[#D8C4B6] disabled:opacity-30 hover:bg-[#2E170E]"
                 >
                   <ChevronRight className="h-4 w-4" />
                 </button>
