@@ -5,7 +5,6 @@ import { ScrapedModel } from '../../types';
 import { CompanyLogo, getCreatorColor } from './CompanyLogo';
 import { useLanguage } from '../../context/LanguageContext';
 import { 
-  ArrowUpRight, 
   Link2, 
   ImageDown, 
   Table, 
@@ -106,21 +105,13 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
               {language === 'vi' ? 'Tiêu chuẩn Đo lường Độc lập' : 'Standardized Benchmark'}
             </span>
           </div>
-          <h3 className="text-2xl sm:text-3xl font-serif font-normal tracking-tight text-[#FFF6EE] flex items-center gap-2">
-            <a 
-              href="https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index"
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="hover:underline flex items-center gap-2 group"
-            >
-              <span>
-                {language === 'vi' ? 'Chỉ số Trí tuệ Toàn diện' : 'Artificial Analysis Intelligence Index'}
-              </span>
-              <span className="text-sm font-sans text-[#A89280] font-normal hidden sm:inline">
-                (Artificial Analysis Intelligence Index)
-              </span>
-              <ArrowUpRight className="h-4 w-4 text-[#FF8452] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
+          <h3 className="text-2xl sm:text-3xl font-serif font-normal tracking-tight text-[#FFF6EE] flex items-center gap-2 flex-wrap">
+            <span>
+              {language === 'vi' ? 'Chỉ số Trí tuệ Toàn diện' : 'Artificial Analysis Intelligence Index'}
+            </span>
+            <span className="text-sm font-sans text-[#A89280] font-normal hidden sm:inline">
+              (Artificial Analysis Intelligence Index)
+            </span>
           </h3>
           <p className="mt-2.5 text-xs leading-relaxed text-[#C7B299] font-light max-w-xl">
             {language === 'vi' ? (

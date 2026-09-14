@@ -224,6 +224,10 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
           </span>
           <a
             href="#intelligence"
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector('#intelligence')?.scrollIntoView({ behavior: 'smooth' });
+            }}
             className="hover:text-[#FF8452] transition-colors underline decoration-[#472718] underline-offset-4"
           >
             📊 {language === 'vi' ? 'Biểu Đồ Intelligence Index' : 'Intelligence Index'}
@@ -231,6 +235,10 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
           <span className="text-[#472718]">•</span>
           <a
             href="#coding-agents"
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector('#coding-agents')?.scrollIntoView({ behavior: 'smooth' });
+            }}
             className="hover:text-[#FF8452] transition-colors underline decoration-[#472718] underline-offset-4"
           >
             💻 {language === 'vi' ? 'Coding Agent Index' : 'Coding Agent Index'}
@@ -238,6 +246,10 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
           <span className="text-[#472718]">•</span>
           <a
             href="#price-and-cost"
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector('#price-and-cost')?.scrollIntoView({ behavior: 'smooth' });
+            }}
             className="hover:text-[#FF8452] transition-colors underline decoration-[#472718] underline-offset-4"
           >
             💰 {language === 'vi' ? 'Chi Phí & Giá Cả' : 'Price & Cost'}
@@ -245,6 +257,10 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
           <span className="text-[#472718]">•</span>
           <a
             href="#speed"
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector('#speed')?.scrollIntoView({ behavior: 'smooth' });
+            }}
             className="hover:text-[#FF8452] transition-colors underline decoration-[#472718] underline-offset-4"
           >
             ⚡ {language === 'vi' ? 'Tốc Độ & Độ Trễ' : 'Speed & Latency'}

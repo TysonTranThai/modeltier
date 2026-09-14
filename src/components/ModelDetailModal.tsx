@@ -7,7 +7,6 @@ import { useCurrency } from '../context/CurrencyContext';
 import { convertUSDToVND, formatVND } from '../data/models';
 import { 
   X, 
-  ExternalLink, 
   CheckCircle, 
   AlertCircle, 
   Zap, 
@@ -245,22 +244,11 @@ export const ModelDetailModal: React.FC<ModelDetailModalProps> = ({
                   onSelectCompare(model);
                   onClose();
                 }}
-                className="rounded-xl border border-[#3D2216] bg-[#24130C] px-4 py-2 text-xs font-semibold text-[#D8C4B6] hover:bg-[#2E170E] hover:text-[#FFF6EE] transition-colors"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#FF6B35] to-[#E64A19] px-4 py-2 text-xs font-bold text-white shadow-lg shadow-[#FF6B35]/25 hover:brightness-110 transition-all"
               >
-                {language === 'vi' ? 'Đưa vào so sánh' : 'Compare'}
+                <span>⚔️</span>
+                <span>{language === 'vi' ? 'Đưa vào so sánh 1v1' : 'Compare 1-vs-1'}</span>
               </button>
-            )}
-
-            {model.playgroundUrl && (
-              <a
-                href={model.playgroundUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-xl bg-[#FF6B35] px-4 py-2 text-xs font-bold text-white shadow-lg shadow-[#FF6B35]/25 hover:bg-[#FF8452] transition-colors"
-              >
-                <ExternalLink className="h-3.5 w-3.5" />
-                {t.card.tryOfficial}
-              </a>
             )}
           </div>
         </div>

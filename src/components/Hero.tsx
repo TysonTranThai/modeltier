@@ -77,6 +77,10 @@ export const Hero: React.FC<HeroProps> = ({
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a
               href="#tierlist"
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector('#tierlist')?.scrollIntoView({ behavior: 'smooth' });
+              }}
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#FF6B35] to-[#E64A19] px-7 py-3.5 text-sm font-semibold text-white shadow-glow-orange hover:shadow-glow-orange-lg hover:scale-105 transition-all"
             >
               <span>{language === 'vi' ? 'Khám Phá Mô Hình Tinh Hoa' : 'Discover the Core'}</span>

@@ -122,7 +122,14 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Main Luxury Ledger Header */}
       <div className="mx-auto flex h-16 lg:h-18 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Left: Brand Identity matching Ledger's clean editorial serif & circular mark */}
-        <a href="#" className="flex items-center gap-2.5 group focus:outline-none">
+        <a 
+          href="#" 
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          className="flex items-center gap-2.5 group focus:outline-none"
+        >
           <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#FF6B35] text-[#160B06] shadow-sm transition-transform group-hover:scale-105">
             <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="#160B06" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round">
               <path d="M4 18l8-12 8 12" />

@@ -6,8 +6,6 @@ import { ArticleItem, ChangelogItem } from '../types';
 import { 
   FileText, 
   History, 
-  ExternalLink, 
-  ArrowUpRight, 
   Calendar, 
   Tag, 
   BookOpen,
@@ -47,15 +45,9 @@ export const ArticlesAndChangelog: React.FC<ArticlesAndChangelogProps> = ({
             </p>
           </div>
 
-          <a
-            href="https://artificialanalysis.ai/articles"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#FF8452] hover:text-[#FF8452] transition-colors"
-          >
-            <span>{language === 'vi' ? 'Xem toàn bộ bài viết gốc tại Artificial Analysis' : 'View all articles on Artificial Analysis'}</span>
-            <ArrowUpRight className="h-3.5 w-3.5" />
-          </a>
+          <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#FF8452] bg-[#2E170E] px-3.5 py-1.5 rounded-xl border border-[#3D2216]">
+            <span>{language === 'vi' ? 'Dữ liệu nghiên cứu & nhật ký đánh giá' : 'Research Memo & Benchmark Logs'}</span>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -68,12 +60,9 @@ export const ArticlesAndChangelog: React.FC<ArticlesAndChangelogProps> = ({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {articles.map((article, idx) => (
-                <a
+                <div
                   key={article.slug || idx}
-                  href={article.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative flex flex-col justify-between rounded-2xl border border-[#3D2216] bg-[#24130C]/90 p-5 hover:border-[#FF6B35]/60 hover:bg-[#24130C] transition-all shadow-sm"
+                  className="group relative flex flex-col justify-between rounded-2xl border border-[#3D2216] bg-[#24130C]/90 p-5 hover:border-[#FF6B35]/40 transition-all shadow-sm"
                 >
                   <div>
                     <div className="flex items-center justify-between text-[11px] font-semibold text-[#FF8452] uppercase tracking-wider mb-2">
@@ -81,23 +70,23 @@ export const ArticlesAndChangelog: React.FC<ArticlesAndChangelogProps> = ({
                         <Tag className="h-3 w-3" />
                         {language === 'vi' ? 'Nghiên cứu phương pháp' : 'Research Brief'}
                       </span>
-                      <ArrowUpRight className="h-3.5 w-3.5 text-[#8A7262] group-hover:text-[#FF8452] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                      <span className="text-[10px] font-mono text-[#8A7262]">#{idx + 1}</span>
                     </div>
                     <h4 className="text-base font-bold text-[#FFF6EE] group-hover:text-[#FF8452] transition-colors line-clamp-2">
                       {article.title}
                     </h4>
-                    <p className="mt-2 text-xs leading-relaxed text-[#A89280] line-clamp-3">
+                    <p className="mt-2 text-xs leading-relaxed text-[#D8C4B6] line-clamp-3 font-light">
                       {article.summary}
                     </p>
                   </div>
 
                   <div className="mt-4 pt-4 border-t border-[#3D2216] flex items-center justify-between text-[11px] text-[#8A7262]">
-                    <span>artificialanalysis.ai</span>
-                    <span className="group-hover:text-[#FF8452] font-medium transition-colors flex items-center gap-1">
-                      {language === 'vi' ? 'Đọc bài' : 'Read article'} &rarr;
+                    <span className="font-mono">Benchmark Memo</span>
+                    <span className="text-[#FF8452] font-medium">
+                      {language === 'vi' ? 'Bản lưu nội bộ' : 'Internal Brief'}
                     </span>
                   </div>
-                </a>
+                </div>
               ))}
             </div>
           </div>

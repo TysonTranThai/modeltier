@@ -16,7 +16,6 @@ import {
   Layers, 
   ShieldCheck, 
   Brain, 
-  ExternalLink,
   Info,
   SlidersHorizontal,
   Timer
@@ -355,15 +354,10 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
                   : 'Empirical benchmark runs using standardized workloads across dedicated AI benchmarking rigs.'}
               </span>
             </div>
-            <a
-              href="https://artificialanalysis.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-semibold text-[#FF8452] hover:underline shrink-0"
-            >
-              <span>Xem phương pháp tại Artificial Analysis</span>
-              <ExternalLink className="h-3 w-3" />
-            </a>
+            <div className="inline-flex items-center gap-1.5 font-semibold text-[#FF8452] shrink-0 text-xs">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B35]" />
+              <span>{language === 'vi' ? 'Tiêu chuẩn: Artificial Analysis' : 'Standard: Artificial Analysis'}</span>
+            </div>
           </div>
         </div>
       </div>

@@ -6,7 +6,6 @@ import { useLanguage } from '../context/LanguageContext';
 import { useCurrency } from '../context/CurrencyContext';
 import { 
   X, 
-  ExternalLink, 
   FileText, 
   Server
 } from 'lucide-react';
@@ -158,7 +157,7 @@ export const LiveModelDetailModal: React.FC<LiveModelDetailModalProps> = ({
           </p>
         </div>
 
-        {/* External Links */}
+        {/* Modal Actions */}
         <div className="flex items-center justify-between gap-3 pt-4 border-t border-[#2E170E]">
           <button
             onClick={onClose}
@@ -168,30 +167,17 @@ export const LiveModelDetailModal: React.FC<LiveModelDetailModalProps> = ({
           </button>
 
           <div className="flex items-center gap-2">
-            {model.providersUrl && (
-              <a
-                href={model.providersUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-xl border border-[#3D2216] bg-[#24130C] px-3.5 py-2 text-xs font-semibold text-[#D8C4B6] hover:text-[#FFF6EE] hover:bg-[#2E170E] transition-colors"
-              >
-                <Server className="h-3.5 w-3.5" />
-                <span>{language === 'vi' ? 'Nhà cung cấp' : 'Providers'}</span>
-                <ExternalLink className="h-3 w-3" />
-              </a>
-            )}
-
-            {model.url && (
-              <a
-                href={model.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-xl bg-[#FF6B35] px-4 py-2 text-xs font-bold text-white hover:bg-[#FF8452] transition-colors shadow-lg shadow-[#FF6B35]/25"
-              >
-                <span>{language === 'vi' ? 'Xem Benchmark Gốc' : 'View Benchmark Source'}</span>
-                <ExternalLink className="h-3.5 w-3.5" />
-              </a>
-            )}
+            <button
+              onClick={() => {
+                onClose();
+                const el = document.querySelector('#providers') || document.querySelector('#leaderboard');
+                el?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#FF6B35] to-[#E64A19] px-4 py-2 text-xs font-bold text-white shadow-lg shadow-[#FF6B35]/25 hover:brightness-110 transition-all"
+            >
+              <Server className="h-3.5 w-3.5" />
+              <span>{language === 'vi' ? 'Xem Hạ Tầng Providers' : 'View Hosting Providers'}</span>
+            </button>
           </div>
         </div>
       </div>
