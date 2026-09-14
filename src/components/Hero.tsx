@@ -59,19 +59,19 @@ export const Hero: React.FC<HeroProps> = ({
           <h1 className="text-4xl font-serif font-normal tracking-tight text-[#FFF6EE] sm:text-6xl lg:text-7xl leading-[1.12]">
             {language === 'vi' ? (
               <>
-                Mọi <span className="text-[#FF6B35] italic font-serif">doanh nghiệp</span> đều xứng đáng sở hữu <span className="text-[#FF6B35] italic font-serif">mô hình AI</span> tối ưu
+                Chọn đúng <span className="text-[#FF6B35] italic font-serif">mô hình AI</span> bằng số liệu <span className="text-[#FF6B35] italic font-serif">thực chứng</span> và minh bạch
               </>
             ) : (
               <>
-                Every <span className="text-[#FF6B35] italic font-serif">business</span> deserves the world&apos;s finest <span className="text-[#FF6B35] italic font-serif">AI models</span>
+                Make smarter <span className="text-[#FF6B35] italic font-serif">AI decisions</span> with empirical <span className="text-[#FF6B35] italic font-serif">telemetry & benchmarks</span>
               </>
             )}
           </h1>
 
           <p className="mt-6 text-base leading-relaxed text-[#D8C4B6] sm:text-lg max-w-2xl mx-auto font-light">
             {language === 'vi'
-              ? 'Hầu hết các nhà phát triển đưa ra quyết định lớn mà không có số liệu đo đạc thực tế. ModelTier mang đến chuẩn đo lường độc lập — luôn cập nhật từng phút, luôn sẵn sàng đồng hành.'
-              : 'Most founders make six-figure AI decisions without empirical telemetry. ModelTier gives you one — always watching the benchmarks, always ready to advise.'}
+              ? 'Đừng chọn AI theo cảm tính. ModelTier mang đến chuẩn đo lường độc lập — phân hạng trực quan, quy đổi chi phí ra VNĐ và đo lường độ nhuyễn tiếng Việt thực chiến.'
+              : 'Empirical telemetry for every AI model — independent benchmarks, real-world cost comparisons, and localized performance metrics.'}
           </p>
 
           {/* Glowing Orange CTA Pill Button */}
