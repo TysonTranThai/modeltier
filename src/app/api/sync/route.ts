@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function POST() {
   try {
     // Dynamically require and run scrapeAll
@@ -14,6 +17,11 @@ export async function POST() {
       totalModels: result.totalModels,
       syncedAt: result.syncedAt,
       durationMs: result.durationMs,
+      data: result,
+    }, {
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate',
+      }
     });
   } catch (error: any) {
     console.error('API sync error:', error);

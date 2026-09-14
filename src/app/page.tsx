@@ -55,20 +55,46 @@ export default function HomePage() {
     return () => clearInterval(interval);
   }, []);
 
+  const [syncToast, setSyncToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+
   // Manual Trigger Sync from artificialanalysis.ai
   const handleTriggerSync = async () => {
     setIsSyncing(true);
     try {
       const res = await fetch('/api/sync', { method: 'POST' });
       if (res.ok) {
-        const dataRes = await fetch('/api/live-data');
-        if (dataRes.ok) {
-          const fresh = await dataRes.json();
-          setLiveData(fresh);
+        const json = await res.json();
+        if (json.success && json.data) {
+          setLiveData(json.data);
+          const timeStr = new Date(json.syncedAt).toLocaleTimeString();
+          const durationSec = (json.durationMs / 1000).toFixed(1);
+          setSyncToast({
+            type: 'success',
+            message: `✅ Đã đồng bộ thành công ${json.totalModels} mô hình lúc ${timeStr} (${durationSec}s)!`,
+          });
+          setTimeout(() => setSyncToast(null), 5000);
+          return;
         }
+      }
+      // Fallback
+      const dataRes = await fetch(`/api/live-data?t=${Date.now()}`, { cache: 'no-store' });
+      if (dataRes.ok) {
+        const fresh = await dataRes.json();
+        setLiveData(fresh);
+        const timeStr = new Date(fresh.syncedAt).toLocaleTimeString();
+        setSyncToast({
+          type: 'success',
+          message: `✅ Đã làm mới dữ liệu lúc ${timeStr}!`,
+        });
+        setTimeout(() => setSyncToast(null), 5000);
       }
     } catch (e) {
       console.error('Failed to trigger live sync:', e);
+      setSyncToast({
+        type: 'error',
+        message: '⚠️ Lỗi khi kéo dữ liệu trực tiếp. Vui lòng thử lại sau giây lát.',
+      });
+      setTimeout(() => setSyncToast(null), 5000);
     } finally {
       setIsSyncing(false);
     }
@@ -104,6 +130,25 @@ export default function HomePage() {
         onTriggerSync={handleTriggerSync}
         isSyncing={isSyncing}
       />
+
+      {/* Live Sync Status Toast Notification */}
+      {syncToast && (
+        <div className="fixed bottom-6 right-6 z-50 animate-in slide-in-from-bottom-4 duration-300 max-w-md">
+          <div className={`flex items-center gap-3 px-4 py-3 rounded-2xl shadow-2xl border text-xs font-semibold backdrop-blur-md ${
+            syncToast.type === 'success'
+              ? 'bg-emerald-950/95 text-emerald-200 border-emerald-500/50 shadow-emerald-950/50'
+              : 'bg-rose-950/95 text-rose-200 border-rose-500/50 shadow-rose-950/50'
+          }`}>
+            <span className="flex-1 leading-relaxed">{syncToast.message}</span>
+            <button
+              onClick={() => setSyncToast(null)}
+              className="rounded-lg p-1 text-slate-400 hover:bg-slate-800 hover:text-white"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
 
       <main className="flex-1">
         {/* Hero with Search & Live Counters */}

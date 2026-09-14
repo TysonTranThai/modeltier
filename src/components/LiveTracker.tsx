@@ -22,10 +22,25 @@ export const LiveTracker: React.FC = () => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [lastRefreshed, setLastRefreshed] = useState<Date>(new Date());
 
-  const handleRefresh = () => {
+  const handleRefresh = async () => {
     setIsRefreshing(true);
+    try {
+      const res = await fetch('/api/live-status');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.providers) {
+          setProviders(data.providers);
+          setLastRefreshed(new Date());
+          setIsRefreshing(false);
+          return;
+        }
+      }
+    } catch (e) {
+      console.warn('Live-status fetch fallback:', e);
+    }
+
     setTimeout(() => {
-      // Simulate live jitter
+      // Fallback jitter
       const jittered = providers.map((p) => {
         const jitterLatency = Math.max(80, p.avgLatencyMs + Math.floor((Math.random() - 0.5) * 40));
         const jitterThroughput = Math.max(30, p.throughputTps + Math.floor((Math.random() - 0.5) * 15));
@@ -39,7 +54,7 @@ export const LiveTracker: React.FC = () => {
       setProviders(jittered);
       setLastRefreshed(new Date());
       setIsRefreshing(false);
-    }, 600);
+    }, 400);
   };
 
   return (

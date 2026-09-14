@@ -78,17 +78,31 @@ export const Hero: React.FC<HeroProps> = ({
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    document.querySelector('#leaderboard')?.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
                 placeholder={language === 'vi' ? 'Tìm nhanh model (ví dụ: Claude 3.7, DeepSeek R1, GPT-4o, Gemini, K2)...' : 'Search models (e.g. Claude 3.7, DeepSeek R1, GPT-4o, Gemini, K2)...'}
-                className="w-full rounded-2xl border border-slate-700 bg-slate-900/90 py-3 pl-11 pr-4 text-xs sm:text-sm text-white placeholder-slate-400 shadow-xl backdrop-blur-md transition-all focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/30"
+                className="w-full rounded-2xl border border-slate-700 bg-slate-900/90 py-3 pl-11 pr-24 text-xs sm:text-sm text-white placeholder-slate-400 shadow-xl backdrop-blur-md transition-all focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/30"
               />
-              {searchQuery && (
+              <div className="absolute right-2 flex items-center gap-1">
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="p-1 text-xs text-slate-400 hover:text-white"
+                    title="Xóa tìm kiếm"
+                  >
+                    ✕
+                  </button>
+                )}
                 <button
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-4 text-xs text-slate-400 hover:text-white"
+                  onClick={() => document.querySelector('#leaderboard')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="rounded-xl bg-violet-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-violet-500 transition-colors shadow-sm"
                 >
-                  ✕
+                  {language === 'vi' ? 'Tìm' : 'Search'}
                 </button>
-              )}
+              </div>
             </div>
           </div>
 

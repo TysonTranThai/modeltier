@@ -57,7 +57,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     if (!isoString) return 'Vừa xong';
     try {
       const date = new Date(isoString);
-      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     } catch {
       return 'Vừa xong';
     }

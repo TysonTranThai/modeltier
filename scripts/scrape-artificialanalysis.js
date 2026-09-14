@@ -232,25 +232,34 @@ async function scrapeAll() {
       models,
     };
 
-    // Save to data directory
-    const outputDir = path.join(__dirname, '..', 'src', 'data');
-    if (!fs.existsSync(outputDir)) {
-      fs.mkdirSync(outputDir, { recursive: true });
+    // Save to data directory - write to both process.cwd() and __dirname fallback
+    const targetDirs = Array.from(new Set([
+      path.resolve(process.cwd(), 'src', 'data'),
+      path.resolve(__dirname, '..', 'src', 'data'),
+    ]));
+
+    for (const outputDir of targetDirs) {
+      try {
+        if (!fs.existsSync(outputDir)) {
+          fs.mkdirSync(outputDir, { recursive: true });
+        }
+        const outputFile = path.join(outputDir, 'live_data.json');
+        fs.writeFileSync(outputFile, JSON.stringify(payload, null, 2), 'utf8');
+
+        const statusFile = path.join(outputDir, 'sync_status.json');
+        fs.writeFileSync(statusFile, JSON.stringify({
+          status: 'success',
+          syncedAt: payload.syncedAt,
+          durationMs,
+          totalModels: models.length,
+          nextSyncScheduled: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
+        }, null, 2), 'utf8');
+        console.log(`💾 Live data saved to ${outputFile}`);
+      } catch (err) {
+        console.warn(`Could not write to ${outputDir}:`, err.message);
+      }
     }
 
-    const outputFile = path.join(outputDir, 'live_data.json');
-    fs.writeFileSync(outputFile, JSON.stringify(payload, null, 2), 'utf8');
-
-    const statusFile = path.join(outputDir, 'sync_status.json');
-    fs.writeFileSync(statusFile, JSON.stringify({
-      status: 'success',
-      syncedAt: new Date().toISOString(),
-      durationMs,
-      totalModels: models.length,
-      nextSyncScheduled: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
-    }, null, 2), 'utf8');
-
-    console.log(`💾 Live data saved to ${outputFile} (${(fs.statSync(outputFile).size / 1024).toFixed(1)} KB)`);
     console.log(`🎉 Sync completed in ${durationMs}ms with ${models.length} models!`);
     return payload;
   } catch (err) {
