@@ -13,6 +13,7 @@ import { Hero } from '@/components/Hero';
 import { ProCloneHero } from '@/components/ProCloneHero';
 import { Highlights } from '@/components/Highlights';
 import { BenchmarkScrollExplorer } from '@/components/BenchmarkScrollExplorer';
+import { ProCloneWorkspace } from '@/components/clone/ProCloneWorkspace';
 import { ScatterPlotArena } from '@/components/ScatterPlotArena';
 import { ModelLeaderboard } from '@/components/ModelLeaderboard';
 import { TierList } from '@/components/TierList';
@@ -260,7 +261,7 @@ export default function HomePage() {
             <PlainExplainer />
           </>
         ) : (
-          /* ================= PRO CLONE MODE (BENCHMARK CLONE) ================= */
+          /* ================= PRO CLONE MODE (EXACT ARTIFICIAL ANALYSIS CLONE) ================= */
           <>
             {/* Artificial Analysis Benchmark Clone Hero */}
             <ProCloneHero
@@ -279,29 +280,14 @@ export default function HomePage() {
               />
             </div>
 
-            {/* Interactive 2D Scatter Plot & Pareto Frontier */}
-            <div id="scatterplot" className="scroll-mt-20">
-              <ScatterPlotArena
-                models={liveData.models}
-                onSelectModel={handleSelectScrapedModel}
-              />
-            </div>
-
-            {/* 650+ Models Full Leaderboard Table */}
-            <ModelLeaderboard
+            {/* Full High-Fidelity 11-Section Workspace with Left Sidebar & Intelligence Index Chart */}
+            <ProCloneWorkspace
               models={liveData.models}
+              articles={liveData.articles}
+              changelog={liveData.changelog}
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}
               onSelectModel={handleSelectScrapedModel}
-            />
-
-            {/* Realtime Cloud Provider Latency Telemetry Radar */}
-            <LiveTracker />
-
-            {/* Deep-Dive Articles & Evaluation Changelog */}
-            <ArticlesAndChangelog
-              articles={liveData.articles}
-              changelog={liveData.changelog}
               onSelectModelSlug={handleSelectModelBySlug}
             />
           </>
