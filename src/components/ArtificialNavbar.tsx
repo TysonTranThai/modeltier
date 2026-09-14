@@ -101,7 +101,7 @@ export const ArtificialNavbar: React.FC<ArtificialNavbarProps> = ({
         <a href="/" className="flex items-center gap-2.5 select-none group">
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-black p-1.5 transition-transform group-hover:scale-105">
             {/* Exact Artificial Analysis Geometric Icon */}
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" className="h-5 w-5 text-black">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" width="20" height="20" style={{ width: '20px', height: '20px', maxWidth: '20px', maxHeight: '20px' }} className="h-5 w-5 text-black">
               <path fill="currentColor" d="M13.982 16h1.996v-3.997h-3.992V16zM7.984 0 3.992 3.997H0v3.998h5.988L9.98 3.997h2.006V0zM7.984 7.995l-3.992 4.008H0V16h5.988l3.992-3.997h2.006V7.995zM15.978 7.995V3.997h-3.992v3.998h3.992" />
             </svg>
           </div>
