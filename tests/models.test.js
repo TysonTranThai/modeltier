@@ -3,13 +3,12 @@ const assert = require('node:assert');
 const fs = require('fs');
 const path = require('path');
 
-test('Data Integrity: models.ts exists and contains essential models', () => {
+test('Data Integrity: models.ts exists and contains essential curated models', () => {
   const modelsFilePath = path.join(__dirname, '..', 'src', 'data', 'models.ts');
   assert.ok(fs.existsSync(modelsFilePath), 'models.ts must exist');
 
   const content = fs.readFileSync(modelsFilePath, 'utf8');
 
-  // Verify key models are present
   const requiredModels = [
     'claude-3-7-sonnet',
     'deepseek-r1',
@@ -27,6 +26,20 @@ test('Data Integrity: models.ts exists and contains essential models', () => {
       `Model ${modelId} must be present in dataset`
     );
   }
+});
+
+test('Live Scraped Data: live_data.json exists and contains 300+ models from Artificial Analysis', () => {
+  const liveDataPath = path.join(__dirname, '..', 'src', 'data', 'live_data.json');
+  assert.ok(fs.existsSync(liveDataPath), 'live_data.json must exist');
+
+  const data = JSON.parse(fs.readFileSync(liveDataPath, 'utf8'));
+  assert.ok(data.totalModels >= 300, `Expected at least 300 models, got ${data.totalModels}`);
+  assert.ok(Array.isArray(data.models) && data.models.length >= 300, 'Models array must have 300+ items');
+
+  // Verify highlights datasets
+  assert.ok(data.highlights.intelligence.length > 0, 'Highlights intelligence must have data');
+  assert.ok(data.highlights.speed.length > 0, 'Highlights speed must have data');
+  assert.ok(data.highlights.costPerTask.length > 0, 'Highlights costPerTask must have data');
 });
 
 test('Currency Rate: Exchange rate is positive and within realistic range', () => {
@@ -50,12 +63,12 @@ test('Glossary and Plain Language definitions exist', () => {
   assert.ok(content.includes('context-window'), 'Must explain context window');
 });
 
-test('Scenarios: Real-world workload presets are defined', () => {
-  const scenariosPath = path.join(__dirname, '..', 'src', 'data', 'scenarios.ts');
-  assert.ok(fs.existsSync(scenariosPath), 'scenarios.ts must exist');
+test('Sync Status file is written and valid', () => {
+  const statusPath = path.join(__dirname, '..', 'src', 'data', 'sync_status.json');
+  assert.ok(fs.existsSync(statusPath), 'sync_status.json must exist');
 
-  const content = fs.readFileSync(scenariosPath, 'utf8');
-  assert.ok(content.includes('cskh'), 'Must have CSKH preset');
-  assert.ok(content.includes('content'), 'Must have content creation preset');
-  assert.ok(content.includes('coding'), 'Must have coding preset');
+  const status = JSON.parse(fs.readFileSync(statusPath, 'utf8'));
+  assert.strictEqual(status.status, 'success');
+  assert.ok(status.totalModels >= 300, 'Status should reflect 300+ models');
+  assert.ok(status.syncedAt, 'Status should have syncedAt timestamp');
 });

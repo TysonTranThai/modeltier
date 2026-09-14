@@ -7,15 +7,17 @@ export type CategoryFilter =
   | 'speed' 
   | 'budget' 
   | 'reasoning'
+  | 'open_weights'
   | 'free_accessible';
 
 export type Language = 'vi' | 'en';
 export type Currency = 'VND' | 'USD';
+export type ViewMode = 'clone' | 'simplified' | 'both';
 
 export interface ModelBadge {
   vi: string;
   en: string;
-  color: string; // Tailwind color class or hex
+  color: string;
 }
 
 export interface Model {
@@ -27,30 +29,24 @@ export interface Model {
   category: ('coding' | 'vietnamese' | 'speed' | 'budget' | 'reasoning')[];
   releaseDate: string;
   
-  // Human-friendly localized summaries
   vietnameseSummary: string;
   englishSummary: string;
   
-  // Real-world practical metrics (0 - 100)
-  intelligenceScore: number;     // Tổng điểm thông minh
-  vietnameseRating: number;      // Độ nhuyễn tiếng Việt, văn phong tự nhiên
-  codingScore: number;           // Khả năng viết code & debug
-  reasoningScore: number;        // Suy luận logic, toán học, giải quyết bài toán phức tạp
+  intelligenceScore: number;
+  vietnameseRating: number;
+  codingScore: number;
+  reasoningScore: number;
   
-  // Performance & Speed
-  outputSpeed: number;           // Tokens / second
-  timeToFirstToken: number;      // TTFT in seconds
+  outputSpeed: number;
+  timeToFirstToken: number;
   
-  // Cost (USD per 1M tokens)
   inputPricePerMillionUSD: number;
   outputPricePerMillionUSD: number;
   isFreeTierAvailable: boolean;
   
-  // Technical capacity
-  contextWindow: number;         // Max tokens in context (e.g., 200,000)
+  contextWindow: number;
   maxOutputTokens: number;
   
-  // Pros & Cons in human language
   bestFor: {
     vi: string[];
     en: string[];
@@ -64,13 +60,73 @@ export interface Model {
     en: string[];
   };
   
-  // Meta
   badge?: ModelBadge;
   isOpenWeights: boolean;
   hasVision: boolean;
   officialUrl: string;
   playgroundUrl?: string;
   providers: string[];
+}
+
+export interface ScrapedModel {
+  id: string;
+  slug: string;
+  name: string;
+  creator: string;
+  contextWindow: string;
+  tier: Tier;
+  isOpenWeights: boolean;
+  hasVision: boolean;
+  intelligenceScore: number;
+  intelligenceScoreRaw: string;
+  costPerTaskUSD: number;
+  costPerTaskRaw: string;
+  outputSpeed: number;
+  outputSpeedRaw: string;
+  latencyFirstChunk: number;
+  latencyRaw: string;
+  totalResponseTime: number;
+  totalTimeRaw: string;
+  vietnameseRating: number;
+  url: string;
+  providersUrl: string;
+}
+
+export interface HighlightItem {
+  label: string;
+  detailsUrl?: string;
+  artificialAnalysisIntelligenceIndex?: number;
+  medianOutputSpeed?: number;
+  costPerIntelligenceIndexTask?: number;
+}
+
+export interface ChangelogItem {
+  date: string;
+  slug: string;
+  modelName: string;
+}
+
+export interface ArticleItem {
+  slug: string;
+  title: string;
+  summary: string;
+  url: string;
+}
+
+export interface LiveDataPayload {
+  source: string;
+  syncedAt: string;
+  durationMs: number;
+  totalModels: number;
+  highlights: {
+    intelligence: HighlightItem[];
+    speed: HighlightItem[];
+    costPerTask: HighlightItem[];
+    intelligenceIndexTop20: HighlightItem[];
+  };
+  articles: ArticleItem[];
+  changelog: ChangelogItem[];
+  models: ScrapedModel[];
 }
 
 export interface ProviderStatus {
