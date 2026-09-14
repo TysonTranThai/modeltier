@@ -139,7 +139,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
           <div className="flex items-center gap-2 mb-1">
             <TableProperties className="h-5 w-5 text-violet-400" />
             <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-              {language === 'vi' ? 'Bảng Xếp Hạng Đầy Đủ 300+ Mô Hình' : 'Full 300+ Models Live Leaderboard'}
+              {language === 'vi' ? `Bảng Xếp Hạng Toàn Bộ ${models.length} Mô Hình` : `Full ${models.length} Models Live Leaderboard`}
             </h2>
             <span className="rounded-full bg-slate-800 px-2.5 py-0.5 text-xs text-slate-400 font-mono font-bold">
               {filteredModels.length} models
@@ -357,7 +357,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
               onClick={() => setShowAll(!showAll)}
               className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-1.5 text-slate-300 hover:text-white hover:bg-slate-800 transition-colors font-medium"
             >
-              {showAll ? (language === 'vi' ? 'Phân trang' : 'Paginate') : (language === 'vi' ? 'Xem tất cả 301' : 'Show All 301')}
+              {showAll ? (language === 'vi' ? 'Phân trang' : 'Paginate') : (language === 'vi' ? `Xem tất cả ${filteredModels.length}` : `Show All ${filteredModels.length}`)}
             </button>
 
             {!showAll && totalPages > 1 && (

@@ -51,7 +51,7 @@ export const Hero: React.FC<HeroProps> = ({
           {/* Live Badge */}
           <div className="inline-flex items-center gap-2 rounded-full border border-violet-500/30 bg-violet-500/10 px-3.5 py-1 text-xs font-medium text-violet-300 shadow-sm backdrop-blur-sm mb-5">
             <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>{language === 'vi' ? 'Theo dõi dữ liệu thực tế hơn 300+ mô hình AI' : 'Live tracking across 300+ frontier AI models'}</span>
+            <span>{language === 'vi' ? `Theo dõi dữ liệu thực tế ${modelCount} mô hình AI` : `Live tracking across ${modelCount} frontier AI models`}</span>
           </div>
 
           {/* Main Headline */}
@@ -113,7 +113,7 @@ export const Hero: React.FC<HeroProps> = ({
               className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 px-4 py-2 text-xs sm:text-sm font-semibold text-white shadow-lg shadow-indigo-600/25 transition-all hover:scale-105 hover:from-violet-500 hover:to-indigo-500"
             >
               <TableProperties className="h-4 w-4" />
-              {language === 'vi' ? 'Bảng Đầy Đủ 300+ Model' : 'View All 300+ Models'}
+              {language === 'vi' ? `Bảng Đầy Đủ ${modelCount} Model` : `View All ${modelCount} Models`}
             </a>
             <a
               href="#finder"
@@ -134,7 +134,7 @@ export const Hero: React.FC<HeroProps> = ({
           {/* Live Metrics Ticker Bar */}
           <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 rounded-2xl border border-slate-800/80 bg-slate-900/50 p-3.5 backdrop-blur-sm">
             <div className="text-center border-r border-slate-800/60">
-              <div className="text-xl sm:text-2xl font-black text-white">{modelCount}+</div>
+              <div className="text-xl sm:text-2xl font-black text-white">{modelCount}</div>
               <div className="text-[11px] text-slate-400 mt-0.5">{language === 'vi' ? 'Mô hình trực tiếp' : 'Models Synced'}</div>
             </div>
             <div className="text-center sm:border-r border-slate-800/60">

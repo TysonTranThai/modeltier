@@ -38,7 +38,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2">
               <li>
                 <a href="#leaderboard" className="hover:text-white transition-colors">
-                  {language === 'vi' ? 'Bảng 300+ Model' : '300+ Models Leaderboard'}
+                  {language === 'vi' ? 'Bảng Xếp Hạng Toàn Bộ Model' : 'Full Models Leaderboard'}
                 </a>
               </li>
               <li>

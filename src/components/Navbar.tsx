@@ -42,7 +42,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: '#leaderboard', label: language === 'vi' ? 'Bảng 300+ Model' : 'All 300+ Models', icon: TableProperties },
+    { href: '#leaderboard', label: language === 'vi' ? `Bảng ${totalModels} Model` : `All ${totalModels} Models`, icon: TableProperties },
     { href: '#highlights', label: language === 'vi' ? 'Tiêu Điểm' : 'Highlights', icon: TrendingUp },
     { href: '#scatterplot', label: language === 'vi' ? 'Đồ Thị Pareto' : 'Pareto Chart', icon: BarChart3 },
     { href: '#tierlist', label: t.nav.tierList, icon: Sparkles },

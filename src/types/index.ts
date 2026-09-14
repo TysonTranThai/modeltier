@@ -88,6 +88,11 @@ export interface ScrapedModel {
   totalResponseTime: number;
   totalTimeRaw: string;
   vietnameseRating: number;
+  creatorLogo?: string | null;
+  isReasoning?: boolean;
+  effort?: string | null;
+  deprecated?: boolean;
+  releaseDate?: string | null;
   url: string;
   providersUrl: string;
 }

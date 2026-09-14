@@ -49,7 +49,7 @@ test('Usability & Health: Server serves homepage with 200 OK and all core sectio
   assert.ok(html.includes('id="glossary"'), 'Missing #glossary section');
 });
 
-test('Live Tracking: POST /api/sync triggers scraper and returns fresh 300+ models data immediately', async () => {
+test('Live Tracking: POST /api/sync triggers scraper and returns fresh models data dynamically (600+ models)', async () => {
   const beforeTimestamp = new Date(Date.now() - 5000).toISOString();
   const syncRes = await fetchUrl(`http://localhost:${PORT}/api/sync`, { method: 'POST' });
   
@@ -57,18 +57,18 @@ test('Live Tracking: POST /api/sync triggers scraper and returns fresh 300+ mode
   const syncData = syncRes.json();
   
   assert.strictEqual(syncData.success, true);
-  assert.ok(syncData.totalModels >= 300, `Expected >= 300 models, got ${syncData.totalModels}`);
+  assert.ok(syncData.totalModels >= 600, `Expected all models (>= 600 models), got ${syncData.totalModels}`);
   assert.ok(new Date(syncData.syncedAt) >= new Date(beforeTimestamp), 'syncedAt timestamp is stale');
-  assert.ok(syncData.data && syncData.data.models.length >= 300, 'Payload data.models missing or incomplete');
+  assert.ok(syncData.data && syncData.data.models.length >= 600, 'Payload data.models missing or incomplete');
   assert.ok(syncData.data.highlights.intelligence.length > 0, 'Highlights intelligence missing');
 });
 
-test('Live Tracking: GET /api/live-data reflects latest synced data without caching', async () => {
+test('Live Tracking: GET /api/live-data reflects latest synced data without caching (600+ models)', async () => {
   const liveRes = await fetchUrl(`http://localhost:${PORT}/api/live-data?t=${Date.now()}`);
   assert.strictEqual(liveRes.status, 200);
   
   const liveData = liveRes.json();
-  assert.ok(liveData.totalModels >= 300, `Expected >= 300 models in live-data, got ${liveData.totalModels}`);
+  assert.ok(liveData.totalModels >= 600, `Expected >= 600 models in live-data, got ${liveData.totalModels}`);
   assert.ok(Array.isArray(liveData.models), 'models should be an array');
   assert.ok(liveData.models.some(m => m.name.includes('Claude')), 'Claude models should be present');
   assert.ok(liveData.models.some(m => m.name.includes('DeepSeek')), 'DeepSeek models should be present');

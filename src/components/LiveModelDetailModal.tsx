@@ -63,8 +63,23 @@ export const LiveModelDetailModal: React.FC<LiveModelDetailModalProps> = ({
                   Proprietary
                 </span>
               )}
+              {model.isReasoning && (
+                <span className="rounded bg-violet-950 px-1.5 py-0.2 text-[10px] font-bold text-violet-300 border border-violet-800/40">
+                  🧠 Reasoning
+                </span>
+              )}
+              {model.effort && (
+                <span className="rounded bg-indigo-950 px-1.5 py-0.2 text-[10px] font-bold text-indigo-300 border border-indigo-800/40">
+                  Effort: {model.effort}
+                </span>
+              )}
             </div>
             <h2 className="text-xl sm:text-2xl font-bold text-white mt-1">{model.name}</h2>
+            {model.releaseDate && (
+              <div className="text-[11px] text-slate-500 mt-0.5">
+                {language === 'vi' ? 'Ngày phát hành:' : 'Release:'} {model.releaseDate}
+              </div>
+            )}
           </div>
         </div>
 

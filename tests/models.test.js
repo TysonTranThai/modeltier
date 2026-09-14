@@ -28,13 +28,13 @@ test('Data Integrity: models.ts exists and contains essential curated models', (
   }
 });
 
-test('Live Scraped Data: live_data.json exists and contains 300+ models from Artificial Analysis', () => {
+test('Live Scraped Data: live_data.json exists and dynamically scales to all models on the source site (600+ models)', () => {
   const liveDataPath = path.join(__dirname, '..', 'src', 'data', 'live_data.json');
   assert.ok(fs.existsSync(liveDataPath), 'live_data.json must exist');
 
   const data = JSON.parse(fs.readFileSync(liveDataPath, 'utf8'));
-  assert.ok(data.totalModels >= 300, `Expected at least 300 models, got ${data.totalModels}`);
-  assert.ok(Array.isArray(data.models) && data.models.length >= 300, 'Models array must have 300+ items');
+  assert.ok(data.totalModels >= 600, `Expected all models from site (>= 600 models), got ${data.totalModels}`);
+  assert.ok(Array.isArray(data.models) && data.models.length >= 600, 'Models array must contain all models from site');
 
   // Verify highlights datasets
   assert.ok(data.highlights.intelligence.length > 0, 'Highlights intelligence must have data');
