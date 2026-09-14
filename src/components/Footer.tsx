@@ -16,11 +16,14 @@ export const Footer: React.FC = () => {
           {/* Brand & Purpose */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2.5 mb-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-[#FF6B35] to-[#D84315] text-white shadow-glow-orange">
-                <BarChart3 className="h-4 w-4" />
+              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#FF6B35] text-[#160B06] shadow-sm">
+                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="#160B06" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 18l8-12 8 12" />
+                  <path d="M7 14h10" />
+                </svg>
               </div>
-              <span className="text-lg font-serif font-bold text-[#FFF6EE] tracking-tight">
-                Model<span className="text-[#FF6B35] italic">Tier</span>.vn
+              <span className="font-serif text-xl font-normal tracking-tight text-[#FFF6EE]">
+                Model<span className="text-[#FF6B35]">Tier</span>.vn
               </span>
             </div>
             <p className="text-xs text-[#B8A08F] leading-relaxed max-w-md font-light">
@@ -95,19 +98,26 @@ export const Footer: React.FC = () => {
         {/* Artificial Analysis Attribution Box with Technical Crosshair */}
         <div className="mt-8 pt-6 border-t border-[#381E12] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8A7262]">
           <div className="flex items-center gap-2">
-            <span>Tham chiếu phương pháp và dữ liệu đo đạc độc lập từ</span>
+            <span>
+              {language === 'vi' 
+                ? 'Tham chiếu phương pháp và dữ liệu đo đạc độc lập từ' 
+                : 'Benchmarking methodology and standardized data referenced from'}
+            </span>
             <a
               href="https://artificialanalysis.ai"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-[#FF8452] hover:underline inline-flex items-center gap-1"
+              className="text-[#FF8452] hover:text-[#FFF6EE] font-semibold underline underline-offset-2 flex items-center gap-1 transition-colors"
             >
               <span>Artificial Analysis</span>
               <ExternalLink className="h-3 w-3" />
             </a>
           </div>
-          <div>
-            © 2026 ModelTier.vn • Ledger Luxury Editorial Edition.
+
+          <div className="flex items-center gap-1 text-[11px] text-[#8A7262]">
+            <span>© 2026 ModelTier.vn</span>
+            <span>•</span>
+            <span>{language === 'vi' ? 'Hạ Tầng Đo Lường AI Độc Lập' : 'Independent AI Intelligence Infrastructure'}</span>
           </div>
         </div>
       </div>

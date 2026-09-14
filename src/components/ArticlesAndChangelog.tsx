@@ -33,7 +33,7 @@ export const ArticlesAndChangelog: React.FC<ArticlesAndChangelogProps> = ({
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-950/40 px-3 py-1 text-xs font-semibold text-sky-400 mb-3">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#FF6B35]/30 bg-[#FF6B35]/10 px-3 py-1 text-xs font-semibold text-[#FF8452] mb-3">
               <FileText className="h-3.5 w-3.5" />
               <span>{language === 'vi' ? 'Bản Tin Nghiên Cứu Độc Lập' : 'Independent Research & Methodology'}</span>
             </div>
@@ -105,7 +105,7 @@ export const ArticlesAndChangelog: React.FC<ArticlesAndChangelogProps> = ({
           {/* Changelog Column (1 span) */}
           <div className="space-y-4">
             <h3 className="flex items-center gap-2 text-base font-bold text-[#FFF6EE]">
-              <History className="h-4 w-4 text-sky-400" />
+              <History className="h-4 w-4 text-[#FF8452]" />
               <span>{language === 'vi' ? 'Nhật Ký Đánh Giá Mới Nhất' : 'Recent Evaluation Changelog'}</span>
             </h3>
 
@@ -116,7 +116,7 @@ export const ArticlesAndChangelog: React.FC<ArticlesAndChangelogProps> = ({
                   onClick={() => onSelectModelSlug && onSelectModelSlug(item.slug)}
                   className="py-3 first:pt-0 last:pb-0 cursor-pointer group hover:bg-[#2E170E]/50 px-2 rounded-xl transition-colors"
                 >
-                  <div className="flex items-center gap-1.5 text-[10px] text-sky-400 font-medium">
+                  <div className="flex items-center gap-1.5 text-[10px] text-[#FF8452] font-medium font-mono">
                     <Calendar className="h-3 w-3" />
                     <span>{item.date}</span>
                   </div>
@@ -124,7 +124,7 @@ export const ArticlesAndChangelog: React.FC<ArticlesAndChangelogProps> = ({
                     <span className="text-xs font-semibold text-[#FFF6EE] group-hover:text-[#FF8452] transition-colors">
                       {item.modelName}
                     </span>
-                    <ChevronRight className="h-3.5 w-3.5 text-slate-600 group-hover:text-[#FF8452] group-hover:translate-x-0.5 transition-all" />
+                    <ChevronRight className="h-3.5 w-3.5 text-[#5A3420] group-hover:text-[#FF8452] group-hover:translate-x-0.5 transition-all" />
                   </div>
                   <span className="text-[10px] text-[#8A7262] font-mono">
                     id: {item.slug}

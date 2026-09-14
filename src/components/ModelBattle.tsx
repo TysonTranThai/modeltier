@@ -95,7 +95,7 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Title */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full bg-red-500/10 px-3.5 py-1 text-xs font-semibold text-red-300 border border-red-500/20 mb-3">
+          <div className="inline-flex items-center gap-2 rounded-full bg-[#FF6B35]/10 px-3.5 py-1 text-xs font-semibold text-[#FF8452] border border-[#FF6B35]/20 mb-3">
             <Swords className="h-4 w-4" />
             <span>{language === 'vi' ? 'Đấu trường so găng' : 'Head-to-Head Arena'}</span>
           </div>
@@ -112,7 +112,7 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
           {/* Picker A */}
           <div className="rounded-2xl border border-[#FF6B35]/40 bg-[#24130C]/90 p-4 shadow-xl">
             <label className="block text-xs font-bold uppercase tracking-wider text-[#FF8452] mb-2">
-              {t.battle.selectModel1} (Góc Xanh)
+              {t.battle.selectModel1} {language === 'vi' ? '(Mô hình A)' : '(Corner A)'}
             </label>
             <select
               value={modelAId}
@@ -134,7 +134,7 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
           {/* Picker B */}
           <div className="rounded-2xl border border-amber-500/40 bg-[#24130C]/90 p-4 shadow-xl">
             <label className="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">
-              {t.battle.selectModel2} (Góc Cam)
+              {t.battle.selectModel2} {language === 'vi' ? '(Mô hình B)' : '(Corner B)'}
             </label>
             <select
               value={modelBId}

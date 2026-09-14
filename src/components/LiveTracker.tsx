@@ -71,7 +71,7 @@ export const LiveTracker: React.FC = () => {
         {/* Title & Refresh Button */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-300 border border-emerald-500/20 mb-3">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#FF6B35]/10 px-3.5 py-1 text-xs font-semibold text-[#FF8452] border border-[#FF6B35]/20 mb-3">
               <Radio className="h-4 w-4 animate-pulse" />
               <span>{language === 'vi' ? 'Theo dõi hạ tầng thời gian thực' : 'Real-time Infrastructure Telemetry'}</span>
             </div>
@@ -84,7 +84,7 @@ export const LiveTracker: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-xs text-slate-500" suppressHydrationWarning>
+            <span className="text-xs text-[#8A7262]" suppressHydrationWarning>
               {language === 'vi' ? 'Cập nhật lúc:' : 'Updated:'}{' '}
               {mounted ? lastRefreshed.toLocaleTimeString() : '--:--:--'}
             </span>
@@ -165,7 +165,7 @@ export const LiveTracker: React.FC = () => {
                 {/* Uptime & Models Served */}
                 <div className="mt-3.5 space-y-2 text-xs">
                   <div className="flex justify-between text-[#A89280] text-[11px]">
-                    <span>Uptime 30 ngày:</span>
+                    <span>{language === 'vi' ? 'Uptime 30 ngày:' : '30-day Uptime:'}</span>
                     <span className="font-bold text-emerald-400">{provider.uptimePercent}%</span>
                   </div>
 

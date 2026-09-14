@@ -96,38 +96,38 @@ export const LiveModelDetailModal: React.FC<LiveModelDetailModalProps> = ({
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-6">
           {/* Intelligence */}
           <div className="rounded-xl bg-[#140A05] p-3 border border-[#2E170E] text-center">
-            <span className="text-[10px] text-[#A89280] block mb-0.5">Intelligence</span>
+            <span className="text-[10px] text-[#A89280] block mb-0.5">{language === 'vi' ? 'Độ thông minh' : 'Intelligence'}</span>
             <div className="text-lg font-black text-[#FF6B35] font-mono">
               {model.intelligenceScoreRaw !== '--' ? model.intelligenceScoreRaw : '—'}
             </div>
-            <span className="text-[9px] text-[#6B4735]">Index Score</span>
+            <span className="text-[9px] text-[#8A7262]">{language === 'vi' ? 'Chỉ số chuẩn' : 'Index Score'}</span>
           </div>
 
           {/* Speed */}
           <div className="rounded-xl bg-[#140A05] p-3 border border-[#2E170E] text-center">
-            <span className="text-[10px] text-[#A89280] block mb-0.5">Output Speed</span>
+            <span className="text-[10px] text-[#A89280] block mb-0.5">{language === 'vi' ? 'Tốc độ sinh chữ' : 'Output Speed'}</span>
             <div className="text-lg font-black text-[#FF8452] font-mono">
               {model.outputSpeedRaw !== '--' ? model.outputSpeedRaw : '—'}
             </div>
-            <span className="text-[9px] text-[#6B4735]">tokens / sec</span>
+            <span className="text-[9px] text-[#8A7262]">{language === 'vi' ? 'tokens / giây' : 'tokens / sec'}</span>
           </div>
 
           {/* Cost per Task */}
           <div className="rounded-xl bg-[#140A05] p-3 border border-[#2E170E] text-center">
-            <span className="text-[10px] text-[#A89280] block mb-0.5">Cost / Task</span>
+            <span className="text-[10px] text-[#A89280] block mb-0.5">{language === 'vi' ? 'Chi phí / Task' : 'Cost / Task'}</span>
             <div className="text-sm font-black text-emerald-400 font-mono mt-1 truncate">
               {model.costPerTaskUSD > 0 ? formatCost(model.costPerTaskUSD) : (model.costPerTaskRaw || '—')}
             </div>
-            <span className="text-[9px] text-[#6B4735]">{currency}</span>
+            <span className="text-[9px] text-[#8A7262]">{currency}</span>
           </div>
 
           {/* Vietnamese Rating */}
           <div className="rounded-xl bg-[#140A05] p-3 border border-[#2E170E] text-center">
-            <span className="text-[10px] text-[#A89280] block mb-0.5">🇻🇳 Tiếng Việt</span>
+            <span className="text-[10px] text-[#A89280] block mb-0.5">🇻🇳 {language === 'vi' ? 'Độ nhuyễn Việt' : 'Vietnamese'}</span>
             <div className="text-lg font-black text-emerald-400 font-mono">
               {model.vietnameseRating}
             </div>
-            <span className="text-[9px] text-[#6B4735]">trên 100</span>
+            <span className="text-[9px] text-[#8A7262]">{language === 'vi' ? 'trên 100' : 'out of 100'}</span>
           </div>
         </div>
 

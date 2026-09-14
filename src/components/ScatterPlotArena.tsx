@@ -123,49 +123,49 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
 
   return (
     <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-16">
-      <div className="rounded-3xl border border-neutral-800 bg-neutral-950 p-6 sm:p-8 shadow-2xl backdrop-blur-xl">
+      <div className="rounded-3xl border border-[#3D2216] bg-[#1E0F09]/95 p-6 sm:p-8 shadow-2xl backdrop-blur-xl">
         {/* Header & Toggle */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-neutral-800 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#331A10] mb-6">
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-serif text-2xl font-medium text-[#FFF6EE]">
+              <span className="font-serif text-2xl sm:text-3xl font-normal text-[#FFF6EE]">
                 {metricMode === 'speed'
-                  ? (language === 'vi' ? 'Biểu Đồ Trực Quan: Trí Thông Minh vs Tốc Độ' : 'Quality vs Output Speed')
-                  : (language === 'vi' ? 'Biểu Đồ Trực Quan: Trí Thông Minh vs Chi Phí' : 'Quality vs Cost per Task')}
+                  ? (language === 'vi' ? 'Đồ Thị Tọa Độ: Trí Tuệ vs Tốc Độ' : 'Quality vs Output Speed')
+                  : (language === 'vi' ? 'Đồ Thị Tọa Độ: Trí Tuệ vs Chi Phí' : 'Quality vs Cost per Task')}
               </span>
-              <span className="rounded-full bg-purple-950 px-2 py-0.5 text-[10px] text-purple-300 font-bold border border-purple-800/40">
+              <span className="rounded-full bg-[#FF6B35]/20 px-2.5 py-0.5 text-[10px] text-[#FF8452] font-bold border border-[#FF6B35]/40 font-mono">
                 Pareto Frontier
               </span>
             </div>
-            <p className="text-xs text-neutral-400 mt-1">
+            <p className="text-xs text-[#C7B299] mt-1">
               {language === 'vi'
                 ? 'Đồ thị phân tán 2 chiều trực quan với đường biên hiệu quả Pareto'
                 : 'Interactive 2-axis scatter plot with Pareto Frontier efficiency curve'}
             </p>
           </div>
 
-          <div className="flex items-center rounded-xl bg-neutral-900 border border-neutral-800 p-1 text-xs">
+          <div className="flex items-center rounded-xl bg-[#140A06] border border-[#3D2216] p-1 text-xs">
             <button
               onClick={() => setMetricMode('speed')}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold transition-all ${
                 metricMode === 'speed'
-                  ? 'bg-purple-600 text-[#FFF6EE] shadow-sm'
-                  : 'text-neutral-400 hover:text-[#FFF6EE]'
+                  ? 'bg-[#FF6B35] text-white shadow-sm'
+                  : 'text-[#A89280] hover:text-[#FFF6EE]'
               }`}
             >
               <Zap className="h-3.5 w-3.5" />
-              {language === 'vi' ? 'Chất Lượng vs Tốc Độ' : 'Quality vs Speed'}
+              {language === 'vi' ? 'Trí Tuệ vs Tốc Độ' : 'Quality vs Speed'}
             </button>
             <button
               onClick={() => setMetricMode('cost')}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold transition-all ${
                 metricMode === 'cost'
-                  ? 'bg-purple-600 text-[#FFF6EE] shadow-sm'
-                  : 'text-neutral-400 hover:text-[#FFF6EE]'
+                  ? 'bg-[#FF6B35] text-white shadow-sm'
+                  : 'text-[#A89280] hover:text-[#FFF6EE]'
               }`}
             >
               <DollarSign className="h-3.5 w-3.5" />
-              {language === 'vi' ? 'Chất Lượng vs Chi Phí' : 'Quality vs Cost'}
+              {language === 'vi' ? 'Trí Tuệ vs Giá Tiền' : 'Quality vs Cost'}
             </button>
           </div>
         </div>
@@ -271,15 +271,15 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
                 <path
                   d={paretoPathD}
                   fill="none"
-                  stroke="#a855f7"
+                  stroke="#FF6B35"
                   strokeWidth="4"
-                  strokeOpacity="0.25"
+                  strokeOpacity="0.2"
                   strokeLinecap="round"
                 />
                 <path
                   d={paretoPathD}
                   fill="none"
-                  stroke="#c084fc"
+                  stroke="#FF8452"
                   strokeWidth="2"
                   strokeDasharray="5 3"
                   strokeLinecap="round"
@@ -305,10 +305,10 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
                       cy={cy}
                       r={isHovered ? 12 : 8}
                       fill="none"
-                      stroke="#c084fc"
+                      stroke="#FF6B35"
                       strokeWidth="1.5"
                       strokeDasharray="2 2"
-                      opacity="0.8"
+                      opacity="0.9"
                       className="pointer-events-none animate-pulse"
                     />
                   )}
@@ -317,8 +317,8 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
                     cy={cy}
                     r={isHovered ? 8 : 5}
                     fill={color}
-                    fillOpacity={isHovered ? 1 : 0.8}
-                    stroke={isHovered ? '#ffffff' : (isPareto ? '#c084fc' : '#000000')}
+                    fillOpacity={isHovered ? 1 : 0.85}
+                    stroke={isHovered ? '#ffffff' : (isPareto ? '#FF6B35' : '#140A06')}
                     strokeWidth={isHovered ? 2 : (isPareto ? 1.5 : 1)}
                     className="cursor-pointer transition-all duration-150"
                     onMouseEnter={() => setHoveredModel(m)}
@@ -345,26 +345,26 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
 
           {/* Floating Tooltip */}
           {hoveredModel && (
-            <div className="absolute top-4 right-4 rounded-xl border border-neutral-700 bg-neutral-900/95 p-3.5 shadow-2xl backdrop-blur-md text-xs w-64 animate-in fade-in">
-              <div className="text-[10px] font-bold uppercase text-purple-400">
+            <div className="absolute top-4 right-4 rounded-xl border border-[#3D2216] bg-[#140A06]/95 p-4 shadow-2xl backdrop-blur-md text-xs w-64 animate-in fade-in">
+              <div className="text-[10px] font-mono font-bold uppercase text-[#FF8452]">
                 {hoveredModel.creator} • {hoveredModel.tier}-Tier
               </div>
               <div className="font-bold text-[#FFF6EE] text-sm mt-0.5">{hoveredModel.name}</div>
-              <div className="mt-2 space-y-1 text-neutral-300">
+              <div className="mt-2.5 space-y-1.5 text-[#C7B299]">
                 <div className="flex justify-between">
-                  <span className="text-neutral-400">Intelligence:</span>
-                  <span className="font-mono font-bold text-purple-300">{hoveredModel.intelligenceScore}/100</span>
+                  <span className="text-[#8A7262]">{language === 'vi' ? 'Độ thông minh:' : 'Intelligence:'}</span>
+                  <span className="font-mono font-bold text-[#FF8452]">{hoveredModel.intelligenceScore}/100</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-neutral-400">Speed:</span>
+                  <span className="text-[#8A7262]">{language === 'vi' ? 'Tốc độ sinh chữ:' : 'Speed:'}</span>
                   <span className="font-mono font-bold text-amber-400">{hoveredModel.outputSpeed} tps</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-neutral-400">Cost/Task:</span>
+                  <span className="text-[#8A7262]">{language === 'vi' ? 'Chi phí / Tác vụ:' : 'Cost/Task:'}</span>
                   <span className="font-mono font-bold text-emerald-400">{formatCost(hoveredModel.costPerTaskUSD)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-neutral-400">🇻🇳 Tiếng Việt:</span>
+                  <span className="text-[#8A7262]">🇻🇳 {language === 'vi' ? 'Độ nhuyễn Tiếng Việt:' : 'Vietnamese:'}</span>
                   <span className="font-mono font-bold text-emerald-400">{hoveredModel.vietnameseRating}/100</span>
                 </div>
               </div>
@@ -373,20 +373,20 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
         </div>
 
         {/* Explainer Box in Plain Language */}
-        <div className="mt-6 p-4 rounded-2xl bg-neutral-900/80 border border-neutral-800 text-xs text-neutral-300 leading-relaxed flex items-start gap-3">
-          <Lightbulb className="h-5 w-5 text-amber-400 shrink-0 mt-0.5" />
+        <div className="mt-6 p-4 rounded-2xl bg-[#140A06]/90 border border-[#331A10] text-xs text-[#C7B299] leading-relaxed flex items-start gap-3">
+          <Lightbulb className="h-5 w-5 text-[#FF6B35] shrink-0 mt-0.5" />
           <div>
             <span className="font-bold text-[#FFF6EE]">
-              {language === 'vi' ? '💡 Cách đọc biểu đồ cho người không chuyên:' : '💡 How to read this chart in simple terms:'}{' '}
+              {language === 'vi' ? '💡 Hướng dẫn phân tích đường biên Pareto:' : '💡 How to read this chart in simple terms:'}{' '}
             </span>
             {metricMode === 'speed' ? (
               language === 'vi'
-                ? 'Các điểm càng nằm về góc trên bên phải là những mô hình AI "vừa thông minh nhất thế giới lại vừa bắn chữ siêu nhanh" (như Gemini 3.8 Flash, Muse Spark, DeepSeek V4.1 Flash)!'
-                : 'Points towards the top-right corner represent models that are both extremely intelligent and blazingly fast!'
+                ? 'Các mô hình nằm sát đường biên Pareto (góc trên bên phải) là những mô hình "vừa thông minh đỉnh cao lại vừa sinh chữ siêu tốc" (như Gemini 2.5 Flash, Groq Llama 3.3, Claude 3.7 Sonnet)!'
+                : 'Points along the Pareto Frontier (top-right) represent models that deliver premier intelligence at breakthrough speed!'
             ) : (
               language === 'vi'
-                ? 'Các điểm càng nằm về góc trên bên trái là những con AI "vừa thông minh đỉnh cao mà giá lại rẻ như cho" (như DeepSeek V4.1 Flash, GPT-5.6 Luna) — đây là những lựa chọn có hiệu năng trên giá tiền (P/P) tốt nhất!'
-                : 'Points towards the top-left corner represent models that deliver premier intelligence at rock-bottom costs!'
+                ? 'Các mô hình nằm sát đường biên Pareto (góc trên bên trái) là những mô hình "vừa thông minh vượt trội lại vừa có chi phí rẻ nhất" (như DeepSeek V3, Gemini 2.5 Flash, GPT-4o mini) — đây là những lựa chọn tối ưu ROI cao nhất!'
+                : 'Points along the Pareto Frontier (top-left) represent models that deliver highest intelligence per dollar spent!'
             )}
           </div>
         </div>

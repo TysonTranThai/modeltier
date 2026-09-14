@@ -9,6 +9,7 @@ import { ModelLeaderboard } from '../ModelLeaderboard';
 import { LiveTracker } from '../LiveTracker';
 import { ArticlesAndChangelog } from '../ArticlesAndChangelog';
 import { ArticleItem, ChangelogItem } from '../../types';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface ProCloneWorkspaceProps {
   models: ScrapedModel[];
@@ -35,20 +36,56 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
   onSelectModel,
   onSelectModelSlug,
 }) => {
+  const { language } = useLanguage();
   const [activeSection, setActiveSection] = useState<string>('intelligence');
 
   const navItems: NavIndexItem[] = [
-    { id: 'intelligence', label: 'Intelligence', hasUpdatedTag: true },
-    { id: 'coding-agents', label: 'Coding Agent Index', hasUpdatedTag: true },
-    { id: 'media-leaderboards', label: 'Image & Video' },
-    { id: 'speech-leaderboards', label: 'Speech' },
-    { id: 'capability-indices', label: 'Capability Indices' },
-    { id: 'intelligence-breakdown', label: 'Benchmarks' },
-    { id: 'openness', label: 'Openness Index' },
-    { id: 'output-tokens', label: 'Output Tokens' },
-    { id: 'price-and-cost', label: 'Cost' },
-    { id: 'speed', label: 'Speed & Latency' },
-    { id: 'providers', label: 'Providers' },
+    { 
+      id: 'intelligence', 
+      label: language === 'vi' ? 'Chỉ số Trí tuệ (Intelligence)' : 'Intelligence', 
+      hasUpdatedTag: true 
+    },
+    { 
+      id: 'coding-agents', 
+      label: language === 'vi' ? 'Tác tử Lập trình (Coding Agent)' : 'Coding Agent Index', 
+      hasUpdatedTag: true 
+    },
+    { 
+      id: 'media-leaderboards', 
+      label: language === 'vi' ? 'Hình ảnh & Video (Media)' : 'Image & Video' 
+    },
+    { 
+      id: 'speech-leaderboards', 
+      label: language === 'vi' ? 'Giọng nói (Speech)' : 'Speech' 
+    },
+    { 
+      id: 'capability-indices', 
+      label: language === 'vi' ? 'Bộ chỉ số Năng lực' : 'Capability Indices' 
+    },
+    { 
+      id: 'intelligence-breakdown', 
+      label: language === 'vi' ? 'Điểm chuẩn Chi tiết (Benchmarks)' : 'Benchmarks' 
+    },
+    { 
+      id: 'openness', 
+      label: language === 'vi' ? 'Độ Mở Mã nguồn (Openness)' : 'Openness Index' 
+    },
+    { 
+      id: 'output-tokens', 
+      label: language === 'vi' ? 'Thông lượng Đầu ra' : 'Output Tokens' 
+    },
+    { 
+      id: 'price-and-cost', 
+      label: language === 'vi' ? 'Chi phí & Định giá (Cost)' : 'Cost' 
+    },
+    { 
+      id: 'speed', 
+      label: language === 'vi' ? 'Tốc độ & Độ trễ (Speed)' : 'Speed & Latency' 
+    },
+    { 
+      id: 'providers', 
+      label: language === 'vi' ? 'Hạ tầng Nhà cung cấp' : 'Providers' 
+    },
   ];
 
   // ScrollSpy to update active sidebar link on scroll
@@ -83,8 +120,13 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-12 gap-8 items-start">
           {/* ================= LEFT STICKY SIDEBAR INDEX ================= */}
-          <aside className="hidden lg:block lg:col-span-3 sticky top-20 pt-2">
-            <nav className="flex flex-col space-y-3 pl-3 border-l border-[#3D2216]">
+          <aside className="hidden lg:block lg:col-span-3 sticky top-24 pt-2">
+            <div className="mb-3 px-3">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-[#8A7262]">
+                {language === 'vi' ? 'MỤC LỤC CHỈ SỐ ĐO LƯỜNG' : 'BENCHMARK INDEX'}
+              </span>
+            </div>
+            <nav className="flex flex-col space-y-2.5 pl-3 border-l border-[#3D2216]">
               {navItems.map((item) => {
                 const isActive = activeSection === item.id;
                 return (
@@ -92,12 +134,12 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
                     key={item.id}
                     href={`#${item.id}`}
                     onClick={(e) => scrollToSection(e, item.id)}
-                    className="group flex items-center gap-2.5 transition-colors py-0.5"
+                    className="group flex items-center gap-2.5 transition-colors py-1"
                   >
                     {/* Square Indicator */}
                     <span
-                      className={`h-2.5 w-2.5 flex-shrink-0 transition-colors rounded-[1px] ${
-                        isActive ? 'bg-[#FF6B35] shadow-glow-orange' : 'bg-[#472718] group-hover:bg-[#8A4A28]'
+                      className={`h-2 w-2 flex-shrink-0 transition-colors rounded-[2px] ${
+                        isActive ? 'bg-[#FF6B35] shadow-glow-orange scale-110' : 'bg-[#472718] group-hover:bg-[#8A4A28]'
                       }`}
                     />
                     <span
@@ -107,11 +149,13 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
                           : 'text-[#A89280] group-hover:text-[#FFF6EE]'
                       }`}
                     >
-                      {item.label}
+                      <span>{item.label}</span>
                       {item.hasUpdatedTag && (
                         <span className="flex items-center gap-1">
                           <span className="inline-block h-1 w-1 rounded-full bg-[#FF6B35]" />
-                          <span className="text-[10px] font-bold text-[#FF8452]">Updated</span>
+                          <span className="text-[9px] font-mono font-bold text-[#FF8452] uppercase">
+                            {language === 'vi' ? 'Mới' : 'Updated'}
+                          </span>
                         </span>
                       )}
                     </span>
@@ -129,13 +173,17 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
               <div className="flex flex-col gap-2 mb-6">
                 <div className="flex items-center gap-3">
                   <span className="w-4 h-4 bg-[#FF6B35] rounded-sm shadow-glow-orange" aria-hidden="true" />
-                  <h2 className="text-3xl font-serif font-bold text-[#FFF6EE]">Intelligence</h2>
-                  <span className="rounded-full bg-[#FF6B35]/20 text-[#FF8452] border border-[#FF6B35]/30 text-xs font-bold px-2.5 py-0.5">
-                    Updated
+                  <h2 className="text-3xl font-serif font-bold text-[#FFF6EE]">
+                    {language === 'vi' ? 'Chỉ số Trí tuệ AI (Intelligence)' : 'Intelligence'}
+                  </h2>
+                  <span className="rounded-full bg-[#FF6B35]/20 text-[#FF8452] border border-[#FF6B35]/30 text-xs font-bold px-2.5 py-0.5 font-mono">
+                    {language === 'vi' ? 'Cập nhật trực tiếp' : 'Updated'}
                   </span>
                 </div>
                 <p className="text-sm text-[#D8C4B6] max-w-2xl font-light">
-                  Intelligence of leading AI models based on our independent evaluations
+                  {language === 'vi' 
+                    ? 'Chỉ số năng lực trí tuệ và giải quyết bài toán phức tạp của các mô hình AI tiên phong dựa trên bài đo chuẩn hoá độc lập.'
+                    : 'Intelligence of leading AI models based on our independent evaluations'}
                 </p>
               </div>
 
@@ -143,17 +191,19 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
               <IntelligenceIndexCard models={models} onSelectModel={onSelectModel} />
             </section>
 
-            {/* SECTIONS 2 to 11 (All other categories in luxury espresso) */}
+            {/* SECTIONS 2 to 11 (All other categories in luxury espresso with 100% Vietnamese support) */}
             <CloneSections models={models} onSelectModel={onSelectModel} />
 
             {/* Interactive 2D Scatter Plot & Pareto Frontier */}
             <div id="scatterplot" className="scroll-mt-24 pt-8 border-t border-[#3D2216]">
               <div className="mb-4">
                 <h3 className="text-2xl font-serif font-bold text-[#FFF6EE] flex items-center gap-2">
-                  <span>Pareto Frontier Analysis</span>
+                  <span>{language === 'vi' ? 'Phân tích Đường Biên Hiệu Quả Pareto' : 'Pareto Frontier Analysis'}</span>
                 </h3>
                 <p className="text-xs text-[#A89280] mt-1 font-mono">
-                  Plotting Intelligence vs Cost and Speed to discover optimal models on the Pareto efficiency frontier.
+                  {language === 'vi'
+                    ? 'Biểu đồ tọa độ 2D đo lường tương quan Trí tuệ vs Chi phí và Tốc độ. Tìm ra các model tối ưu không đối thủ.'
+                    : 'Plotting Intelligence vs Cost and Speed to discover optimal models on the Pareto efficiency frontier.'}
                 </p>
               </div>
               <ScatterPlotArena models={models} onSelectModel={onSelectModel} />

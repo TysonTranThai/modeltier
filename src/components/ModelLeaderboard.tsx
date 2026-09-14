@@ -188,18 +188,18 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                   className="p-3.5 pl-4 sm:pl-6 cursor-pointer hover:text-[#FFF6EE] transition-colors"
                 >
                   <div className="flex items-center gap-1.5">
-                    <span>Mô hình ({filteredModels.length})</span>
+                    <span>{language === 'vi' ? `Mô hình (${filteredModels.length})` : `Model (${filteredModels.length})`}</span>
                     <ArrowUpDown className="h-3 w-3" />
                   </div>
                 </th>
-                <th className="p-3.5 hidden sm:table-cell">Ngữ cảnh</th>
-                <th className="p-3.5 hidden md:table-cell">Nhà phát triển</th>
+                <th className="p-3.5 hidden sm:table-cell">{language === 'vi' ? 'Ngữ cảnh' : 'Context'}</th>
+                <th className="p-3.5 hidden md:table-cell">{language === 'vi' ? 'Nhà phát triển' : 'Creator'}</th>
                 <th
                   onClick={() => handleSort('intelligence')}
                   className="p-3.5 cursor-pointer hover:text-[#FFF6EE] transition-colors text-right"
                 >
                   <div className="flex items-center justify-end gap-1 text-[#FF8452] font-bold">
-                    <span>Điểm Thông Minh</span>
+                    <span>{language === 'vi' ? 'Điểm Thông Minh' : 'Intelligence'}</span>
                     <ArrowUpDown className="h-3 w-3" />
                   </div>
                 </th>
@@ -208,7 +208,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                   className="p-3.5 cursor-pointer hover:text-[#FFF6EE] transition-colors text-right"
                 >
                   <div className="flex items-center justify-end gap-1 text-emerald-300 font-bold">
-                    <span>Chi Phí ({currency})</span>
+                    <span>{language === 'vi' ? `Chi Phí (${currency})` : `Cost (${currency})`}</span>
                     <ArrowUpDown className="h-3 w-3" />
                   </div>
                 </th>
@@ -217,7 +217,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                   className="p-3.5 cursor-pointer hover:text-[#FFF6EE] transition-colors text-right"
                 >
                   <div className="flex items-center justify-end gap-1 text-amber-300 font-bold">
-                    <span>Tốc Độ (tps)</span>
+                    <span>{language === 'vi' ? 'Tốc Độ (tps)' : 'Speed (tps)'}</span>
                     <ArrowUpDown className="h-3 w-3" />
                   </div>
                 </th>
@@ -226,7 +226,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                   className="p-3.5 hidden lg:table-cell cursor-pointer hover:text-[#FFF6EE] transition-colors text-right"
                 >
                   <div className="flex items-center justify-end gap-1 text-cyan-300">
-                    <span>Độ Trễ TTFT</span>
+                    <span>{language === 'vi' ? 'Độ Trễ TTFT' : 'Latency (TTFT)'}</span>
                     <ArrowUpDown className="h-3 w-3" />
                   </div>
                 </th>
@@ -235,11 +235,11 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                   className="p-3.5 cursor-pointer hover:text-[#FFF6EE] transition-colors text-right"
                 >
                   <div className="flex items-center justify-end gap-1 text-emerald-400 font-bold">
-                    <span>🇻🇳 Tiếng Việt</span>
+                    <span>🇻🇳 {language === 'vi' ? 'Tiếng Việt' : 'Vietnamese'}</span>
                     <ArrowUpDown className="h-3 w-3" />
                   </div>
                 </th>
-                <th className="p-3.5 pr-4 sm:pr-6 text-right">Chi tiết</th>
+                <th className="p-3.5 pr-4 sm:pr-6 text-right">{language === 'vi' ? 'Chi tiết' : 'Details'}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#2E170E] text-[#D8C4B6]">
