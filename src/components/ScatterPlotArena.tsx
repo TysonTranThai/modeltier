@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { ScrapedModel } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { useCurrency } from '../context/CurrencyContext';
@@ -21,18 +21,66 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
   const [hoveredModel, setHoveredModel] = useState<ScrapedModel | null>(null);
 
   // Filter models that have valid numbers
-  const plotData = models.filter((m) => {
-    if (!m.intelligenceScore || m.intelligenceScore <= 0) return false;
-    if (metricMode === 'speed') return m.outputSpeed && m.outputSpeed > 0;
-    if (metricMode === 'cost') return m.costPerTaskUSD && m.costPerTaskUSD > 0 && m.costPerTaskUSD < 15;
-    return false;
-  });
+  const plotData = useMemo(() => {
+    return models.filter((m) => {
+      if (!m.intelligenceScore || m.intelligenceScore <= 0) return false;
+      if (metricMode === 'speed') return m.outputSpeed && m.outputSpeed > 0;
+      if (metricMode === 'cost') return m.costPerTaskUSD && m.costPerTaskUSD > 0 && m.costPerTaskUSD < 15;
+      return false;
+    });
+  }, [models, metricMode]);
 
   const maxIntel = 60;
   const minIntel = 15;
 
   const minX = metricMode === 'speed' ? 20 : 0.1;
   const maxX = metricMode === 'speed' ? 380 : 8.0;
+
+  // Real Pareto Frontier calculation
+  const paretoFrontier = useMemo(() => {
+    if (plotData.length === 0) return [];
+    if (metricMode === 'speed') {
+      const frontier: ScrapedModel[] = [];
+      for (const p of plotData) {
+        let isDominated = false;
+        for (const other of plotData) {
+          if (
+            other.id !== p.id &&
+            other.outputSpeed >= p.outputSpeed &&
+            other.intelligenceScore >= p.intelligenceScore &&
+            (other.outputSpeed > p.outputSpeed || other.intelligenceScore > p.intelligenceScore)
+          ) {
+            isDominated = true;
+            break;
+          }
+        }
+        if (!isDominated) frontier.push(p);
+      }
+      frontier.sort((a, b) => a.outputSpeed - b.outputSpeed);
+      return frontier;
+    } else {
+      const frontier: ScrapedModel[] = [];
+      for (const p of plotData) {
+        let isDominated = false;
+        for (const other of plotData) {
+          if (
+            other.id !== p.id &&
+            other.costPerTaskUSD <= p.costPerTaskUSD &&
+            other.intelligenceScore >= p.intelligenceScore &&
+            (other.costPerTaskUSD < p.costPerTaskUSD || other.intelligenceScore > p.intelligenceScore)
+          ) {
+            isDominated = true;
+            break;
+          }
+        }
+        if (!isDominated) frontier.push(p);
+      }
+      frontier.sort((a, b) => a.costPerTaskUSD - b.costPerTaskUSD);
+      return frontier;
+    }
+  }, [plotData, metricMode]);
+
+  const paretoIds = useMemo(() => new Set(paretoFrontier.map((m) => m.id)), [paretoFrontier]);
 
   const getCreatorColor = (creator: string) => {
     const c = creator.toLowerCase();
@@ -53,10 +101,6 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
 
   const scaleX = (val: number) => {
     const width = svgWidth - padding.left - padding.right;
-    if (metricMode === 'speed') {
-      return padding.left + ((val - minX) / (maxX - minX)) * width;
-    }
-    // Cost: lower is better or normal linear
     return padding.left + ((val - minX) / (maxX - minX)) * width;
   };
 
@@ -64,6 +108,18 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
     const height = svgHeight - padding.top - padding.bottom;
     return svgHeight - padding.bottom - ((val - minIntel) / (maxIntel - minIntel)) * height;
   };
+
+  const paretoPathD = useMemo(() => {
+    if (paretoFrontier.length < 2) return '';
+    return paretoFrontier
+      .map((m, idx) => {
+        const xVal = metricMode === 'speed' ? m.outputSpeed : m.costPerTaskUSD;
+        const x = scaleX(xVal);
+        const y = scaleY(m.intelligenceScore);
+        return `${idx === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`;
+      })
+      .join(' ');
+  }, [paretoFrontier, metricMode, scaleX, scaleY]);
 
   return (
     <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-16">
@@ -209,24 +265,61 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
                 : (language === 'vi' ? 'Chi phí mỗi bài kiểm tra ($ USD) →' : 'Cost per Task ($ USD) →')}
             </text>
 
+            {/* Pareto Frontier Line */}
+            {paretoPathD && (
+              <g className="pointer-events-none">
+                <path
+                  d={paretoPathD}
+                  fill="none"
+                  stroke="#a855f7"
+                  strokeWidth="4"
+                  strokeOpacity="0.25"
+                  strokeLinecap="round"
+                />
+                <path
+                  d={paretoPathD}
+                  fill="none"
+                  stroke="#c084fc"
+                  strokeWidth="2"
+                  strokeDasharray="5 3"
+                  strokeLinecap="round"
+                />
+              </g>
+            )}
+
             {/* Scatter Dots */}
             {plotData.map((m) => {
               const xVal = metricMode === 'speed' ? m.outputSpeed : m.costPerTaskUSD;
               const cx = scaleX(xVal);
               const cy = scaleY(m.intelligenceScore);
               const isHovered = hoveredModel?.id === m.id;
+              const isPareto = paretoIds.has(m.id);
               const color = getCreatorColor(m.creator);
 
               return (
                 <g key={m.id}>
+                  {/* Pareto Frontier Halo */}
+                  {isPareto && (
+                    <circle
+                      cx={cx}
+                      cy={cy}
+                      r={isHovered ? 12 : 8}
+                      fill="none"
+                      stroke="#c084fc"
+                      strokeWidth="1.5"
+                      strokeDasharray="2 2"
+                      opacity="0.8"
+                      className="pointer-events-none animate-pulse"
+                    />
+                  )}
                   <circle
                     cx={cx}
                     cy={cy}
                     r={isHovered ? 8 : 5}
                     fill={color}
                     fillOpacity={isHovered ? 1 : 0.8}
-                    stroke={isHovered ? '#ffffff' : '#000000'}
-                    strokeWidth={isHovered ? 2 : 1}
+                    stroke={isHovered ? '#ffffff' : (isPareto ? '#c084fc' : '#000000')}
+                    strokeWidth={isHovered ? 2 : (isPareto ? 1.5 : 1)}
                     className="cursor-pointer transition-all duration-150"
                     onMouseEnter={() => setHoveredModel(m)}
                     onMouseLeave={() => setHoveredModel(null)}

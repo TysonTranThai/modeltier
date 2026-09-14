@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Model } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { useCurrency } from '../context/CurrencyContext';
@@ -38,6 +38,19 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
   const [modelBId, setModelBId] = useState<string>(
     initialModelB?.id || 'gpt-4o'
   );
+
+  const groupedModels = useMemo(() => {
+    const s = models.filter((m) => m.tier === 'S').sort((a, b) => b.intelligenceScore - a.intelligenceScore);
+    const a = models.filter((m) => m.tier === 'A').sort((a, b) => b.intelligenceScore - a.intelligenceScore);
+    const b = models.filter((m) => m.tier === 'B').sort((a, b) => b.intelligenceScore - a.intelligenceScore);
+    const c = models.filter((m) => m.tier === 'C').sort((a, b) => b.intelligenceScore - a.intelligenceScore);
+    return [
+      { tier: 'S', label: language === 'vi' ? '👑 S-Tier (Đỉnh cao / Thần thoại)' : '👑 S-Tier (Apex & Frontier)', items: s },
+      { tier: 'A', label: language === 'vi' ? '⭐ A-Tier (Xuất sắc / Khuyên dùng)' : '⭐ A-Tier (Outstanding)', items: a },
+      { tier: 'B', label: language === 'vi' ? '⚡ B-Tier (Thực dụng / Giá rẻ)' : '⚡ B-Tier (Pragmatic / Budget)', items: b },
+      { tier: 'C', label: language === 'vi' ? '📦 C-Tier (Cơ bản / Nhẹ)' : '📦 C-Tier (Basic & Lightweight)', items: c },
+    ];
+  }, [models, language]);
 
   useEffect(() => {
     if (initialModelA?.id) {
@@ -106,10 +119,14 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
               onChange={(e) => setModelAId(e.target.value)}
               className="w-full rounded-xl border border-slate-700 bg-slate-950 p-2.5 text-sm font-bold text-white focus:border-violet-500 focus:outline-none"
             >
-              {models.map((m) => (
-                <option key={m.id} value={m.id} disabled={m.id === modelBId}>
-                  {m.tier}-Tier • {m.name} ({m.creator})
-                </option>
+              {groupedModels.map((grp) => (
+                <optgroup key={grp.tier} label={grp.label} className="bg-slate-900 text-slate-300 font-bold">
+                  {grp.items.map((m) => (
+                    <option key={m.id} value={m.id} disabled={m.id === modelBId} className="bg-slate-950 text-white font-normal">
+                      {m.name} ({m.creator}) • {m.intelligenceScore} pts
+                    </option>
+                  ))}
+                </optgroup>
               ))}
             </select>
           </div>
@@ -124,10 +141,14 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
               onChange={(e) => setModelBId(e.target.value)}
               className="w-full rounded-xl border border-slate-700 bg-slate-950 p-2.5 text-sm font-bold text-white focus:border-amber-500 focus:outline-none"
             >
-              {models.map((m) => (
-                <option key={m.id} value={m.id} disabled={m.id === modelAId}>
-                  {m.tier}-Tier • {m.name} ({m.creator})
-                </option>
+              {groupedModels.map((grp) => (
+                <optgroup key={grp.tier} label={grp.label} className="bg-slate-900 text-slate-300 font-bold">
+                  {grp.items.map((m) => (
+                    <option key={m.id} value={m.id} disabled={m.id === modelAId} className="bg-slate-950 text-white font-normal">
+                      {m.name} ({m.creator}) • {m.intelligenceScore} pts
+                    </option>
+                  ))}
+                </optgroup>
               ))}
             </select>
           </div>

@@ -1,10 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Model, Tier, CategoryFilter } from '../types';
 import { ModelCard } from './ModelCard';
 import { useLanguage } from '../context/LanguageContext';
-import { Award, AlertCircle, RefreshCw } from 'lucide-react';
+import { Award, AlertCircle, RefreshCw, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface TierListProps {
   models: Model[];
@@ -24,6 +24,11 @@ export const TierList: React.FC<TierListProps> = ({
   onResetFilters,
 }) => {
   const { language, t } = useLanguage();
+  const [expandedTiers, setExpandedTiers] = useState<Record<string, boolean>>({});
+
+  const toggleExpand = (tierId: string) => {
+    setExpandedTiers((prev) => ({ ...prev, [tierId]: !prev[tierId] }));
+  };
 
   // Filter models based on category and search query
   const filteredModels = models.filter((model) => {
@@ -144,16 +149,51 @@ export const TierList: React.FC<TierListProps> = ({
                   </div>
 
                   {/* Grid of Model Cards */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {tierModels.map((model) => (
-                      <ModelCard
-                        key={model.id}
-                        model={model}
-                        onSelectDetails={onSelectDetails}
-                        onSelectCompare={onSelectCompare}
-                      />
-                    ))}
-                  </div>
+                  {(() => {
+                    const isSearching = searchQuery.trim() !== '' || activeCategory !== 'all';
+                    const isExpanded = isSearching || !!expandedTiers[tierInfo.id];
+                    const visibleModels = isExpanded ? tierModels : tierModels.slice(0, 6);
+
+                    return (
+                      <>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                          {visibleModels.map((model) => (
+                            <ModelCard
+                              key={model.id}
+                              model={model}
+                              onSelectDetails={onSelectDetails}
+                              onSelectCompare={onSelectCompare}
+                            />
+                          ))}
+                        </div>
+
+                        {tierModels.length > 6 && !isSearching && (
+                          <div className="mt-6 text-center">
+                            <button
+                              onClick={() => toggleExpand(tierInfo.id)}
+                              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-900 px-4 py-2 text-xs font-semibold text-violet-300 hover:text-white hover:bg-slate-800 transition-colors shadow-lg"
+                            >
+                              {isExpanded ? (
+                                <>
+                                  <ChevronUp className="h-3.5 w-3.5" />
+                                  <span>{language === 'vi' ? 'Thu gọn' : 'Collapse'}</span>
+                                </>
+                              ) : (
+                                <>
+                                  <ChevronDown className="h-3.5 w-3.5" />
+                                  <span>
+                                    {language === 'vi'
+                                      ? `Xem thêm ${tierModels.length - 6} mô hình ${tierInfo.id}-Tier khác`
+                                      : `Show ${tierModels.length - 6} more ${tierInfo.id}-Tier models`}
+                                  </span>
+                                </>
+                              )}
+                            </button>
+                          </div>
+                        )}
+                      </>
+                    );
+                  })()}
                 </div>
               );
             })}

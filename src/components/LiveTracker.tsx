@@ -25,6 +25,9 @@ export const LiveTracker: React.FC = () => {
 
   useEffect(() => {
     setMounted(true);
+    handleRefresh();
+    const interval = setInterval(handleRefresh, 60000);
+    return () => clearInterval(interval);
   }, []);
 
   const handleRefresh = async () => {

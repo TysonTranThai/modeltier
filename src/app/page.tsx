@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import initialLiveData from '../data/live_data.json';
 import { MODELS_DATA } from '@/data/models';
+import { buildUnifiedModels } from '@/data/unifiedModels';
 import { LiveDataPayload, ScrapedModel, Model, CategoryFilter } from '@/types';
 
 // Core Clean ModelTier Components
@@ -27,13 +28,18 @@ export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>('all');
   const [isSyncing, setIsSyncing] = useState<boolean>(false);
 
+  // Synchronized unified models across all 650+ live models and rich curated metadata
+  const unifiedModels = useMemo(() => {
+    return buildUnifiedModels(liveData.models, MODELS_DATA);
+  }, [liveData.models]);
+
   // Selected models for detail modals
   const [selectedScrapedModel, setSelectedScrapedModel] = useState<ScrapedModel | null>(null);
   const [selectedCuratedModel, setSelectedCuratedModel] = useState<Model | null>(null);
 
-  // Battle models
-  const [battleModelA, setBattleModelA] = useState<Model | undefined>(MODELS_DATA[0]);
-  const [battleModelB, setBattleModelB] = useState<Model | undefined>(MODELS_DATA[2]);
+  // Battle models (defaults to top champions)
+  const [battleModelA, setBattleModelA] = useState<Model | undefined>(unifiedModels[0] || MODELS_DATA[0]);
+  const [battleModelB, setBattleModelB] = useState<Model | undefined>(unifiedModels[2] || MODELS_DATA[2]);
 
   // Periodic polling check
   useEffect(() => {
@@ -101,9 +107,32 @@ export default function HomePage() {
   };
 
   const handleSelectModelBySlug = (slug: string) => {
+    const cleanSlug = slug.toLowerCase().trim();
+    // Check in unifiedModels first so user gets rich details and compare button
+    const foundModel = unifiedModels.find(
+      (m) =>
+        m.id.toLowerCase() === cleanSlug ||
+        m.name.toLowerCase().includes(cleanSlug) ||
+        cleanSlug.includes(m.id.toLowerCase())
+    );
+    if (foundModel) {
+      setSelectedCuratedModel(foundModel);
+      return;
+    }
     const found = liveData.models.find((m) => m.slug === slug || m.id === slug);
     if (found) {
       setSelectedScrapedModel(found);
+    }
+  };
+
+  const handleSelectScrapedModel = (scraped: ScrapedModel) => {
+    const found = unifiedModels.find(
+      (m) => m.id === scraped.slug || m.id === scraped.id || m.name.toLowerCase() === scraped.name.toLowerCase()
+    );
+    if (found) {
+      setSelectedCuratedModel(found);
+    } else {
+      setSelectedScrapedModel(scraped);
     }
   };
 
@@ -172,7 +201,7 @@ export default function HomePage() {
         <div id="scatterplot" className="scroll-mt-20">
           <ScatterPlotArena
             models={liveData.models}
-            onSelectModel={(m) => setSelectedScrapedModel(m)}
+            onSelectModel={handleSelectScrapedModel}
           />
         </div>
 
@@ -181,12 +210,12 @@ export default function HomePage() {
           models={liveData.models}
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
-          onSelectModel={(m) => setSelectedScrapedModel(m)}
+          onSelectModel={handleSelectScrapedModel}
         />
 
         {/* S/A/B/C Practical Tier List */}
         <TierList
-          models={MODELS_DATA}
+          models={unifiedModels}
           activeCategory={activeCategory}
           searchQuery={searchQuery}
           onSelectDetails={(model) => setSelectedCuratedModel(model)}
@@ -196,19 +225,19 @@ export default function HomePage() {
 
         {/* Interactive "Find My AI" Wizard */}
         <ModelRecommender
-          models={MODELS_DATA}
+          models={unifiedModels}
           onSelectDetails={(model) => setSelectedCuratedModel(model)}
         />
 
         {/* Real-World Cost Calculator (VND & USD) */}
         <CostCalculator
-          models={MODELS_DATA}
+          models={unifiedModels}
           onSelectDetails={(model) => setSelectedCuratedModel(model)}
         />
 
         {/* Head-to-Head 1-vs-1 Model Battle Arena */}
         <ModelBattle
-          models={MODELS_DATA}
+          models={unifiedModels}
           initialModelA={battleModelA}
           initialModelB={battleModelB}
           onSelectDetails={(model) => setSelectedCuratedModel(model)}

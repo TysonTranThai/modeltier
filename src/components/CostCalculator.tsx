@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Model, WorkloadScenario } from '../types';
 import { SCENARIOS_DATA } from '../data/scenarios';
 import { useLanguage } from '../context/LanguageContext';
@@ -14,7 +14,8 @@ import {
   TrendingDown, 
   Zap, 
   Coffee, 
-  ArrowRight 
+  ArrowRight,
+  Search
 } from 'lucide-react';
 
 interface CostCalculatorProps {
@@ -33,6 +34,8 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
   const [selectedScenario, setSelectedScenario] = useState<string>('cskh');
   const [inputWords, setInputWords] = useState<number>(400000);
   const [outputWords, setOutputWords] = useState<number>(600000);
+  const [calcSearch, setCalcSearch] = useState<string>('');
+  const [calcShowAll, setCalcShowAll] = useState<boolean>(false);
 
   const handleSelectScenario = (scenario: WorkloadScenario) => {
     setSelectedScenario(scenario.id);
@@ -54,21 +57,27 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
     return { totalUSD, totalVND };
   };
 
-  // Pick popular comparison models across tiers
-  const comparisonModels = models.slice(0, 10);
-  const calculatedRows = comparisonModels.map((m) => {
-    const { totalUSD, totalVND } = calculateModelCost(m);
-    return {
-      model: m,
-      totalUSD,
-      totalVND,
-    };
-  });
+  const filteredCalcModels = useMemo(() => {
+    let list = models;
+    if (calcSearch.trim()) {
+      const q = calcSearch.toLowerCase().trim();
+      list = list.filter((m) => m.name.toLowerCase().includes(q) || m.creator.toLowerCase().includes(q));
+    }
+    return list;
+  }, [models, calcSearch]);
 
-  // Sort by total cost ascending
-  calculatedRows.sort((a, b) => a.totalVND - b.totalVND);
-  const minCost = calculatedRows[0]?.totalVND || 1;
-  const maxCost = calculatedRows[calculatedRows.length - 1]?.totalVND || 1;
+  const allCalculatedRows = useMemo(() => {
+    const rows = filteredCalcModels.map((m) => {
+      const { totalUSD, totalVND } = calculateModelCost(m);
+      return { model: m, totalUSD, totalVND };
+    });
+    rows.sort((a, b) => a.totalVND - b.totalVND);
+    return rows;
+  }, [filteredCalcModels, inputTokens, outputTokens]);
+
+  const calculatedRows = calcShowAll || calcSearch.trim() !== '' ? allCalculatedRows : allCalculatedRows.slice(0, 10);
+  const minCost = allCalculatedRows[0]?.totalVND || 1;
+  const maxCost = allCalculatedRows[allCalculatedRows.length - 1]?.totalVND || 1;
 
   const getVietnameseAnalogy = (vndAmount: number) => {
     if (language === 'en') {
@@ -197,6 +206,29 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
               {t.calculator.tokensEquivalentNote}
             </span>
           </div>
+        </div>
+
+        {/* Search & Show All Controls */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-4">
+          <div className="relative w-full sm:w-80">
+            <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
+            <input
+              type="text"
+              placeholder={language === 'vi' ? 'Tìm mô hình trong bảng tính chi phí...' : 'Search model in cost table...'}
+              value={calcSearch}
+              onChange={(e) => setCalcSearch(e.target.value)}
+              className="w-full rounded-xl border border-slate-800 bg-slate-900 py-2 pl-9 pr-3 text-xs text-white placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
+            />
+          </div>
+
+          <button
+            onClick={() => setCalcShowAll(!calcShowAll)}
+            className="rounded-xl border border-slate-800 bg-slate-900 px-3.5 py-2 text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-colors self-end sm:self-auto"
+          >
+            {calcShowAll
+              ? (language === 'vi' ? 'Thu gọn (Top 10)' : 'Collapse (Top 10)')
+              : (language === 'vi' ? `Xem tất cả ${allCalculatedRows.length} mô hình` : `Show all ${allCalculatedRows.length} models`)}
+          </button>
         </div>
 
         {/* Calculation Table */}

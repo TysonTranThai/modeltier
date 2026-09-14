@@ -28,7 +28,8 @@ export const Highlights: React.FC<HighlightsProps> = ({
 
   const getSlugFromDetailsUrl = (url?: string) => {
     if (!url) return '';
-    return url.replace('/models/', '');
+    const parts = url.split('/models/');
+    return parts[parts.length - 1].replace(/\/$/, '');
   };
 
   return (
@@ -102,7 +103,9 @@ export const Highlights: React.FC<HighlightsProps> = ({
           </div>
 
           <div className="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-slate-400">
-            {language === 'vi' ? '👑 Claude Fable 5.1 & GPT-6 Astra dẫn đầu thế giới.' : 'Claude Fable 5.1 & GPT-6 Astra lead the index.'}
+            {language === 'vi'
+              ? `👑 ${intelligenceData[0]?.label || 'Hàng đầu'} ${intelligenceData[1] ? `& ${intelligenceData[1].label}` : ''} dẫn đầu điểm số thế giới.`
+              : `👑 ${intelligenceData[0]?.label || 'Top models'} lead the global intelligence index.`}
           </div>
         </div>
 
@@ -162,7 +165,9 @@ export const Highlights: React.FC<HighlightsProps> = ({
           </div>
 
           <div className="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-slate-400">
-            {language === 'vi' ? '⚡ Gemini 3.8 Flash bắn chữ cực nhanh (277 tokens/s).' : 'Gemini 3.8 Flash leads throughput with 277 tps.'}
+            {language === 'vi'
+              ? `⚡ ${speedData[0]?.label || 'Hàng đầu'} bắn chữ cực nhanh (${(speedData[0]?.medianOutputSpeed || 0).toFixed(0)} tokens/s).`
+              : `⚡ ${speedData[0]?.label || 'Top throughput'} leads speed with ${(speedData[0]?.medianOutputSpeed || 0).toFixed(0)} tps.`}
           </div>
         </div>
 
@@ -222,7 +227,9 @@ export const Highlights: React.FC<HighlightsProps> = ({
           </div>
 
           <div className="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-slate-400">
-            {language === 'vi' ? '💰 DeepSeek V4.1 Flash & GPT-5.6 Luna rẻ vô địch.' : 'DeepSeek V4.1 Flash & GPT-5.6 Luna deliver best value.'}
+            {language === 'vi'
+              ? `💰 ${costData[0]?.label || 'Hàng đầu'} ${costData[1] ? `& ${costData[1].label}` : ''} tối ưu chi phí vượt trội.`
+              : `💰 ${costData[0]?.label || 'Top value models'} deliver best performance-to-cost ratio.`}
           </div>
         </div>
       </div>
