@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { CurrencyProvider } from '@/context/CurrencyContext';
+import { ViewModeProvider } from '@/context/ViewModeContext';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -45,7 +46,9 @@ export default function RootLayout({
       <body className="min-h-screen bg-slate-950 text-slate-100 antialiased selection:bg-violet-500 selection:text-white">
         <LanguageProvider>
           <CurrencyProvider>
-            {children}
+            <ViewModeProvider>
+              {children}
+            </ViewModeProvider>
           </CurrencyProvider>
         </LanguageProvider>
       </body>

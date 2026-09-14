@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useCurrency } from '../context/CurrencyContext';
+import { useViewMode } from '../context/ViewModeContext';
 import { 
   Sparkles, 
   Search, 
@@ -17,7 +18,9 @@ import {
   DollarSign,
   RefreshCw,
   TrendingUp,
-  TableProperties
+  TableProperties,
+  Layers,
+  FileText
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -39,6 +42,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const { language, setLanguage, t } = useLanguage();
   const { currency, setCurrency } = useCurrency();
+  const { viewMode, setViewMode } = useViewMode();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -46,17 +50,24 @@ export const Navbar: React.FC<NavbarProps> = ({
     setMounted(true);
   }, []);
 
-  const navLinks = [
-    { href: '#leaderboard', label: language === 'vi' ? `Bảng ${totalModels} Model` : `All ${totalModels} Models`, icon: TableProperties },
-    { href: '#highlights', label: language === 'vi' ? 'Tiêu Điểm' : 'Highlights', icon: TrendingUp },
-    { href: '#scatterplot', label: language === 'vi' ? 'Đồ Thị Pareto' : 'Pareto Chart', icon: BarChart3 },
+  const simplifiedNavLinks = [
     { href: '#tierlist', label: t.nav.tierList, icon: Sparkles },
     { href: '#finder', label: t.nav.finder, icon: Compass },
     { href: '#calculator', label: t.nav.calculator, icon: Calculator },
     { href: '#battle', label: t.nav.battle, icon: Swords },
-    { href: '#live', label: t.nav.live, icon: Radio },
+    { href: '#leaderboard', label: language === 'vi' ? `Bảng ${totalModels} Model` : `All Models (${totalModels})`, icon: TableProperties },
     { href: '#glossary', label: t.nav.glossary, icon: BookOpen },
   ];
+
+  const cloneNavLinks = [
+    { href: '#benchmarks', label: language === 'vi' ? 'Benchmarks Cuộn' : 'Benchmark Explorer', icon: BarChart3 },
+    { href: '#scatterplot', label: language === 'vi' ? 'Đồ Thị Pareto' : 'Pareto Frontier', icon: TrendingUp },
+    { href: '#leaderboard', label: language === 'vi' ? `Bảng ${totalModels} Model` : `Model Leaderboard`, icon: TableProperties },
+    { href: '#live', label: language === 'vi' ? 'Telemetry API' : 'API Telemetry', icon: Radio },
+    { href: '#articles', label: language === 'vi' ? 'Đánh Giá & Changelog' : 'Articles & Logs', icon: FileText },
+  ];
+
+  const currentNavLinks = viewMode === 'simplified' ? simplifiedNavLinks : cloneNavLinks;
 
   const formatLastSync = (isoString?: string) => {
     if (!isoString) return 'Vừa xong';
@@ -126,14 +137,16 @@ export const Navbar: React.FC<NavbarProps> = ({
               </span>
             </div>
             <span className="text-[10px] text-slate-400 -mt-1 hidden sm:inline">
-              {language === 'vi' ? 'Theo dõi & Xếp hạng AI Dễ hiểu' : 'AI Tracking & Tier List Made Simple'}
+              {viewMode === 'simplified'
+                ? (language === 'vi' ? 'Chế độ Dễ hiểu & Thực tiễn' : 'Simple & Actionable Guide')
+                : (language === 'vi' ? 'Bản Clone Đo kiểm Độc lập' : 'Independent Benchmark Clone')}
             </span>
           </div>
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-1">
-          {navLinks.slice(0, 6).map((link) => {
+        <nav className="hidden xl:flex items-center gap-1">
+          {currentNavLinks.map((link) => {
             const Icon = link.icon;
             return (
               <a
@@ -149,8 +162,36 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </nav>
 
-        {/* Controls: Currency, Language & Search */}
+        {/* Controls: Mode Switcher, Currency, Language */}
         <div className="flex items-center gap-2 sm:gap-2.5">
+          {/* Dual Mode Switcher Pill */}
+          <div className="flex items-center rounded-xl bg-slate-900 border border-slate-700/80 p-0.5 text-xs font-semibold shadow-inner">
+            <button
+              onClick={() => setViewMode('simplified')}
+              className={`flex items-center gap-1 px-2.5 py-1 rounded-lg transition-all ${
+                viewMode === 'simplified'
+                  ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+              title={language === 'vi' ? 'Chế độ Dễ hiểu cho người dùng thông thường' : 'Switch to Easy Mode'}
+            >
+              <Sparkles className="h-3 w-3 text-amber-400" />
+              <span className="hidden sm:inline">{language === 'vi' ? '⚡ Dễ hiểu' : '⚡ Simple'}</span>
+            </button>
+            <button
+              onClick={() => setViewMode('clone')}
+              className={`flex items-center gap-1 px-2.5 py-1 rounded-lg transition-all ${
+                viewMode === 'clone'
+                  ? 'bg-violet-600/30 text-violet-200 border border-violet-500/40 shadow-sm'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+              title={language === 'vi' ? 'Chế độ Benchmark Pro (Bản sao đầy đủ chuẩn Artificial Analysis)' : 'Switch to Benchmark Pro Clone Mode'}
+            >
+              <BarChart3 className="h-3 w-3 text-violet-400" />
+              <span className="hidden sm:inline">{language === 'vi' ? '🔬 Benchmark Pro' : '🔬 Pro Clone'}</span>
+            </button>
+          </div>
+
           {/* Currency Toggle */}
           <button
             onClick={() => setCurrency(currency === 'VND' ? 'USD' : 'VND')}
@@ -170,13 +211,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             title="Đổi ngôn ngữ / Switch Language"
           >
             <span className="text-sm leading-none">{language === 'vi' ? '🇻🇳' : '🇬🇧'}</span>
-            <span>{language === 'vi' ? 'Tiếng Việt' : 'English'}</span>
+            <span className="hidden sm:inline">{language === 'vi' ? 'Tiếng Việt' : 'English'}</span>
           </button>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-800 bg-slate-900 text-slate-300 hover:text-white lg:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-800 bg-slate-900 text-slate-300 hover:text-white xl:hidden"
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -186,7 +227,34 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="border-t border-slate-800 bg-slate-950 px-4 py-4 lg:hidden animate-in slide-in-from-top-2">
+        <div className="border-t border-slate-800 bg-slate-950 px-4 py-4 xl:hidden animate-in slide-in-from-top-2">
+          {/* Mobile Mode Switcher */}
+          <div className="mb-3 flex items-center justify-between p-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold">
+            <span className="text-slate-400">{language === 'vi' ? 'Chế độ xem:' : 'View Mode:'}</span>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => { setViewMode('simplified'); setMobileMenuOpen(false); }}
+                className={`px-2.5 py-1 rounded-lg text-xs transition-all ${
+                  viewMode === 'simplified'
+                    ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                    : 'text-slate-400'
+                }`}
+              >
+                ⚡ {language === 'vi' ? 'Dễ hiểu' : 'Simple'}
+              </button>
+              <button
+                onClick={() => { setViewMode('clone'); setMobileMenuOpen(false); }}
+                className={`px-2.5 py-1 rounded-lg text-xs transition-all ${
+                  viewMode === 'clone'
+                    ? 'bg-violet-600/30 text-violet-200 border border-violet-500/40'
+                    : 'text-slate-400'
+                }`}
+              >
+                🔬 Benchmark Pro
+              </button>
+            </div>
+          </div>
+
           <div className="mb-3">
             <div className="relative">
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
@@ -208,8 +276,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               />
             </div>
           </div>
+
           <div className="grid grid-cols-2 gap-1.5">
-            {navLinks.map((link) => {
+            {currentNavLinks.map((link) => {
               const Icon = link.icon;
               return (
                 <a

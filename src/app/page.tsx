@@ -5,11 +5,14 @@ import initialLiveData from '../data/live_data.json';
 import { MODELS_DATA } from '@/data/models';
 import { buildUnifiedModels } from '@/data/unifiedModels';
 import { LiveDataPayload, ScrapedModel, Model, CategoryFilter } from '@/types';
+import { useViewMode } from '@/context/ViewModeContext';
 
 // Core Clean ModelTier Components
 import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
+import { ProCloneHero } from '@/components/ProCloneHero';
 import { Highlights } from '@/components/Highlights';
+import { BenchmarkScrollExplorer } from '@/components/BenchmarkScrollExplorer';
 import { ScatterPlotArena } from '@/components/ScatterPlotArena';
 import { ModelLeaderboard } from '@/components/ModelLeaderboard';
 import { TierList } from '@/components/TierList';
@@ -17,12 +20,14 @@ import { ModelRecommender } from '@/components/ModelRecommender';
 import { CostCalculator } from '@/components/CostCalculator';
 import { ModelBattle } from '@/components/ModelBattle';
 import { LiveTracker } from '@/components/LiveTracker';
+import { ArticlesAndChangelog } from '@/components/ArticlesAndChangelog';
 import { PlainExplainer } from '@/components/PlainExplainer';
 import { LiveModelDetailModal } from '@/components/LiveModelDetailModal';
 import { ModelDetailModal } from '@/components/ModelDetailModal';
 import { Footer } from '@/components/Footer';
 
 export default function HomePage() {
+  const { viewMode } = useViewMode();
   const [liveData, setLiveData] = useState<LiveDataPayload>(initialLiveData as any);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>('all');
@@ -180,77 +185,130 @@ export default function HomePage() {
       )}
 
       <main className="flex-1">
-        {/* Hero with Search & Live Counters */}
-        <Hero
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          activeCategory={activeCategory}
-          setActiveCategory={setActiveCategory}
-          modelCount={liveData.totalModels}
-        />
+        {viewMode === 'simplified' ? (
+          /* ================= EASY MODE (DỄ HIỂU & THỰC TIỄN) ================= */
+          <>
+            {/* Easy Hero with Quick Filter & Search */}
+            <Hero
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              activeCategory={activeCategory}
+              setActiveCategory={setActiveCategory}
+              modelCount={liveData.totalModels}
+            />
 
-        {/* Highlights 3-Card Grid (Real Data: Intelligence, Speed, Cost) */}
-        <Highlights
-          intelligenceData={liveData.highlights.intelligence}
-          speedData={liveData.highlights.speed}
-          costData={liveData.highlights.costPerTask}
-          onSelectModel={handleSelectModelBySlug}
-        />
+            {/* Highlights 3-Card Grid (Intelligence, Speed, Cost) */}
+            <div id="highlights">
+              <Highlights
+                intelligenceData={liveData.highlights.intelligence}
+                speedData={liveData.highlights.speed}
+                costData={liveData.highlights.costPerTask}
+                onSelectModel={handleSelectModelBySlug}
+              />
+            </div>
 
-        {/* Interactive 2D Scatter Plot & Pareto Frontier */}
-        <div id="scatterplot" className="scroll-mt-20">
-          <ScatterPlotArena
-            models={liveData.models}
-            onSelectModel={handleSelectScrapedModel}
-          />
-        </div>
+            {/* Interactive 2D Scatter Plot & Pareto Frontier */}
+            <div id="scatterplot" className="scroll-mt-20">
+              <ScatterPlotArena
+                models={liveData.models}
+                onSelectModel={handleSelectScrapedModel}
+              />
+            </div>
 
-        {/* Full Models Leaderboard Table */}
-        <ModelLeaderboard
-          models={liveData.models}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          onSelectModel={handleSelectScrapedModel}
-        />
+            {/* S/A/B/C Practical Tier List */}
+            <TierList
+              models={unifiedModels}
+              activeCategory={activeCategory}
+              searchQuery={searchQuery}
+              onSelectDetails={(model) => setSelectedCuratedModel(model)}
+              onSelectCompare={handleSelectCompare}
+              onResetFilters={() => { setSearchQuery(''); setActiveCategory('all'); }}
+            />
 
-        {/* S/A/B/C Practical Tier List */}
-        <TierList
-          models={unifiedModels}
-          activeCategory={activeCategory}
-          searchQuery={searchQuery}
-          onSelectDetails={(model) => setSelectedCuratedModel(model)}
-          onSelectCompare={handleSelectCompare}
-          onResetFilters={() => { setSearchQuery(''); setActiveCategory('all'); }}
-        />
+            {/* Interactive "Find My AI" Wizard */}
+            <ModelRecommender
+              models={unifiedModels}
+              onSelectDetails={(model) => setSelectedCuratedModel(model)}
+            />
 
-        {/* Interactive "Find My AI" Wizard */}
-        <ModelRecommender
-          models={unifiedModels}
-          onSelectDetails={(model) => setSelectedCuratedModel(model)}
-        />
+            {/* Real-World Cost Calculator (VND & USD with real analogies) */}
+            <CostCalculator
+              models={unifiedModels}
+              onSelectDetails={(model) => setSelectedCuratedModel(model)}
+            />
 
-        {/* Real-World Cost Calculator (VND & USD) */}
-        <CostCalculator
-          models={unifiedModels}
-          onSelectDetails={(model) => setSelectedCuratedModel(model)}
-        />
+            {/* Head-to-Head 1-vs-1 Model Battle Arena */}
+            <ModelBattle
+              models={unifiedModels}
+              initialModelA={battleModelA}
+              initialModelB={battleModelB}
+              onSelectDetails={(model) => setSelectedCuratedModel(model)}
+            />
 
-        {/* Head-to-Head 1-vs-1 Model Battle Arena */}
-        <ModelBattle
-          models={unifiedModels}
-          initialModelA={battleModelA}
-          initialModelB={battleModelB}
-          onSelectDetails={(model) => setSelectedCuratedModel(model)}
-        />
+            {/* Full Models Leaderboard Table */}
+            <ModelLeaderboard
+              models={liveData.models}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              onSelectModel={handleSelectScrapedModel}
+            />
 
-        {/* Live Provider Latency & Speed Radar */}
-        <LiveTracker />
+            {/* Realtime Cloud Provider Latency Telemetry Radar */}
+            <LiveTracker />
 
-        {/* Plain Language Explainer Guide */}
-        <PlainExplainer />
+            {/* Plain Language Explainer Guide */}
+            <PlainExplainer />
+          </>
+        ) : (
+          /* ================= PRO CLONE MODE (BENCHMARK CLONE) ================= */
+          <>
+            {/* Artificial Analysis Benchmark Clone Hero */}
+            <ProCloneHero
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              activeCategory={activeCategory}
+              setActiveCategory={setActiveCategory}
+              modelCount={liveData.totalModels}
+            />
+
+            {/* Authentic Artificial Analysis Horizontal Scroll Benchmark Explorer */}
+            <div id="benchmarks" className="scroll-mt-20">
+              <BenchmarkScrollExplorer
+                models={liveData.models}
+                onSelectModel={handleSelectScrapedModel}
+              />
+            </div>
+
+            {/* Interactive 2D Scatter Plot & Pareto Frontier */}
+            <div id="scatterplot" className="scroll-mt-20">
+              <ScatterPlotArena
+                models={liveData.models}
+                onSelectModel={handleSelectScrapedModel}
+              />
+            </div>
+
+            {/* 650+ Models Full Leaderboard Table */}
+            <ModelLeaderboard
+              models={liveData.models}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              onSelectModel={handleSelectScrapedModel}
+            />
+
+            {/* Realtime Cloud Provider Latency Telemetry Radar */}
+            <LiveTracker />
+
+            {/* Deep-Dive Articles & Evaluation Changelog */}
+            <ArticlesAndChangelog
+              articles={liveData.articles}
+              changelog={liveData.changelog}
+              onSelectModelSlug={handleSelectModelBySlug}
+            />
+          </>
+        )}
       </main>
 
-      {/* Detail Modals */}
+      {/* Detail Modals (Shared across both modes) */}
       <LiveModelDetailModal
         model={selectedScrapedModel}
         onClose={() => setSelectedScrapedModel(null)}
