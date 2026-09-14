@@ -17,7 +17,7 @@ import { CostCalculator } from '@/components/CostCalculator';
 import { ModelBattle } from '@/components/ModelBattle';
 import { LiveTracker } from '@/components/LiveTracker';
 import { PlainExplainer } from '@/components/PlainExplainer';
-import { ArtificialDetailModal } from '@/components/ArtificialDetailModal';
+import { LiveModelDetailModal } from '@/components/LiveModelDetailModal';
 import { ModelDetailModal } from '@/components/ModelDetailModal';
 import { Footer } from '@/components/Footer';
 
@@ -177,7 +177,7 @@ export default function HomePage() {
       </main>
 
       {/* Detail Modals */}
-      <ArtificialDetailModal
+      <LiveModelDetailModal
         model={selectedScrapedModel}
         onClose={() => setSelectedScrapedModel(null)}
       />

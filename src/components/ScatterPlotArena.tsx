@@ -83,8 +83,8 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
             </div>
             <p className="text-xs text-neutral-400 mt-1">
               {language === 'vi'
-                ? 'Đồ thị phân tán 2 chiều chuẩn Artificial Analysis với đường biên tối ưu hóa'
-                : 'Interactive 2-axis scatter plot inspired by Artificial Analysis'}
+                ? 'Đồ thị phân tán 2 chiều trực quan với đường biên hiệu quả Pareto'
+                : 'Interactive 2-axis scatter plot with Pareto Frontier efficiency curve'}
             </p>
           </div>
 
