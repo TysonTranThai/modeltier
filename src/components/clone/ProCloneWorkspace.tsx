@@ -7,7 +7,6 @@ import { CloneSections } from './CloneSections';
 import { ScatterPlotArena } from '../ScatterPlotArena';
 import { ModelLeaderboard } from '../ModelLeaderboard';
 import { LiveTracker } from '../LiveTracker';
-import { ArticlesAndChangelog } from '../ArticlesAndChangelog';
 import { ArticleItem, ChangelogItem } from '../../types';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -222,15 +221,6 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
             {/* Provider Radar Latency Tracker */}
             <div id="live" className="scroll-mt-24 pt-8 border-t border-[#3D2216]">
               <LiveTracker />
-            </div>
-
-            {/* Articles and Evaluation Changelog */}
-            <div id="articles" className="scroll-mt-24 pt-8 border-t border-[#3D2216]">
-              <ArticlesAndChangelog
-                articles={articles}
-                changelog={changelog}
-                onSelectModelSlug={onSelectModelSlug}
-              />
             </div>
           </div>
         </div>

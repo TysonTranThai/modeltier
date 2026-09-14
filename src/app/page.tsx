@@ -21,7 +21,6 @@ import { ModelRecommender } from '@/components/ModelRecommender';
 import { CostCalculator } from '@/components/CostCalculator';
 import { ModelBattle } from '@/components/ModelBattle';
 import { LiveTracker } from '@/components/LiveTracker';
-import { ArticlesAndChangelog } from '@/components/ArticlesAndChangelog';
 import { PlainExplainer } from '@/components/PlainExplainer';
 import { LiveModelDetailModal } from '@/components/LiveModelDetailModal';
 import { ModelDetailModal } from '@/components/ModelDetailModal';
