@@ -9,7 +9,7 @@ import {
   BarChart2, 
   ChevronLeft, 
   ChevronRight, 
-  Sparkles, 
+  Cpu, 
   Zap, 
   Clock, 
   DollarSign, 
@@ -18,7 +18,8 @@ import {
   Brain, 
   ExternalLink,
   Info,
-  SlidersHorizontal
+  SlidersHorizontal,
+  Timer
 } from 'lucide-react';
 
 export type BenchmarkMetric = 
@@ -54,13 +55,13 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
   };
 
   const metricTabs = [
-    { id: 'intelligence', label: language === 'vi' ? '🧠 Điểm Thông Minh' : '🧠 Intelligence Index', icon: Brain },
-    { id: 'speed', label: language === 'vi' ? '⚡ Tốc Độ (Tokens/s)' : '⚡ Output Speed', icon: Zap },
-    { id: 'latency', label: language === 'vi' ? '⏱️ Độ Trễ (TTFT)' : '⏱️ Latency (TTFT)', icon: Clock },
-    { id: 'totalTime', label: language === 'vi' ? '⏳ Thời Gian Phản Hồi' : '⏳ Response Time', icon: Layers },
-    { id: 'cost', label: language === 'vi' ? '💰 Chi Phí Mỗi Bài Test' : '💰 Cost per Task', icon: DollarSign },
-    { id: 'open_weights', label: language === 'vi' ? '🔓 Mã Nguồn Mở' : '🔓 Open Weights', icon: ShieldCheck },
-    { id: 'reasoning', label: language === 'vi' ? '🤖 Mô Hình Tư Duy' : '🤖 Reasoning Models', icon: Sparkles },
+    { id: 'intelligence', label: language === 'vi' ? 'Điểm Thông Minh' : 'Intelligence Index', icon: Brain },
+    { id: 'speed', label: language === 'vi' ? 'Tốc Độ (Tokens/s)' : 'Output Speed', icon: Zap },
+    { id: 'latency', label: language === 'vi' ? 'Độ Trễ (TTFT)' : 'Latency (TTFT)', icon: Clock },
+    { id: 'totalTime', label: language === 'vi' ? 'Thời Gian Phản Hồi' : 'Response Time', icon: Timer },
+    { id: 'cost', label: language === 'vi' ? 'Chi Phí / Task' : 'Cost per Task', icon: DollarSign },
+    { id: 'open_weights', label: language === 'vi' ? 'Mã Nguồn Mở' : 'Open Weights', icon: ShieldCheck },
+    { id: 'reasoning', label: language === 'vi' ? 'Mô Hình Suy Luận' : 'Reasoning Models', icon: Cpu },
   ];
 
   // Process and sort models for the active benchmark

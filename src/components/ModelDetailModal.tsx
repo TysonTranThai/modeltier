@@ -15,7 +15,7 @@ import {
   Layers, 
   DollarSign, 
   Cpu, 
-  Sparkles,
+  BarChart3,
   Server,
   BookOpen
 } from 'lucide-react';
@@ -105,7 +105,7 @@ export const ModelDetailModal: React.FC<ModelDetailModalProps> = ({
         {/* Scores & Benchmarks in Human Terms */}
         <div className="space-y-3 mb-6">
           <h3 className="text-xs font-bold uppercase tracking-wider text-[#D8C4B6] flex items-center gap-1.5">
-            <Sparkles className="h-3.5 w-3.5 text-[#FF6B35]" />
+            <BarChart3 className="h-3.5 w-3.5 text-[#FF6B35]" />
             {language === 'vi' ? 'Điểm Đánh Giá Năng Lực Thực Chiến (Thang điểm 100)' : 'Practical Capability Scores (Out of 100)'}
           </h3>
 

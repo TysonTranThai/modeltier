@@ -5,7 +5,6 @@ import { useLanguage } from '../context/LanguageContext';
 import { useCurrency } from '../context/CurrencyContext';
 import { useViewMode } from '../context/ViewModeContext';
 import { 
-  Sparkles, 
   Search, 
   Menu, 
   X, 
@@ -20,7 +19,8 @@ import {
   TrendingUp,
   TableProperties,
   Layers,
-  FileText
+  FileText,
+  Terminal
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -51,7 +51,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   const simplifiedNavLinks = [
-    { href: '#tierlist', label: t.nav.tierList, icon: Sparkles },
+    { href: '#tierlist', label: t.nav.tierList, icon: Layers },
     { href: '#finder', label: t.nav.finder, icon: Compass },
     { href: '#calculator', label: t.nav.calculator, icon: Calculator },
     { href: '#battle', label: t.nav.battle, icon: Swords },
@@ -61,7 +61,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const cloneNavLinks = [
     { href: '#intelligence', label: 'Intelligence', icon: BarChart3 },
-    { href: '#coding-agents', label: 'Coding Agents', icon: Sparkles },
+    { href: '#coding-agents', label: 'Coding Agents', icon: Terminal },
     { href: '#price-and-cost', label: 'Cost Index', icon: DollarSign },
     { href: '#speed', label: 'Speed & Latency', icon: TrendingUp },
     { href: '#leaderboard', label: `650+ Models`, icon: TableProperties },
@@ -126,7 +126,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Brand Logo with Orange Flare */}
         <a href="#" className="flex items-center gap-3 group">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#FF6B35] via-[#E64A19] to-[#BF360C] shadow-glow-orange ring-1 ring-[#FF8452]/40 transition-transform group-hover:scale-105">
-            <Sparkles className="h-4 w-4 text-white" />
+            <BarChart3 className="h-4 w-4 text-white" />
           </div>
           <div className="flex flex-col">
             <div className="flex items-center gap-1.5">
@@ -176,7 +176,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               }`}
               title="Chế độ Dễ hiểu"
             >
-              <Sparkles className="h-3 w-3" />
+              <Layers className="h-3 w-3" />
               <span className="hidden sm:inline">{language === 'vi' ? 'Dễ hiểu' : 'Simple'}</span>
             </button>
             <button

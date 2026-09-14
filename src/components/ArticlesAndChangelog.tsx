@@ -10,7 +10,7 @@ import {
   ArrowUpRight, 
   Calendar, 
   Tag, 
-  Sparkles,
+  BookOpen,
   ChevronRight
 } from 'lucide-react';
 
@@ -62,7 +62,7 @@ export const ArticlesAndChangelog: React.FC<ArticlesAndChangelogProps> = ({
           {/* Articles Column (2 spans) */}
           <div className="lg:col-span-2 space-y-4">
             <h3 className="flex items-center gap-2 text-base font-bold text-[#FFF6EE]">
-              <Sparkles className="h-4 w-4 text-[#FF8452]" />
+              <BookOpen className="h-4 w-4 text-[#FF8452]" />
               <span>{language === 'vi' ? 'Bài Viết Tiêu Điểm' : 'Featured Benchmark Articles'}</span>
             </h3>
 

@@ -4,7 +4,7 @@ import React, { useState, useMemo } from 'react';
 import { ScrapedModel } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { useCurrency } from '../context/CurrencyContext';
-import { Sparkles, HelpCircle, Lightbulb, Zap, DollarSign } from 'lucide-react';
+import { HelpCircle, Lightbulb, Zap, DollarSign } from 'lucide-react';
 
 interface ScatterPlotArenaProps {
   models: ScrapedModel[];

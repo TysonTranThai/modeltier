@@ -14,7 +14,6 @@ import {
   Info, 
   Check,
   Filter,
-  Sparkles,
   BarChart2
 } from 'lucide-react';
 

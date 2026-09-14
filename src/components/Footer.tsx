@@ -3,7 +3,7 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useCurrency } from '../context/CurrencyContext';
-import { Sparkles, Heart, ExternalLink } from 'lucide-react';
+import { BarChart3, Heart, ExternalLink } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const { language, t } = useLanguage();
@@ -17,7 +17,7 @@ export const Footer: React.FC = () => {
           <div className="md:col-span-2">
             <div className="flex items-center gap-2.5 mb-3">
               <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-[#FF6B35] to-[#D84315] text-white shadow-glow-orange">
-                <Sparkles className="h-4 w-4" />
+                <BarChart3 className="h-4 w-4" />
               </div>
               <span className="text-lg font-serif font-bold text-[#FFF6EE] tracking-tight">
                 Model<span className="text-[#FF6B35] italic">Tier</span>.vn

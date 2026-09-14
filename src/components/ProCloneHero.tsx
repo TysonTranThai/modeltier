@@ -4,7 +4,7 @@ import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useViewMode } from '../context/ViewModeContext';
 import { 
-  Sparkles, 
+  Code2, 
   Search, 
   Cpu, 
   Activity, 
@@ -40,7 +40,7 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
   const categories: { id: CategoryFilter; labelVi: string; labelEn: string; icon: any }[] = [
     { id: 'all', labelVi: 'Tất cả mô hình', labelEn: 'All Models', icon: Layers },
     { id: 'reasoning', labelVi: 'Reasoning (Suy luận sâu)', labelEn: 'Reasoning Models', icon: Cpu },
-    { id: 'coding', labelVi: 'Lập trình (Coding)', labelEn: 'Coding & Dev', icon: Sparkles },
+    { id: 'coding', labelVi: 'Lập trình (Coding)', labelEn: 'Coding & Dev', icon: Code2 },
     { id: 'speed', labelVi: 'Tốc độ cao (>100 tps)', labelEn: 'High Speed (>100 tps)', icon: Zap },
     { id: 'budget', labelVi: 'Chi phí rẻ (<$1)', labelEn: 'Budget (<$1/M)', icon: SlidersHorizontal },
     { id: 'open_weights', labelVi: 'Mã nguồn mở (Open Weights)', labelEn: 'Open Weights', icon: Activity },

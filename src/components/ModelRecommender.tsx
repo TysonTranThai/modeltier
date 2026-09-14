@@ -6,7 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { useCurrency } from '../context/CurrencyContext';
 import { 
   Compass, 
-  Sparkles, 
+  Target, 
   ArrowRight, 
   RotateCcw, 
   CheckCircle, 
@@ -258,7 +258,6 @@ export const ModelRecommender: React.FC<ModelRecommenderProps> = ({
                   onClick={calculateRecommendations}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#FF6B35] to-[#E64A19] px-8 py-3.5 text-sm sm:text-base font-bold text-[#FFF6EE] shadow-xl shadow-glow-orange transition-all hover:scale-105 hover:from-[#FF8452] hover:to-[#FF6B35]"
                 >
-                  <Sparkles className="h-5 w-5" />
                   {t.recommender.submitBtn}
                   <ArrowRight className="h-5 w-5" />
                 </button>
@@ -270,7 +269,7 @@ export const ModelRecommender: React.FC<ModelRecommenderProps> = ({
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl sm:text-2xl font-bold text-[#FFF6EE] flex items-center gap-2">
-                <Sparkles className="h-6 w-6 text-amber-400" />
+                <Target className="h-6 w-6 text-[#FF8452]" />
                 {t.recommender.resultsTitle}
               </h3>
               <button

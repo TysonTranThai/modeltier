@@ -17,7 +17,7 @@ import {
   ArrowUpRight,
   ShieldCheck,
   Clock,
-  Sparkles,
+  Calculator,
   ExternalLink
 } from 'lucide-react';
 
@@ -218,7 +218,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
           {[
             { title: 'Coding Index', top: 'Claude 3.7 Sonnet', score: '92.4', icon: Code2 },
             { title: 'Reasoning Index', top: 'o3-mini / GPT-5', score: '94.8', icon: Cpu },
-            { title: 'Math Mastery', top: 'DeepSeek R1', score: '91.2', icon: Sparkles },
+            { title: 'Math Mastery', top: 'DeepSeek R1', score: '91.2', icon: Calculator },
             { title: 'Long Context (1M+)', top: 'Gemini 2.5 Pro', score: '98.5', icon: Layers },
           ].map((item, idx) => {
             const Icon = item.icon;

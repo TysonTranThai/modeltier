@@ -9,7 +9,7 @@ import {
   Trophy, 
   Zap, 
   DollarSign, 
-  Sparkles, 
+  Brain, 
   Layers, 
   CheckCircle, 
   ArrowRight,
@@ -202,7 +202,7 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
                   {modelA.intelligenceScore}/100 {intelWinner === 'A' && '🏆 Thắng'}
                 </span>
                 <span className="font-bold text-[#FFF6EE] uppercase text-[11px] tracking-wider flex items-center gap-1">
-                  <Sparkles className="h-3.5 w-3.5 text-[#FF8452]" />
+                  <Brain className="h-3.5 w-3.5 text-[#FF8452]" />
                   {t.battle.intelligenceWinner}
                 </span>
                 <span className={`font-bold ${intelWinner === 'B' ? 'text-amber-400' : 'text-[#A89280]'}`}>

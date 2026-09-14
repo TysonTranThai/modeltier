@@ -8,7 +8,6 @@ import {
   Search, 
   ArrowUpDown, 
   TableProperties, 
-  Sparkles, 
   Zap, 
   DollarSign, 
   ChevronLeft, 

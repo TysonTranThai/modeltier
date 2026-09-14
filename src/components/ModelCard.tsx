@@ -5,7 +5,6 @@ import { Model, Tier } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { useCurrency } from '../context/CurrencyContext';
 import { 
-  Sparkles, 
   Zap, 
   Clock, 
   Layers, 

@@ -10,7 +10,6 @@ import {
   Calculator, 
   Coins, 
   HelpCircle, 
-  Sparkles, 
   TrendingDown, 
   Zap, 
   Coffee, 
@@ -199,7 +198,7 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
 
           <div className="mt-4 pt-4 border-t border-[#3D2216] flex items-center justify-between flex-wrap gap-2 text-xs text-[#A89280]">
             <span className="flex items-center gap-1.5 text-emerald-400/90 font-medium">
-              <Sparkles className="h-3.5 w-3.5" />
+              <Coins className="h-3.5 w-3.5" />
               {t.calculator.savingNote}
             </span>
             <span className="text-[11px] text-slate-500">

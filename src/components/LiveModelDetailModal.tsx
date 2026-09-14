@@ -7,7 +7,7 @@ import { useCurrency } from '../context/CurrencyContext';
 import { 
   X, 
   ExternalLink, 
-  Sparkles, 
+  FileText, 
   Server
 } from 'lucide-react';
 
@@ -134,7 +134,7 @@ export const LiveModelDetailModal: React.FC<LiveModelDetailModalProps> = ({
         {/* Plain Language Evaluation */}
         <div className="rounded-2xl bg-[#140A05] p-4 border border-[#2E170E] mb-6 space-y-2 text-xs text-[#D8C4B6]">
           <div className="font-bold text-[#FFF6EE] flex items-center gap-1.5">
-            <Sparkles className="h-4 w-4 text-[#FF6B35]" />
+            <FileText className="h-4 w-4 text-[#FF6B35]" />
             <span>{language === 'vi' ? 'Đánh giá tóm tắt cho người dùng Việt Nam:' : 'Summary Assessment:'}</span>
           </div>
           <p className="leading-relaxed">

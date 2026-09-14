@@ -4,7 +4,6 @@ import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useViewMode } from '../context/ViewModeContext';
 import { 
-  Sparkles, 
   Search, 
   ChevronRight, 
   TrendingUp, 

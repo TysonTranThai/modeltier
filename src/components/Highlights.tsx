@@ -4,7 +4,7 @@ import React from 'react';
 import { HighlightItem } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { useCurrency } from '../context/CurrencyContext';
-import { TrendingUp, Sparkles, Zap, DollarSign, Lightbulb } from 'lucide-react';
+import { TrendingUp, Award, Zap, DollarSign, Lightbulb } from 'lucide-react';
 
 interface HighlightsProps {
   intelligenceData: HighlightItem[];
@@ -104,7 +104,7 @@ export const Highlights: React.FC<HighlightsProps> = ({
 
           <div className="mt-4 pt-3 border-t border-[#381E12] flex items-center justify-between text-[11px] text-[#A89280]">
             <span>{language === 'vi' ? 'Mô hình dẫn đầu:' : 'Leader:'} <strong className="text-[#FF8452] font-semibold">{intelligenceData[0]?.label || 'Frontier Models'}</strong></span>
-            <Sparkles className="h-3.5 w-3.5 text-[#FF6B35]" />
+            <Award className="h-3.5 w-3.5 text-[#FF6B35]" />
           </div>
         </div>
 
