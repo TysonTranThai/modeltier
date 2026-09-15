@@ -161,7 +161,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#170C07] text-[#FFF6EE] font-sans selection:bg-[#FF6B35] selection:text-white">
+    <div className="flex min-h-screen flex-col bg-[#170C07] text-[#FFF6EE] font-sans selection:bg-[#FF6B35] selection:text-white w-full max-w-full overflow-x-hidden">
       {/* Top ModelTier Navbar */}
       <Navbar
         searchQuery={searchQuery}
@@ -191,7 +191,7 @@ export default function HomePage() {
         </div>
       )}
 
-      <main className="flex-1">
+      <main className="flex-1 w-full max-w-full overflow-x-hidden">
         {viewMode === 'simplified' ? (
           /* ================= EASY MODE (DỄ HIỂU & THỰC TIỄN) ================= */
           <>

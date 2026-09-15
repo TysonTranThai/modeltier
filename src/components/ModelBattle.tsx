@@ -91,8 +91,8 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
   const codingWinner = compareWinner(modelA.codingScore, modelB.codingScore);
 
   return (
-    <section id="battle" className="py-14 lg:py-20 bg-[#1A0E08]/40 border-t border-[#3D2216] scroll-mt-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="battle" className="py-14 lg:py-20 bg-[#1A0E08]/40 border-t border-[#3D2216] scroll-mt-16 w-full max-w-full overflow-hidden">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full">
         {/* Title */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 rounded-sm bg-[#FF6B35]/10 px-3.5 py-1 text-[11px] font-mono font-bold uppercase tracking-wider text-[#FF8452] border border-[#FF6B35]/20 mb-3">
@@ -155,7 +155,7 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
         </div>
 
         {/* Battle Arena Cards */}
-        <div className="max-w-4xl mx-auto rounded-lg border border-[#3D2216] bg-[#24130C]/90 p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
+        <div className="max-w-4xl mx-auto rounded-lg border border-[#3D2216] bg-[#24130C]/90 p-4 sm:p-10 shadow-2xl backdrop-blur-xl w-full max-w-full overflow-hidden">
           {/* Top Overview Cards with Glowing VS Badge */}
           <div className="relative">
             <div className="hidden sm:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 h-10 w-10 items-center justify-center rounded-sm bg-gradient-to-br from-[#FF6B35] to-[#E64A19] text-white font-mono font-black text-xs shadow-glow-orange border border-[#1E0F09] animate-orange-pulse">

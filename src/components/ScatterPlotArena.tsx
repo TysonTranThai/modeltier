@@ -122,8 +122,8 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
   }, [paretoFrontier, metricMode, scaleX, scaleY]);
 
   return (
-    <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-16">
-      <div className="rounded-lg border border-[#3D2216] bg-[#1E0F09]/95 p-6 sm:p-8 shadow-2xl backdrop-blur-xl">
+    <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 overflow-hidden">
+      <div className="w-full max-w-full overflow-hidden rounded-lg border border-[#3D2216] bg-[#1E0F09]/95 p-4 sm:p-8 shadow-2xl backdrop-blur-xl">
         {/* Header & Toggle */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#331A10] mb-6">
           <div>
@@ -171,8 +171,8 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
         </div>
 
         {/* SVG Interactive Scatter Plot */}
-        <div className="relative overflow-x-auto">
-          <svg viewBox={`0 0 ${svgWidth} ${svgHeight}`} className="w-full h-auto min-w-[600px]">
+        <div className="relative w-full max-w-full overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-[#4A2818] scrollbar-track-[#180D07]">
+          <svg viewBox={`0 0 ${svgWidth} ${svgHeight}`} className="w-full h-auto min-w-[600px] block">
             {/* Grid lines */}
             {[20, 30, 40, 50].map((level) => (
               <g key={level}>

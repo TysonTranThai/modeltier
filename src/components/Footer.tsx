@@ -18,8 +18,8 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="border-t border-[#381E12] bg-[#110804] text-[#D8C4B6] transition-all">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <footer className="border-t border-[#381E12] bg-[#110804] text-[#D8C4B6] transition-all w-full max-w-full overflow-hidden">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 w-full max-w-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Info */}
           <div className="md:col-span-2">

@@ -96,8 +96,8 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
   };
 
   return (
-    <section id="calculator" className="py-14 lg:py-20 scroll-mt-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="calculator" className="py-14 lg:py-20 scroll-mt-16 w-full max-w-full overflow-hidden">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 rounded-sm bg-emerald-500/10 px-3.5 py-1 text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-300 border border-emerald-500/20 mb-3">
@@ -231,8 +231,8 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
         </div>
 
         {/* Calculation Table */}
-        <div className="overflow-hidden rounded-md border border-[#3D2216] bg-[#24130C]/90 shadow-2xl">
-          <div className="overflow-x-auto">
+        <div className="w-full max-w-full overflow-hidden rounded-md border border-[#3D2216] bg-[#24130C]/90 shadow-2xl">
+          <div className="w-full max-w-full overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead className="border-b border-[#3D2216] bg-[#1A0E08]/80 text-[#A89280] font-mono font-semibold uppercase tracking-wider">
                 <tr>

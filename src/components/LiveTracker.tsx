@@ -66,8 +66,8 @@ export const LiveTracker: React.FC = () => {
   };
 
   return (
-    <section id="live" className="py-14 lg:py-20 scroll-mt-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="live" className="py-14 lg:py-20 scroll-mt-16 w-full max-w-full overflow-hidden">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full">
         {/* Title & Refresh Button */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
           <div>

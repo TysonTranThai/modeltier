@@ -73,11 +73,11 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[#2C160C] bg-[#160B06]/95 backdrop-blur-md transition-all">
+    <header className="sticky top-0 z-50 w-full max-w-full border-b border-[#2C160C] bg-[#160B06]/95 backdrop-blur-md transition-all">
       {/* Slim Telemetry Strip */}
-      <div className="bg-[#0E0603] border-b border-[#221008] px-4 py-1 text-[11px] text-[#A89280]">
+      <div className="bg-[#0E0603] border-b border-[#221008] px-3 sm:px-4 py-1 text-[10px] sm:text-[11px] text-[#A89280] w-full max-w-full overflow-hidden">
         <div className="mx-auto max-w-7xl flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2 min-w-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
             <span className="flex h-1.5 w-1.5 shrink-0 rounded-full bg-[#FF6B35] animate-pulse" />
             <span className="text-[#D8C4B6] font-medium shrink-0">
               {language === 'vi' ? 'Dữ liệu:' : 'Telemetry:'}
@@ -91,7 +91,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </span>
           </div>
 
-          <div className="flex items-center gap-3 text-[11px] shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-[11px] shrink-0">
             {/* Currency Minimalist Toggle */}
             <button
               onClick={() => setCurrency(currency === 'VND' ? 'USD' : 'VND')}
@@ -120,7 +120,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* Main Luxury Ledger Header */}
-      <div className="mx-auto flex h-16 lg:h-18 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 lg:h-18 max-w-7xl items-center justify-between px-3 sm:px-6 lg:px-8 w-full max-w-full">
         {/* Left: Brand Identity matching Ledger's clean editorial serif & crisp square mark */}
         <a 
           href="#" 
@@ -128,15 +128,15 @@ export const Navbar: React.FC<NavbarProps> = ({
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
-          className="flex items-center gap-2 group focus:outline-none shrink-0 mr-2 sm:mr-4 lg:mr-8"
+          className="flex items-center gap-1.5 sm:gap-2 group focus:outline-none shrink-0 mr-1.5 sm:mr-4 lg:mr-8"
         >
-          <div className="flex h-7 w-7 items-center justify-center rounded-sm bg-[#FF6B35] text-[#160B06] shadow-sm transition-transform group-hover:scale-105">
-            <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="#160B06" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round">
+          <div className="flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-sm bg-[#FF6B35] text-[#160B06] shadow-sm transition-transform group-hover:scale-105">
+            <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="#160B06" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round">
               <path d="M4 18l8-12 8 12" />
               <path d="M7 14h10" />
             </svg>
           </div>
-          <span className="font-serif text-xl sm:text-2xl font-normal tracking-tight text-[#FFF6EE]">
+          <span className="font-serif text-lg sm:text-2xl font-normal tracking-tight text-[#FFF6EE]">
             Model<span className="text-[#FF6B35]">Tier</span>
           </span>
         </a>
@@ -161,7 +161,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center rounded-sm bg-[#1A0C06] border border-[#3D1E11] p-0.5 text-xs font-mono shadow-inner shrink-0">
             <button
               onClick={() => setViewMode('simplified')}
-              className={`px-2 sm:px-3 py-1.5 rounded-sm text-[11px] sm:text-xs font-medium whitespace-nowrap shrink-0 leading-none transition-all duration-200 ${
+              className={`px-1.5 sm:px-3 py-1 sm:py-1.5 rounded-sm text-[10px] sm:text-xs font-medium whitespace-nowrap shrink-0 leading-none transition-all duration-200 ${
                 viewMode === 'simplified'
                   ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white font-semibold shadow-glow-orange'
                   : 'text-[#A89280] hover:text-[#FFF6EE]'
@@ -171,7 +171,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
             <button
               onClick={() => setViewMode('clone')}
-              className={`px-2 sm:px-3 py-1.5 rounded-sm text-[11px] sm:text-xs font-medium whitespace-nowrap shrink-0 leading-none transition-all duration-200 ${
+              className={`px-1.5 sm:px-3 py-1 sm:py-1.5 rounded-sm text-[10px] sm:text-xs font-medium whitespace-nowrap shrink-0 leading-none transition-all duration-200 ${
                 viewMode === 'clone'
                   ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white font-semibold shadow-glow-orange'
                   : 'text-[#A89280] hover:text-[#FFF6EE]'

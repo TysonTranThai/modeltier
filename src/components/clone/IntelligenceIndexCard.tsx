@@ -94,7 +94,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
   };
 
   return (
-    <div id="artificial-analysis-intelligence-index" className="scroll-mt-24 rounded-lg border border-[#3D2216] bg-[#1E0F09]/95 p-6 sm:p-8 text-[#FFF6EE] shadow-2xl backdrop-blur-md transition-all">
+    <div id="artificial-analysis-intelligence-index" className="scroll-mt-24 w-full max-w-full overflow-hidden rounded-lg border border-[#3D2216] bg-[#1E0F09]/95 p-4 sm:p-8 text-[#FFF6EE] shadow-2xl backdrop-blur-md transition-all">
       {/* Top Header & Toolbar Row */}
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 pb-6 border-b border-[#331A10]">
         {/* Left Title & Description */}
@@ -252,7 +252,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
       {viewFormat === 'chart' ? (
         <div 
           ref={chartScrollRef}
-          className="relative pt-8 pb-4 overflow-x-auto scrollbar-thin scrollbar-thumb-[#3D2216] hover:scrollbar-thumb-[#FF6B35]/50 scrollbar-track-[#140A06]"
+          className="relative w-full max-w-full pt-8 pb-4 overflow-x-auto scrollbar-thin scrollbar-thumb-[#3D2216] hover:scrollbar-thumb-[#FF6B35]/50 scrollbar-track-[#140A06]"
         >
           {/* Chart Canvas Area */}
           <div className="relative min-w-max pr-12">

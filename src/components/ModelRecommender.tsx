@@ -148,12 +148,12 @@ export const ModelRecommender: React.FC<ModelRecommenderProps> = ({
   };
 
   return (
-    <section id="finder" className="py-14 lg:py-20 bg-[#180D07] border-y border-[#3D2216] scroll-mt-16 relative overflow-hidden">
+    <section id="finder" className="py-14 lg:py-20 bg-[#180D07] border-y border-[#3D2216] scroll-mt-16 relative overflow-hidden w-full max-w-full">
       {/* Subtle Glow */}
       <div className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-[#FF6B35]/10 blur-3xl" />
       <div className="pointer-events-none absolute left-0 bottom-0 h-80 w-80 rounded-full bg-emerald-600/10 blur-3xl" />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full">
         {/* Section Title */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 rounded-sm bg-indigo-500/10 px-3.5 py-1 text-[11px] font-mono font-bold uppercase tracking-wider text-indigo-300 border border-indigo-500/20 mb-3">
@@ -170,7 +170,7 @@ export const ModelRecommender: React.FC<ModelRecommenderProps> = ({
 
         {/* Wizard Form */}
         {!hasSubmitted ? (
-          <div className="max-w-3xl mx-auto rounded-lg border border-[#3D2216] bg-[#24130C]/90 p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
+          <div className="max-w-3xl mx-auto rounded-lg border border-[#3D2216] bg-[#24130C]/90 p-4 sm:p-10 shadow-2xl backdrop-blur-xl w-full max-w-full overflow-hidden">
             <div className="space-y-8">
               {/* Question 1: Use Case */}
               <div>

@@ -131,9 +131,9 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
   };
 
   return (
-    <section id="leaderboard" className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-20">
+    <section id="leaderboard" className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-20 overflow-hidden">
       {/* Table Header Controls */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#3D2216] pb-5 mb-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#3D2216] pb-5 mb-6 w-full max-w-full">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <TableProperties className="h-5 w-5 text-[#FF8452]" />
@@ -152,7 +152,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
         </div>
 
         {/* Filter Pills */}
-        <div className="flex items-center gap-1.5 flex-wrap">
+        <div className="flex items-center gap-1.5 flex-wrap w-full max-w-full">
           {[
             { id: 'all', label: language === 'vi' ? 'Tất cả' : 'All' },
             { id: 's_tier', label: '👑 S-Tier' },
@@ -178,8 +178,8 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
       </div>
 
       {/* Leaderboard Table */}
-      <div className="overflow-hidden rounded-md border border-[#3D2216] bg-[#24130C]/90 shadow-2xl">
-        <div className="overflow-x-auto">
+      <div className="w-full max-w-full overflow-hidden rounded-md border border-[#3D2216] bg-[#24130C]/90 shadow-2xl">
+        <div className="w-full max-w-full overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead className="border-b border-[#3D2216] bg-[#180D07]/80 text-[#A89280] font-mono font-semibold uppercase tracking-wider sticky top-0 z-10">
               <tr>

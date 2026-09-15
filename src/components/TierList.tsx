@@ -98,7 +98,7 @@ export const TierList: React.FC<TierListProps> = ({
   ];
 
   return (
-    <section id="tierlist" className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 scroll-mt-20 text-[#FFF6EE]">
+    <section id="tierlist" className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 scroll-mt-20 text-[#FFF6EE] overflow-hidden">
       {/* Section Header */}
       <div className="mb-10 text-center max-w-3xl mx-auto">
         <div className="inline-flex items-center gap-2 rounded-sm border border-[#FF6B35]/40 bg-[#24130C] px-3 py-1 font-mono text-xs uppercase tracking-wider text-[#FF8452] mb-3">

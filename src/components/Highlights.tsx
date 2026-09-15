@@ -33,8 +33,8 @@ export const Highlights: React.FC<HighlightsProps> = ({
   };
 
   return (
-    <section id="highlights" className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-14 lg:mb-20 scroll-mt-20">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#3D2216] pb-3 mb-6 gap-2">
+    <section id="highlights" className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-14 lg:mb-20 scroll-mt-20 overflow-hidden">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#3D2216] pb-3 mb-6 gap-2 w-full max-w-full">
         <div className="flex items-center gap-2">
           <TrendingUp className="h-4 w-4 text-[#FF6B35]" />
           <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-[#D8C4B6]">

@@ -115,8 +115,8 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
   };
 
   return (
-    <div className="bg-[#180D07] text-[#FFF6EE] min-h-screen py-10 transition-colors">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="bg-[#180D07] text-[#FFF6EE] min-h-screen py-10 transition-colors w-full max-w-full overflow-x-hidden">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full">
         <div className="grid grid-cols-12 gap-8 items-start">
           {/* ================= LEFT STICKY SIDEBAR INDEX ================= */}
           <aside className="hidden lg:block lg:col-span-3 sticky top-24 pt-2">
@@ -165,7 +165,7 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
           </aside>
 
           {/* Mobile & iPad Horizontal Category Bar */}
-          <div className="lg:hidden col-span-12 sticky top-16 z-30 bg-[#160B06]/95 backdrop-blur-md py-2.5 -mx-4 px-4 sm:-mx-6 sm:px-6 border-b border-[#3D2216] overflow-x-auto scrollbar-none flex items-center gap-2">
+          <div className="lg:hidden col-span-12 sticky top-16 z-30 bg-[#160B06]/95 backdrop-blur-md py-2.5 px-4 sm:px-6 border-b border-[#3D2216] overflow-x-auto scrollbar-none flex items-center gap-2 w-full max-w-full">
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
               return (

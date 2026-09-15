@@ -167,8 +167,8 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
   };
 
   return (
-    <section id="benchmarks" className="border-t border-[#3D2216] bg-[#180D07] py-16 scroll-mt-20 text-[#FFF6EE]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="benchmarks" className="border-t border-[#3D2216] bg-[#180D07] py-16 scroll-mt-20 text-[#FFF6EE] w-full max-w-full overflow-hidden">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
           <div>
@@ -258,11 +258,11 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
         </div>
 
         {/* The Signature Horizontal Scroll Container (data-chart-scroll="true") */}
-        <div className="relative rounded-lg border border-[#472718] bg-[#24130C]/90 p-6 backdrop-blur-md shadow-card-espresso">
+        <div className="relative w-full max-w-full overflow-hidden rounded-lg border border-[#472718] bg-[#24130C]/90 p-4 sm:p-6 backdrop-blur-md shadow-card-espresso">
           <div
             ref={scrollContainerRef}
             data-chart-scroll="true"
-            className="flex items-end gap-3.5 overflow-x-auto pb-4 pt-8 scrollbar-thin scrollbar-thumb-[#4A2818] scrollbar-track-[#180D07]"
+            className="flex items-end gap-3.5 overflow-x-auto pb-4 pt-8 w-full max-w-full scrollbar-thin scrollbar-thumb-[#4A2818] scrollbar-track-[#180D07]"
             style={{ minHeight: '340px' }}
           >
             {rankedModels.map((model, index) => {

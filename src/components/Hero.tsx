@@ -36,7 +36,7 @@ export const Hero: React.FC<HeroProps> = ({
   const { setViewMode } = useViewMode();
 
   return (
-    <section className="relative overflow-hidden bg-[#180D07] text-[#FFF6EE] pt-8 pb-16 border-b border-[#3D2216]">
+    <section className="relative overflow-hidden bg-[#180D07] text-[#FFF6EE] pt-8 pb-16 border-b border-[#3D2216] w-full max-w-full">
       {/* Background Tech Grid */}
       <div className="absolute inset-0 bg-tech-grid opacity-30 pointer-events-none" />
 
@@ -45,16 +45,16 @@ export const Hero: React.FC<HeroProps> = ({
       <div className="absolute top-32 left-1/4 w-[350px] h-[250px] bg-[#FF8452]/10 blur-[90px] pointer-events-none rounded-full animate-orange-pulse" />
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#180D07] via-[#180D07]/60 to-transparent pointer-events-none" />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10 w-full max-w-full">
         {/* Technical Header with Crosshairs (Ledger Style) */}
-        <div className="relative mb-10 flex items-center justify-between text-[#A89280] text-[11px] font-mono tracking-[0.2em] uppercase border-y border-[#3D2216] py-2.5 backdrop-blur-sm">
-          <span className="text-[#FF6B35]/70 font-bold text-sm">+</span>
-          <span className="text-center px-4 truncate">
+        <div className="relative mb-10 flex items-center justify-between text-[#A89280] text-[9px] sm:text-[11px] font-mono tracking-normal sm:tracking-[0.2em] uppercase border-y border-[#3D2216] py-2.5 backdrop-blur-sm w-full max-w-full min-w-0">
+          <span className="text-[#FF6B35]/70 font-bold text-sm shrink-0">+</span>
+          <span className="text-center px-2 sm:px-4 min-w-0 flex-1 truncate">
             {language === 'vi' 
               ? 'BẠN PHÁT TRIỂN SẢN PHẨM. CHÚNG TÔI ĐO LƯỜNG VÀ GIÁM SÁT CÁC MÔ HÌNH AI.' 
               : "YOU BUILT THE PRODUCT. WE'LL WATCH THE AI BENCHMARKS."}
           </span>
-          <span className="text-[#FF6B35]/70 font-bold text-sm">+</span>
+          <span className="text-[#FF6B35]/70 font-bold text-sm shrink-0">+</span>
         </div>
 
         {/* Hero Editorial Headline */}
