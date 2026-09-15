@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { Model, WorkloadScenario } from '../types';
 import { SCENARIOS_DATA } from '../data/scenarios';
 import { useLanguage } from '../context/LanguageContext';
@@ -48,13 +48,13 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
   const outputTokens = Math.round(outputWords * WORDS_TO_TOKENS_RATIO);
 
   // Calculate monthly cost for a given model in USD and VND
-  const calculateModelCost = (model: Model) => {
+  const calculateModelCost = useCallback((model: Model) => {
     const inputCostUSD = (inputTokens / 1000000) * model.inputPricePerMillionUSD;
     const outputCostUSD = (outputTokens / 1000000) * model.outputPricePerMillionUSD;
     const totalUSD = inputCostUSD + outputCostUSD;
     const totalVND = convertUSDToVND(totalUSD);
     return { totalUSD, totalVND };
-  };
+  }, [inputTokens, outputTokens]);
 
   const filteredCalcModels = useMemo(() => {
     let list = models;
@@ -72,7 +72,7 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
     });
     rows.sort((a, b) => a.totalVND - b.totalVND);
     return rows;
-  }, [filteredCalcModels, inputTokens, outputTokens]);
+  }, [filteredCalcModels, calculateModelCost]);
 
   const calculatedRows = calcShowAll || calcSearch.trim() !== '' ? allCalculatedRows : allCalculatedRows.slice(0, 10);
   const minCost = allCalculatedRows[0]?.totalVND || 1;

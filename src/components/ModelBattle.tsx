@@ -55,22 +55,28 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
   useEffect(() => {
     if (initialModelA?.id) {
       setModelAId(initialModelA.id);
-      if (initialModelA.id === modelBId) {
-        const other = models.find((m) => m.id !== initialModelA.id);
-        if (other) setModelBId(other.id);
-      }
+      setModelBId((currentBId) => {
+        if (currentBId === initialModelA.id) {
+          const other = models.find((m) => m.id !== initialModelA.id);
+          return other ? other.id : currentBId;
+        }
+        return currentBId;
+      });
     }
-  }, [initialModelA?.id]);
+  }, [initialModelA?.id, models]);
 
   useEffect(() => {
     if (initialModelB?.id) {
       setModelBId(initialModelB.id);
-      if (initialModelB.id === modelAId) {
-        const other = models.find((m) => m.id !== initialModelB.id);
-        if (other) setModelAId(other.id);
-      }
+      setModelAId((currentAId) => {
+        if (currentAId === initialModelB.id) {
+          const other = models.find((m) => m.id !== initialModelB.id);
+          return other ? other.id : currentAId;
+        }
+        return currentAId;
+      });
     }
-  }, [initialModelB?.id]);
+  }, [initialModelB?.id, models]);
 
   const modelA = models.find((m) => m.id === modelAId) || models[0];
   const modelB = models.find((m) => m.id === modelBId) || models[1];

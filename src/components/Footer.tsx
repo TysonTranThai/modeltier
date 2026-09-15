@@ -23,12 +23,15 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Info */}
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2.5 mb-3">
-              <span className="flex h-7 w-7 items-center justify-center rounded-sm border border-[#FF6B35]/40 bg-gradient-to-br from-[#FF6B35] to-[#E64A19] shadow-glow-orange text-white font-mono font-black text-xs">
-                M
-              </span>
-              <span className="text-xl font-serif font-black tracking-tight text-[#FFF6EE]">
-                Model<span className="text-[#FF8452]">Tier</span>
+            <div className="flex items-center gap-2 mb-3">
+              <div className="flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-sm bg-[#FF6B35] text-[#160B06] shadow-sm">
+                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="#160B06" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 18l8-12 8 12" />
+                  <path d="M7 14h10" />
+                </svg>
+              </div>
+              <span className="text-xl font-serif font-normal tracking-tight text-[#FFF6EE]">
+                Model<span className="text-[#FF6B35]">Tier</span>
               </span>
             </div>
             <p className="text-xs text-[#A89280] leading-relaxed max-w-sm font-light">

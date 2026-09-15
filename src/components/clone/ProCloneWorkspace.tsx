@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { ScrapedModel } from '../../types';
 import { IntelligenceIndexCard } from './IntelligenceIndexCard';
 import { CloneSections } from './CloneSections';
@@ -38,7 +38,7 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
   const { language } = useLanguage();
   const [activeSection, setActiveSection] = useState<string>('intelligence');
 
-  const navItems: NavIndexItem[] = [
+  const navItems: NavIndexItem[] = useMemo(() => [
     { 
       id: 'intelligence', 
       label: language === 'vi' ? 'Chỉ số Trí tuệ (Intelligence)' : 'Intelligence', 
@@ -85,7 +85,7 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
       id: 'providers', 
       label: language === 'vi' ? 'Hạ tầng Nhà cung cấp' : 'Providers' 
     },
-  ];
+  ], [language]);
 
   // ScrollSpy to update active sidebar link on scroll
   useEffect(() => {
@@ -103,7 +103,7 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [navItems]);
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();

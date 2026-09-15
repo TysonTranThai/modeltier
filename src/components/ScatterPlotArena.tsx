@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { ScrapedModel } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { useCurrency } from '../context/CurrencyContext';
@@ -10,6 +10,11 @@ interface ScatterPlotArenaProps {
   models: ScrapedModel[];
   onSelectModel: (model: ScrapedModel) => void;
 }
+
+// SVG dimensions & padding constants
+const SVG_WIDTH = 800;
+const SVG_HEIGHT = 420;
+const PADDING = { top: 30, right: 40, bottom: 50, left: 60 };
 
 export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
   models,
@@ -94,20 +99,20 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
     return '#a3a3a3';
   };
 
-  // SVG dimensions
-  const svgWidth = 800;
-  const svgHeight = 420;
-  const padding = { top: 30, right: 40, bottom: 50, left: 60 };
+  // Local aliases for SVG layout
+  const svgWidth = SVG_WIDTH;
+  const svgHeight = SVG_HEIGHT;
+  const padding = PADDING;
 
-  const scaleX = (val: number) => {
-    const width = svgWidth - padding.left - padding.right;
-    return padding.left + ((val - minX) / (maxX - minX)) * width;
-  };
+  const scaleX = useCallback((val: number) => {
+    const width = SVG_WIDTH - PADDING.left - PADDING.right;
+    return PADDING.left + ((val - minX) / (maxX - minX)) * width;
+  }, [minX, maxX]);
 
-  const scaleY = (val: number) => {
-    const height = svgHeight - padding.top - padding.bottom;
-    return svgHeight - padding.bottom - ((val - minIntel) / (maxIntel - minIntel)) * height;
-  };
+  const scaleY = useCallback((val: number) => {
+    const height = SVG_HEIGHT - PADDING.top - PADDING.bottom;
+    return SVG_HEIGHT - PADDING.bottom - ((val - minIntel) / (maxIntel - minIntel)) * height;
+  }, [minIntel, maxIntel]);
 
   const paretoPathD = useMemo(() => {
     if (paretoFrontier.length < 2) return '';

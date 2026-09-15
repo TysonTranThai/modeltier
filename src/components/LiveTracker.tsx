@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ProviderStatus } from '../types';
 import { PROVIDERS_DATA } from '../data/providers';
 import { useLanguage } from '../context/LanguageContext';
@@ -23,14 +23,7 @@ export const LiveTracker: React.FC = () => {
   const [lastRefreshed, setLastRefreshed] = useState<Date>(new Date());
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-    handleRefresh();
-    const interval = setInterval(handleRefresh, 60000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const handleRefresh = async () => {
+  const handleRefresh = useCallback(async () => {
     setIsRefreshing(true);
     try {
       const res = await fetch('/api/live-status');
@@ -49,21 +42,28 @@ export const LiveTracker: React.FC = () => {
 
     setTimeout(() => {
       // Fallback jitter
-      const jittered = providers.map((p) => {
-        const jitterLatency = Math.max(80, p.avgLatencyMs + Math.floor((Math.random() - 0.5) * 40));
-        const jitterThroughput = Math.max(30, p.throughputTps + Math.floor((Math.random() - 0.5) * 15));
-        return {
-          ...p,
-          avgLatencyMs: jitterLatency,
-          throughputTps: jitterThroughput,
-          updatedAt: new Date().toISOString(),
-        };
-      });
-      setProviders(jittered);
+      setProviders((currentProviders) =>
+        currentProviders.map((p) => {
+          const jitterLatency = Math.max(80, p.avgLatencyMs + Math.floor((Math.random() - 0.5) * 40));
+          const jitterThroughput = Math.max(30, p.throughputTps + Math.floor((Math.random() - 0.5) * 15));
+          return {
+            ...p,
+            avgLatencyMs: jitterLatency,
+            throughputTps: jitterThroughput,
+          };
+        })
+      );
       setLastRefreshed(new Date());
       setIsRefreshing(false);
     }, 400);
-  };
+  }, []);
+
+  useEffect(() => {
+    setMounted(true);
+    handleRefresh();
+    const interval = setInterval(handleRefresh, 60000);
+    return () => clearInterval(interval);
+  }, [handleRefresh]);
 
   return (
     <section id="live" className="py-14 lg:py-20 scroll-mt-16 w-full max-w-full overflow-hidden">
