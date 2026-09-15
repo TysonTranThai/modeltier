@@ -172,7 +172,7 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#FF6B35]/30 bg-[#24130C] px-3.5 py-1 text-xs font-semibold text-[#FF8452] mb-3">
+            <div className="inline-flex items-center gap-2 rounded-sm border border-[#FF6B35]/40 bg-[#24130C] px-3 py-1 font-mono text-xs uppercase tracking-wider text-[#FF8452] mb-3">
               <BarChart2 className="h-3.5 w-3.5" />
               <span>{language === 'vi' ? 'Khám Phá Biểu Đồ Cuộn Ngang' : 'Horizontal Benchmark Explorer'}</span>
             </div>
@@ -190,14 +190,14 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
           <div className="flex items-center gap-2">
             <button
               onClick={() => scroll('left')}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#472718] bg-[#24130C] text-[#D8C4B6] hover:border-[#FF6B35] hover:text-white transition-all shadow-sm active:scale-95"
+              className="flex h-10 w-10 items-center justify-center rounded-sm border border-[#472718] bg-[#24130C] text-[#D8C4B6] hover:border-[#FF6B35] hover:text-white transition-all shadow-sm active:scale-95"
               aria-label="Cuộn sang trái"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
             <button
               onClick={() => scroll('right')}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[#472718] bg-[#24130C] text-[#D8C4B6] hover:border-[#FF6B35] hover:text-white transition-all shadow-sm active:scale-95"
+              className="flex h-10 w-10 items-center justify-center rounded-sm border border-[#472718] bg-[#24130C] text-[#D8C4B6] hover:border-[#FF6B35] hover:text-white transition-all shadow-sm active:scale-95"
               aria-label="Cuộn sang phải"
             >
               <ChevronRight className="h-5 w-5" />
@@ -214,7 +214,7 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
               <button
                 key={tab.id}
                 onClick={() => setActiveMetric(tab.id as BenchmarkMetric)}
-                className={`inline-flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-xs font-semibold transition-all ${
+                className={`inline-flex items-center gap-2 whitespace-nowrap rounded-sm px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wider transition-all ${
                   isActive
                     ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange'
                     : 'border border-[#472718] bg-[#24130C] text-[#D8C4B6] hover:border-[#FF6B35]/50 hover:text-white'
@@ -227,10 +227,10 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
           })}
         </div>
 
-        {/* Secondary Filter Pills */}
+        {/* Secondary Filter Chips */}
         <div className="mb-6 flex flex-wrap items-center gap-2 text-xs">
           <span className="text-[#8A7262] font-mono text-[11px] mr-1">
-            {language === 'vi' ? 'Bộ lọc:' : 'Filter:'}
+            {language === 'vi' ? 'BỘ LỌC:' : 'FILTER:'}
           </span>
           {[
             { id: 'all', label: language === 'vi' ? 'Tất cả' : 'All Models' },
@@ -243,7 +243,7 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
             <button
               key={f.id}
               onClick={() => setFilterType(f.id)}
-              className={`rounded-full px-3 py-1 font-medium transition-all ${
+              className={`rounded-sm px-3 py-1 font-mono text-xs transition-all ${
                 filterType === f.id
                   ? 'bg-[#FFF6EE] text-[#180D07] font-bold shadow-sm'
                   : 'bg-[#201009] text-[#B8A08F] border border-[#3D2216] hover:border-[#FF6B35]/40 hover:text-white'
@@ -258,7 +258,7 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
         </div>
 
         {/* The Signature Horizontal Scroll Container (data-chart-scroll="true") */}
-        <div className="relative rounded-2xl border border-[#472718] bg-[#24130C]/90 p-6 backdrop-blur-md shadow-card-espresso">
+        <div className="relative rounded-lg border border-[#472718] bg-[#24130C]/90 p-6 backdrop-blur-md shadow-card-espresso">
           <div
             ref={scrollContainerRef}
             data-chart-scroll="true"
@@ -274,22 +274,22 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
                 <div
                   key={model.id || index}
                   onClick={() => onSelectModel(model)}
-                  className="group relative flex w-24 sm:w-28 flex-shrink-0 cursor-pointer flex-col items-center justify-end rounded-xl p-2.5 hover:bg-[#2F1910]/90 hover:-translate-y-1.5 hover:shadow-card-espresso transition-all duration-300"
+                  className="group relative flex w-24 sm:w-28 flex-shrink-0 cursor-pointer flex-col items-center justify-end rounded-md p-2.5 hover:bg-[#2F1910]/90 hover:-translate-y-1.5 hover:shadow-card-espresso transition-all duration-300"
                 >
                   {/* Rank Podium Badge */}
                   <div className="absolute top-0 flex flex-col items-center">
                     {index === 0 && (
-                      <span className="rounded-full bg-gradient-to-r from-amber-500 to-[#FF6B35] px-2 py-0.5 text-[10px] font-bold text-white shadow-glow-orange animate-pulse">
+                      <span className="rounded-sm bg-gradient-to-r from-amber-500 to-[#FF6B35] px-2 py-0.5 font-mono text-[10px] font-bold text-white shadow-glow-orange animate-pulse">
                         #1 🥇
                       </span>
                     )}
                     {index === 1 && (
-                      <span className="rounded-full bg-slate-300 text-slate-950 px-2 py-0.5 text-[10px] font-bold shadow-sm">
+                      <span className="rounded-sm bg-slate-300 text-slate-950 px-2 py-0.5 font-mono text-[10px] font-bold shadow-sm">
                         #2 🥈
                       </span>
                     )}
                     {index === 2 && (
-                      <span className="rounded-full bg-amber-700 text-amber-100 px-2 py-0.5 text-[10px] font-bold shadow-sm">
+                      <span className="rounded-sm bg-amber-700 text-amber-100 px-2 py-0.5 font-mono text-[10px] font-bold shadow-sm">
                         #3 🥉
                       </span>
                     )}
@@ -317,7 +317,7 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
                         height: `${ratio}%`,
                         backgroundColor: isTop3 ? undefined : barColor,
                       }}
-                      className={`w-full max-w-[40px] rounded-t-lg transition-all duration-500 ease-out group-hover:scale-y-105 ${
+                      className={`w-full max-w-[40px] rounded-t-sm transition-all duration-500 ease-out group-hover:scale-y-105 ${
                         isTop3
                           ? 'bg-gradient-to-t from-[#E64A19] to-[#FF6B35] shadow-glow-orange'
                           : 'opacity-90 group-hover:opacity-100 group-hover:brightness-110'
@@ -333,7 +333,7 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
                     <span className="text-[10px] text-[#A89280] block truncate">
                       {model.creator}
                     </span>
-                    <span className={`mt-1 inline-block rounded-full px-1.5 py-0.2 text-[9px] font-medium ${
+                    <span className={`mt-1 inline-block rounded-sm px-1.5 py-0.5 font-mono text-[9px] font-medium ${
                       model.isOpenWeights ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-neutral-800 text-[#B8A08F]'
                     }`}>
                       {model.isOpenWeights ? 'Open' : 'API'}

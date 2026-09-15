@@ -48,7 +48,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
                 (Coding Agent Index)
               </span>
             </h2>
-            <span className="rounded-full bg-[#FF6B35]/20 text-[#FF8452] border border-[#FF6B35]/30 text-[10px] font-bold px-2.5 py-0.5 font-mono">
+            <span className="rounded-sm bg-[#FF6B35]/20 text-[#FF8452] border border-[#FF6B35]/30 text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5">
               {language === 'vi' ? 'Mới cập nhật' : 'Updated'}
             </span>
           </div>
@@ -59,7 +59,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
           </p>
         </div>
 
-        <div className="rounded-2xl border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md">
+        <div className="rounded-md border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md">
           <div className="flex items-center justify-between mb-5 pb-3 border-b border-[#2C160C]">
             <h3 className="text-base font-bold font-serif flex items-center gap-2 text-[#FFF6EE]">
               <span>
@@ -83,7 +83,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
               { name: 'Cline + DeepSeek V3', creator: 'DeepSeek', score: 58.4, cost: '$0.32', speed: '4m 50s' },
               { name: 'Aider + Qwen 2.5 Coder 32B', creator: 'Alibaba', score: 54.6, cost: '$0.28', speed: '3m 15s' },
             ].map((item, idx) => (
-              <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3.5 rounded-xl hover:bg-[#25120B] border border-[#2C160C] transition-colors">
+              <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3.5 rounded-sm hover:bg-[#25120B] border border-[#2C160C] transition-colors">
                 <div className="flex items-center gap-3">
                   <span className="text-xs font-mono text-[#8A7262] w-5">#{idx + 1}</span>
                   <CompanyLogo creator={item.creator} size={16} />
@@ -93,8 +93,8 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
                   <span className="text-[#A89280]">{language === 'vi' ? 'Chi phí:' : 'Cost:'} <strong className="text-[#FFF6EE]">{item.cost}</strong></span>
                   <span className="text-[#A89280]">{language === 'vi' ? 'Thời gian:' : 'Time:'} <strong className="text-[#FFF6EE]">{item.speed}</strong></span>
                   <div className="flex items-center gap-2 w-32 justify-end">
-                    <div className="w-16 bg-[#120703] h-2.5 rounded-full overflow-hidden">
-                      <div className="bg-gradient-to-r from-[#E64A19] to-[#FF6B35] h-full rounded-full" style={{ width: `${item.score}%` }} />
+                    <div className="w-16 bg-[#120703] h-2.5 rounded-sm overflow-hidden">
+                      <div className="bg-gradient-to-r from-[#E64A19] to-[#FF6B35] h-full rounded-sm" style={{ width: `${item.score}%` }} />
                     </div>
                     <span className="font-bold text-[#FF8452]">{item.score}%</span>
                   </div>
@@ -126,7 +126,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Image Arena */}
-          <div className="rounded-2xl border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md">
+          <div className="rounded-md border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md">
             <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#2C160C]">
               <h3 className="text-base font-bold font-serif flex items-center gap-2 text-[#FFF6EE]">
                 <span>{language === 'vi' ? 'Đấu trường Tạo Ảnh (Text-to-Image)' : 'Text to Image Arena'}</span>
@@ -142,8 +142,8 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
                 { name: 'DALL-E 3 HD', creator: 'OpenAI', elo: 1180 },
                 { name: 'Stable Diffusion 3.5 Large', creator: 'Stability AI', elo: 1162 },
               ].map((m, idx) => (
-                <div key={idx} className="flex items-center justify-between text-xs py-2 border-b border-[#2C160C] last:border-0">
-                  <span className="font-semibold text-[#FFF6EE] flex items-center gap-2">
+                <div key={idx} className="flex items-center justify-between text-xs py-2 border-b border-[#2C160C] last:border-0 font-mono">
+                  <span className="font-semibold text-[#FFF6EE] flex items-center gap-2 font-sans">
                     <span className="text-[#8A7262] font-mono">#{idx + 1}</span>
                     <span>{m.name}</span>
                   </span>
@@ -154,7 +154,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
           </div>
 
           {/* Video Arena */}
-          <div className="rounded-2xl border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md">
+          <div className="rounded-md border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md">
             <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#2C160C]">
               <h3 className="text-base font-bold font-serif flex items-center gap-2 text-[#FFF6EE]">
                 <span>{language === 'vi' ? 'Đấu trường Tạo Video (Text-to-Video)' : 'Text to Video Arena'}</span>
@@ -170,8 +170,8 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
                 { name: 'Luma Dream Machine 1.5', creator: 'Luma AI', elo: 1210 },
                 { name: 'Hailuo MiniMax Video 01', creator: 'MiniMax', elo: 1195 },
               ].map((m, idx) => (
-                <div key={idx} className="flex items-center justify-between text-xs py-2 border-b border-[#2C160C] last:border-0">
-                  <span className="font-semibold text-[#FFF6EE] flex items-center gap-2">
+                <div key={idx} className="flex items-center justify-between text-xs py-2 border-b border-[#2C160C] last:border-0 font-mono">
+                  <span className="font-semibold text-[#FFF6EE] flex items-center gap-2 font-sans">
                     <span className="text-[#8A7262] font-mono">#{idx + 1}</span>
                     <span>{m.name}</span>
                   </span>
@@ -202,7 +202,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
           </p>
         </div>
 
-        <div className="rounded-2xl border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md">
+        <div className="rounded-md border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div className="border-r border-[#2C160C] pr-4 last:border-0">
               <h4 className="text-xs font-bold text-[#A89280] uppercase tracking-wider mb-3 font-mono">
@@ -288,7 +288,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
           ].map((item, idx) => {
             const Icon = item.icon;
             return (
-              <div key={idx} className="rounded-2xl border border-[#3D2216] bg-[#1E0F09]/95 p-5 shadow-xl hover:border-[#FF6B35]/60 transition-all">
+              <div key={idx} className="rounded-md border border-[#3D2216] bg-[#1E0F09]/95 p-5 shadow-xl hover:border-[#FF6B35]/60 transition-all">
                 <div className="flex items-center justify-between text-[#A89280] mb-2">
                   <span className="text-xs font-bold text-[#C7B299]">{item.title}</span>
                   <Icon className="h-4 w-4 text-[#FF6B35]" />
@@ -322,7 +322,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
           </p>
         </div>
 
-        <div className="rounded-2xl border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md">
+        <div className="rounded-md border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
             {[
               { 
@@ -376,7 +376,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
                 descEn: 'Long-context multi-needle needle-in-a-haystack retrieval precision' 
               },
             ].map((b, idx) => (
-              <div key={idx} className="p-3.5 rounded-xl border border-[#2C160C] bg-[#140A06]/80">
+              <div key={idx} className="p-3.5 rounded-sm border border-[#2C160C] bg-[#140A06]/80">
                 <span className="font-bold text-[#FF8452] font-mono text-sm">{b.id}</span>
                 <p className="text-[#A89280] mt-1.5 leading-relaxed">
                   {language === 'vi' ? b.descVi : b.descEn}
@@ -406,7 +406,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
           </p>
         </div>
 
-        <div className="rounded-2xl border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md overflow-x-auto">
+        <div className="rounded-md border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md overflow-x-auto">
           <table className="w-full text-left text-xs border-collapse">
             <thead>
               <tr className="border-b border-[#2C160C] text-[#A89280] font-semibold uppercase tracking-wider font-mono">
@@ -461,7 +461,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
           </p>
         </div>
 
-        <div className="rounded-2xl border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md">
+        <div className="rounded-md border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md">
           <div className="space-y-3 text-xs">
             {[
               { name: 'Claude 3.7 Sonnet (Thinking max)', reasoning: '64,000 tokens', answer: '128,000 tokens', context: '200K' },
@@ -469,7 +469,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
               { name: 'Gemini 2.5 Pro (Deep Think)', reasoning: '32,000 tokens', answer: '64,000 tokens', context: '2M' },
               { name: 'DeepSeek R1', reasoning: '32,768 tokens', answer: '64,000 tokens', context: '128K' },
             ].map((item, idx) => (
-              <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3.5 rounded-xl border border-[#2C160C] bg-[#140A06]/70">
+              <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3.5 rounded-sm border border-[#2C160C] bg-[#140A06]/70">
                 <span className="font-semibold text-[#FFF6EE] text-sm">{item.name}</span>
                 <div className="flex items-center gap-4 text-[#A89280] font-mono">
                   <span>{language === 'vi' ? 'Suy luận (Reasoning):' : 'Reasoning:'} <strong className="text-[#FF8452]">{item.reasoning}</strong></span>
@@ -501,7 +501,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
           </p>
         </div>
 
-        <div className="rounded-2xl border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md overflow-x-auto">
+        <div className="rounded-md border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md overflow-x-auto">
           <table className="w-full text-left text-xs border-collapse font-mono">
             <thead>
               <tr className="border-b border-[#2C160C] text-[#A89280] font-semibold uppercase tracking-wider">
@@ -558,7 +558,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="rounded-2xl border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md">
+          <div className="rounded-md border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md">
             <h3 className="text-base font-bold font-serif mb-4 flex items-center justify-between text-[#FFF6EE]">
               <span>{language === 'vi' ? 'Tốc độ Sinh Token (Tokens / Giây)' : 'Output Speed (Tokens / Sec)'}</span>
               <span className="text-xs text-[#A89280] font-normal font-mono">
@@ -579,8 +579,8 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
                     <span>{m.name}</span>
                   </span>
                   <div className="flex items-center gap-2">
-                    <div className="w-24 bg-[#120703] h-2 rounded-full overflow-hidden">
-                      <div className="bg-gradient-to-r from-amber-500 to-[#FF6B35] h-full rounded-full" style={{ width: `${(m.speed / 300) * 100}%` }} />
+                    <div className="w-24 bg-[#120703] h-2 rounded-sm overflow-hidden">
+                      <div className="bg-gradient-to-r from-amber-500 to-[#FF6B35] h-full rounded-sm" style={{ width: `${(m.speed / 300) * 100}%` }} />
                     </div>
                     <span className="font-mono font-bold text-[#FFF6EE] w-14 text-right">{m.speed} tps</span>
                   </div>
@@ -589,7 +589,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
             </div>
           </div>
 
-          <div className="rounded-2xl border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md">
+          <div className="rounded-md border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md">
             <h3 className="text-base font-bold font-serif mb-4 flex items-center justify-between text-[#FFF6EE]">
               <span>{language === 'vi' ? 'Độ trễ Gói Đầu (TTFT Latency)' : 'Time to First Token (Latency TTFT)'}</span>
               <span className="text-xs text-[#A89280] font-normal font-mono">
@@ -610,8 +610,8 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
                     <span>{m.name}</span>
                   </span>
                   <div className="flex items-center gap-2">
-                    <div className="w-24 bg-[#120703] h-2 rounded-full overflow-hidden">
-                      <div className="bg-emerald-500 h-full rounded-full" style={{ width: `${Math.max(15, 100 - (m.latency / 800) * 100)}%` }} />
+                    <div className="w-24 bg-[#120703] h-2 rounded-sm overflow-hidden">
+                      <div className="bg-emerald-500 h-full rounded-sm" style={{ width: `${Math.max(15, 100 - (m.latency / 800) * 100)}%` }} />
                     </div>
                     <span className="font-mono font-bold text-[#FFF6EE] w-14 text-right">{m.latency} ms</span>
                   </div>
@@ -641,7 +641,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
           </p>
         </div>
 
-        <div className="rounded-2xl border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md overflow-x-auto">
+        <div className="rounded-md border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md overflow-x-auto">
           <table className="w-full text-left text-xs border-collapse font-mono">
             <thead>
               <tr className="border-b border-[#2C160C] text-[#A89280] font-semibold uppercase tracking-wider font-sans">

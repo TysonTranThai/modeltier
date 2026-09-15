@@ -24,7 +24,7 @@ export const Footer: React.FC = () => {
           {/* Brand Info */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2.5 mb-3">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#FF6B35] shadow-glow-orange text-white font-serif font-black text-xs">
+              <span className="flex h-7 w-7 items-center justify-center rounded-sm border border-[#FF6B35]/40 bg-gradient-to-br from-[#FF6B35] to-[#E64A19] shadow-glow-orange text-white font-mono font-black text-xs">
                 M
               </span>
               <span className="text-xl font-serif font-black tracking-tight text-[#FFF6EE]">

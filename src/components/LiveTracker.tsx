@@ -71,7 +71,7 @@ export const LiveTracker: React.FC = () => {
         {/* Title & Refresh Button */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#FF6B35]/10 px-3.5 py-1 text-xs font-semibold text-[#FF8452] border border-[#FF6B35]/20 mb-3">
+            <div className="inline-flex items-center gap-2 rounded-sm bg-[#FF6B35]/10 px-3.5 py-1 text-[11px] font-mono font-bold uppercase tracking-wider text-[#FF8452] border border-[#FF6B35]/20 mb-3">
               <div className="relative flex h-3.5 w-3.5 items-center justify-center">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF6B35] opacity-75" />
                 <Radio className="relative h-3.5 w-3.5 text-[#FF8452]" />
@@ -87,14 +87,14 @@ export const LiveTracker: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-xs text-[#8A7262]" suppressHydrationWarning>
+            <span className="text-xs font-mono text-[#8A7262]" suppressHydrationWarning>
               {language === 'vi' ? 'Cập nhật lúc:' : 'Updated:'}{' '}
               {mounted ? lastRefreshed.toLocaleTimeString() : '--:--:--'}
             </span>
             <button
               onClick={handleRefresh}
               disabled={isRefreshing}
-              className="inline-flex items-center gap-2 rounded-xl border border-[#472718] bg-[#24130C] px-4 py-2 text-xs font-semibold text-[#FFF6EE] hover:bg-[#2E170E] hover:border-[#FF6B35]/40 transition-all disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded-sm border border-[#472718] bg-[#24130C] px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider text-[#FFF6EE] hover:bg-[#2E170E] hover:border-[#FF6B35] transition-all disabled:opacity-50"
             >
               <RefreshCw className={`h-3.5 w-3.5 text-[#FF8452] ${isRefreshing ? 'animate-spin' : ''}`} />
               {t.liveRadar.refreshButton}
@@ -103,10 +103,10 @@ export const LiveTracker: React.FC = () => {
         </div>
 
         {/* Notice Card: Why Provider Selection Matters */}
-        <div className="rounded-2xl border border-[#FF6B35]/30 bg-[#24130C]/80 p-4 mb-8 text-xs text-[#D8C4B6] flex items-start gap-3">
+        <div className="rounded-md border border-[#FF6B35]/30 bg-[#24130C]/80 p-4 mb-8 text-xs text-[#D8C4B6] flex items-start gap-3">
           <Zap className="h-5 w-5 text-[#FF8452] shrink-0 mt-0.5" />
           <div className="leading-relaxed">
-            <span className="font-bold text-[#FF8452]">
+            <span className="font-bold text-[#FF8452] font-mono">
               {language === 'vi' ? '💡 Bí quyết bạn nên biết:' : '💡 Pro Tip:'}{' '}
             </span>
             {language === 'vi' 
@@ -123,16 +123,16 @@ export const LiveTracker: React.FC = () => {
             return (
               <div
                 key={provider.id}
-                className="rounded-2xl border border-[#3D2216] bg-[#24130C]/80 p-5 shadow-xl backdrop-blur-sm transition-all duration-300 hover:border-[#FF6B35]/60 hover:shadow-glow-orange hover:-translate-y-1.5 group"
+                className="rounded-md border border-[#3D2216] bg-[#24130C]/80 p-5 shadow-xl backdrop-blur-sm transition-all duration-300 hover:border-[#FF6B35]/60 hover:shadow-glow-orange hover:-translate-y-1.5 group"
               >
                 {/* Header: Name & Status Badge */}
                 <div className="flex items-start justify-between gap-2 mb-3">
                   <div>
                     <h3 className="font-bold text-[#FFF6EE] text-base group-hover:text-[#FF8452] transition-colors">{provider.name}</h3>
-                    <span className="text-[10px] text-slate-500">{provider.region}</span>
+                    <span className="text-[10px] font-mono text-slate-500">{provider.region}</span>
                   </div>
 
-                  <div className="flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[10px] font-bold border border-[#3D2216]">
+                  <div className="flex items-center gap-1.5 rounded-sm px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider border border-[#3D2216]">
                     <span className="relative flex h-2 w-2">
                       {isOperational && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />}
                       <span className={`relative inline-flex rounded-full h-2 w-2 ${isOperational ? 'bg-emerald-400' : 'bg-amber-400'}`} />
@@ -144,9 +144,9 @@ export const LiveTracker: React.FC = () => {
                 </div>
 
                 {/* Metrics */}
-                <div className="mt-4 grid grid-cols-2 gap-2 rounded-xl bg-[#1A0E08]/60 p-3 border border-[#3D2216]/60 text-xs">
+                <div className="mt-4 grid grid-cols-2 gap-2 rounded-sm bg-[#1A0E08]/60 p-3 border border-[#3D2216]/60 text-xs font-mono">
                   <div>
-                    <span className="text-[10px] text-[#A89280] flex items-center gap-1">
+                    <span className="text-[10px] text-[#A89280] flex items-center gap-1 font-sans">
                       <Zap className="h-3 w-3 text-amber-400" /> {t.liveRadar.speedLabel}
                     </span>
                     <div className="text-base font-black text-[#FFF6EE] mt-0.5">
@@ -155,7 +155,7 @@ export const LiveTracker: React.FC = () => {
                   </div>
 
                   <div>
-                    <span className="text-[10px] text-[#A89280] flex items-center gap-1">
+                    <span className="text-[10px] text-[#A89280] flex items-center gap-1 font-sans">
                       <Clock className="h-3 w-3 text-cyan-400" /> {t.liveRadar.latencyLabel}
                     </span>
                     <div className="text-base font-black text-[#FFF6EE] mt-0.5">
@@ -165,9 +165,9 @@ export const LiveTracker: React.FC = () => {
                 </div>
 
                 {/* Uptime & Models Served */}
-                <div className="mt-3.5 space-y-2 text-xs">
+                <div className="mt-3.5 space-y-2 text-xs font-mono">
                   <div className="flex justify-between text-[#A89280] text-[11px]">
-                    <span>{language === 'vi' ? 'Uptime 30 ngày:' : '30-day Uptime:'}</span>
+                    <span className="font-sans">{language === 'vi' ? 'Uptime 30 ngày:' : '30-day Uptime:'}</span>
                     <span className="font-bold text-emerald-400">{provider.uptimePercent}%</span>
                   </div>
 
@@ -179,7 +179,7 @@ export const LiveTracker: React.FC = () => {
                       {provider.modelsServed.map((m, idx) => (
                         <span
                           key={idx}
-                          className="rounded-md bg-[#180D07] border border-[#3D2216] px-1.5 py-0.5 text-[10px] text-[#D8C4B6] font-medium"
+                          className="rounded-sm bg-[#180D07] border border-[#3D2216] px-1.5 py-0.5 text-[10px] text-[#D8C4B6] font-medium"
                         >
                           {m}
                         </span>

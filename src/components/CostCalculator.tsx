@@ -100,7 +100,7 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-300 border border-emerald-500/20 mb-3">
+          <div className="inline-flex items-center gap-2 rounded-sm bg-emerald-500/10 px-3.5 py-1 text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-300 border border-emerald-500/20 mb-3">
             <Calculator className="h-4 w-4" />
             <span>{language === 'vi' ? 'Dự toán ngân sách' : 'Budget Forecaster'}</span>
           </div>
@@ -114,7 +114,7 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
 
         {/* Workload Presets */}
         <div className="mb-8">
-          <label className="block text-xs font-bold uppercase tracking-wider text-[#A89280] mb-3 text-center sm:text-left">
+          <label className="block text-xs font-mono font-bold uppercase tracking-wider text-[#A89280] mb-3 text-center sm:text-left">
             {t.calculator.selectPreset}
           </label>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
@@ -124,13 +124,13 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
                 <button
                   key={scenario.id}
                   onClick={() => handleSelectScenario(scenario)}
-                  className={`flex flex-col text-left p-3.5 rounded-2xl border transition-all ${
+                  className={`flex flex-col text-left p-3.5 rounded-sm border transition-all ${
                     isSelected
                       ? 'border-emerald-500 bg-emerald-950/40 shadow-lg shadow-emerald-950/50 ring-1 ring-emerald-500/40'
                       : 'border-[#3D2216] bg-[#24130C]/70 text-[#D8C4B6] hover:border-[#FF6B35]/40 hover:bg-[#2E170E]'
                   }`}
                 >
-                  <span className={`text-xs font-bold ${isSelected ? 'text-emerald-300' : 'text-[#FFF6EE]'}`}>
+                  <span className={`text-xs font-mono font-bold ${isSelected ? 'text-emerald-300' : 'text-[#FFF6EE]'}`}>
                     {language === 'vi' ? scenario.name.vi : scenario.name.en}
                   </span>
                   <p className="mt-1 text-[11px] text-[#A89280] line-clamp-2 leading-relaxed">
@@ -143,12 +143,12 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
         </div>
 
         {/* Sliders for Custom Tuning */}
-        <div className="rounded-3xl border border-[#3D2216] bg-[#24130C]/90 p-6 sm:p-8 backdrop-blur-xl shadow-2xl mb-8">
+        <div className="rounded-lg border border-[#3D2216] bg-[#24130C]/90 p-6 sm:p-8 backdrop-blur-xl shadow-2xl mb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Input Words Slider */}
             <div>
-              <div className="flex justify-between text-xs font-medium text-[#D8C4B6] mb-2">
-                <span className="font-bold text-[#FFF6EE]">{t.calculator.inputWordsLabel}</span>
+              <div className="flex justify-between text-xs font-medium text-[#D8C4B6] mb-2 font-mono">
+                <span className="font-bold text-[#FFF6EE] font-sans">{t.calculator.inputWordsLabel}</span>
                 <span className="text-emerald-400 font-bold">
                   {inputWords.toLocaleString('vi-VN')} {language === 'vi' ? 'từ' : 'words'} (~{Math.round(inputTokens / 1000)}k tokens)
                 </span>
@@ -165,15 +165,15 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
                 }}
                 className="w-full accent-emerald-500 cursor-pointer"
               />
-              <span className="text-[11px] text-slate-500 mt-1 block">
+              <span className="text-[11px] text-slate-500 mt-1 block font-mono">
                 {language === 'vi' ? 'Câu hỏi, yêu cầu, văn bản bạn gửi vào cho AI xử lý' : 'Prompts and documents sent to the AI'}
               </span>
             </div>
 
             {/* Output Words Slider */}
             <div>
-              <div className="flex justify-between text-xs font-medium text-[#D8C4B6] mb-2">
-                <span className="font-bold text-[#FFF6EE]">{t.calculator.outputWordsLabel}</span>
+              <div className="flex justify-between text-xs font-medium text-[#D8C4B6] mb-2 font-mono">
+                <span className="font-bold text-[#FFF6EE] font-sans">{t.calculator.outputWordsLabel}</span>
                 <span className="text-[#FF8452] font-bold">
                   {outputWords.toLocaleString('vi-VN')} {language === 'vi' ? 'từ' : 'words'} (~{Math.round(outputTokens / 1000)}k tokens)
                 </span>
@@ -190,18 +190,18 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
                 }}
                 className="w-full accent-[#FF6B35] cursor-pointer"
               />
-              <span className="text-[11px] text-slate-500 mt-1 block">
+              <span className="text-[11px] text-slate-500 mt-1 block font-mono">
                 {language === 'vi' ? 'Bài viết, câu trả lời do AI sinh ra gửi về cho bạn' : 'Responses, essays and code generated by AI'}
               </span>
             </div>
           </div>
 
           <div className="mt-4 pt-4 border-t border-[#3D2216] flex items-center justify-between flex-wrap gap-2 text-xs text-[#A89280]">
-            <span className="flex items-center gap-1.5 text-emerald-400/90 font-medium">
+            <span className="flex items-center gap-1.5 text-emerald-400/90 font-medium font-mono text-[11px]">
               <Coins className="h-3.5 w-3.5" />
               {t.calculator.savingNote}
             </span>
-            <span className="text-[11px] text-slate-500">
+            <span className="text-[11px] text-slate-500 font-mono">
               {t.calculator.tokensEquivalentNote}
             </span>
           </div>
@@ -216,13 +216,13 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
               placeholder={language === 'vi' ? 'Tìm mô hình trong bảng tính chi phí...' : 'Search model in cost table...'}
               value={calcSearch}
               onChange={(e) => setCalcSearch(e.target.value)}
-              className="w-full rounded-xl border border-[#3D2216] bg-[#24130C] py-2 pl-9 pr-3 text-xs text-[#FFF6EE] placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
+              className="w-full rounded-sm border border-[#3D2216] bg-[#24130C] py-2 pl-9 pr-3 font-mono text-xs text-[#FFF6EE] placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
             />
           </div>
 
           <button
             onClick={() => setCalcShowAll(!calcShowAll)}
-            className="rounded-xl border border-[#3D2216] bg-[#24130C] px-3.5 py-2 text-xs font-semibold text-[#D8C4B6] hover:text-[#FFF6EE] hover:bg-[#2E170E] transition-colors self-end sm:self-auto"
+            className="rounded-sm border border-[#3D2216] bg-[#24130C] px-3.5 py-2 font-mono text-xs font-bold uppercase tracking-wider text-[#D8C4B6] hover:text-[#FFF6EE] hover:bg-[#2E170E] hover:border-[#FF6B35]/50 transition-all self-end sm:self-auto"
           >
             {calcShowAll
               ? (language === 'vi' ? 'Thu gọn (Top 10)' : 'Collapse (Top 10)')
@@ -231,10 +231,10 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
         </div>
 
         {/* Calculation Table */}
-        <div className="overflow-hidden rounded-2xl border border-[#3D2216] bg-[#24130C]/90 shadow-2xl">
+        <div className="overflow-hidden rounded-md border border-[#3D2216] bg-[#24130C]/90 shadow-2xl">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="border-b border-[#3D2216] bg-[#1A0E08]/80 text-[#A89280] font-semibold">
+              <thead className="border-b border-[#3D2216] bg-[#1A0E08]/80 text-[#A89280] font-mono font-semibold uppercase tracking-wider">
                 <tr>
                   <th className="p-4 sm:pl-6">{t.calculator.tableModel}</th>
                   <th className="p-4">{t.calculator.tableTier}</th>
@@ -255,7 +255,7 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
                         <div className="flex items-center gap-2">
                           <span className="font-bold text-[#FFF6EE] text-sm">{row.model.name}</span>
                           {isCheapest && (
-                            <span className="rounded-md bg-emerald-500/20 px-1.5 py-0.5 text-[10px] font-bold text-emerald-300 border border-emerald-500/40">
+                            <span className="rounded-sm bg-emerald-500/20 px-1.5 py-0.5 font-mono text-[10px] font-bold text-emerald-300 border border-emerald-500/40">
                               {t.calculator.cheapestBadge}
                             </span>
                           )}
@@ -264,7 +264,7 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
                       </td>
 
                       <td className="p-4">
-                        <span className={`inline-flex rounded-md px-2 py-0.5 text-[11px] font-black ${
+                        <span className={`inline-flex rounded-sm font-mono px-2 py-0.5 text-[11px] font-black ${
                           row.model.tier === 'S' ? 'bg-[#FF6B35]/20 text-[#FF8452] border border-[#FF6B35]/40' :
                           row.model.tier === 'A' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' :
                           row.model.tier === 'B' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' :
@@ -275,24 +275,24 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
                       </td>
 
                       <td className="p-4">
-                        <div className="font-extrabold text-sm text-emerald-400">
+                        <div className="font-mono font-extrabold text-sm text-emerald-400">
                           {currency === 'VND' ? formatVND(row.totalVND) : `$${row.totalUSD.toFixed(2)}`}
                         </div>
-                        <div className="text-[10px] text-[#A89280]">
+                        <div className="font-mono text-[10px] text-[#A89280]">
                           {currency === 'VND' ? `~$${row.totalUSD.toFixed(2)}` : formatVND(row.totalVND)}
                         </div>
                       </td>
 
                       <td className="p-4 hidden md:table-cell w-48">
-                        <div className="h-2 w-full overflow-hidden rounded-full bg-[#180D07] border border-[#3D2216]">
+                        <div className="h-2 w-full overflow-hidden rounded-sm bg-[#180D07] border border-[#3D2216]">
                           <div
-                            className={`h-full rounded-full transition-all duration-500 ease-out ${
+                            className={`h-full rounded-sm transition-all duration-500 ease-out ${
                               isCheapest ? 'bg-emerald-400' : percentOfMax > 60 ? 'bg-[#FF6B35]' : 'bg-amber-400'
                             }`}
                             style={{ width: `${percentOfMax}%` }}
                           />
                         </div>
-                        <span className="text-[10px] text-[#A89280] mt-1 block">
+                        <span className="font-mono text-[10px] text-[#A89280] mt-1 block">
                           {percentOfMax}% {language === 'vi' ? 'so với mức cao nhất' : 'of max'}
                         </span>
                       </td>
@@ -306,7 +306,7 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
                       <td className="p-4 text-right sm:pr-6">
                         <button
                           onClick={() => onSelectDetails(row.model)}
-                          className="inline-flex items-center gap-1 rounded-lg border border-[#3D2216] bg-[#2E170E] px-2.5 py-1 text-xs font-semibold text-[#FFF6EE] hover:bg-[#3D2216] transition-colors"
+                          className="inline-flex items-center gap-1 rounded-sm border border-[#3D2216] bg-[#2E170E] px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider text-[#FFF6EE] hover:bg-[#3D2216] hover:border-[#FF6B35]/40 hover:text-[#FF8452] transition-all"
                         >
                           {language === 'vi' ? 'Chi tiết' : 'Details'}
                         </button>

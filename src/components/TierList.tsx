@@ -101,7 +101,7 @@ export const TierList: React.FC<TierListProps> = ({
     <section id="tierlist" className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 scroll-mt-20 text-[#FFF6EE]">
       {/* Section Header */}
       <div className="mb-10 text-center max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-2 rounded-full border border-[#FF6B35]/30 bg-[#24130C] px-3.5 py-1 text-xs font-semibold text-[#FF8452] mb-3">
+        <div className="inline-flex items-center gap-2 rounded-sm border border-[#FF6B35]/40 bg-[#24130C] px-3 py-1 font-mono text-xs uppercase tracking-wider text-[#FF8452] mb-3">
           <Award className="h-3.5 w-3.5" />
           <span>{language === 'vi' ? 'Phân Hạng Thực Tiễn 2026' : 'Practical Tier Rankings 2026'}</span>
         </div>
@@ -129,12 +129,12 @@ export const TierList: React.FC<TierListProps> = ({
           return (
             <div
               key={tier.id}
-              className={`rounded-3xl border p-6 sm:p-8 backdrop-blur-md shadow-card-espresso transition-all duration-300 ${tier.color}`}
+              className={`rounded-lg border p-6 sm:p-8 backdrop-blur-md shadow-card-espresso transition-all duration-300 ${tier.color}`}
             >
               {/* Tier Heading Row */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#381E12]">
                 <div className="flex items-center gap-4">
-                  <span className={`flex h-12 w-12 items-center justify-center rounded-2xl text-2xl font-black ${tier.bgBadge}`}>
+                  <span className={`flex h-12 w-12 items-center justify-center rounded-sm font-mono text-2xl font-black ${tier.bgBadge}`}>
                     {tier.id}
                   </span>
                   <div>
@@ -148,7 +148,7 @@ export const TierList: React.FC<TierListProps> = ({
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <span className="rounded-full bg-[#180D07] px-3 py-1 text-xs font-mono font-semibold text-[#FF8452] border border-[#381E12]">
+                  <span className="rounded-sm bg-[#180D07] px-3 py-1 text-xs font-mono font-semibold text-[#FF8452] border border-[#381E12]">
                     {tierModels.length} {language === 'vi' ? 'mô hình' : 'models'}
                   </span>
                 </div>
@@ -173,7 +173,7 @@ export const TierList: React.FC<TierListProps> = ({
                     <div className="mt-6 text-center">
                       <button
                         onClick={() => toggleExpand(tier.id)}
-                        className="inline-flex items-center gap-2 rounded-full border border-[#472718] bg-[#1A0E08] px-5 py-2 text-xs font-semibold text-[#FF8452] hover:border-[#FF6B35] hover:text-white transition-all shadow-sm"
+                        className="inline-flex items-center gap-2 rounded-sm border border-[#472718] bg-[#1A0E08] px-5 py-2 text-xs font-mono font-medium uppercase tracking-wider text-[#FF8452] hover:border-[#FF6B35] hover:text-white transition-all shadow-sm"
                       >
                         {isExpanded ? (
                           <>
@@ -202,7 +202,7 @@ export const TierList: React.FC<TierListProps> = ({
 
       {/* No Results Fallback */}
       {filteredModels.length === 0 && (
-        <div className="mt-12 rounded-3xl border border-[#472718] bg-[#24130C]/90 p-12 text-center shadow-card-espresso">
+        <div className="mt-12 rounded-lg border border-[#472718] bg-[#24130C]/90 p-12 text-center shadow-card-espresso">
           <AlertCircle className="mx-auto h-12 w-12 text-[#FF6B35]" />
           <h3 className="mt-4 text-lg font-serif font-bold text-[#FFF6EE]">
             {language === 'vi' ? 'Không tìm thấy mô hình phù hợp' : 'No models found'}
@@ -214,7 +214,7 @@ export const TierList: React.FC<TierListProps> = ({
           </p>
           <button
             onClick={onResetFilters}
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#FF6B35] px-6 py-2.5 text-xs font-bold text-white shadow-glow-orange hover:brightness-110 transition-all"
+            className="mt-6 inline-flex items-center gap-2 rounded-sm bg-[#FF6B35] px-6 py-2.5 text-xs font-mono font-bold uppercase tracking-wider text-white shadow-glow-orange hover:brightness-110 transition-all"
           >
             <RefreshCw className="h-3.5 w-3.5" />
             <span>{language === 'vi' ? 'Đặt lại bộ lọc' : 'Reset filters'}</span>

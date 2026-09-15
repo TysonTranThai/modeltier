@@ -48,10 +48,10 @@ export const Highlights: React.FC<HighlightsProps> = ({
 
       <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
         {/* Card 1: Intelligence Index */}
-        <div className="border border-[#472718] rounded-2xl bg-[#24130C]/90 p-6 relative shadow-card-espresso backdrop-blur-sm flex flex-col justify-between hover:border-[#FF6B35]/50 transition-all">
+        <div className="border border-[#472718] rounded-md bg-[#24130C]/90 p-6 relative shadow-card-espresso backdrop-blur-sm flex flex-col justify-between hover:border-[#FF6B35]/50 transition-all">
           <div>
             <div className="absolute top-4 right-4">
-              <span className="rounded-full bg-[#FF6B35]/15 text-[#FF8452] border border-[#FF6B35]/30 text-[10px] font-semibold px-2.5 py-0.5 font-mono">
+              <span className="rounded-sm bg-[#FF6B35]/15 text-[#FF8452] border border-[#FF6B35]/30 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 font-mono">
                 Top 11
               </span>
             </div>
@@ -80,15 +80,15 @@ export const Highlights: React.FC<HighlightsProps> = ({
                   <div
                     key={idx}
                     onClick={() => onSelectModel && slug && onSelectModel(slug)}
-                    className="group/item flex items-center justify-between text-xs py-1 cursor-pointer hover:bg-[#2F1910] px-2 rounded-lg transition-colors"
+                    className="group/item flex items-center justify-between text-xs py-1 cursor-pointer hover:bg-[#2F1910] px-2 rounded-sm transition-colors"
                   >
                     <span className="text-[#D8C4B6] truncate max-w-[145px] group-hover/item:text-[#FFF6EE] transition-colors font-medium">
                       {item.label}
                     </span>
                     <div className="flex items-center gap-2 flex-1 max-w-[160px] justify-end">
-                      <div className="h-3.5 bg-[#140A06] rounded overflow-hidden flex-1 max-w-[100px] flex justify-end">
+                      <div className="h-3.5 bg-[#140A06] rounded-sm overflow-hidden flex-1 max-w-[100px] flex justify-end">
                         <div
-                          className="h-full bg-gradient-to-r from-[#E64A19] to-[#FF6B35] group-hover/item:brightness-110 transition-all duration-300"
+                          className="h-full bg-gradient-to-r from-[#E64A19] to-[#FF6B35] group-hover/item:brightness-110 transition-all duration-300 rounded-sm"
                           style={{ width: `${widthPct}%` }}
                         />
                       </div>
@@ -102,17 +102,17 @@ export const Highlights: React.FC<HighlightsProps> = ({
             </div>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-[#381E12] flex items-center justify-between text-[11px] text-[#A89280]">
+          <div className="mt-4 pt-3 border-t border-[#381E12] flex items-center justify-between text-[11px] text-[#A89280] font-mono">
             <span>{language === 'vi' ? 'Mô hình dẫn đầu:' : 'Leader:'} <strong className="text-[#FF8452] font-semibold">{intelligenceData[0]?.label || 'Frontier Models'}</strong></span>
             <Award className="h-3.5 w-3.5 text-[#FF6B35]" />
           </div>
         </div>
 
         {/* Card 2: Output Speed */}
-        <div className="border border-[#472718] rounded-2xl bg-[#24130C]/90 p-6 relative shadow-card-espresso backdrop-blur-sm flex flex-col justify-between hover:border-[#F59E0B]/50 transition-all">
+        <div className="border border-[#472718] rounded-md bg-[#24130C]/90 p-6 relative shadow-card-espresso backdrop-blur-sm flex flex-col justify-between hover:border-[#F59E0B]/50 transition-all">
           <div>
             <div className="absolute top-4 right-4">
-              <span className="rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 text-[10px] font-semibold px-2.5 py-0.5 font-mono">
+              <span className="rounded-sm bg-amber-500/15 text-amber-300 border border-amber-500/30 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 font-mono">
                 Top 11
               </span>
             </div>
@@ -141,15 +141,15 @@ export const Highlights: React.FC<HighlightsProps> = ({
                   <div
                     key={idx}
                     onClick={() => onSelectModel && slug && onSelectModel(slug)}
-                    className="group/item flex items-center justify-between text-xs py-1 cursor-pointer hover:bg-[#2F1910] px-2 rounded-lg transition-colors"
+                    className="group/item flex items-center justify-between text-xs py-1 cursor-pointer hover:bg-[#2F1910] px-2 rounded-sm transition-colors"
                   >
                     <span className="text-[#D8C4B6] truncate max-w-[145px] group-hover/item:text-[#FFF6EE] transition-colors font-medium">
                       {item.label}
                     </span>
                     <div className="flex items-center gap-2 flex-1 max-w-[160px] justify-end">
-                      <div className="h-3.5 bg-[#140A06] rounded overflow-hidden flex-1 max-w-[100px] flex justify-end">
+                      <div className="h-3.5 bg-[#140A06] rounded-sm overflow-hidden flex-1 max-w-[100px] flex justify-end">
                         <div
-                          className="h-full bg-amber-500 group-hover/item:bg-amber-400 transition-all duration-300"
+                          className="h-full bg-amber-500 group-hover/item:bg-amber-400 transition-all duration-300 rounded-sm"
                           style={{ width: `${widthPct}%` }}
                         />
                       </div>
@@ -163,17 +163,17 @@ export const Highlights: React.FC<HighlightsProps> = ({
             </div>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-[#381E12] flex items-center justify-between text-[11px] text-[#A89280]">
+          <div className="mt-4 pt-3 border-t border-[#381E12] flex items-center justify-between text-[11px] text-[#A89280] font-mono">
             <span>{language === 'vi' ? 'Nhanh nhất hiện nay:' : 'Fastest:'} <strong className="text-amber-400 font-semibold">{speedData[0]?.label || 'High-speed models'}</strong></span>
             <Zap className="h-3.5 w-3.5 text-amber-400" />
           </div>
         </div>
 
         {/* Card 3: Cost Efficiency */}
-        <div className="border border-[#472718] rounded-2xl bg-[#24130C]/90 p-6 relative shadow-card-espresso backdrop-blur-sm flex flex-col justify-between hover:border-emerald-500/50 transition-all">
+        <div className="border border-[#472718] rounded-md bg-[#24130C]/90 p-6 relative shadow-card-espresso backdrop-blur-sm flex flex-col justify-between hover:border-emerald-500/50 transition-all">
           <div>
             <div className="absolute top-4 right-4">
-              <span className="rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 text-[10px] font-semibold px-2.5 py-0.5 font-mono">
+              <span className="rounded-sm bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 font-mono">
                 Top 11
               </span>
             </div>
@@ -202,15 +202,15 @@ export const Highlights: React.FC<HighlightsProps> = ({
                   <div
                     key={idx}
                     onClick={() => onSelectModel && slug && onSelectModel(slug)}
-                    className="group/item flex items-center justify-between text-xs py-1 cursor-pointer hover:bg-[#2F1910] px-2 rounded-lg transition-colors"
+                    className="group/item flex items-center justify-between text-xs py-1 cursor-pointer hover:bg-[#2F1910] px-2 rounded-sm transition-colors"
                   >
                     <span className="text-[#D8C4B6] truncate max-w-[145px] group-hover/item:text-[#FFF6EE] transition-colors font-medium">
                       {item.label}
                     </span>
                     <div className="flex items-center gap-2 flex-1 max-w-[160px] justify-end">
-                      <div className="h-3.5 bg-[#140A06] rounded overflow-hidden flex-1 max-w-[100px] flex justify-end">
+                      <div className="h-3.5 bg-[#140A06] rounded-sm overflow-hidden flex-1 max-w-[100px] flex justify-end">
                         <div
-                          className="h-full bg-emerald-500 group-hover/item:bg-emerald-400 transition-all duration-300"
+                          className="h-full bg-emerald-500 group-hover/item:bg-emerald-400 transition-all duration-300 rounded-sm"
                           style={{ width: `${widthPct}%` }}
                         />
                       </div>
@@ -224,7 +224,7 @@ export const Highlights: React.FC<HighlightsProps> = ({
             </div>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-[#381E12] flex items-center justify-between text-[11px] text-[#A89280]">
+          <div className="mt-4 pt-3 border-t border-[#381E12] flex items-center justify-between text-[11px] text-[#A89280] font-mono">
             <span>{language === 'vi' ? 'Tiết kiệm nhất:' : 'Best value:'} <strong className="text-emerald-400 font-semibold">{costData[0]?.label || 'Budget models'}</strong></span>
             <DollarSign className="h-3.5 w-3.5 text-emerald-400" />
           </div>
@@ -232,7 +232,7 @@ export const Highlights: React.FC<HighlightsProps> = ({
       </div>
 
       {/* Quick Takeaway Banner */}
-      <div className="mt-6 rounded-2xl bg-[#201009] border border-[#3D2216] p-4 flex items-start gap-3 text-xs text-[#D8C4B6]">
+      <div className="mt-6 rounded-md bg-[#201009] border border-[#3D2216] p-4 flex items-start gap-3 text-xs text-[#D8C4B6]">
         <Lightbulb className="h-4 w-4 text-[#FF6B35] shrink-0 mt-0.5" />
         <div className="flex-1 leading-relaxed">
           <strong className="text-[#FFF6EE] font-serif font-bold text-sm">

@@ -123,7 +123,7 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
 
   return (
     <section className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-16">
-      <div className="rounded-3xl border border-[#3D2216] bg-[#1E0F09]/95 p-6 sm:p-8 shadow-2xl backdrop-blur-xl">
+      <div className="rounded-lg border border-[#3D2216] bg-[#1E0F09]/95 p-6 sm:p-8 shadow-2xl backdrop-blur-xl">
         {/* Header & Toggle */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#331A10] mb-6">
           <div>
@@ -133,7 +133,7 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
                   ? (language === 'vi' ? 'Đồ Thị Tọa Độ: Trí Tuệ vs Tốc Độ' : 'Quality vs Output Speed')
                   : (language === 'vi' ? 'Đồ Thị Tọa Độ: Trí Tuệ vs Chi Phí' : 'Quality vs Cost per Task')}
               </span>
-              <span className="rounded-full bg-[#FF6B35]/20 px-2.5 py-0.5 text-[10px] text-[#FF8452] font-bold border border-[#FF6B35]/40 font-mono">
+              <span className="rounded-sm bg-[#FF6B35]/20 px-2 py-0.5 text-[10px] text-[#FF8452] font-bold uppercase tracking-wider border border-[#FF6B35]/40 font-mono">
                 Pareto Frontier
               </span>
             </div>
@@ -144,12 +144,12 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
             </p>
           </div>
 
-          <div className="flex items-center rounded-xl bg-[#140A06] border border-[#3D2216] p-1 text-xs">
+          <div className="flex items-center rounded-sm bg-[#140A06] border border-[#3D2216] p-1 text-xs">
             <button
               onClick={() => setMetricMode('speed')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-sm font-mono text-xs font-bold uppercase tracking-wider transition-all ${
                 metricMode === 'speed'
-                  ? 'bg-[#FF6B35] text-white shadow-sm'
+                  ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange'
                   : 'text-[#A89280] hover:text-[#FFF6EE]'
               }`}
             >
@@ -158,9 +158,9 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
             </button>
             <button
               onClick={() => setMetricMode('cost')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-sm font-mono text-xs font-bold uppercase tracking-wider transition-all ${
                 metricMode === 'cost'
-                  ? 'bg-[#FF6B35] text-white shadow-sm'
+                  ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange'
                   : 'text-[#A89280] hover:text-[#FFF6EE]'
               }`}
             >
@@ -345,7 +345,7 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
 
           {/* Floating Tooltip */}
           {hoveredModel && (
-            <div className="absolute top-4 right-4 rounded-xl border border-[#3D2216] bg-[#140A06]/95 p-4 shadow-2xl backdrop-blur-md text-xs w-64 animate-in fade-in">
+            <div className="absolute top-4 right-4 rounded-sm border border-[#3D2216] bg-[#140A06]/95 p-4 shadow-2xl backdrop-blur-md text-xs w-64 animate-in fade-in">
               <div className="text-[10px] font-mono font-bold uppercase text-[#FF8452]">
                 {hoveredModel.creator} • {hoveredModel.tier}-Tier
               </div>
@@ -373,7 +373,7 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
         </div>
 
         {/* Explainer Box in Plain Language */}
-        <div className="mt-6 p-4 rounded-2xl bg-[#140A06]/90 border border-[#331A10] text-xs text-[#C7B299] leading-relaxed flex items-start gap-3">
+        <div className="mt-6 p-4 rounded-md bg-[#140A06]/90 border border-[#331A10] text-xs text-[#C7B299] leading-relaxed flex items-start gap-3">
           <Lightbulb className="h-5 w-5 text-[#FF6B35] shrink-0 mt-0.5" />
           <div>
             <span className="font-bold text-[#FFF6EE]">

@@ -51,13 +51,13 @@ export const ModelDetailModal: React.FC<ModelDetailModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto backdrop-blur-md bg-[#0D0704]/80 animate-in fade-in duration-200 font-sans">
       <div 
-        className="relative w-full max-w-2xl rounded-3xl border border-[#3D2216] bg-[#1E0F09] p-6 sm:p-8 shadow-2xl text-[#FFF6EE] overflow-hidden animate-scale-in"
+        className="relative w-full max-w-2xl rounded-lg border border-[#3D2216] bg-[#1E0F09] p-6 sm:p-8 shadow-2xl text-[#FFF6EE] overflow-hidden animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute right-5 top-5 rounded-full bg-[#2E170E] p-2 text-[#A89280] hover:bg-[#3D2216] hover:text-[#FFF6EE] transition-colors"
+          className="absolute right-5 top-5 h-8 w-8 rounded-sm flex items-center justify-center border border-[#3D2216] bg-[#2E170E] text-[#A89280] hover:border-[#FF6B35] hover:text-[#FFF6EE] transition-colors"
           aria-label="Close"
         >
           <X className="h-4 w-4" />
@@ -65,12 +65,12 @@ export const ModelDetailModal: React.FC<ModelDetailModalProps> = ({
 
         {/* Modal Header */}
         <div className="flex items-start gap-4 mb-6">
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#FF6B35] to-[#E64A19] text-2xl font-black text-white font-serif shadow-lg shadow-[#FF6B35]/30">
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-sm bg-gradient-to-br from-[#FF6B35] to-[#E64A19] text-2xl font-black text-white font-serif shadow-lg shadow-[#FF6B35]/30">
             {model.tier}
           </div>
           <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#D8C4B6]">
+            <div className="flex items-center gap-2 flex-wrap font-mono">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#D8C4B6] font-sans">
                 {model.creator}
               </span>
               <span className="text-[#5A3622]">•</span>
@@ -78,18 +78,18 @@ export const ModelDetailModal: React.FC<ModelDetailModalProps> = ({
                 {language === 'vi' ? 'Phát hành:' : 'Released:'} {model.releaseDate}
               </span>
               {model.isOpenWeights ? (
-                <span className="rounded-md bg-[#2A160E] px-2 py-0.5 text-[10px] font-bold text-[#FF8452] border border-[#FF6B35]/40">
+                <span className="rounded-sm bg-[#2A160E] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#FF8452] border border-[#FF6B35]/40">
                   {t.card.openWeights}
                 </span>
               ) : (
-                <span className="rounded-md bg-[#24130C] px-2 py-0.5 text-[10px] font-medium text-[#A89280] border border-[#3D2216]">
+                <span className="rounded-sm bg-[#24130C] px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-[#A89280] border border-[#3D2216]">
                   {t.card.proprietary}
                 </span>
               )}
             </div>
             <h2 className="text-2xl font-serif font-black text-[#FFF6EE] mt-1">{model.name}</h2>
             {model.badge && (
-              <span className={`inline-flex items-center rounded-md px-2 py-0.5 text-xs font-semibold border mt-2 ${model.badge.color}`}>
+              <span className={`inline-flex items-center rounded-sm px-2.5 py-0.5 font-mono text-[11px] font-bold uppercase tracking-wider border mt-2 ${model.badge.color}`}>
                 {language === 'vi' ? model.badge.vi : model.badge.en}
               </span>
             )}
@@ -97,21 +97,21 @@ export const ModelDetailModal: React.FC<ModelDetailModalProps> = ({
         </div>
 
         {/* Human Summary */}
-        <p className="text-xs sm:text-sm text-[#D8C4B6] leading-relaxed rounded-2xl bg-[#140A05] p-4 border border-[#2E170E] mb-6">
+        <p className="text-xs sm:text-sm text-[#D8C4B6] leading-relaxed rounded-sm bg-[#140A05] p-4 border border-[#2E170E] mb-6">
           {language === 'vi' ? model.vietnameseSummary : model.englishSummary}
         </p>
 
         {/* Scores & Benchmarks in Human Terms */}
         <div className="space-y-3 mb-6">
-          <h3 className="text-xs font-bold uppercase tracking-wider text-[#D8C4B6] flex items-center gap-1.5">
+          <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-[#D8C4B6] flex items-center gap-1.5 font-sans">
             <BarChart3 className="h-3.5 w-3.5 text-[#FF6B35]" />
             {language === 'vi' ? 'Điểm Đánh Giá Năng Lực Thực Chiến (Thang điểm 100)' : 'Practical Capability Scores (Out of 100)'}
           </h3>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
             {/* Vietnamese */}
-            <div className="rounded-xl bg-[#140A05] p-3 border border-[#2E170E] text-center">
-              <span className="text-[10px] text-[#A89280] block mb-1">🇻🇳 Tiếng Việt</span>
+            <div className="rounded-sm bg-[#140A05] p-3 border border-[#2E170E] text-center">
+              <span className="text-[10px] text-[#A89280] block mb-1 font-mono">🇻🇳 Tiếng Việt</span>
               <span className="text-lg font-black text-emerald-400 font-mono">{model.vietnameseRating}</span>
               <span className="text-[9px] text-[#6B4735] block mt-0.5">
                 {model.vietnameseRating >= 90 ? 'Tự nhiên như bản xứ' : 'Tốt, chuẩn ngữ pháp'}
@@ -119,8 +119,8 @@ export const ModelDetailModal: React.FC<ModelDetailModalProps> = ({
             </div>
 
             {/* Intelligence */}
-            <div className="rounded-xl bg-[#140A05] p-3 border border-[#2E170E] text-center">
-              <span className="text-[10px] text-[#A89280] block mb-1">🧠 Trí thông minh</span>
+            <div className="rounded-sm bg-[#140A05] p-3 border border-[#2E170E] text-center">
+              <span className="text-[10px] text-[#A89280] block mb-1 font-mono">🧠 Trí thông minh</span>
               <span className="text-lg font-black text-[#FF6B35] font-mono">{model.intelligenceScore}</span>
               <span className="text-[9px] text-[#6B4735] block mt-0.5">
                 {model.intelligenceScore >= 95 ? 'Top đầu toàn cầu' : 'Rất khôn ngoan'}
@@ -128,8 +128,8 @@ export const ModelDetailModal: React.FC<ModelDetailModalProps> = ({
             </div>
 
             {/* Coding */}
-            <div className="rounded-xl bg-[#140A05] p-3 border border-[#2E170E] text-center">
-              <span className="text-[10px] text-[#A89280] block mb-1">💻 Lập trình & Code</span>
+            <div className="rounded-sm bg-[#140A05] p-3 border border-[#2E170E] text-center">
+              <span className="text-[10px] text-[#A89280] block mb-1 font-mono">💻 Lập trình & Code</span>
               <span className="text-lg font-black text-[#FF8452] font-mono">{model.codingScore}</span>
               <span className="text-[9px] text-[#6B4735] block mt-0.5">
                 {model.codingScore >= 95 ? 'Kỹ sư cao cấp' : 'Trợ lý lập trình tốt'}
@@ -137,8 +137,8 @@ export const ModelDetailModal: React.FC<ModelDetailModalProps> = ({
             </div>
 
             {/* Reasoning */}
-            <div className="rounded-xl bg-[#140A05] p-3 border border-[#2E170E] text-center">
-              <span className="text-[10px] text-[#A89280] block mb-1">📐 Tư duy & Toán</span>
+            <div className="rounded-sm bg-[#140A05] p-3 border border-[#2E170E] text-center">
+              <span className="text-[10px] text-[#A89280] block mb-1 font-mono">📐 Tư duy & Toán</span>
               <span className="text-lg font-black text-amber-400 font-mono">{model.reasoningScore}</span>
               <span className="text-[9px] text-[#6B4735] block mt-0.5">
                 {model.reasoningScore >= 95 ? 'Giải toán chuyên sâu' : 'Logic mạch lạc'}
@@ -148,13 +148,13 @@ export const ModelDetailModal: React.FC<ModelDetailModalProps> = ({
         </div>
 
         {/* Pricing Real-World Estimate */}
-        <div className="rounded-2xl bg-[#140A05] border border-[#3D2216] p-4 mb-6">
+        <div className="rounded-sm bg-[#140A05] border border-[#3D2216] p-4 mb-6">
           <div className="flex items-center justify-between text-xs mb-2">
-            <span className="font-bold text-emerald-400 flex items-center gap-1.5">
+            <span className="font-bold text-emerald-400 flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider">
               <DollarSign className="h-4 w-4" />
               {t.modal.estimatedVNPrice}
             </span>
-            <span className="text-[#A89280]">
+            <span className="text-[#A89280] font-mono text-[11px]">
               Output: {formatPrice(model.outputPricePerMillionUSD)} / 1M token
             </span>
           </div>
@@ -162,14 +162,14 @@ export const ModelDetailModal: React.FC<ModelDetailModalProps> = ({
             {language === 'vi' ? (
               <>
                 Viết 1 bài luận hoặc bài blog dài 1.500 từ chỉ tốn khoảng{' '}
-                <span className="font-bold text-emerald-400">{formatVND(singleArticleCostVND)}</span> (~$
-                {singleArticleCostUSD.toFixed(4)} USD).
+                <span className="font-bold text-emerald-400 font-mono">{formatVND(singleArticleCostVND)}</span> (~$
+                <span className="font-mono">{singleArticleCostUSD.toFixed(4)}</span> USD).
               </>
             ) : (
               <>
                 Generating a full 1,500-word article costs approximately{' '}
-                <span className="font-bold text-emerald-400">{formatVND(singleArticleCostVND)}</span> (~$
-                {singleArticleCostUSD.toFixed(4)} USD).
+                <span className="font-bold text-emerald-400 font-mono">{formatVND(singleArticleCostVND)}</span> (~$
+                <span className="font-mono">{singleArticleCostUSD.toFixed(4)}</span> USD).
               </>
             )}
           </p>
@@ -178,8 +178,8 @@ export const ModelDetailModal: React.FC<ModelDetailModalProps> = ({
         {/* Pros and Cons */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 text-xs">
           {/* Pros */}
-          <div className="rounded-2xl bg-[#140A05] p-4 border border-[#2E170E]">
-            <h4 className="font-bold text-emerald-400 mb-2 flex items-center gap-1.5">
+          <div className="rounded-sm bg-[#140A05] p-4 border border-[#2E170E]">
+            <h4 className="font-bold text-emerald-400 mb-2 flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider">
               <CheckCircle className="h-3.5 w-3.5" />
               {t.modal.strengths}
             </h4>
@@ -194,8 +194,8 @@ export const ModelDetailModal: React.FC<ModelDetailModalProps> = ({
           </div>
 
           {/* Cons */}
-          <div className="rounded-2xl bg-[#140A05] p-4 border border-[#2E170E]">
-            <h4 className="font-bold text-amber-400 mb-2 flex items-center gap-1.5">
+          <div className="rounded-sm bg-[#140A05] p-4 border border-[#2E170E]">
+            <h4 className="font-bold text-amber-400 mb-2 flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider">
               <AlertCircle className="h-3.5 w-3.5" />
               {t.modal.weaknesses}
             </h4>
@@ -212,7 +212,7 @@ export const ModelDetailModal: React.FC<ModelDetailModalProps> = ({
 
         {/* Supported Providers */}
         <div className="mb-6">
-          <h4 className="text-[11px] font-bold uppercase tracking-wider text-[#A89280] mb-2 flex items-center gap-1.5">
+          <h4 className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#A89280] mb-2 flex items-center gap-1.5 font-sans">
             <Server className="h-3.5 w-3.5 text-[#FF6B35]" />
             {t.modal.supportedProviders}
           </h4>
@@ -220,7 +220,7 @@ export const ModelDetailModal: React.FC<ModelDetailModalProps> = ({
             {model.providers.map((p, idx) => (
               <span
                 key={idx}
-                className="rounded-lg border border-[#2E170E] bg-[#24130C] px-2.5 py-1 text-xs text-[#D8C4B6] font-medium"
+                className="rounded-sm border border-[#2E170E] bg-[#24130C] px-2.5 py-1 font-mono text-[11px] text-[#D8C4B6] font-medium"
               >
                 {p}
               </span>
@@ -232,7 +232,7 @@ export const ModelDetailModal: React.FC<ModelDetailModalProps> = ({
         <div className="flex items-center justify-between gap-3 pt-4 border-t border-[#2E170E]">
           <button
             onClick={onClose}
-            className="rounded-xl border border-[#3D2216] bg-[#24130C] px-4 py-2 text-xs font-semibold text-[#D8C4B6] hover:bg-[#2E170E] hover:text-[#FFF6EE] transition-colors"
+            className="rounded-sm border border-[#3D2216] bg-[#24130C] px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider text-[#D8C4B6] hover:bg-[#2E170E] hover:text-[#FFF6EE] hover:border-[#FF6B35]/40 transition-all"
           >
             {t.modal.close}
           </button>
@@ -244,7 +244,7 @@ export const ModelDetailModal: React.FC<ModelDetailModalProps> = ({
                   onSelectCompare(model);
                   onClose();
                 }}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#FF6B35] to-[#E64A19] px-4 py-2 text-xs font-bold text-white shadow-lg shadow-[#FF6B35]/25 hover:brightness-110 transition-all"
+                className="inline-flex items-center gap-1.5 rounded-sm bg-gradient-to-r from-[#FF6B35] to-[#E64A19] px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider text-white shadow-glow-orange hover:brightness-110 active:scale-[0.98] transition-all"
               >
                 <span>⚔️</span>
                 <span>{language === 'vi' ? 'Đưa vào so sánh 1v1' : 'Compare 1-vs-1'}</span>

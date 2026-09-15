@@ -140,7 +140,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
             <h2 className="text-xl sm:text-2xl font-bold text-[#FFF6EE] tracking-tight">
               {language === 'vi' ? `Bảng Xếp Hạng Toàn Bộ ${models.length} Mô Hình` : `Full ${models.length} Models Live Leaderboard`}
             </h2>
-            <span className="rounded-full bg-[#180D07] border border-[#3D2216] px-2.5 py-0.5 text-xs text-[#A89280] font-mono font-bold">
+            <span className="rounded-sm bg-[#180D07] border border-[#3D2216] px-2.5 py-0.5 text-[11px] text-[#A89280] font-mono font-bold">
               {filteredModels.length} models
             </span>
           </div>
@@ -165,9 +165,9 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
             <button
               key={f.id}
               onClick={() => { setFilterType(f.id); setCurrentPage(1); }}
-              className={`rounded-xl px-3 py-1 text-xs font-semibold transition-colors ${
+              className={`rounded-sm px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-all ${
                 filterType === f.id
-                  ? 'bg-[#FF6B35] text-[#FFF6EE] shadow-sm'
+                  ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange'
                   : 'bg-[#24130C] text-[#D8C4B6] hover:text-[#FFF6EE] hover:bg-[#2E170E] border border-[#3D2216]'
               }`}
             >
@@ -178,10 +178,10 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
       </div>
 
       {/* Leaderboard Table */}
-      <div className="overflow-hidden rounded-2xl border border-[#3D2216] bg-[#24130C]/90 shadow-2xl">
+      <div className="overflow-hidden rounded-md border border-[#3D2216] bg-[#24130C]/90 shadow-2xl">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="border-b border-[#3D2216] bg-[#180D07]/80 text-[#A89280] font-semibold sticky top-0 z-10">
+            <thead className="border-b border-[#3D2216] bg-[#180D07]/80 text-[#A89280] font-mono font-semibold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th
                   onClick={() => handleSort('name')}
@@ -247,7 +247,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                 <tr>
                   <td colSpan={9} className="py-16 text-center">
                     <div className="flex flex-col items-center justify-center space-y-3 px-4">
-                      <div className="rounded-full bg-[#180D07] border border-[#3D2216] p-4 text-[#A89280]">
+                      <div className="rounded-sm bg-[#180D07] border border-[#3D2216] p-4 text-[#A89280]">
                         <Search className="h-6 w-6" />
                       </div>
                       <p className="text-sm font-semibold text-[#FFF6EE]">
@@ -267,7 +267,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                             setFilterType('all');
                             setCurrentPage(1);
                           }}
-                          className="mt-2 rounded-xl bg-[#FF6B35] px-4 py-2 text-xs font-semibold text-white shadow-lg shadow-[#FF6B35]/25 hover:bg-[#FF8452] transition-colors"
+                          className="mt-2 rounded-sm bg-gradient-to-r from-[#FF6B35] to-[#E64A19] px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider text-white shadow-glow-orange hover:brightness-110 active:scale-[0.98] transition-all"
                         >
                           {language === 'vi' ? 'Xóa bộ lọc & tìm kiếm' : 'Reset filters & search'}
                         </button>
@@ -296,11 +296,11 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                             <span className="font-bold text-[#FFF6EE] group-hover:text-[#FF8452] transition-colors truncate">
                               {m.name}
                             </span>
-                            <span className={`px-1.5 py-0.2 rounded text-[9px] font-black border ${getTierBadgeStyle(m.tier)}`}>
+                            <span className={`px-1.5 py-0.2 rounded-sm font-mono text-[9px] font-black border ${getTierBadgeStyle(m.tier)}`}>
                               {m.tier}
                             </span>
                             {m.isOpenWeights && (
-                              <span className="bg-[#180D07] border border-[#3D2216] text-[#A89280] px-1 py-0.2 rounded text-[9px]">
+                              <span className="bg-[#180D07] border border-[#3D2216] text-[#A89280] px-1 py-0.2 rounded-sm font-mono text-[9px]">
                                 OSS
                               </span>
                             )}
@@ -356,7 +356,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
                           e.stopPropagation();
                           onSelectModel(m);
                         }}
-                        className="rounded-lg border border-[#472718] bg-[#24130C] px-2.5 py-1 text-xs font-semibold text-[#D8C4B6] hover:text-[#FFF6EE] hover:bg-[#3D2216] transition-colors"
+                        className="rounded-sm border border-[#472718] bg-[#24130C] px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider text-[#D8C4B6] hover:text-[#FFF6EE] hover:border-[#FF6B35]/50 hover:bg-[#3D2216] transition-all"
                       >
                         {language === 'vi' ? 'Xem' : 'View'}
                       </button>
@@ -388,27 +388,27 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="rounded-lg border border-[#3D2216] bg-[#24130C] px-3 py-1.5 text-[#D8C4B6] hover:text-[#FFF6EE] hover:bg-[#2E170E] transition-colors font-medium"
+              className="rounded-sm border border-[#3D2216] bg-[#24130C] px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-wider text-[#D8C4B6] hover:text-[#FFF6EE] hover:bg-[#2E170E] hover:border-[#FF6B35]/50 transition-all"
             >
               {showAll ? (language === 'vi' ? 'Phân trang' : 'Paginate') : (language === 'vi' ? `Xem tất cả ${filteredModels.length}` : `Show All ${filteredModels.length}`)}
             </button>
 
             {!showAll && totalPages > 1 && (
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 font-mono">
                 <button
                   onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="rounded-lg border border-[#3D2216] bg-[#24130C] p-1.5 text-[#D8C4B6] disabled:opacity-30 hover:bg-[#2E170E]"
+                  className="rounded-sm border border-[#3D2216] bg-[#24130C] p-1.5 text-[#D8C4B6] disabled:opacity-30 hover:bg-[#2E170E] hover:border-[#FF6B35]/50"
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </button>
-                <span className="px-2 font-mono">
+                <span className="px-2 font-mono text-xs">
                   {currentPage} / {totalPages}
                 </span>
                 <button
                   onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                   disabled={currentPage === totalPages}
-                  className="rounded-lg border border-[#3D2216] bg-[#24130C] p-1.5 text-[#D8C4B6] disabled:opacity-30 hover:bg-[#2E170E]"
+                  className="rounded-sm border border-[#3D2216] bg-[#24130C] p-1.5 text-[#D8C4B6] disabled:opacity-30 hover:bg-[#2E170E] hover:border-[#FF6B35]/50"
                 >
                   <ChevronRight className="h-4 w-4" />
                 </button>

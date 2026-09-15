@@ -94,7 +94,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
   };
 
   return (
-    <div id="artificial-analysis-intelligence-index" className="scroll-mt-24 rounded-2xl border border-[#3D2216] bg-[#1E0F09]/95 p-6 sm:p-8 text-[#FFF6EE] shadow-2xl backdrop-blur-md transition-all">
+    <div id="artificial-analysis-intelligence-index" className="scroll-mt-24 rounded-lg border border-[#3D2216] bg-[#1E0F09]/95 p-6 sm:p-8 text-[#FFF6EE] shadow-2xl backdrop-blur-md transition-all">
       {/* Top Header & Toolbar Row */}
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 pb-6 border-b border-[#331A10]">
         {/* Left Title & Description */}
@@ -134,14 +134,14 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
               <div className="flex items-center gap-1 mr-1">
                 <button
                   onClick={handleScrollLeft}
-                  className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#3D2216] bg-[#160B06] text-[#C7B299] hover:border-[#FF6B35] hover:text-[#FFF6EE] transition-colors shadow-sm"
+                  className="flex h-8 w-8 items-center justify-center rounded-sm border border-[#3D2216] bg-[#160B06] text-[#C7B299] hover:border-[#FF6B35] hover:text-[#FFF6EE] transition-colors shadow-sm"
                   title="Scroll Left"
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </button>
                 <button
                   onClick={handleScrollRight}
-                  className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#3D2216] bg-[#160B06] text-[#C7B299] hover:border-[#FF6B35] hover:text-[#FFF6EE] transition-colors shadow-sm"
+                  className="flex h-8 w-8 items-center justify-center rounded-sm border border-[#3D2216] bg-[#160B06] text-[#C7B299] hover:border-[#FF6B35] hover:text-[#FFF6EE] transition-colors shadow-sm"
                   title="Scroll Right"
                 >
                   <ChevronRight className="h-4 w-4" />
@@ -152,7 +152,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
             {/* Copy Link */}
             <button
               onClick={handleCopyLink}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#3D2216] bg-[#160B06] text-[#C7B299] hover:border-[#FF6B35] hover:text-white transition-colors shadow-sm"
+              className="flex h-8 w-8 items-center justify-center rounded-sm border border-[#3D2216] bg-[#160B06] text-[#C7B299] hover:border-[#FF6B35] hover:text-white transition-colors shadow-sm"
               title={language === 'vi' ? 'Sao chép liên kết biểu đồ' : 'Copy link'}
             >
               {copiedLink ? <Check className="h-4 w-4 text-emerald-400" /> : <Link2 className="h-4 w-4" />}
@@ -161,7 +161,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
             {/* Download Image */}
             <button
               onClick={() => window.print()}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#3D2216] bg-[#160B06] text-[#C7B299] hover:border-[#FF6B35] hover:text-white transition-colors shadow-sm"
+              className="flex h-8 w-8 items-center justify-center rounded-sm border border-[#3D2216] bg-[#160B06] text-[#C7B299] hover:border-[#FF6B35] hover:text-white transition-colors shadow-sm"
               title={language === 'vi' ? 'In hoặc Lưu biểu đồ' : 'Print or Save Chart'}
             >
               <ImageDown className="h-4 w-4" />
@@ -170,7 +170,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
             {/* Table View Toggle */}
             <button
               onClick={() => setViewFormat(viewFormat === 'chart' ? 'table' : 'chart')}
-              className={`flex h-8 items-center gap-1.5 px-3 rounded-lg border text-xs font-medium transition-colors shadow-sm ${
+              className={`flex h-8 items-center gap-1.5 px-3 rounded-sm border text-xs font-mono font-medium transition-colors shadow-sm ${
                 viewFormat === 'table'
                   ? 'border-[#FF6B35] bg-[#FF6B35] text-white shadow-sm'
                   : 'border-[#3D2216] bg-[#160B06] text-[#C7B299] hover:border-[#FF6B35] hover:text-white'
@@ -185,7 +185,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
             <div className="relative">
               <button
                 onClick={() => setShowSelectorDropdown(!showSelectorDropdown)}
-                className="inline-flex h-8 items-center gap-2 rounded-lg border border-[#3D2216] bg-[#160B06] px-3 text-xs font-semibold text-[#FFF6EE] hover:border-[#FF6B35] transition-colors shadow-sm"
+                className="inline-flex h-8 items-center gap-2 rounded-sm border border-[#3D2216] bg-[#160B06] px-3 font-mono text-xs font-semibold text-[#FFF6EE] hover:border-[#FF6B35] transition-colors shadow-sm"
               >
                 <span>
                   {language === 'vi' 
@@ -196,7 +196,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
               </button>
 
               {showSelectorDropdown && (
-                <div className="absolute right-0 top-10 z-30 w-48 rounded-xl border border-[#3D2216] bg-[#160B06] p-1.5 text-xs shadow-2xl animate-in fade-in zoom-in-95">
+                <div className="absolute right-0 top-10 z-30 w-48 rounded-md border border-[#3D2216] bg-[#160B06] p-1.5 text-xs shadow-2xl animate-in fade-in zoom-in-95 font-mono">
                   {[10, 15, 20, 26, 40, 60].map((num) => (
                     <button
                       key={num}
@@ -204,7 +204,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
                         setModelLimit(num);
                         setShowSelectorDropdown(false);
                       }}
-                      className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left font-medium transition-colors ${
+                      className={`flex w-full items-center justify-between rounded-sm px-3 py-2 text-left font-mono text-xs transition-colors ${
                         modelLimit === num ? 'bg-[#FF6B35] text-white font-bold' : 'text-[#C7B299] hover:bg-[#2A160E] hover:text-[#FFF6EE]'
                       }`}
                     >
@@ -217,7 +217,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
                       setModelLimit(models.length);
                       setShowSelectorDropdown(false);
                     }}
-                    className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left font-medium transition-colors ${
+                    className={`flex w-full items-center justify-between rounded-sm px-3 py-2 text-left font-mono text-xs transition-colors ${
                       modelLimit === models.length ? 'bg-[#FF6B35] text-white font-bold' : 'text-[#C7B299] hover:bg-[#2A160E] hover:text-[#FFF6EE]'
                     }`}
                   >
@@ -289,7 +289,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
                     className="group relative flex flex-col items-center cursor-pointer w-9 sm:w-10 h-full justify-end flex-shrink-0"
                   >
                     {/* Hover Floating Tooltip with Smooth Scale & Backdrop Blur */}
-                    <div className="opacity-0 group-hover:opacity-100 pointer-events-none absolute -top-14 z-30 transition-all duration-200 transform scale-95 group-hover:scale-100 group-hover:-translate-y-1.5 bg-[#120703]/95 backdrop-blur-md border border-[#FF6B35]/60 text-[#FFF6EE] rounded-xl px-3.5 py-2 text-xs shadow-2xl whitespace-nowrap">
+                    <div className="opacity-0 group-hover:opacity-100 pointer-events-none absolute -top-14 z-30 transition-all duration-200 transform scale-95 group-hover:scale-100 group-hover:-translate-y-1.5 bg-[#120703]/95 backdrop-blur-md border border-[#FF6B35]/60 text-[#FFF6EE] rounded-sm px-3.5 py-2 text-xs shadow-2xl whitespace-nowrap">
                       <div className="font-bold text-[#FFF6EE] flex items-center gap-1.5">
                         <span className="text-[#FF8452]">#{idx + 1}</span>
                         <span>{model.name}</span>
@@ -334,7 +334,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
                   className="group flex flex-col items-center w-9 sm:w-10 flex-shrink-0 cursor-pointer"
                 >
                   {/* Company Logo Badge */}
-                  <div className="flex items-center justify-center h-6 w-6 rounded-full bg-[#160B06] border border-[#3D2216] group-hover:border-[#FF6B35]/60 transition-colors shadow-sm">
+                  <div className="flex items-center justify-center h-6 w-6 rounded-sm bg-[#160B06] border border-[#3D2216] group-hover:border-[#FF6B35]/60 transition-colors shadow-sm">
                     <CompanyLogo creator={model.creator} size={15} />
                   </div>
 
@@ -363,7 +363,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
             </div>
             <button 
               onClick={() => setModelLimit(Math.min(models.length, modelLimit + 10))}
-              className="inline-flex items-center gap-1 text-xs font-semibold text-[#FF8452] hover:text-[#FFF6EE] transition-colors p-1"
+              className="inline-flex items-center gap-1 text-xs font-mono font-semibold uppercase tracking-wider text-[#FF8452] hover:text-[#FFF6EE] transition-colors p-1"
               title="Show more models"
             >
               <Plus className="h-3.5 w-3.5" />
@@ -403,7 +403,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
                   <td className="py-3 px-3 text-[#C7B299]">{m.outputSpeed > 0 ? `${Math.round(m.outputSpeed)} tps` : '—'}</td>
                   <td className="py-3 px-3 text-[#C7B299] font-mono">${m.costPerTaskUSD.toFixed(2)}</td>
                   <td className="py-3 px-3">
-                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-semibold ${
+                    <span className={`px-2 py-0.5 rounded-sm font-mono text-[10px] font-semibold ${
                       m.isOpenWeights ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-[#160B06] text-[#A89280] border border-[#3D2216]'
                     }`}>
                       {m.isOpenWeights ? (language === 'vi' ? 'Mở (Open)' : 'Open') : (language === 'vi' ? 'Độc quyền (API)' : 'Proprietary')}
@@ -418,12 +418,12 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
 
       {/* 4 Bottom Filter Segment Tabs (Exact match to screenshot with full Vietnamese labels) */}
       <div className="mt-8 border-t border-[#331A10] pt-6">
-        <div className="flex flex-wrap items-center gap-2 rounded-2xl bg-[#160B06] p-1.5 text-xs font-semibold text-[#C7B299] border border-[#3D2216]">
+        <div className="flex flex-wrap items-center gap-1.5 rounded-sm bg-[#160B06] p-1.5 text-xs font-mono text-[#C7B299] border border-[#3D2216]">
           <button
             onClick={() => setActiveSubTab('open_weights')}
-            className={`rounded-xl px-4 py-2 transition-all duration-200 ${
+            className={`rounded-sm px-4 py-2 font-mono text-xs uppercase tracking-wider transition-all duration-200 ${
               activeSubTab === 'open_weights'
-                ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange font-bold scale-[1.02]'
+                ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange font-bold'
                 : 'text-[#A89280] hover:text-[#FFF6EE] hover:bg-[#24120A]'
             }`}
           >
@@ -432,9 +432,9 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
 
           <button
             onClick={() => setActiveSubTab('reasoning')}
-            className={`rounded-xl px-4 py-2 transition-all duration-200 ${
+            className={`rounded-sm px-4 py-2 font-mono text-xs uppercase tracking-wider transition-all duration-200 ${
               activeSubTab === 'reasoning'
-                ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange font-bold scale-[1.02]'
+                ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange font-bold'
                 : 'text-[#A89280] hover:text-[#FFF6EE] hover:bg-[#24120A]'
             }`}
           >
@@ -443,9 +443,9 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
 
           <button
             onClick={() => setActiveSubTab('modalities')}
-            className={`rounded-xl px-4 py-2 transition-all duration-200 ${
+            className={`rounded-sm px-4 py-2 font-mono text-xs uppercase tracking-wider transition-all duration-200 ${
               activeSubTab === 'modalities'
-                ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange font-bold scale-[1.02]'
+                ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange font-bold'
                 : 'text-[#A89280] hover:text-[#FFF6EE] hover:bg-[#24120A]'
             }`}
           >
@@ -454,9 +454,9 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
 
           <button
             onClick={() => setActiveSubTab('country')}
-            className={`rounded-xl px-4 py-2 transition-all duration-200 ${
+            className={`rounded-sm px-4 py-2 font-mono text-xs uppercase tracking-wider transition-all duration-200 ${
               activeSubTab === 'country'
-                ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange font-bold scale-[1.02]'
+                ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange font-bold'
                 : 'text-[#A89280] hover:text-[#FFF6EE] hover:bg-[#24120A]'
             }`}
           >
@@ -464,26 +464,26 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
           </button>
         </div>
 
-        {/* Sub-tab active pill toggles */}
+        {/* Sub-tab active rectangular chip toggles */}
         <div className="mt-3.5 flex items-center gap-2 px-1 text-xs">
           {activeSubTab === 'open_weights' && (
             <div className="flex items-center gap-2 text-[#C7B299] flex-wrap">
-              <span className="text-[#8A7262] text-[11px] font-mono">{language === 'vi' ? 'Bộ lọc:' : 'Filter:'}</span>
+              <span className="text-[#8A7262] text-[11px] font-mono">{language === 'vi' ? 'BỘ LỌC:' : 'FILTER:'}</span>
               <button
                 onClick={() => setOpenWeightsFilter('all')}
-                className={`px-3 py-1 rounded-full text-xs transition-colors ${openWeightsFilter === 'all' ? 'bg-[#FF6B35] text-white font-bold' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
+                className={`px-3 py-1 rounded-sm font-mono text-xs transition-colors ${openWeightsFilter === 'all' ? 'bg-[#FF6B35] text-white font-bold shadow-sm' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
               >
                 {language === 'vi' ? 'Tất cả mô hình' : 'All'}
               </button>
               <button
                 onClick={() => setOpenWeightsFilter('open')}
-                className={`px-3 py-1 rounded-full text-xs transition-colors ${openWeightsFilter === 'open' ? 'bg-emerald-600 text-white font-bold' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
+                className={`px-3 py-1 rounded-sm font-mono text-xs transition-colors ${openWeightsFilter === 'open' ? 'bg-emerald-600 text-white font-bold shadow-sm' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
               >
                 {language === 'vi' ? 'Chỉ Trọng số Mở (Open Weights)' : 'Open Weights Only'}
               </button>
               <button
                 onClick={() => setOpenWeightsFilter('proprietary')}
-                className={`px-3 py-1 rounded-full text-xs transition-colors ${openWeightsFilter === 'proprietary' ? 'bg-[#FF6B35] text-white font-bold' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
+                className={`px-3 py-1 rounded-sm font-mono text-xs transition-colors ${openWeightsFilter === 'proprietary' ? 'bg-[#FF6B35] text-white font-bold shadow-sm' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
               >
                 {language === 'vi' ? 'Chỉ Độc quyền (Proprietary API)' : 'Proprietary Only'}
               </button>
@@ -492,22 +492,22 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
 
           {activeSubTab === 'reasoning' && (
             <div className="flex items-center gap-2 text-[#C7B299] flex-wrap">
-              <span className="text-[#8A7262] text-[11px] font-mono">{language === 'vi' ? 'Bộ lọc:' : 'Filter:'}</span>
+              <span className="text-[#8A7262] text-[11px] font-mono">{language === 'vi' ? 'BỘ LỌC:' : 'FILTER:'}</span>
               <button
                 onClick={() => setReasoningFilter('all')}
-                className={`px-3 py-1 rounded-full text-xs transition-colors ${reasoningFilter === 'all' ? 'bg-[#FF6B35] text-white font-bold' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
+                className={`px-3 py-1 rounded-sm font-mono text-xs transition-colors ${reasoningFilter === 'all' ? 'bg-[#FF6B35] text-white font-bold shadow-sm' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
               >
                 {language === 'vi' ? 'Tất cả' : 'All'}
               </button>
               <button
                 onClick={() => setReasoningFilter('reasoning')}
-                className={`px-3 py-1 rounded-full text-xs transition-colors ${reasoningFilter === 'reasoning' ? 'bg-purple-600 text-white font-bold' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
+                className={`px-3 py-1 rounded-sm font-mono text-xs transition-colors ${reasoningFilter === 'reasoning' ? 'bg-purple-600 text-white font-bold shadow-sm' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
               >
                 {language === 'vi' ? 'Chỉ Reasoning (Suy luận sâu)' : 'Reasoning Only'}
               </button>
               <button
                 onClick={() => setReasoningFilter('standard')}
-                className={`px-3 py-1 rounded-full text-xs transition-colors ${reasoningFilter === 'standard' ? 'bg-[#FF6B35] text-white font-bold' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
+                className={`px-3 py-1 rounded-sm font-mono text-xs transition-colors ${reasoningFilter === 'standard' ? 'bg-[#FF6B35] text-white font-bold shadow-sm' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
               >
                 {language === 'vi' ? 'Mô hình Chuẩn (Standard)' : 'Standard Models'}
               </button>
@@ -516,22 +516,22 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
 
           {activeSubTab === 'modalities' && (
             <div className="flex items-center gap-2 text-[#C7B299] flex-wrap">
-              <span className="text-[#8A7262] text-[11px] font-mono">{language === 'vi' ? 'Bộ lọc:' : 'Filter:'}</span>
+              <span className="text-[#8A7262] text-[11px] font-mono">{language === 'vi' ? 'BỘ LỌC:' : 'FILTER:'}</span>
               <button
                 onClick={() => setModalityFilter('all')}
-                className={`px-3 py-1 rounded-full text-xs transition-colors ${modalityFilter === 'all' ? 'bg-[#FF6B35] text-white font-bold' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
+                className={`px-3 py-1 rounded-sm font-mono text-xs transition-colors ${modalityFilter === 'all' ? 'bg-[#FF6B35] text-white font-bold shadow-sm' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
               >
                 {language === 'vi' ? 'Tất cả' : 'All'}
               </button>
               <button
                 onClick={() => setModalityFilter('vision')}
-                className={`px-3 py-1 rounded-full text-xs transition-colors ${modalityFilter === 'vision' ? 'bg-sky-600 text-white font-bold' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
+                className={`px-3 py-1 rounded-sm font-mono text-xs transition-colors ${modalityFilter === 'vision' ? 'bg-sky-600 text-white font-bold shadow-sm' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
               >
                 {language === 'vi' ? 'Đa phương thức (Hình ảnh / Video)' : 'Multimodal (Vision)'}
               </button>
               <button
                 onClick={() => setModalityFilter('text')}
-                className={`px-3 py-1 rounded-full text-xs transition-colors ${modalityFilter === 'text' ? 'bg-[#FF6B35] text-white font-bold' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
+                className={`px-3 py-1 rounded-sm font-mono text-xs transition-colors ${modalityFilter === 'text' ? 'bg-[#FF6B35] text-white font-bold shadow-sm' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
               >
                 {language === 'vi' ? 'Chỉ Văn bản (Text Only)' : 'Text Only'}
               </button>
@@ -540,28 +540,28 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
 
           {activeSubTab === 'country' && (
             <div className="flex items-center gap-2 text-[#C7B299] flex-wrap">
-              <span className="text-[#8A7262] text-[11px] font-mono">{language === 'vi' ? 'Bộ lọc:' : 'Filter:'}</span>
+              <span className="text-[#8A7262] text-[11px] font-mono">{language === 'vi' ? 'BỘ LỌC:' : 'FILTER:'}</span>
               <button
                 onClick={() => setCountryFilter('all')}
-                className={`px-3 py-1 rounded-full text-xs transition-colors ${countryFilter === 'all' ? 'bg-[#FF6B35] text-white font-bold' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
+                className={`px-3 py-1 rounded-sm font-mono text-xs transition-colors ${countryFilter === 'all' ? 'bg-[#FF6B35] text-white font-bold shadow-sm' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
               >
                 {language === 'vi' ? 'Tất cả quốc gia' : 'All Countries'}
               </button>
               <button
                 onClick={() => setCountryFilter('us')}
-                className={`px-3 py-1 rounded-full text-xs transition-colors ${countryFilter === 'us' ? 'bg-blue-600 text-white font-bold' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
+                className={`px-3 py-1 rounded-sm font-mono text-xs transition-colors ${countryFilter === 'us' ? 'bg-blue-600 text-white font-bold shadow-sm' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
               >
                 🇺🇸 Hoa Kỳ (US Labs)
               </button>
               <button
                 onClick={() => setCountryFilter('cn')}
-                className={`px-3 py-1 rounded-full text-xs transition-colors ${countryFilter === 'cn' ? 'bg-red-600 text-white font-bold' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
+                className={`px-3 py-1 rounded-sm font-mono text-xs transition-colors ${countryFilter === 'cn' ? 'bg-red-600 text-white font-bold shadow-sm' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
               >
                 🇨🇳 Trung Quốc (China)
               </button>
               <button
                 onClick={() => setCountryFilter('fr')}
-                className={`px-3 py-1 rounded-full text-xs transition-colors ${countryFilter === 'fr' ? 'bg-indigo-600 text-white font-bold' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
+                className={`px-3 py-1 rounded-sm font-mono text-xs transition-colors ${countryFilter === 'fr' ? 'bg-indigo-600 text-white font-bold shadow-sm' : 'bg-[#160B06] text-[#A89280] hover:text-white border border-[#3D2216]'}`}
               >
                 🇫🇷 Pháp (Mistral AI)
               </button>

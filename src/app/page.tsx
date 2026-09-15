@@ -175,7 +175,7 @@ export default function HomePage() {
       {/* Live Sync Status Toast Notification */}
       {syncToast && (
         <div className="fixed bottom-6 right-6 z-50 animate-in slide-in-from-bottom-4 duration-300 max-w-md">
-          <div className={`flex items-center gap-3 px-4 py-3 rounded-2xl shadow-2xl border text-xs font-semibold backdrop-blur-md ${
+          <div className={`flex items-center gap-3 px-4 py-3 rounded-md shadow-2xl border font-mono text-xs font-semibold backdrop-blur-md ${
             syncToast.type === 'success'
               ? 'bg-[#1E0F09]/95 text-emerald-300 border-[#3D2216] shadow-black/60'
               : 'bg-[#2E100D]/95 text-rose-300 border-rose-900/50 shadow-black/60'
@@ -183,7 +183,7 @@ export default function HomePage() {
             <span className="flex-1 leading-relaxed">{syncToast.message}</span>
             <button
               onClick={() => setSyncToast(null)}
-              className="rounded-lg p-1 text-[#A89280] hover:bg-[#2A160E] hover:text-[#FFF6EE]"
+              className="rounded-sm p-1 text-[#A89280] hover:bg-[#2A160E] hover:text-[#FFF6EE]"
             >
               ✕
             </button>

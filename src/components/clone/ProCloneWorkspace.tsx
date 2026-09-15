@@ -175,7 +175,7 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
                   <h2 className="text-3xl font-serif font-bold text-[#FFF6EE]">
                     {language === 'vi' ? 'Chỉ số Trí tuệ AI (Intelligence)' : 'Intelligence'}
                   </h2>
-                  <span className="rounded-full bg-[#FF6B35]/20 text-[#FF8452] border border-[#FF6B35]/30 text-xs font-bold px-2.5 py-0.5 font-mono">
+                  <span className="rounded-sm bg-[#FF6B35]/20 text-[#FF8452] border border-[#FF6B35]/30 text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5">
                     {language === 'vi' ? 'Cập nhật trực tiếp' : 'Updated'}
                   </span>
                 </div>

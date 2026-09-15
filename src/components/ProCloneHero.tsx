@@ -55,7 +55,7 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Top Mode Banner with Technical Crosshairs */}
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#522B19] bg-[#24130C] px-3.5 py-1.5 text-xs text-[#FF8452] shadow-sm">
+          <div className="inline-flex items-center gap-2 rounded-sm border border-[#522B19] bg-[#24130C] px-3.5 py-1.5 text-[11px] font-mono font-bold uppercase tracking-wider text-[#FF8452] shadow-sm">
             <span className="flex h-2 w-2 rounded-full bg-[#FF6B35] animate-pulse" />
             <span className="font-bold text-[#FFF6EE]">PRO BENCHMARK CLONE</span>
             <span className="text-[#5A3522]">•</span>
@@ -66,7 +66,7 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
 
           <button
             onClick={() => setViewMode('simplified')}
-            className="group inline-flex items-center gap-2 rounded-full border border-[#FF6B35]/40 bg-[#24130C] hover:bg-[#331C10] px-4 py-1.5 text-xs font-semibold text-[#FF8452] transition-all shadow-sm"
+            className="group inline-flex items-center gap-2 rounded-sm border border-[#FF6B35]/40 bg-[#24130C] hover:bg-[#331C10] px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-wider text-[#FF8452] transition-all shadow-sm"
           >
             <span>⚡ {language === 'vi' ? 'Xem chế độ Dễ hiểu (Giao diện Tinh hoa)' : 'Switch to Easy Mode'}</span>
             <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
@@ -116,54 +116,54 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
 
         {/* Telemetry Metric Cards in Ledger Chocolate Style */}
         <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
-          <div className="rounded-2xl border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
-            <div className="flex items-center gap-2 text-[#FF8452] text-xs font-semibold uppercase tracking-wider">
+          <div className="rounded-md border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
+            <div className="flex items-center gap-2 text-[#FF8452] font-mono text-[11px] font-bold uppercase tracking-wider">
               <Layers className="h-4 w-4" />
               <span>{language === 'vi' ? 'Tổng mô hình' : 'Total Models'}</span>
             </div>
             <div className="mt-2 text-2xl font-serif font-bold text-[#FFF6EE] sm:text-3xl">
               {modelCount > 0 ? `${modelCount}+` : '650+'}
             </div>
-            <p className="mt-1 text-[11px] text-[#A89280]">
+            <p className="mt-1 font-mono text-[11px] text-[#A89280]">
               {language === 'vi' ? 'Frontier & Open-source' : 'Frontier & open weights'}
             </p>
           </div>
 
-          <div className="rounded-2xl border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
-            <div className="flex items-center gap-2 text-[#FF8452] text-xs font-semibold uppercase tracking-wider">
+          <div className="rounded-md border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
+            <div className="flex items-center gap-2 text-[#FF8452] font-mono text-[11px] font-bold uppercase tracking-wider">
               <ShieldCheck className="h-4 w-4" />
               <span>{language === 'vi' ? 'Kiểm thử độc lập' : 'Benchmark Rig'}</span>
             </div>
             <div className="mt-2 text-2xl font-serif font-bold text-[#FFF6EE] sm:text-3xl">
               100%
             </div>
-            <p className="mt-1 text-[11px] text-[#A89280]">
+            <p className="mt-1 font-mono text-[11px] text-[#A89280]">
               {language === 'vi' ? 'Đo lường trên GPU thực' : 'Standardized workloads'}
             </p>
           </div>
 
-          <div className="rounded-2xl border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
-            <div className="flex items-center gap-2 text-[#FF8452] text-xs font-semibold uppercase tracking-wider">
+          <div className="rounded-md border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
+            <div className="flex items-center gap-2 text-[#FF8452] font-mono text-[11px] font-bold uppercase tracking-wider">
               <Clock className="h-4 w-4" />
               <span>{language === 'vi' ? 'Chu kỳ đồng bộ' : 'Sync Cadence'}</span>
             </div>
             <div className="mt-2 text-2xl font-serif font-bold text-[#FFF6EE] sm:text-3xl">
               15 phút
             </div>
-            <p className="mt-1 text-[11px] text-[#A89280]">
+            <p className="mt-1 font-mono text-[11px] text-[#A89280]">
               {language === 'vi' ? 'Tự động kéo telemetry' : 'Real-time telemetry'}
             </p>
           </div>
 
-          <div className="rounded-2xl border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
-            <div className="flex items-center gap-2 text-[#FF8452] text-xs font-semibold uppercase tracking-wider">
+          <div className="rounded-md border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
+            <div className="flex items-center gap-2 text-[#FF8452] font-mono text-[11px] font-bold uppercase tracking-wider">
               <TrendingUp className="h-4 w-4" />
               <span>{language === 'vi' ? 'Chỉ số đo đạc' : 'Key Metrics'}</span>
             </div>
             <div className="mt-2 text-2xl font-serif font-bold text-[#FFF6EE] sm:text-3xl">
               6 chiều
             </div>
-            <p className="mt-1 text-[11px] text-[#A89280]">
+            <p className="mt-1 font-mono text-[11px] text-[#A89280]">
               {language === 'vi' ? 'Trí tuệ, Tốc độ, Giá, TTFT' : 'Quality, Speed, TTFT, Cost'}
             </p>
           </div>
@@ -182,7 +182,7 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
                   ? `Tìm kiếm nhanh trong ${modelCount} mô hình AI (Claude, GPT, Gemini, DeepSeek, Llama...)...`
                   : `Search across ${modelCount} models (Claude, GPT, Gemini, DeepSeek, Llama...)...`
               }
-              className="w-full rounded-full border border-[#4A2818] bg-[#24130C]/90 py-3 pl-12 pr-4 text-xs text-[#FFF6EE] placeholder-[#A89280] shadow-2xl focus:border-[#FF6B35] focus:outline-none focus:ring-2 focus:ring-[#FF6B35]/20 transition-all"
+              className="w-full rounded-sm border border-[#4A2818] bg-[#24130C]/90 py-3 pl-12 pr-4 font-mono text-xs text-[#FFF6EE] placeholder-[#A89280] shadow-2xl focus:border-[#FF6B35] focus:outline-none focus:ring-1 focus:ring-[#FF6B35]/30 transition-all"
             />
             {searchQuery && (
               <button
@@ -204,9 +204,9 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-medium transition-all ${
+                className={`inline-flex items-center gap-1.5 rounded-sm px-3.5 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-all ${
                   isActive
-                    ? 'bg-[#FF6B35] text-white shadow-glow-orange font-bold'
+                    ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange'
                     : 'bg-[#24130C] text-[#D8C4B6] border border-[#472718] hover:border-[#FF6B35]/50 hover:text-white'
                 }`}
               >

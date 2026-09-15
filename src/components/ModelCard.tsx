@@ -61,7 +61,7 @@ export const ModelCard: React.FC<ModelCardProps> = ({
   };
 
   return (
-    <div className="group relative flex flex-col justify-between rounded-2xl border border-[#472718] bg-[#24130C]/90 p-5 shadow-card-espresso transition-all duration-300 hover:-translate-y-1.5 hover:border-[#FF6B35]/80 hover:shadow-glow-orange-lg">
+    <div className="group relative flex flex-col justify-between rounded-md border border-[#472718] bg-[#24130C]/90 p-5 shadow-card-espresso transition-all duration-300 hover:-translate-y-1.5 hover:border-[#FF6B35]/80 hover:shadow-glow-orange-lg">
       <div>
         {/* Card Header: Creator, Name & Badges */}
         <div className="flex items-start justify-between gap-3">
@@ -71,12 +71,12 @@ export const ModelCard: React.FC<ModelCardProps> = ({
                 {model.creator}
               </span>
               {model.isOpenWeights && (
-                <span className="rounded-md bg-emerald-950/80 px-1.5 py-0.5 text-[10px] font-medium text-emerald-300 border border-emerald-800/40">
+                <span className="rounded-sm bg-emerald-950/80 px-1.5 py-0.5 text-[10px] font-mono font-medium text-emerald-300 border border-emerald-800/40">
                   {language === 'vi' ? 'Mở' : 'Open'}
                 </span>
               )}
               {model.isFreeTierAvailable && (
-                <span className="rounded-md bg-amber-950/80 px-1.5 py-0.5 text-[10px] font-medium text-amber-300 border border-amber-800/40">
+                <span className="rounded-sm bg-amber-950/80 px-1.5 py-0.5 text-[10px] font-mono font-medium text-amber-300 border border-amber-800/40">
                   {language === 'vi' ? 'Miễn phí' : 'Free tier'}
                 </span>
               )}
@@ -87,26 +87,26 @@ export const ModelCard: React.FC<ModelCardProps> = ({
           </div>
 
           {/* Tier Badge */}
-          <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-lg font-black shadow-lg ${getTierBadgeStyle(model.tier)}`}>
+          <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-sm font-mono text-lg font-black shadow-lg ${getTierBadgeStyle(model.tier)}`}>
             {model.tier}
           </div>
         </div>
 
         {/* Plain Language Summary */}
-        <p className="mt-3 text-xs leading-relaxed text-[#D8C4B6] line-clamp-2">
+        <p className="mt-3 text-xs leading-relaxed text-[#D8C4B6] line-clamp-2 font-light">
           {language === 'vi' ? model.vietnameseSummary : model.englishSummary}
         </p>
 
         {/* Quick Benchmark Mini-Dashboard */}
-        <div className="mt-4 grid grid-cols-2 gap-2 rounded-xl bg-[#1A0E08] border border-[#381E12] p-3 text-xs font-mono">
+        <div className="mt-4 grid grid-cols-2 gap-2 rounded-sm bg-[#1A0E08] border border-[#381E12] p-3 text-xs font-mono">
           <div>
             <span className="text-[#8A7262] text-[11px] block">
               {language === 'vi' ? 'Độ thông minh' : 'Intelligence'}
             </span>
             <div className="flex items-center gap-1.5 mt-0.5">
-              <div className="w-12 bg-[#2D160C] h-2 rounded-full overflow-hidden">
+              <div className="w-12 bg-[#2D160C] h-2 rounded-sm overflow-hidden">
                 <div 
-                  className="bg-gradient-to-r from-[#E64A19] to-[#FF6B35] h-full rounded-full" 
+                  className="bg-gradient-to-r from-[#E64A19] to-[#FF6B35] h-full rounded-sm" 
                   style={{ width: `${Math.min(100, (model.intelligenceScore / 60) * 100)}%` }} 
                 />
               </div>
@@ -119,9 +119,9 @@ export const ModelCard: React.FC<ModelCardProps> = ({
               {language === 'vi' ? 'Tiếng Việt' : 'Vietnamese'}
             </span>
             <div className="flex items-center gap-1.5 mt-0.5">
-              <div className="w-12 bg-[#2D160C] h-2 rounded-full overflow-hidden">
+              <div className="w-12 bg-[#2D160C] h-2 rounded-sm overflow-hidden">
                 <div 
-                  className="bg-amber-500 h-full rounded-full" 
+                  className="bg-amber-500 h-full rounded-sm" 
                   style={{ width: `${model.vietnameseRating}%` }} 
                 />
               </div>
@@ -155,7 +155,7 @@ export const ModelCard: React.FC<ModelCardProps> = ({
       <div className="mt-5 flex items-center gap-2 pt-3 border-t border-[#381E12]">
         <button
           onClick={() => onSelectDetails(model)}
-          className="flex-1 rounded-xl bg-gradient-to-r from-[#FF6B35] to-[#E64A19] py-2 text-center text-xs font-bold text-white shadow-glow-orange hover:brightness-110 transition-all"
+          className="flex-1 rounded-sm bg-gradient-to-r from-[#FF6B35] to-[#E64A19] py-2 text-center text-xs font-mono font-bold uppercase tracking-wider text-white shadow-glow-orange hover:brightness-110 active:scale-[0.98] transition-all"
         >
           {language === 'vi' ? 'Chi tiết' : 'Details'}
         </button>
@@ -163,7 +163,7 @@ export const ModelCard: React.FC<ModelCardProps> = ({
         {onSelectCompare && (
           <button
             onClick={() => onSelectCompare(model)}
-            className="flex items-center justify-center gap-1 rounded-xl border border-[#472718] bg-[#1A0E08] px-3 py-2 text-xs font-semibold text-[#D8C4B6] hover:border-[#FF6B35] hover:text-white transition-colors"
+            className="flex items-center justify-center gap-1.5 rounded-sm border border-[#472718] bg-[#1A0E08] px-3.5 py-2 text-xs font-mono font-semibold uppercase tracking-wider text-[#D8C4B6] hover:border-[#FF6B35] hover:text-white transition-colors"
             title="So sánh 1-vs-1"
           >
             <Swords className="h-3.5 w-3.5 text-[#FF6B35]" />

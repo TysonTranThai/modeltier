@@ -31,7 +31,7 @@ export const ArticlesAndChangelog: React.FC<ArticlesAndChangelogProps> = ({
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#FF6B35]/30 bg-[#FF6B35]/10 px-3 py-1 text-xs font-semibold text-[#FF8452] mb-3">
+            <div className="inline-flex items-center gap-2 rounded-sm border border-[#FF6B35]/30 bg-[#FF6B35]/10 px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-[#FF8452] mb-3">
               <FileText className="h-3.5 w-3.5" />
               <span>{language === 'vi' ? 'Bản Tin Nghiên Cứu Độc Lập' : 'Independent Research & Methodology'}</span>
             </div>
@@ -45,7 +45,7 @@ export const ArticlesAndChangelog: React.FC<ArticlesAndChangelogProps> = ({
             </p>
           </div>
 
-          <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#FF8452] bg-[#2E170E] px-3.5 py-1.5 rounded-xl border border-[#3D2216]">
+          <div className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-[#FF8452] bg-[#2E170E] px-3 py-1 rounded-sm border border-[#3D2216]">
             <span>{language === 'vi' ? 'Dữ liệu nghiên cứu & nhật ký đánh giá' : 'Research Memo & Benchmark Logs'}</span>
           </div>
         </div>
@@ -62,7 +62,7 @@ export const ArticlesAndChangelog: React.FC<ArticlesAndChangelogProps> = ({
               {articles.map((article, idx) => (
                 <div
                   key={article.slug || idx}
-                  className="group relative flex flex-col justify-between rounded-2xl border border-[#3D2216] bg-[#24130C]/90 p-5 hover:border-[#FF6B35]/40 transition-all shadow-sm"
+                  className="group relative flex flex-col justify-between rounded-md border border-[#3D2216] bg-[#24130C]/90 p-5 hover:border-[#FF6B35]/40 transition-all shadow-sm"
                 >
                   <div>
                     <div className="flex items-center justify-between text-[11px] font-semibold text-[#FF8452] uppercase tracking-wider mb-2">
@@ -98,12 +98,12 @@ export const ArticlesAndChangelog: React.FC<ArticlesAndChangelogProps> = ({
               <span>{language === 'vi' ? 'Nhật Ký Đánh Giá Mới Nhất' : 'Recent Evaluation Changelog'}</span>
             </h3>
 
-            <div className="rounded-2xl border border-[#3D2216] bg-[#24130C]/90 p-4 divide-y divide-[#2E170E] max-h-[420px] overflow-y-auto">
+            <div className="rounded-md border border-[#3D2216] bg-[#24130C]/90 p-4 divide-y divide-[#2E170E] max-h-[420px] overflow-y-auto">
               {changelog.slice(0, 8).map((item, idx) => (
                 <div
                   key={`${item.slug}-${idx}`}
                   onClick={() => onSelectModelSlug && onSelectModelSlug(item.slug)}
-                  className="py-3 first:pt-0 last:pb-0 cursor-pointer group hover:bg-[#2E170E]/50 px-2 rounded-xl transition-colors"
+                  className="py-3 first:pt-0 last:pb-0 cursor-pointer group hover:bg-[#2E170E]/50 px-2 rounded-sm transition-colors"
                 >
                   <div className="flex items-center gap-1.5 text-[10px] text-[#FF8452] font-medium font-mono">
                     <Calendar className="h-3 w-3" />

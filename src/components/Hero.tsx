@@ -60,7 +60,7 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Hero Editorial Headline */}
         <div className="max-w-4xl mx-auto text-center">
           {/* Live Empirical Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#FF6B35]/30 bg-[#24130C]/90 px-4 py-1.5 text-xs font-mono text-[#FF8452] shadow-sm mb-6 backdrop-blur-md">
+          <div className="inline-flex items-center gap-2.5 rounded-sm border border-[#FF6B35]/40 bg-[#24130C]/90 px-3.5 py-1.5 text-xs font-mono text-[#FF8452] shadow-sm mb-6 backdrop-blur-md tracking-wider uppercase">
             <span className="flex h-2 w-2 rounded-full bg-[#FF6B35] animate-ping" />
             <span className="font-semibold">{language === 'vi' ? `DỮ LIỆU ĐỘC LẬP • ${modelCount}+ MÔ HÌNH` : `INDEPENDENT TELEMETRY • ${modelCount}+ MODELS`}</span>
           </div>
@@ -83,7 +83,7 @@ export const Hero: React.FC<HeroProps> = ({
               : 'Empirical telemetry for every AI model — independent benchmarks, real-world cost comparisons, and localized performance metrics.'}
           </p>
 
-          {/* Glowing Orange CTA Pill Button with Shimmer */}
+          {/* Architectural Rectangular CTA Buttons with Shimmer */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a
               href="#tierlist"
@@ -91,22 +91,22 @@ export const Hero: React.FC<HeroProps> = ({
                 e.preventDefault();
                 document.querySelector('#tierlist')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="btn-shimmer inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#FF6B35] to-[#E64A19] px-7 py-3.5 text-sm font-semibold text-white shadow-glow-orange hover:shadow-glow-orange-lg hover:scale-105 active:scale-95 transition-all"
+              className="btn-shimmer inline-flex items-center gap-2.5 rounded-sm bg-gradient-to-r from-[#FF6B35] to-[#E64A19] px-6 py-3 text-xs font-mono font-bold uppercase tracking-wider text-white shadow-glow-orange hover:shadow-glow-orange-lg hover:brightness-110 active:scale-[0.98] transition-all"
             >
               <span>{language === 'vi' ? 'Khám Phá Mô Hình Tinh Hoa' : 'Discover the Core'}</span>
-              <span className="text-white text-base">→</span>
+              <span className="text-white text-base font-mono">→</span>
             </a>
 
             <button
               onClick={() => setViewMode('clone')}
-              className="inline-flex items-center gap-2 rounded-full border border-[#5A3420] bg-[#24130B]/80 hover:bg-[#331C10] px-6 py-3.5 text-sm font-medium text-[#EFE2D6] hover:border-[#FF6B35]/60 hover:text-white active:scale-95 transition-all shadow-sm backdrop-blur-sm"
+              className="inline-flex items-center gap-2.5 rounded-sm border border-[#5A3420] bg-[#24130B]/80 hover:bg-[#331C10] px-6 py-3 text-xs font-mono font-semibold uppercase tracking-wider text-[#EFE2D6] hover:border-[#FF6B35]/70 hover:text-white active:scale-[0.98] transition-all shadow-sm backdrop-blur-sm"
             >
               <BarChart2 className="h-4 w-4 text-[#FF6B35]" />
               <span>{language === 'vi' ? 'Xem Chuẩn Benchmark Pro' : 'Explore Pro Telemetry'}</span>
             </button>
           </div>
 
-          {/* Search Box in Warm Espresso Style */}
+          {/* Terminal Search Box in Warm Espresso Style */}
           <div className="mt-10 max-w-xl mx-auto">
             <div className="relative group">
               <Search className="absolute left-4 top-3.5 h-4 w-4 text-[#FF8452] transition-transform group-focus-within:scale-110" />
@@ -119,7 +119,7 @@ export const Hero: React.FC<HeroProps> = ({
                     ? `Tìm kiếm trong ${modelCount} mô hình AI (Claude 3.7, GPT-4o, DeepSeek, Gemini)...`
                     : `Search ${modelCount} models (Claude 3.7, GPT-4o, DeepSeek, Gemini)...`
                 }
-                className="w-full rounded-full border border-[#4A2818] bg-[#24130C]/90 py-3 pl-11 pr-4 text-xs text-[#FFF6EE] placeholder-[#A89280] shadow-2xl focus:border-[#FF6B35] focus:outline-none focus:ring-2 focus:ring-[#FF6B35]/30 hover:border-[#FF6B35]/50 transition-all backdrop-blur-md"
+                className="w-full rounded-sm border border-[#4A2818] bg-[#24130C]/90 py-3 pl-11 pr-4 text-xs font-mono text-[#FFF6EE] placeholder-[#A89280] shadow-2xl focus:border-[#FF6B35] focus:outline-none focus:ring-1 focus:ring-[#FF6B35]/40 hover:border-[#FF6B35]/50 transition-all backdrop-blur-md"
               />
               {searchQuery && (
                 <button

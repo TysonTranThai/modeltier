@@ -39,52 +39,52 @@ export const LiveModelDetailModal: React.FC<LiveModelDetailModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-xl rounded-3xl border border-[#3D2216] bg-[#1E0F09] p-6 sm:p-8 shadow-2xl text-[#FFF6EE] overflow-hidden animate-scale-in"
+        className="relative w-full max-w-xl rounded-lg border border-[#3D2216] bg-[#1E0F09] p-6 sm:p-8 shadow-2xl text-[#FFF6EE] overflow-hidden animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute right-5 top-5 rounded-full bg-[#2E170E] p-2 text-[#A89280] hover:bg-[#3D2216] hover:text-[#FFF6EE] transition-colors"
+          className="absolute right-5 top-5 flex h-8 w-8 items-center justify-center rounded-sm border border-[#3D2216] bg-[#2E170E] text-[#A89280] hover:border-[#FF6B35] hover:text-[#FFF6EE] transition-colors"
         >
           <X className="h-4 w-4" />
         </button>
 
         {/* Modal Header */}
         <div className="flex items-start gap-4 mb-6">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#FF6B35] to-[#E64A19] font-serif text-2xl font-black text-white shadow-lg shadow-[#FF6B35]/30">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-sm border border-[#FF6B35]/40 bg-gradient-to-br from-[#FF6B35] to-[#E64A19] font-mono text-2xl font-black text-white shadow-lg shadow-[#FF6B35]/30">
             {model.tier}
           </div>
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#D8C4B6]">
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#D8C4B6]">
                 {model.creator}
               </span>
               <span className="text-[#5A3622]">•</span>
-              <span className="text-xs text-[#A89280]">{model.contextWindow} Context</span>
+              <span className="font-mono text-xs text-[#A89280]">{model.contextWindow} Context</span>
               {model.isOpenWeights ? (
-                <span className="rounded bg-[#2A160E] px-1.5 py-0.5 text-[10px] font-bold text-[#FF8452] border border-[#FF6B35]/30">
+                <span className="rounded-sm bg-[#2A160E] px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-[#FF8452] border border-[#FF6B35]/30">
                   Open Weights
                 </span>
               ) : (
-                <span className="rounded bg-[#24130C] px-1.5 py-0.5 text-[10px] text-[#A89280] border border-[#3D2216]">
+                <span className="rounded-sm bg-[#24130C] px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-[#A89280] border border-[#3D2216]">
                   Proprietary
                 </span>
               )}
               {model.isReasoning && (
-                <span className="rounded bg-[#2A160E] px-1.5 py-0.5 text-[10px] font-bold text-[#FF8452] border border-[#FF6B35]/40">
+                <span className="rounded-sm bg-[#2A160E] px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-[#FF8452] border border-[#FF6B35]/40">
                   🧠 Reasoning
                 </span>
               )}
               {model.effort && (
-                <span className="rounded bg-[#24130C] px-1.5 py-0.5 text-[10px] font-bold text-[#D8C4B6] border border-[#3D2216]">
+                <span className="rounded-sm bg-[#24130C] px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-[#D8C4B6] border border-[#3D2216]">
                   Effort: {model.effort}
                 </span>
               )}
             </div>
             <h2 className="text-xl sm:text-2xl font-serif font-black text-[#FFF6EE] mt-1">{model.name}</h2>
             {model.releaseDate && (
-              <div className="text-[11px] text-[#A89280] mt-0.5">
+              <div className="font-mono text-[11px] text-[#A89280] mt-0.5">
                 {language === 'vi' ? 'Ngày phát hành:' : 'Release:'} {model.releaseDate}
               </div>
             )}
@@ -94,7 +94,7 @@ export const LiveModelDetailModal: React.FC<LiveModelDetailModalProps> = ({
         {/* Key Metrics Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-6">
           {/* Intelligence */}
-          <div className="rounded-xl bg-[#140A05] p-3 border border-[#2E170E] text-center">
+          <div className="rounded-sm bg-[#140A05] p-3 border border-[#2E170E] text-center">
             <span className="text-[10px] text-[#A89280] block mb-0.5">{language === 'vi' ? 'Độ thông minh' : 'Intelligence'}</span>
             <div className="text-lg font-black text-[#FF6B35] font-mono">
               {model.intelligenceScoreRaw !== '--' ? model.intelligenceScoreRaw : '—'}
@@ -103,7 +103,7 @@ export const LiveModelDetailModal: React.FC<LiveModelDetailModalProps> = ({
           </div>
 
           {/* Speed */}
-          <div className="rounded-xl bg-[#140A05] p-3 border border-[#2E170E] text-center">
+          <div className="rounded-sm bg-[#140A05] p-3 border border-[#2E170E] text-center">
             <span className="text-[10px] text-[#A89280] block mb-0.5">{language === 'vi' ? 'Tốc độ sinh chữ' : 'Output Speed'}</span>
             <div className="text-lg font-black text-[#FF8452] font-mono">
               {model.outputSpeedRaw !== '--' ? model.outputSpeedRaw : '—'}
@@ -112,7 +112,7 @@ export const LiveModelDetailModal: React.FC<LiveModelDetailModalProps> = ({
           </div>
 
           {/* Cost per Task */}
-          <div className="rounded-xl bg-[#140A05] p-3 border border-[#2E170E] text-center">
+          <div className="rounded-sm bg-[#140A05] p-3 border border-[#2E170E] text-center">
             <span className="text-[10px] text-[#A89280] block mb-0.5">{language === 'vi' ? 'Chi phí / Task' : 'Cost / Task'}</span>
             <div className="text-sm font-black text-emerald-400 font-mono mt-1 truncate">
               {model.costPerTaskUSD > 0 ? formatCost(model.costPerTaskUSD) : (model.costPerTaskRaw || '—')}
@@ -121,7 +121,7 @@ export const LiveModelDetailModal: React.FC<LiveModelDetailModalProps> = ({
           </div>
 
           {/* Vietnamese Rating */}
-          <div className="rounded-xl bg-[#140A05] p-3 border border-[#2E170E] text-center">
+          <div className="rounded-sm bg-[#140A05] p-3 border border-[#2E170E] text-center">
             <span className="text-[10px] text-[#A89280] block mb-0.5">🇻🇳 {language === 'vi' ? 'Độ nhuyễn Việt' : 'Vietnamese'}</span>
             <div className="text-lg font-black text-emerald-400 font-mono">
               {model.vietnameseRating}
@@ -131,7 +131,7 @@ export const LiveModelDetailModal: React.FC<LiveModelDetailModalProps> = ({
         </div>
 
         {/* Plain Language Evaluation */}
-        <div className="rounded-2xl bg-[#140A05] p-4 border border-[#2E170E] mb-6 space-y-2 text-xs text-[#D8C4B6]">
+        <div className="rounded-sm bg-[#140A05] p-4 border border-[#2E170E] mb-6 space-y-2 text-xs text-[#D8C4B6]">
           <div className="font-bold text-[#FFF6EE] flex items-center gap-1.5">
             <FileText className="h-4 w-4 text-[#FF6B35]" />
             <span>{language === 'vi' ? 'Đánh giá tóm tắt cho người dùng Việt Nam:' : 'Summary Assessment:'}</span>
@@ -161,7 +161,7 @@ export const LiveModelDetailModal: React.FC<LiveModelDetailModalProps> = ({
         <div className="flex items-center justify-between gap-3 pt-4 border-t border-[#2E170E]">
           <button
             onClick={onClose}
-            className="rounded-xl border border-[#3D2216] bg-[#24130C] px-4 py-2 text-xs font-semibold text-[#D8C4B6] hover:bg-[#2E170E] hover:text-[#FFF6EE] transition-colors"
+            className="rounded-sm border border-[#3D2216] bg-[#24130C] px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider text-[#D8C4B6] hover:bg-[#2E170E] hover:text-[#FFF6EE] transition-colors"
           >
             {language === 'vi' ? 'Đóng' : 'Close'}
           </button>
@@ -173,7 +173,7 @@ export const LiveModelDetailModal: React.FC<LiveModelDetailModalProps> = ({
                 const el = document.querySelector('#providers') || document.querySelector('#leaderboard');
                 el?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#FF6B35] to-[#E64A19] px-4 py-2 text-xs font-bold text-white shadow-lg shadow-[#FF6B35]/25 hover:brightness-110 transition-all"
+              className="inline-flex items-center gap-1.5 rounded-sm bg-gradient-to-r from-[#FF6B35] to-[#E64A19] px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider text-white shadow-glow-orange hover:brightness-110 active:scale-[0.98] transition-all"
             >
               <Server className="h-3.5 w-3.5" />
               <span>{language === 'vi' ? 'Xem Hạ Tầng Providers' : 'View Hosting Providers'}</span>
