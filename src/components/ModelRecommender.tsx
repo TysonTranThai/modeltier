@@ -280,7 +280,7 @@ export const ModelRecommender: React.FC<ModelRecommenderProps> = ({
               </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full max-w-full">
               {results.map((item, index) => {
                 const rankLabels = ['🥇 Quán Quân', '🥈 Á Quân 1', '🥉 Á Quân 2'];
                 const rankLabelsEn = ['🥇 Top Match', '🥈 2nd Pick', '🥉 3rd Pick'];
@@ -289,7 +289,7 @@ export const ModelRecommender: React.FC<ModelRecommenderProps> = ({
                 return (
                   <div
                     key={item.model.id}
-                    className={`relative rounded-md border p-6 flex flex-col justify-between transition-all ${
+                    className={`relative rounded-sm border p-4 sm:p-6 flex flex-col justify-between transition-all w-full max-w-full overflow-hidden ${
                       isTop
                         ? 'border-[#FF6B35] bg-[#24130C]/95 shadow-2xl shadow-glow-orange ring-1 ring-[#FF6B35]'
                         : 'border-[#3D2216] bg-[#24130C]/80'

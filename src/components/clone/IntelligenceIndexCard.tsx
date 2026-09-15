@@ -127,7 +127,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
         </div>
 
         {/* Right Action Controls */}
-        <div className="flex flex-col items-end gap-3">
+        <div className="flex flex-col items-start sm:items-end gap-3 w-full sm:w-auto">
           <div className="flex items-center gap-2 flex-wrap">
             {/* Scroll Navigation Buttons */}
             {viewFormat === 'chart' && (
@@ -196,7 +196,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
               </button>
 
               {showSelectorDropdown && (
-                <div className="absolute right-0 top-10 z-30 w-48 rounded-md border border-[#3D2216] bg-[#160B06] p-1.5 text-xs shadow-2xl animate-in fade-in zoom-in-95 font-mono">
+                <div className="absolute right-0 top-10 z-30 w-48 rounded-sm border border-[#3D2216] bg-[#160B06] p-1.5 text-xs shadow-2xl animate-in fade-in zoom-in-95 font-mono">
                   {[10, 15, 20, 26, 40, 60].map((num) => (
                     <button
                       key={num}
@@ -373,8 +373,8 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
         </div>
       ) : (
         /* Table View */
-        <div className="overflow-x-auto py-4">
-          <table className="w-full text-left text-xs border-collapse">
+        <div className="overflow-x-auto py-4 w-full max-w-full">
+          <table className="w-full text-left text-xs border-collapse min-w-[620px]">
             <thead>
               <tr className="border-b border-[#331A10] text-[#A89280] font-semibold uppercase tracking-wider font-mono">
                 <th className="py-3 px-3">#</th>
@@ -417,11 +417,11 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
       )}
 
       {/* 4 Bottom Filter Segment Tabs (Exact match to screenshot with full Vietnamese labels) */}
-      <div className="mt-8 border-t border-[#331A10] pt-6">
-        <div className="flex flex-wrap items-center gap-1.5 rounded-sm bg-[#160B06] p-1.5 text-xs font-mono text-[#C7B299] border border-[#3D2216]">
+      <div className="mt-8 border-t border-[#331A10] pt-6 w-full max-w-full">
+        <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 rounded-sm bg-[#160B06] p-1 sm:p-1.5 text-xs font-mono text-[#C7B299] border border-[#3D2216]">
           <button
             onClick={() => setActiveSubTab('open_weights')}
-            className={`rounded-sm px-4 py-2 font-mono text-xs uppercase tracking-wider transition-all duration-200 ${
+            className={`rounded-sm px-2.5 sm:px-4 py-1.5 sm:py-2 font-mono text-[11px] sm:text-xs uppercase tracking-wider transition-all duration-200 ${
               activeSubTab === 'open_weights'
                 ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange font-bold'
                 : 'text-[#A89280] hover:text-[#FFF6EE] hover:bg-[#24120A]'
@@ -432,7 +432,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
 
           <button
             onClick={() => setActiveSubTab('reasoning')}
-            className={`rounded-sm px-4 py-2 font-mono text-xs uppercase tracking-wider transition-all duration-200 ${
+            className={`rounded-sm px-2.5 sm:px-4 py-1.5 sm:py-2 font-mono text-[11px] sm:text-xs uppercase tracking-wider transition-all duration-200 ${
               activeSubTab === 'reasoning'
                 ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange font-bold'
                 : 'text-[#A89280] hover:text-[#FFF6EE] hover:bg-[#24120A]'
@@ -443,7 +443,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
 
           <button
             onClick={() => setActiveSubTab('modalities')}
-            className={`rounded-sm px-4 py-2 font-mono text-xs uppercase tracking-wider transition-all duration-200 ${
+            className={`rounded-sm px-2.5 sm:px-4 py-1.5 sm:py-2 font-mono text-[11px] sm:text-xs uppercase tracking-wider transition-all duration-200 ${
               activeSubTab === 'modalities'
                 ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange font-bold'
                 : 'text-[#A89280] hover:text-[#FFF6EE] hover:bg-[#24120A]'
@@ -454,7 +454,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
 
           <button
             onClick={() => setActiveSubTab('country')}
-            className={`rounded-sm px-4 py-2 font-mono text-xs uppercase tracking-wider transition-all duration-200 ${
+            className={`rounded-sm px-2.5 sm:px-4 py-1.5 sm:py-2 font-mono text-[11px] sm:text-xs uppercase tracking-wider transition-all duration-200 ${
               activeSubTab === 'country'
                 ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange font-bold'
                 : 'text-[#A89280] hover:text-[#FFF6EE] hover:bg-[#24120A]'

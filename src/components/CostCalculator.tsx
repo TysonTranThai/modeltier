@@ -143,7 +143,7 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
         </div>
 
         {/* Sliders for Custom Tuning */}
-        <div className="rounded-lg border border-[#3D2216] bg-[#24130C]/90 p-6 sm:p-8 backdrop-blur-xl shadow-2xl mb-8">
+        <div className="w-full max-w-full overflow-hidden rounded-sm border border-[#3D2216] bg-[#24130C]/90 p-4 sm:p-8 backdrop-blur-xl shadow-2xl mb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Input Words Slider */}
             <div>
@@ -231,9 +231,9 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
         </div>
 
         {/* Calculation Table */}
-        <div className="w-full max-w-full overflow-hidden rounded-md border border-[#3D2216] bg-[#24130C]/90 shadow-2xl">
+        <div className="w-full max-w-full overflow-hidden rounded-sm border border-[#3D2216] bg-[#24130C]/90 shadow-2xl">
           <div className="w-full max-w-full overflow-x-auto">
-            <table className="w-full text-left text-xs">
+            <table className="w-full text-left text-xs min-w-[620px]">
               <thead className="border-b border-[#3D2216] bg-[#1A0E08]/80 text-[#A89280] font-mono font-semibold uppercase tracking-wider">
                 <tr>
                   <th className="p-4 sm:pl-6">{t.calculator.tableModel}</th>

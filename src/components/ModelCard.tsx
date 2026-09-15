@@ -61,12 +61,12 @@ export const ModelCard: React.FC<ModelCardProps> = ({
   };
 
   return (
-    <div className="group relative flex flex-col justify-between rounded-md border border-[#472718] bg-[#24130C]/90 p-5 shadow-card-espresso transition-all duration-300 hover:-translate-y-1.5 hover:border-[#FF6B35]/80 hover:shadow-glow-orange-lg">
-      <div>
+    <div className="group relative flex flex-col justify-between rounded-sm border border-[#472718] bg-[#24130C]/90 p-4 sm:p-5 shadow-card-espresso transition-all duration-300 hover:-translate-y-1.5 hover:border-[#FF6B35]/80 hover:shadow-glow-orange-lg w-full max-w-full min-w-0 overflow-hidden">
+      <div className="w-full min-w-0">
         {/* Card Header: Creator, Name & Badges */}
-        <div className="flex items-start justify-between gap-3">
+        <div className="flex items-start justify-between gap-2 sm:gap-3 w-full min-w-0">
           <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
               <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#A89280]">
                 {model.creator}
               </span>
@@ -81,13 +81,13 @@ export const ModelCard: React.FC<ModelCardProps> = ({
                 </span>
               )}
             </div>
-            <h3 className="mt-1 text-lg font-serif font-bold text-[#FFF6EE] truncate group-hover:text-[#FF8452] transition-colors">
+            <h3 className="mt-1 text-base sm:text-lg font-serif font-bold text-[#FFF6EE] truncate group-hover:text-[#FF8452] transition-colors min-w-0">
               {model.name}
             </h3>
           </div>
 
           {/* Tier Badge */}
-          <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-sm font-mono text-lg font-black shadow-lg ${getTierBadgeStyle(model.tier)}`}>
+          <div className={`flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-sm font-mono text-base sm:text-lg font-black shadow-lg ${getTierBadgeStyle(model.tier)}`}>
             {model.tier}
           </div>
         </div>
@@ -98,51 +98,51 @@ export const ModelCard: React.FC<ModelCardProps> = ({
         </p>
 
         {/* Quick Benchmark Mini-Dashboard */}
-        <div className="mt-4 grid grid-cols-2 gap-2 rounded-sm bg-[#1A0E08] border border-[#381E12] p-3 text-xs font-mono">
+        <div className="mt-4 grid grid-cols-2 gap-2 rounded-sm bg-[#1A0E08] border border-[#381E12] p-2.5 sm:p-3 text-xs font-mono w-full min-w-0">
           <div>
-            <span className="text-[#8A7262] text-[11px] block">
+            <span className="text-[#8A7262] text-[11px] block truncate">
               {language === 'vi' ? 'Độ thông minh' : 'Intelligence'}
             </span>
             <div className="flex items-center gap-1.5 mt-0.5">
-              <div className="w-12 bg-[#2D160C] h-2 rounded-sm overflow-hidden">
+              <div className="w-10 sm:w-12 bg-[#2D160C] h-2 rounded-sm overflow-hidden shrink-0">
                 <div 
                   className="bg-gradient-to-r from-[#E64A19] to-[#FF6B35] h-full rounded-sm" 
                   style={{ width: `${Math.min(100, (model.intelligenceScore / 60) * 100)}%` }} 
                 />
               </div>
-              <span className="font-bold text-[#FF8452] text-xs">{model.intelligenceScore.toFixed(1)}</span>
+              <span className="font-bold text-[#FF8452] text-xs shrink-0">{model.intelligenceScore.toFixed(1)}</span>
             </div>
           </div>
 
           <div>
-            <span className="text-[#8A7262] text-[11px] block">
+            <span className="text-[#8A7262] text-[11px] block truncate">
               {language === 'vi' ? 'Tiếng Việt' : 'Vietnamese'}
             </span>
             <div className="flex items-center gap-1.5 mt-0.5">
-              <div className="w-12 bg-[#2D160C] h-2 rounded-sm overflow-hidden">
+              <div className="w-10 sm:w-12 bg-[#2D160C] h-2 rounded-sm overflow-hidden shrink-0">
                 <div 
                   className="bg-amber-500 h-full rounded-sm" 
                   style={{ width: `${model.vietnameseRating}%` }} 
                 />
               </div>
-              <span className="font-bold text-amber-400 text-xs">{model.vietnameseRating}/100</span>
+              <span className="font-bold text-amber-400 text-xs shrink-0">{model.vietnameseRating}/100</span>
             </div>
           </div>
 
           <div className="mt-1">
-            <span className="text-[#8A7262] text-[11px] block">
+            <span className="text-[#8A7262] text-[11px] block truncate">
               {language === 'vi' ? 'Tốc độ' : 'Speed'}
             </span>
-            <span className="font-semibold text-[#FFF6EE] text-xs">
+            <span className="font-semibold text-[#FFF6EE] text-xs truncate block">
               {model.outputSpeed > 0 ? `${Math.round(model.outputSpeed)} tps` : '—'}
             </span>
           </div>
 
           <div className="mt-1">
-            <span className="text-[#8A7262] text-[11px] block">
+            <span className="text-[#8A7262] text-[11px] block truncate">
               {language === 'vi' ? 'Giá đầu ra' : 'Output Price'}
             </span>
-            <span className="font-semibold text-emerald-400 text-xs">
+            <span className="font-semibold text-emerald-400 text-xs truncate block">
               {model.outputPricePerMillionUSD === 0
                 ? (language === 'vi' ? 'Miễn phí' : 'Free')
                 : `$${model.outputPricePerMillionUSD.toFixed(2)}/1M`}
@@ -152,10 +152,10 @@ export const ModelCard: React.FC<ModelCardProps> = ({
       </div>
 
       {/* Action Buttons */}
-      <div className="mt-5 flex items-center gap-2 pt-3 border-t border-[#381E12]">
+      <div className="mt-5 flex items-center gap-2 pt-3 border-t border-[#381E12] w-full min-w-0">
         <button
           onClick={() => onSelectDetails(model)}
-          className="flex-1 rounded-sm bg-gradient-to-r from-[#FF6B35] to-[#E64A19] py-2 text-center text-xs font-mono font-bold uppercase tracking-wider text-white shadow-glow-orange hover:brightness-110 active:scale-[0.98] transition-all"
+          className="flex-1 min-w-0 rounded-sm bg-gradient-to-r from-[#FF6B35] to-[#E64A19] py-2 px-2 text-center text-xs font-mono font-bold uppercase tracking-wider text-white shadow-glow-orange hover:brightness-110 active:scale-[0.98] transition-all truncate"
         >
           {language === 'vi' ? 'Chi tiết' : 'Details'}
         </button>
@@ -163,7 +163,7 @@ export const ModelCard: React.FC<ModelCardProps> = ({
         {onSelectCompare && (
           <button
             onClick={() => onSelectCompare(model)}
-            className="flex items-center justify-center gap-1.5 rounded-sm border border-[#472718] bg-[#1A0E08] px-3.5 py-2 text-xs font-mono font-semibold uppercase tracking-wider text-[#D8C4B6] hover:border-[#FF6B35] hover:text-white transition-colors"
+            className="flex items-center justify-center gap-1.5 rounded-sm border border-[#472718] bg-[#1A0E08] px-2.5 sm:px-3.5 py-2 text-xs font-mono font-semibold uppercase tracking-wider text-[#D8C4B6] hover:border-[#FF6B35] hover:text-white transition-colors shrink-0 whitespace-nowrap"
             title="So sánh 1-vs-1"
           >
             <Swords className="h-3.5 w-3.5 text-[#FF6B35]" />

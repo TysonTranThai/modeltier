@@ -108,9 +108,9 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
         </div>
 
         {/* Model Selectors */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto mb-8 w-full max-w-full">
           {/* Picker A */}
-          <div className="rounded-md border border-[#FF6B35]/40 bg-[#24130C]/90 p-4 shadow-xl">
+          <div className="rounded-sm border border-[#FF6B35]/40 bg-[#24130C]/90 p-4 shadow-xl">
             <label className="block text-xs font-mono font-bold uppercase tracking-wider text-[#FF8452] mb-2">
               {t.battle.selectModel1} {language === 'vi' ? '(Mô hình A)' : '(Corner A)'}
             </label>
@@ -132,7 +132,7 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
           </div>
 
           {/* Picker B */}
-          <div className="rounded-md border border-amber-500/40 bg-[#24130C]/90 p-4 shadow-xl">
+          <div className="rounded-sm border border-amber-500/40 bg-[#24130C]/90 p-4 shadow-xl">
             <label className="block text-xs font-mono font-bold uppercase tracking-wider text-amber-400 mb-2">
               {t.battle.selectModel2} {language === 'vi' ? '(Mô hình B)' : '(Corner B)'}
             </label>
@@ -155,14 +155,14 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
         </div>
 
         {/* Battle Arena Cards */}
-        <div className="max-w-4xl mx-auto rounded-lg border border-[#3D2216] bg-[#24130C]/90 p-4 sm:p-10 shadow-2xl backdrop-blur-xl w-full max-w-full overflow-hidden">
+        <div className="max-w-4xl mx-auto rounded-sm border border-[#3D2216] bg-[#24130C]/90 p-4 sm:p-10 shadow-2xl backdrop-blur-xl w-full max-w-full overflow-hidden">
           {/* Top Overview Cards with Glowing VS Badge */}
           <div className="relative">
             <div className="hidden sm:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 h-10 w-10 items-center justify-center rounded-sm bg-gradient-to-br from-[#FF6B35] to-[#E64A19] text-white font-mono font-black text-xs shadow-glow-orange border border-[#1E0F09] animate-orange-pulse">
               VS
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-6 border-b border-[#3D2216] text-center">
-              <div className="p-4 rounded-md bg-[#FF6B35]/10 border border-[#FF6B35]/30 flex flex-col justify-between">
+              <div className="p-4 rounded-sm bg-[#FF6B35]/10 border border-[#FF6B35]/30 flex flex-col justify-between">
                 <div>
                   <span className="text-xs font-mono font-bold text-[#FF8452] uppercase">{modelA.creator}</span>
                   <h3 className="text-xl sm:text-2xl font-black text-[#FFF6EE] mt-0.5">{modelA.name}</h3>
@@ -186,7 +186,7 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
                 </span>
               </div>
 
-              <div className="p-4 rounded-md bg-amber-950/20 border border-amber-500/30 flex flex-col justify-between">
+              <div className="p-4 rounded-sm bg-amber-950/20 border border-amber-500/30 flex flex-col justify-between">
                 <div>
                   <span className="text-xs font-mono font-bold text-amber-400 uppercase">{modelB.creator}</span>
                   <h3 className="text-xl sm:text-2xl font-black text-[#FFF6EE] mt-0.5">{modelB.name}</h3>
@@ -205,11 +205,15 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
             </div>
           </div>
 
-          {/* Metric Confrontations */}
-          <div className="py-6 space-y-5">
+          {/* 5-Round Head-to-Head Telemetry */}
+          <div className="mt-8 space-y-4">
+            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#A89280] text-center">
+              {language === 'vi' ? 'So sánh 5 chỉ số trực diện' : '5-Pillar Metric Breakdown'}
+            </h4>
+
             {/* 1. Intelligence Score */}
-            <div className="rounded-md bg-[#180D07] p-4 border border-[#3D2216]">
-              <div className="flex justify-between items-center text-xs text-[#A89280] mb-2 font-mono">
+            <div className="rounded-sm bg-[#180D07] p-4 border border-[#3D2216]">
+              <div className="flex flex-wrap sm:flex-nowrap justify-between items-center text-xs text-[#A89280] mb-2 font-mono gap-1">
                 <span className={`font-bold ${intelWinner === 'A' ? 'text-[#FF8452]' : 'text-[#A89280]'}`}>
                   {modelA.intelligenceScore}/100 {intelWinner === 'A' && '🏆 Thắng'}
                 </span>
@@ -232,8 +236,8 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
             </div>
 
             {/* 2. Vietnamese Fluency */}
-            <div className="rounded-md bg-[#180D07] p-4 border border-[#3D2216]">
-              <div className="flex justify-between items-center text-xs text-[#A89280] mb-2 font-mono">
+            <div className="rounded-sm bg-[#180D07] p-4 border border-[#3D2216]">
+              <div className="flex flex-wrap sm:flex-nowrap justify-between items-center text-xs text-[#A89280] mb-2 font-mono gap-1">
                 <span className={`font-bold ${vietnameseWinner === 'A' ? 'text-emerald-400' : 'text-[#A89280]'}`}>
                   {modelA.vietnameseRating}/100 {vietnameseWinner === 'A' && '🏆 Thắng'}
                 </span>
@@ -255,8 +259,8 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
             </div>
 
             {/* 3. Output Speed */}
-            <div className="rounded-md bg-[#180D07] p-4 border border-[#3D2216]">
-              <div className="flex justify-between items-center text-xs text-[#A89280] mb-2 font-mono">
+            <div className="rounded-sm bg-[#180D07] p-4 border border-[#3D2216]">
+              <div className="flex flex-wrap sm:flex-nowrap justify-between items-center text-xs text-[#A89280] mb-2 font-mono gap-1">
                 <span className={`font-bold ${speedWinner === 'A' ? 'text-amber-400' : 'text-[#A89280]'}`}>
                   {modelA.outputSpeed} tps {speedWinner === 'A' && '⚡ Nhanh hơn'}
                 </span>
@@ -278,8 +282,8 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
             </div>
 
             {/* 4. Output Cost */}
-            <div className="rounded-md bg-[#180D07] p-4 border border-[#3D2216]">
-              <div className="flex justify-between items-center text-xs text-[#A89280] mb-2 font-mono">
+            <div className="rounded-sm bg-[#180D07] p-4 border border-[#3D2216]">
+              <div className="flex flex-wrap sm:flex-nowrap justify-between items-center text-xs text-[#A89280] mb-2 font-mono gap-1">
                 <span className={`font-bold ${costWinner === 'A' ? 'text-emerald-400' : 'text-[#A89280]'}`}>
                   {formatPrice(modelA.outputPricePerMillionUSD)}/1M {costWinner === 'A' && '💰 Rẻ hơn'}
                 </span>
@@ -293,8 +297,8 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
             </div>
 
             {/* 5. Coding & Logic */}
-            <div className="rounded-md bg-[#180D07] p-4 border border-[#3D2216]">
-              <div className="flex justify-between items-center text-xs text-[#A89280] mb-2 font-mono">
+            <div className="rounded-sm bg-[#180D07] p-4 border border-[#3D2216]">
+              <div className="flex flex-wrap sm:flex-nowrap justify-between items-center text-xs text-[#A89280] mb-2 font-mono gap-1">
                 <span className={`font-bold ${codingWinner === 'A' ? 'text-cyan-400' : 'text-[#A89280]'}`}>
                   {modelA.codingScore}/100 {codingWinner === 'A' && '💻 Vượt trội'}
                 </span>
@@ -308,15 +312,14 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
             </div>
           </div>
 
-          {/* Practical Human Verdict */}
-          <div className="mt-4 pt-6 border-t border-[#3D2216]">
-            <h4 className="text-sm font-bold text-[#FFF6EE] uppercase tracking-wider mb-4 flex items-center gap-2">
-              <Trophy className="h-4 w-4 text-amber-400" />
+          {/* Winner Final Verdict */}
+          <div className="mt-8 pt-6 border-t border-[#3D2216]">
+            <h4 className="font-serif font-bold text-base text-[#FFF6EE] mb-4 text-center">
               {t.battle.finalVerdict}
             </h4>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed text-[#D8C4B6]">
-              <div className="p-4 rounded-md bg-[#FF6B35]/10 border border-[#FF6B35]/30">
+              <div className="p-4 rounded-sm bg-[#FF6B35]/10 border border-[#FF6B35]/30">
                 <span className="font-bold text-[#FF8452] block mb-1 font-mono">
                   {language === 'vi' ? `👉 Khi nào nên chọn ${modelA.name}?` : `👉 When to pick ${modelA.name}?`}
                 </span>
@@ -330,7 +333,7 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
                 </ul>
               </div>
 
-              <div className="p-4 rounded-md bg-amber-950/30 border border-amber-500/30">
+              <div className="p-4 rounded-sm bg-amber-950/30 border border-amber-500/30">
                 <span className="font-bold text-amber-300 block mb-1 font-mono">
                   {language === 'vi' ? `👉 Khi nào nên chọn ${modelB.name}?` : `👉 When to pick ${modelB.name}?`}
                 </span>

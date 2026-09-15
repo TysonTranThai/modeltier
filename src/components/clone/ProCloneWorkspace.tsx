@@ -117,7 +117,7 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
   return (
     <div className="bg-[#180D07] text-[#FFF6EE] min-h-screen py-10 transition-colors w-full max-w-full overflow-x-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full">
-        <div className="grid grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start w-full max-w-full">
           {/* ================= LEFT STICKY SIDEBAR INDEX ================= */}
           <aside className="hidden lg:block lg:col-span-3 sticky top-24 pt-2">
             <div className="mb-3 px-3">
@@ -185,7 +185,7 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
           </div>
 
           {/* ================= RIGHT MAIN BENCHMARK WORKSPACE ================= */}
-          <div className="col-span-12 lg:col-span-9 space-y-16">
+          <div className="col-span-12 lg:col-span-9 space-y-16 min-w-0 w-full max-w-full">
             {/* SECTION 1: INTELLIGENCE */}
             <section id="intelligence" className="scroll-mt-24">
               {/* Main Heading */}

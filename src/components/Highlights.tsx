@@ -46,9 +46,9 @@ export const Highlights: React.FC<HighlightsProps> = ({
         </span>
       </div>
 
-      <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-3 w-full max-w-full">
         {/* Card 1: Intelligence Index */}
-        <div className="border border-[#472718] rounded-md bg-[#24130C]/90 p-6 relative shadow-card-espresso backdrop-blur-sm flex flex-col justify-between hover:border-[#FF6B35]/50 transition-all">
+        <div className="border border-[#472718] rounded-sm bg-[#24130C]/90 p-4 sm:p-6 relative shadow-card-espresso backdrop-blur-sm flex flex-col justify-between hover:border-[#FF6B35]/50 transition-all w-full max-w-full overflow-hidden">
           <div>
             <div className="absolute top-4 right-4">
               <span className="rounded-sm bg-[#FF6B35]/15 text-[#FF8452] border border-[#FF6B35]/30 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 font-mono">
@@ -109,7 +109,7 @@ export const Highlights: React.FC<HighlightsProps> = ({
         </div>
 
         {/* Card 2: Output Speed */}
-        <div className="border border-[#472718] rounded-md bg-[#24130C]/90 p-6 relative shadow-card-espresso backdrop-blur-sm flex flex-col justify-between hover:border-[#F59E0B]/50 transition-all">
+        <div className="border border-[#472718] rounded-sm bg-[#24130C]/90 p-4 sm:p-6 relative shadow-card-espresso backdrop-blur-sm flex flex-col justify-between hover:border-[#F59E0B]/50 transition-all w-full max-w-full overflow-hidden">
           <div>
             <div className="absolute top-4 right-4">
               <span className="rounded-sm bg-amber-500/15 text-amber-300 border border-amber-500/30 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 font-mono">
@@ -147,7 +147,7 @@ export const Highlights: React.FC<HighlightsProps> = ({
                       {item.label}
                     </span>
                     <div className="flex items-center gap-2 shrink-0 justify-end">
-                      <div className="h-3 bg-[#140A06] rounded-sm overflow-hidden w-20 sm:w-24 flex justify-start">
+                      <div className="h-3 bg-[#140A06] rounded-sm overflow-hidden w-16 sm:w-24 flex justify-start">
                         <div
                           className="h-full bg-amber-500 group-hover/item:bg-amber-400 transition-all duration-300 rounded-sm"
                           style={{ width: `${widthPct}%` }}
@@ -170,7 +170,7 @@ export const Highlights: React.FC<HighlightsProps> = ({
         </div>
 
         {/* Card 3: Cost Efficiency */}
-        <div className="border border-[#472718] rounded-md bg-[#24130C]/90 p-6 relative shadow-card-espresso backdrop-blur-sm flex flex-col justify-between hover:border-emerald-500/50 transition-all">
+        <div className="border border-[#472718] rounded-sm bg-[#24130C]/90 p-4 sm:p-6 relative shadow-card-espresso backdrop-blur-sm flex flex-col justify-between hover:border-emerald-500/50 transition-all w-full max-w-full overflow-hidden">
           <div>
             <div className="absolute top-4 right-4">
               <span className="rounded-sm bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 font-mono">
@@ -208,7 +208,7 @@ export const Highlights: React.FC<HighlightsProps> = ({
                       {item.label}
                     </span>
                     <div className="flex items-center gap-2 shrink-0 justify-end">
-                      <div className="h-3 bg-[#140A06] rounded-sm overflow-hidden w-20 sm:w-24 flex justify-start">
+                      <div className="h-3 bg-[#140A06] rounded-sm overflow-hidden w-16 sm:w-24 flex justify-start">
                         <div
                           className="h-full bg-emerald-500 group-hover/item:bg-emerald-400 transition-all duration-300 rounded-sm"
                           style={{ width: `${widthPct}%` }}
@@ -232,7 +232,7 @@ export const Highlights: React.FC<HighlightsProps> = ({
       </div>
 
       {/* Quick Takeaway Banner */}
-      <div className="mt-6 rounded-md bg-[#201009] border border-[#3D2216] p-4 flex items-start gap-3 text-xs text-[#D8C4B6]">
+      <div className="mt-6 rounded-sm bg-[#201009] border border-[#3D2216] p-4 flex items-start gap-3 text-xs text-[#D8C4B6]">
         <Lightbulb className="h-4 w-4 text-[#FF6B35] shrink-0 mt-0.5" />
         <div className="flex-1 leading-relaxed">
           <strong className="text-[#FFF6EE] font-serif font-bold text-sm">

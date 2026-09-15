@@ -129,7 +129,7 @@ export const TierList: React.FC<TierListProps> = ({
           return (
             <div
               key={tier.id}
-              className={`rounded-lg border p-6 sm:p-8 backdrop-blur-md shadow-card-espresso transition-all duration-300 ${tier.color}`}
+              className={`w-full max-w-full overflow-hidden rounded-lg border p-4 sm:p-8 backdrop-blur-md shadow-card-espresso transition-all duration-300 ${tier.color}`}
             >
               {/* Tier Heading Row */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#381E12]">
@@ -156,8 +156,8 @@ export const TierList: React.FC<TierListProps> = ({
 
               {/* Models Grid */}
               {tierModels.length > 0 ? (
-                <div className="mt-6">
-                  <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-6 w-full max-w-full">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full max-w-full">
                     {displayedTierModels.map((model) => (
                       <ModelCard
                         key={model.id}

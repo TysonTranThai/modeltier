@@ -1,7 +1,7 @@
 {
   "source": "https://artificialanalysis.ai",
-  "syncedAt": "2026-09-15T02:54:52.876Z",
-  "durationMs": 19444,
+  "syncedAt": "2026-09-15T03:25:53.457Z",
+  "durationMs": 39868,
   "totalModels": 650,
   "highlights": {
     "intelligence": [
@@ -74,17 +74,17 @@
       },
       {
         "label": "DeepSeek V4.1 Flash (max)",
-        "medianOutputSpeed": 222.814602471041,
+        "medianOutputSpeed": 222.174002567792,
         "detailsUrl": "/models/deepseek-v4-1-flash"
       },
       {
         "label": "GPT-5.6 Luna (max)",
-        "medianOutputSpeed": 117.806685365739,
+        "medianOutputSpeed": 116.250773594386,
         "detailsUrl": "/models/gpt-5-6-luna"
       },
       {
         "label": "DeepSeek V4 Pro 0813 (max)",
-        "medianOutputSpeed": 88.5421426764235,
+        "medianOutputSpeed": 91.1920248217184,
         "detailsUrl": "/models/deepseek-v4-pro"
       },
       {
@@ -94,12 +94,12 @@
       },
       {
         "label": "Claude Fable 5.1 (max with fallback)",
-        "medianOutputSpeed": 65.1271749519948,
+        "medianOutputSpeed": 65.9769929669683,
         "detailsUrl": "/models/claude-fable-5-1"
       },
       {
         "label": "GPT-6 Astra (max)",
-        "medianOutputSpeed": 59.9551995331833,
+        "medianOutputSpeed": 58.926489179096,
         "detailsUrl": "/models/gpt-6-astra"
       },
       {
@@ -109,12 +109,12 @@
       },
       {
         "label": "Claude Opus 5 (max)",
-        "medianOutputSpeed": 51.6958465632529,
+        "medianOutputSpeed": 50.072458504562,
         "detailsUrl": "/models/claude-opus-5"
       },
       {
         "label": "Kimi K3 (max)",
-        "medianOutputSpeed": 35.703368947393,
+        "medianOutputSpeed": 35.0705818229771,
         "detailsUrl": "/models/kimi-k3"
       }
     ],

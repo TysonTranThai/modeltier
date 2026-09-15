@@ -178,9 +178,9 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
       </div>
 
       {/* Leaderboard Table */}
-      <div className="w-full max-w-full overflow-hidden rounded-md border border-[#3D2216] bg-[#24130C]/90 shadow-2xl">
+      <div className="w-full max-w-full overflow-hidden rounded-sm border border-[#3D2216] bg-[#24130C]/90 shadow-2xl">
         <div className="w-full max-w-full overflow-x-auto">
-          <table className="w-full text-left text-xs">
+          <table className="w-full text-left text-xs min-w-[700px]">
             <thead className="border-b border-[#3D2216] bg-[#180D07]/80 text-[#A89280] font-mono font-semibold uppercase tracking-wider sticky top-0 z-10">
               <tr>
                 <th

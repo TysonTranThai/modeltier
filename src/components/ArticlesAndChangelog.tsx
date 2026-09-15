@@ -50,19 +50,19 @@ export const ArticlesAndChangelog: React.FC<ArticlesAndChangelogProps> = ({
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full max-w-full">
           {/* Articles Column (2 spans) */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="lg:col-span-2 space-y-4 w-full max-w-full">
             <h3 className="flex items-center gap-2 text-base font-bold text-[#FFF6EE]">
               <BookOpen className="h-4 w-4 text-[#FF8452]" />
               <span>{language === 'vi' ? 'Bài Viết Tiêu Điểm' : 'Featured Benchmark Articles'}</span>
             </h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-full">
               {articles.map((article, idx) => (
                 <div
                   key={article.slug || idx}
-                  className="group relative flex flex-col justify-between rounded-md border border-[#3D2216] bg-[#24130C]/90 p-5 hover:border-[#FF6B35]/40 transition-all shadow-sm"
+                  className="group relative flex flex-col justify-between rounded-sm border border-[#3D2216] bg-[#24130C]/90 p-4 sm:p-5 hover:border-[#FF6B35]/40 transition-all shadow-sm w-full max-w-full overflow-hidden"
                 >
                   <div>
                     <div className="flex items-center justify-between text-[11px] font-semibold text-[#FF8452] uppercase tracking-wider mb-2">
@@ -92,13 +92,13 @@ export const ArticlesAndChangelog: React.FC<ArticlesAndChangelogProps> = ({
           </div>
 
           {/* Changelog Column (1 span) */}
-          <div className="space-y-4">
+          <div className="space-y-4 w-full max-w-full">
             <h3 className="flex items-center gap-2 text-base font-bold text-[#FFF6EE]">
               <History className="h-4 w-4 text-[#FF8452]" />
               <span>{language === 'vi' ? 'Nhật Ký Đánh Giá Mới Nhất' : 'Recent Evaluation Changelog'}</span>
             </h3>
 
-            <div className="rounded-md border border-[#3D2216] bg-[#24130C]/90 p-4 divide-y divide-[#2E170E] max-h-[420px] overflow-y-auto">
+            <div className="rounded-sm border border-[#3D2216] bg-[#24130C]/90 p-4 divide-y divide-[#2E170E] max-h-[420px] overflow-y-auto w-full max-w-full">
               {changelog.slice(0, 8).map((item, idx) => (
                 <div
                   key={`${item.slug}-${idx}`}

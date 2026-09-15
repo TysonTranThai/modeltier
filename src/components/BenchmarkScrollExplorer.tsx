@@ -252,7 +252,7 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
               {f.label}
             </button>
           ))}
-          <span className="ml-auto text-[11px] text-[#A89280] font-mono">
+          <span className="w-full sm:w-auto sm:ml-auto text-[11px] text-[#A89280] font-mono">
             {language === 'vi' ? `Hiển thị ${rankedModels.length} mô hình` : `Showing ${rankedModels.length} models`}
           </span>
         </div>
@@ -274,7 +274,7 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
                 <div
                   key={model.id || index}
                   onClick={() => onSelectModel(model)}
-                  className="group relative flex w-24 sm:w-28 flex-shrink-0 cursor-pointer flex-col items-center justify-end rounded-md p-2.5 hover:bg-[#2F1910]/90 hover:-translate-y-1.5 hover:shadow-card-espresso transition-all duration-300"
+                  className="group relative flex w-24 sm:w-28 flex-shrink-0 cursor-pointer flex-col items-center justify-end rounded-sm p-2.5 hover:bg-[#2F1910]/90 hover:-translate-y-1.5 hover:shadow-card-espresso transition-all duration-300"
                 >
                   {/* Rank Podium Badge */}
                   <div className="absolute top-0 flex flex-col items-center">

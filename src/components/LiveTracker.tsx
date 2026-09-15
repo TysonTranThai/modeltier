@@ -103,7 +103,7 @@ export const LiveTracker: React.FC = () => {
         </div>
 
         {/* Notice Card: Why Provider Selection Matters */}
-        <div className="rounded-md border border-[#FF6B35]/30 bg-[#24130C]/80 p-4 mb-8 text-xs text-[#D8C4B6] flex items-start gap-3">
+        <div className="rounded-sm border border-[#FF6B35]/30 bg-[#24130C]/80 p-4 mb-8 text-xs text-[#D8C4B6] flex items-start gap-3 w-full max-w-full">
           <Zap className="h-5 w-5 text-[#FF8452] shrink-0 mt-0.5" />
           <div className="leading-relaxed">
             <span className="font-bold text-[#FF8452] font-mono">
@@ -116,14 +116,14 @@ export const LiveTracker: React.FC = () => {
         </div>
 
         {/* Providers Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-full">
           {providers.map((provider) => {
             const isOperational = provider.status === 'operational';
 
             return (
               <div
                 key={provider.id}
-                className="rounded-md border border-[#3D2216] bg-[#24130C]/80 p-5 shadow-xl backdrop-blur-sm transition-all duration-300 hover:border-[#FF6B35]/60 hover:shadow-glow-orange hover:-translate-y-1.5 group"
+                className="rounded-sm border border-[#3D2216] bg-[#24130C]/80 p-4 sm:p-5 shadow-xl backdrop-blur-sm transition-all duration-300 hover:border-[#FF6B35]/60 hover:shadow-glow-orange hover:-translate-y-1.5 group w-full max-w-full overflow-hidden"
               >
                 {/* Header: Name & Status Badge */}
                 <div className="flex items-start justify-between gap-2 mb-3">

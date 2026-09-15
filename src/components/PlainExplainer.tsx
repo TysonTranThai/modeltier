@@ -87,7 +87,7 @@ export const PlainExplainer: React.FC = () => {
           </div>
 
           {/* Detailed Spotlight Explanation */}
-          <div className="lg:col-span-7 rounded-lg border border-[#3D2216] bg-[#24130C]/90 p-6 sm:p-8 shadow-2xl backdrop-blur-xl flex flex-col justify-between">
+          <div className="lg:col-span-7 rounded-sm border border-[#3D2216] bg-[#24130C]/90 p-4 sm:p-8 shadow-2xl backdrop-blur-xl flex flex-col justify-between w-full max-w-full overflow-hidden">
             <div>
               {/* Header */}
               <div className="flex items-start gap-3 mb-5">

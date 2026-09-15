@@ -144,10 +144,10 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
             </p>
           </div>
 
-          <div className="flex items-center rounded-sm bg-[#140A06] border border-[#3D2216] p-1 text-xs">
+          <div className="flex flex-wrap sm:flex-nowrap items-center rounded-sm bg-[#140A06] border border-[#3D2216] p-1 text-xs">
             <button
               onClick={() => setMetricMode('speed')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-sm font-mono text-xs font-bold uppercase tracking-wider transition-all ${
+              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-sm font-mono text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all ${
                 metricMode === 'speed'
                   ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange'
                   : 'text-[#A89280] hover:text-[#FFF6EE]'
@@ -158,7 +158,7 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
             </button>
             <button
               onClick={() => setMetricMode('cost')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-sm font-mono text-xs font-bold uppercase tracking-wider transition-all ${
+              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-sm font-mono text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all ${
                 metricMode === 'cost'
                   ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white shadow-glow-orange'
                   : 'text-[#A89280] hover:text-[#FFF6EE]'
@@ -373,7 +373,7 @@ export const ScatterPlotArena: React.FC<ScatterPlotArenaProps> = ({
         </div>
 
         {/* Explainer Box in Plain Language */}
-        <div className="mt-6 p-4 rounded-md bg-[#140A06]/90 border border-[#331A10] text-xs text-[#C7B299] leading-relaxed flex items-start gap-3">
+        <div className="mt-6 p-4 rounded-sm bg-[#140A06]/90 border border-[#331A10] text-xs text-[#C7B299] leading-relaxed flex items-start gap-3">
           <Lightbulb className="h-5 w-5 text-[#FF6B35] shrink-0 mt-0.5" />
           <div>
             <span className="font-bold text-[#FFF6EE]">

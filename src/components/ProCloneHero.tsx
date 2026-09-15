@@ -115,8 +115,8 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
         </div>
 
         {/* Telemetry Metric Cards in Ledger Chocolate Style */}
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
-          <div className="rounded-md border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4 w-full max-w-full">
+          <div className="rounded-sm border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
             <div className="flex items-center gap-2 text-[#FF8452] font-mono text-[11px] font-bold uppercase tracking-wider">
               <Layers className="h-4 w-4" />
               <span>{language === 'vi' ? 'Tổng mô hình' : 'Total Models'}</span>
@@ -129,7 +129,7 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
             </p>
           </div>
 
-          <div className="rounded-md border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
+          <div className="rounded-sm border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
             <div className="flex items-center gap-2 text-[#FF8452] font-mono text-[11px] font-bold uppercase tracking-wider">
               <ShieldCheck className="h-4 w-4" />
               <span>{language === 'vi' ? 'Kiểm thử độc lập' : 'Benchmark Rig'}</span>
@@ -142,7 +142,7 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
             </p>
           </div>
 
-          <div className="rounded-md border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
+          <div className="rounded-sm border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
             <div className="flex items-center gap-2 text-[#FF8452] font-mono text-[11px] font-bold uppercase tracking-wider">
               <Clock className="h-4 w-4" />
               <span>{language === 'vi' ? 'Chu kỳ đồng bộ' : 'Sync Cadence'}</span>
@@ -155,7 +155,7 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
             </p>
           </div>
 
-          <div className="rounded-md border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
+          <div className="rounded-sm border border-[#472718] bg-[#24130C]/90 p-4 shadow-card-espresso">
             <div className="flex items-center gap-2 text-[#FF8452] font-mono text-[11px] font-bold uppercase tracking-wider">
               <TrendingUp className="h-4 w-4" />
               <span>{language === 'vi' ? 'Chỉ số đo đạc' : 'Key Metrics'}</span>
