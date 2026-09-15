@@ -128,7 +128,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
-          className="flex items-center gap-2.5 group focus:outline-none shrink-0 mr-4 lg:mr-8"
+          className="flex items-center gap-2 group focus:outline-none shrink-0 mr-2 sm:mr-4 lg:mr-8"
         >
           <div className="flex h-7 w-7 items-center justify-center rounded-sm bg-[#FF6B35] text-[#160B06] shadow-sm transition-transform group-hover:scale-105">
             <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="#160B06" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round">
@@ -136,7 +136,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <path d="M7 14h10" />
             </svg>
           </div>
-          <span className="font-serif text-2xl font-normal tracking-tight text-[#FFF6EE]">
+          <span className="font-serif text-xl sm:text-2xl font-normal tracking-tight text-[#FFF6EE]">
             Model<span className="text-[#FF6B35]">Tier</span>
           </span>
         </a>
@@ -156,12 +156,12 @@ export const Navbar: React.FC<NavbarProps> = ({
         </nav>
 
         {/* Right: Mode Switcher & Ledger Signature Outlined Button */}
-        <div className="flex items-center gap-2.5 sm:gap-3.5 shrink-0 ml-auto xl:ml-0">
+        <div className="flex items-center gap-2 sm:gap-3.5 shrink-0 ml-auto xl:ml-0">
           {/* Dual Mode Switcher Segmented Control */}
           <div className="flex items-center rounded-sm bg-[#1A0C06] border border-[#3D1E11] p-0.5 text-xs font-mono shadow-inner shrink-0">
             <button
               onClick={() => setViewMode('simplified')}
-              className={`px-2.5 sm:px-3 py-1.5 rounded-sm text-xs font-medium whitespace-nowrap shrink-0 leading-none transition-all duration-200 ${
+              className={`px-2 sm:px-3 py-1.5 rounded-sm text-[11px] sm:text-xs font-medium whitespace-nowrap shrink-0 leading-none transition-all duration-200 ${
                 viewMode === 'simplified'
                   ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white font-semibold shadow-glow-orange'
                   : 'text-[#A89280] hover:text-[#FFF6EE]'
@@ -171,13 +171,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
             <button
               onClick={() => setViewMode('clone')}
-              className={`px-2.5 sm:px-3 py-1.5 rounded-sm text-xs font-medium whitespace-nowrap shrink-0 leading-none transition-all duration-200 ${
+              className={`px-2 sm:px-3 py-1.5 rounded-sm text-[11px] sm:text-xs font-medium whitespace-nowrap shrink-0 leading-none transition-all duration-200 ${
                 viewMode === 'clone'
                   ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white font-semibold shadow-glow-orange'
                   : 'text-[#A89280] hover:text-[#FFF6EE]'
               }`}
             >
-              🔬 Benchmark Pro
+              🔬<span className="hidden sm:inline"> Benchmark</span> Pro
             </button>
           </div>
 

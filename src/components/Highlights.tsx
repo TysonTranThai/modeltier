@@ -82,17 +82,17 @@ export const Highlights: React.FC<HighlightsProps> = ({
                     onClick={() => onSelectModel && slug && onSelectModel(slug)}
                     className="group/item flex items-center justify-between text-xs py-1 cursor-pointer hover:bg-[#2F1910] px-2 rounded-sm transition-colors"
                   >
-                    <span className="text-[#D8C4B6] truncate max-w-[145px] group-hover/item:text-[#FFF6EE] transition-colors font-medium">
+                    <span className="text-[#D8C4B6] truncate flex-1 min-w-0 pr-2 group-hover/item:text-[#FFF6EE] transition-colors font-medium">
                       {item.label}
                     </span>
-                    <div className="flex items-center gap-2 flex-1 max-w-[160px] justify-end">
-                      <div className="h-3.5 bg-[#140A06] rounded-sm overflow-hidden flex-1 max-w-[100px] flex justify-end">
+                    <div className="flex items-center gap-2 shrink-0 justify-end">
+                      <div className="h-3 bg-[#140A06] rounded-sm overflow-hidden w-20 sm:w-24 flex justify-start">
                         <div
                           className="h-full bg-gradient-to-r from-[#E64A19] to-[#FF6B35] group-hover/item:brightness-110 transition-all duration-300 rounded-sm"
                           style={{ width: `${widthPct}%` }}
                         />
                       </div>
-                      <span className="font-mono text-[11px] font-bold text-[#FFF6EE] w-8 text-right">
+                      <span className="font-mono text-[11px] font-bold text-[#FFF6EE] w-10 sm:w-12 text-right">
                         {val.toFixed(1)}
                       </span>
                     </div>
@@ -143,17 +143,17 @@ export const Highlights: React.FC<HighlightsProps> = ({
                     onClick={() => onSelectModel && slug && onSelectModel(slug)}
                     className="group/item flex items-center justify-between text-xs py-1 cursor-pointer hover:bg-[#2F1910] px-2 rounded-sm transition-colors"
                   >
-                    <span className="text-[#D8C4B6] truncate max-w-[145px] group-hover/item:text-[#FFF6EE] transition-colors font-medium">
+                    <span className="text-[#D8C4B6] truncate flex-1 min-w-0 pr-2 group-hover/item:text-[#FFF6EE] transition-colors font-medium">
                       {item.label}
                     </span>
-                    <div className="flex items-center gap-2 flex-1 max-w-[160px] justify-end">
-                      <div className="h-3.5 bg-[#140A06] rounded-sm overflow-hidden flex-1 max-w-[100px] flex justify-end">
+                    <div className="flex items-center gap-2 shrink-0 justify-end">
+                      <div className="h-3 bg-[#140A06] rounded-sm overflow-hidden w-20 sm:w-24 flex justify-start">
                         <div
                           className="h-full bg-amber-500 group-hover/item:bg-amber-400 transition-all duration-300 rounded-sm"
                           style={{ width: `${widthPct}%` }}
                         />
                       </div>
-                      <span className="font-mono text-[11px] font-bold text-[#FFF6EE] w-12 text-right">
+                      <span className="font-mono text-[11px] font-bold text-[#FFF6EE] w-14 text-right">
                         {Math.round(val)} tps
                       </span>
                     </div>
@@ -204,17 +204,17 @@ export const Highlights: React.FC<HighlightsProps> = ({
                     onClick={() => onSelectModel && slug && onSelectModel(slug)}
                     className="group/item flex items-center justify-between text-xs py-1 cursor-pointer hover:bg-[#2F1910] px-2 rounded-sm transition-colors"
                   >
-                    <span className="text-[#D8C4B6] truncate max-w-[145px] group-hover/item:text-[#FFF6EE] transition-colors font-medium">
+                    <span className="text-[#D8C4B6] truncate flex-1 min-w-0 pr-2 group-hover/item:text-[#FFF6EE] transition-colors font-medium">
                       {item.label}
                     </span>
-                    <div className="flex items-center gap-2 flex-1 max-w-[160px] justify-end">
-                      <div className="h-3.5 bg-[#140A06] rounded-sm overflow-hidden flex-1 max-w-[100px] flex justify-end">
+                    <div className="flex items-center gap-2 shrink-0 justify-end">
+                      <div className="h-3 bg-[#140A06] rounded-sm overflow-hidden w-20 sm:w-24 flex justify-start">
                         <div
                           className="h-full bg-emerald-500 group-hover/item:bg-emerald-400 transition-all duration-300 rounded-sm"
                           style={{ width: `${widthPct}%` }}
                         />
                       </div>
-                      <span className="font-mono text-[11px] font-bold text-[#FFF6EE] w-14 text-right">
+                      <span className="font-mono text-[11px] font-bold text-[#FFF6EE] w-14 sm:w-16 text-right">
                         {currency === 'VND' ? formatCost(val) : `$${val.toFixed(2)}`}
                       </span>
                     </div>
