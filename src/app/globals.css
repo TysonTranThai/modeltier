@@ -12,6 +12,16 @@
   --espresso-border: #422517;
 }
 
+html {
+  scroll-padding-top: 104px;
+}
+
+@media (max-width: 640px) {
+  html {
+    scroll-padding-top: 88px;
+  }
+}
+
 html,
 body {
   color: var(--foreground);

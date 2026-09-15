@@ -174,7 +174,7 @@ export default function HomePage() {
 
       {/* Live Sync Status Toast Notification */}
       {syncToast && (
-        <div className="fixed bottom-6 right-4 sm:right-6 z-50 animate-in slide-in-from-bottom-4 duration-300 max-w-[calc(100vw-2rem)] sm:max-w-md">
+        <div className="fixed bottom-6 right-4 sm:right-6 z-[60] animate-in slide-in-from-bottom-4 duration-300 max-w-[calc(100vw-2rem)] sm:max-w-md">
           <div className={`flex items-center gap-3 px-4 py-3 rounded-sm shadow-2xl border font-mono text-xs font-semibold backdrop-blur-md ${
             syncToast.type === 'success'
               ? 'bg-[#1E0F09]/95 text-emerald-300 border-[#3D2216] shadow-black/60'

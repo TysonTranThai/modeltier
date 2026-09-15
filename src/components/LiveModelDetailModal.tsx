@@ -35,7 +35,7 @@ export const LiveModelDetailModal: React.FC<LiveModelDetailModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto backdrop-blur-md bg-[#0D0704]/80 animate-in fade-in duration-150 font-sans"
+      className="fixed inset-0 z-[70] flex items-center justify-center p-4 sm:p-6 overflow-y-auto backdrop-blur-md bg-[#0D0704]/80 animate-in fade-in duration-150 font-sans"
       onClick={onClose}
     >
       <div
