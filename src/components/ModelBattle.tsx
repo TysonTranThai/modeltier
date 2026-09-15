@@ -161,35 +161,42 @@ export const ModelBattle: React.FC<ModelBattleProps> = ({
             <div className="hidden sm:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 h-10 w-10 items-center justify-center rounded-sm bg-gradient-to-br from-[#FF6B35] to-[#E64A19] text-white font-mono font-black text-xs shadow-glow-orange border border-[#1E0F09] animate-orange-pulse">
               VS
             </div>
-            <div className="grid grid-cols-2 gap-4 pb-6 border-b border-[#3D2216] text-center">
-              <div className="p-3.5 rounded-md bg-[#FF6B35]/10 border border-[#FF6B35]/30 flex flex-col justify-between">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-6 border-b border-[#3D2216] text-center">
+              <div className="p-4 rounded-md bg-[#FF6B35]/10 border border-[#FF6B35]/30 flex flex-col justify-between">
                 <div>
                   <span className="text-xs font-mono font-bold text-[#FF8452] uppercase">{modelA.creator}</span>
-                  <h3 className="text-lg sm:text-2xl font-black text-[#FFF6EE] mt-0.5">{modelA.name}</h3>
+                  <h3 className="text-xl sm:text-2xl font-black text-[#FFF6EE] mt-0.5">{modelA.name}</h3>
                   <div className="text-xs font-medium text-[#D8C4B6] mt-2 line-clamp-2">
                     {language === 'vi' ? modelA.vietnameseSummary : modelA.englishSummary}
                   </div>
                 </div>
                 <button
                   onClick={() => onSelectDetails(modelA)}
-                  className="mt-3 inline-flex items-center justify-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wider text-[#FF8452] hover:text-[#FFF6EE] bg-[#2E170E] hover:bg-[#3D2216] border border-[#FF6B35]/30 rounded-sm py-1.5 px-3 transition-all self-center"
+                  className="mt-4 inline-flex items-center justify-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wider text-[#FF8452] hover:text-[#FFF6EE] bg-[#2E170E] hover:bg-[#3D2216] border border-[#FF6B35]/30 rounded-sm py-2 px-4 transition-all self-center"
                 >
                   <span>{language === 'vi' ? 'Xem chi tiết' : 'View details'}</span>
                   <ArrowRight className="h-3 w-3" />
                 </button>
               </div>
 
-              <div className="p-3.5 rounded-md bg-amber-950/20 border border-amber-500/30 flex flex-col justify-between">
+              {/* Mobile VS indicator between stacked cards */}
+              <div className="flex sm:hidden justify-center -my-2 z-10">
+                <span className="h-7 w-7 flex items-center justify-center rounded-sm bg-gradient-to-br from-[#FF6B35] to-[#E64A19] text-white font-mono font-black text-xs shadow-glow-orange border border-[#1E0F09]">
+                  VS
+                </span>
+              </div>
+
+              <div className="p-4 rounded-md bg-amber-950/20 border border-amber-500/30 flex flex-col justify-between">
                 <div>
                   <span className="text-xs font-mono font-bold text-amber-400 uppercase">{modelB.creator}</span>
-                  <h3 className="text-lg sm:text-2xl font-black text-[#FFF6EE] mt-0.5">{modelB.name}</h3>
+                  <h3 className="text-xl sm:text-2xl font-black text-[#FFF6EE] mt-0.5">{modelB.name}</h3>
                   <div className="text-xs font-medium text-[#D8C4B6] mt-2 line-clamp-2">
                     {language === 'vi' ? modelB.vietnameseSummary : modelB.englishSummary}
                   </div>
                 </div>
                 <button
                   onClick={() => onSelectDetails(modelB)}
-                  className="mt-3 inline-flex items-center justify-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wider text-amber-300 hover:text-[#FFF6EE] bg-amber-900/40 hover:bg-amber-800 border border-amber-700/50 rounded-sm py-1.5 px-3 transition-all self-center"
+                  className="mt-4 inline-flex items-center justify-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wider text-amber-300 hover:text-[#FFF6EE] bg-amber-900/40 hover:bg-amber-800 border border-amber-700/50 rounded-sm py-2 px-4 transition-all self-center"
                 >
                   <span>{language === 'vi' ? 'Xem chi tiết' : 'View details'}</span>
                   <ArrowRight className="h-3 w-3" />

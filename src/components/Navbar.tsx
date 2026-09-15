@@ -76,22 +76,22 @@ export const Navbar: React.FC<NavbarProps> = ({
     <header className="sticky top-0 z-50 w-full border-b border-[#2C160C] bg-[#160B06]/95 backdrop-blur-md transition-all">
       {/* Slim Telemetry Strip */}
       <div className="bg-[#0E0603] border-b border-[#221008] px-4 py-1 text-[11px] text-[#A89280]">
-        <div className="mx-auto max-w-7xl flex items-center justify-between flex-wrap gap-2">
-          <div className="flex items-center gap-2">
-            <span className="flex h-1.5 w-1.5 rounded-full bg-[#FF6B35] animate-pulse" />
-            <span className="text-[#D8C4B6] font-medium">
-              {language === 'vi' ? 'Dữ liệu trực tiếp:' : 'Live Telemetry:'}
+        <div className="mx-auto max-w-7xl flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="flex h-1.5 w-1.5 shrink-0 rounded-full bg-[#FF6B35] animate-pulse" />
+            <span className="text-[#D8C4B6] font-medium shrink-0">
+              {language === 'vi' ? 'Dữ liệu:' : 'Telemetry:'}
             </span>
-            <span className="text-[#FFF6EE] font-semibold">
-              {totalModels} {language === 'vi' ? 'mô hình được theo dõi' : 'models tracked'}
+            <span className="text-[#FFF6EE] font-semibold shrink-0">
+              {totalModels} {language === 'vi' ? 'mô hình' : 'models'}
             </span>
             <span className="text-[#4A2617] hidden sm:inline">•</span>
-            <span className="text-[#8A7262] hidden sm:inline" suppressHydrationWarning>
+            <span className="text-[#8A7262] hidden md:inline truncate" suppressHydrationWarning>
               {language === 'vi' ? 'Cập nhật:' : 'Updated:'} {mounted ? formatLastSync(lastSyncedAt) : 'Vừa xong'} (tự động mỗi 15 phút)
             </span>
           </div>
 
-          <div className="flex items-center gap-3 text-[11px]">
+          <div className="flex items-center gap-3 text-[11px] shrink-0">
             {/* Currency Minimalist Toggle */}
             <button
               onClick={() => setCurrency(currency === 'VND' ? 'USD' : 'VND')}
@@ -128,7 +128,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
-          className="flex items-center gap-2.5 group focus:outline-none"
+          className="flex items-center gap-2.5 group focus:outline-none shrink-0 mr-4 lg:mr-8"
         >
           <div className="flex h-7 w-7 items-center justify-center rounded-sm bg-[#FF6B35] text-[#160B06] shadow-sm transition-transform group-hover:scale-105">
             <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="#160B06" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round">
@@ -141,14 +141,14 @@ export const Navbar: React.FC<NavbarProps> = ({
           </span>
         </a>
 
-        {/* Center: Clean Text Navigation - NO icons, NO multi-line wrap */}
-        <nav className="hidden lg:flex items-center gap-7 xl:gap-9">
+        {/* Center: Clean Text Navigation - shown on XL screens to prevent mobile/iPad crowding */}
+        <nav className="hidden xl:flex items-center gap-6 2xl:gap-8 mx-auto">
           {currentNavLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={(e) => scrollToSection(e, link.href)}
-              className="text-sm font-normal text-[#C7B299] hover:text-[#FFF6EE] transition-colors whitespace-nowrap tracking-normal"
+              className="text-sm font-normal text-[#C7B299] hover:text-[#FFF6EE] transition-colors whitespace-nowrap tracking-normal shrink-0"
             >
               {link.label}
             </a>
@@ -156,12 +156,12 @@ export const Navbar: React.FC<NavbarProps> = ({
         </nav>
 
         {/* Right: Mode Switcher & Ledger Signature Outlined Button */}
-        <div className="flex items-center gap-3 sm:gap-4">
+        <div className="flex items-center gap-2.5 sm:gap-3.5 shrink-0 ml-auto xl:ml-0">
           {/* Dual Mode Switcher Segmented Control */}
-          <div className="flex items-center rounded-sm bg-[#1A0C06] border border-[#3D1E11] p-0.5 text-xs font-mono shadow-inner">
+          <div className="flex items-center rounded-sm bg-[#1A0C06] border border-[#3D1E11] p-0.5 text-xs font-mono shadow-inner shrink-0">
             <button
               onClick={() => setViewMode('simplified')}
-              className={`px-3 py-1 rounded-sm text-xs font-medium transition-all duration-200 ${
+              className={`px-2.5 sm:px-3 py-1.5 rounded-sm text-xs font-medium whitespace-nowrap shrink-0 leading-none transition-all duration-200 ${
                 viewMode === 'simplified'
                   ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white font-semibold shadow-glow-orange'
                   : 'text-[#A89280] hover:text-[#FFF6EE]'
@@ -171,7 +171,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
             <button
               onClick={() => setViewMode('clone')}
-              className={`px-3 py-1 rounded-sm text-xs font-medium transition-all duration-200 ${
+              className={`px-2.5 sm:px-3 py-1.5 rounded-sm text-xs font-medium whitespace-nowrap shrink-0 leading-none transition-all duration-200 ${
                 viewMode === 'clone'
                   ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white font-semibold shadow-glow-orange'
                   : 'text-[#A89280] hover:text-[#FFF6EE]'
@@ -185,7 +185,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={onTriggerSync}
             disabled={isSyncing}
-            className="hidden sm:inline-flex items-center gap-2 rounded-sm border border-[#FF6B35]/75 hover:border-[#FF6B35] bg-transparent hover:bg-[#FF6B35] text-[#FF8452] hover:text-white px-3.5 lg:px-4 py-1.5 text-xs font-mono font-medium uppercase tracking-wider transition-all shadow-sm disabled:opacity-50 group"
+            className="hidden md:inline-flex items-center gap-2 rounded-sm border border-[#FF6B35]/75 hover:border-[#FF6B35] bg-transparent hover:bg-[#FF6B35] text-[#FF8452] hover:text-white px-3 sm:px-3.5 py-1.5 text-xs font-mono font-medium uppercase tracking-wider transition-all shadow-sm disabled:opacity-50 group shrink-0 whitespace-nowrap"
           >
             <span className={`h-1.5 w-1.5 rounded-full ${isSyncing ? 'bg-amber-400 animate-ping' : 'bg-[#FF6B35] group-hover:bg-white transition-colors'}`} />
             <span className="whitespace-nowrap">
@@ -195,10 +195,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             </span>
           </button>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile & iPad Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex h-8 w-8 items-center justify-center rounded-sm border border-[#3D1E11] bg-[#201009] text-[#C7B299] hover:text-white lg:hidden transition-colors"
+            className="flex h-8 w-8 items-center justify-center rounded-sm border border-[#3D1E11] bg-[#201009] text-[#C7B299] hover:text-white xl:hidden transition-colors shrink-0"
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -206,43 +206,43 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile & iPad Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="border-t border-[#2C160C] bg-[#140A06] px-5 py-4 lg:hidden animate-in slide-in-from-top-2 space-y-3">
+        <div className="border-t border-[#2C160C] bg-[#140A06] px-5 py-4 xl:hidden animate-in slide-in-from-top-2 space-y-4">
           {/* Mobile Mode Switcher */}
-          <div className="flex items-center justify-between p-1.5 rounded-sm bg-[#1E0F08] border border-[#3D1E11] text-xs font-mono">
-            <span className="text-[#A89280] pl-2 font-medium">{language === 'vi' ? 'Chế độ:' : 'Mode:'}</span>
-            <div className="flex items-center gap-1">
+          <div className="flex items-center justify-between p-2 rounded-sm bg-[#1E0F08] border border-[#3D1E11] text-xs font-mono">
+            <span className="text-[#A89280] font-medium">{language === 'vi' ? 'Chế độ giao diện:' : 'Display Mode:'}</span>
+            <div className="flex items-center gap-1.5">
               <button
                 onClick={() => { setViewMode('simplified'); setMobileMenuOpen(false); }}
-                className={`px-3 py-1 rounded-sm text-xs font-medium transition-all ${
+                className={`px-3 py-1.5 rounded-sm text-xs font-medium transition-all ${
                   viewMode === 'simplified'
-                    ? 'bg-[#FF6B35] text-white font-semibold'
-                    : 'text-[#A89280]'
+                    ? 'bg-[#FF6B35] text-white font-semibold shadow-glow-orange'
+                    : 'text-[#A89280] hover:text-white'
                 }`}
               >
-                {language === 'vi' ? 'Dễ hiểu' : 'Simple'}
+                ⚡ {language === 'vi' ? 'Dễ hiểu' : 'Simple'}
               </button>
               <button
                 onClick={() => { setViewMode('clone'); setMobileMenuOpen(false); }}
-                className={`px-3 py-1 rounded-sm text-xs font-medium transition-all ${
+                className={`px-3 py-1.5 rounded-sm text-xs font-medium transition-all ${
                   viewMode === 'clone'
-                    ? 'bg-[#FF6B35] text-white font-semibold'
-                    : 'text-[#A89280]'
+                    ? 'bg-[#FF6B35] text-white font-semibold shadow-glow-orange'
+                    : 'text-[#A89280] hover:text-white'
                 }`}
               >
-                Benchmark Pro
+                🔬 Benchmark Pro
               </button>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-1.5 pt-1">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-1 font-mono text-xs">
             {currentNavLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className="rounded-sm px-3 py-2 text-xs font-medium text-[#C7B299] hover:bg-[#201009] hover:text-[#FFF6EE] transition-colors"
+                className="rounded-sm border border-[#2D160B] bg-[#1B0D07] px-3 py-2 text-[#C7B299] hover:bg-[#25120A] hover:border-[#FF6B35]/40 hover:text-[#FFF6EE] transition-all"
               >
                 {link.label}
               </a>
@@ -253,9 +253,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={() => { onTriggerSync(); setMobileMenuOpen(false); }}
             disabled={isSyncing}
-            className="w-full flex items-center justify-center gap-2 rounded-sm border border-[#FF6B35]/75 bg-[#FF6B35]/10 text-[#FF8452] py-2 text-xs font-mono uppercase tracking-wider transition-colors disabled:opacity-50"
+            className="w-full flex items-center justify-center gap-2 rounded-sm border border-[#FF6B35]/75 bg-[#FF6B35]/15 hover:bg-[#FF6B35]/25 text-[#FF8452] py-2.5 text-xs font-mono font-bold uppercase tracking-wider transition-all disabled:opacity-50"
           >
-            <span className={`h-1.5 w-1.5 rounded-full ${isSyncing ? 'bg-amber-400 animate-ping' : 'bg-[#FF6B35]'}`} />
+            <span className={`h-2 w-2 rounded-full ${isSyncing ? 'bg-amber-400 animate-ping' : 'bg-[#FF6B35]'}`} />
             <span>{isSyncing ? (language === 'vi' ? 'Đang đồng bộ...' : 'Syncing...') : (language === 'vi' ? 'Đồng bộ Dữ liệu Ngay' : 'Sync Live Data')}</span>
           </button>
         </div>

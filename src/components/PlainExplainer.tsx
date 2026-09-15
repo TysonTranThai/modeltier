@@ -55,7 +55,7 @@ export const PlainExplainer: React.FC = () => {
         {/* Interactive Layout: Side Selector + Spotlight Card */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 max-w-5xl mx-auto">
           {/* Terms Menu */}
-          <div className="lg:col-span-5 space-y-2">
+          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2">
             {GLOSSARY_DATA.map((item) => {
               const Icon = getIcon(item.iconName);
               const isSelected = item.id === activeTermId;

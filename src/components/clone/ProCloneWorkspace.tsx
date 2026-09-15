@@ -164,6 +164,26 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
             </nav>
           </aside>
 
+          {/* Mobile & iPad Horizontal Category Bar */}
+          <div className="lg:hidden col-span-12 sticky top-16 z-30 bg-[#160B06]/95 backdrop-blur-md py-2.5 -mx-4 px-4 sm:-mx-6 sm:px-6 border-b border-[#3D2216] overflow-x-auto scrollbar-none flex items-center gap-2">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={(e) => scrollToSection(e as any, item.id)}
+                  className={`px-3 py-1.5 rounded-sm font-mono text-xs whitespace-nowrap shrink-0 transition-all ${
+                    isActive
+                      ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white font-bold shadow-glow-orange'
+                      : 'bg-[#24130C] text-[#A89280] border border-[#3D2216] hover:text-[#FFF6EE]'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
+          </div>
+
           {/* ================= RIGHT MAIN BENCHMARK WORKSPACE ================= */}
           <div className="col-span-12 lg:col-span-9 space-y-16">
             {/* SECTION 1: INTELLIGENCE */}

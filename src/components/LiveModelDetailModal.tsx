@@ -39,7 +39,7 @@ export const LiveModelDetailModal: React.FC<LiveModelDetailModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-xl rounded-lg border border-[#3D2216] bg-[#1E0F09] p-6 sm:p-8 shadow-2xl text-[#FFF6EE] overflow-hidden animate-scale-in"
+        className="relative w-full max-w-xl rounded-lg border border-[#3D2216] bg-[#1E0F09] p-5 sm:p-8 shadow-2xl text-[#FFF6EE] overflow-y-auto max-h-[90vh] my-auto animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}

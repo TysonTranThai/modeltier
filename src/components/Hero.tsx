@@ -84,14 +84,14 @@ export const Hero: React.FC<HeroProps> = ({
           </p>
 
           {/* Architectural Rectangular CTA Buttons with Shimmer */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-md sm:max-w-none mx-auto">
             <a
               href="#tierlist"
               onClick={(e) => {
                 e.preventDefault();
                 document.querySelector('#tierlist')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="btn-shimmer inline-flex items-center gap-2.5 rounded-sm bg-gradient-to-r from-[#FF6B35] to-[#E64A19] px-6 py-3 text-xs font-mono font-bold uppercase tracking-wider text-white shadow-glow-orange hover:shadow-glow-orange-lg hover:brightness-110 active:scale-[0.98] transition-all"
+              className="btn-shimmer w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-sm bg-gradient-to-r from-[#FF6B35] to-[#E64A19] px-6 py-3 text-xs font-mono font-bold uppercase tracking-wider text-white shadow-glow-orange hover:shadow-glow-orange-lg hover:brightness-110 active:scale-[0.98] transition-all"
             >
               <span>{language === 'vi' ? 'Khám Phá Mô Hình Tinh Hoa' : 'Discover the Core'}</span>
               <span className="text-white text-base font-mono">→</span>
@@ -99,7 +99,7 @@ export const Hero: React.FC<HeroProps> = ({
 
             <button
               onClick={() => setViewMode('clone')}
-              className="inline-flex items-center gap-2.5 rounded-sm border border-[#5A3420] bg-[#24130B]/80 hover:bg-[#331C10] px-6 py-3 text-xs font-mono font-semibold uppercase tracking-wider text-[#EFE2D6] hover:border-[#FF6B35]/70 hover:text-white active:scale-[0.98] transition-all shadow-sm backdrop-blur-sm"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-sm border border-[#5A3420] bg-[#24130B]/80 hover:bg-[#331C10] px-6 py-3 text-xs font-mono font-semibold uppercase tracking-wider text-[#EFE2D6] hover:border-[#FF6B35]/70 hover:text-white active:scale-[0.98] transition-all shadow-sm backdrop-blur-sm"
             >
               <BarChart2 className="h-4 w-4 text-[#FF6B35]" />
               <span>{language === 'vi' ? 'Xem Chuẩn Benchmark Pro' : 'Explore Pro Telemetry'}</span>

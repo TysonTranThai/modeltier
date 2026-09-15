@@ -46,7 +46,7 @@ export const Highlights: React.FC<HighlightsProps> = ({
         </span>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-3">
         {/* Card 1: Intelligence Index */}
         <div className="border border-[#472718] rounded-md bg-[#24130C]/90 p-6 relative shadow-card-espresso backdrop-blur-sm flex flex-col justify-between hover:border-[#FF6B35]/50 transition-all">
           <div>

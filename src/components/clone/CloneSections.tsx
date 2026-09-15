@@ -204,7 +204,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
 
         <div className="rounded-md border border-[#3D2216] bg-[#1E0F09]/95 p-6 shadow-2xl backdrop-blur-md">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div className="border-r border-[#2C160C] pr-4 last:border-0">
+            <div className="border-b sm:border-b-0 sm:border-r border-[#2C160C] pb-4 sm:pb-0 sm:pr-4">
               <h4 className="text-xs font-bold text-[#A89280] uppercase tracking-wider mb-3 font-mono">
                 {language === 'vi' ? 'Chất lượng Giọng đọc TTS' : 'Text to Speech Quality'}
               </h4>
@@ -215,7 +215,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
               </div>
             </div>
 
-            <div className="border-r border-[#2C160C] pr-4 last:border-0">
+            <div className="border-b sm:border-b-0 sm:border-r border-[#2C160C] pb-4 sm:pb-0 sm:pr-4">
               <h4 className="text-xs font-bold text-[#A89280] uppercase tracking-wider mb-3 font-mono">
                 {language === 'vi' ? 'Độ chuẩn Nhận diện STT' : 'Speech to Text Accuracy'}
               </h4>
