@@ -10,7 +10,7 @@
     "scrape": "node scripts/scrape-artificialanalysis.js",
     "sync": "node scripts/scrape-artificialanalysis.js",
     "sync:daemon": "node scripts/sync-daemon.js",
-    "test": "node --test tests/**/*.test.js"
+    "test": "node --test tests/*.test.js"
   },
   "dependencies": {
     "clsx": "^2.1.1",
