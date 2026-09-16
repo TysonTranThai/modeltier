@@ -1,7 +1,7 @@
 {
   "source": "https://artificialanalysis.ai",
-  "syncedAt": "2026-09-16T13:56:29.398Z",
-  "durationMs": 3766,
+  "syncedAt": "2026-09-16T14:05:56.968Z",
+  "durationMs": 3671,
   "totalModels": 652,
   "highlights": {
     "intelligence": [
@@ -806,15 +806,15 @@
       "url": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3"
     },
     {
-      "slug": "benchmarking-gpt-6-astra",
+      "slug": "ant-group-releases-finance-focused-ling-3-0-flash-fin",
       "title": "Intelligence of leading AI models based on our independent evaluations",
       "summary": "AA-Briefcase is a frontier agentic evaluation for long-horizon knowledge work, testing agents on realistic business workflows that require deliverables such as spreadsheets, presentations, and memos",
-      "url": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra"
+      "url": "https://artificialanalysis.ai/articles/ant-group-releases-finance-focused-ling-3-0-flash-fin"
     }
   ],
   "changelog": [
     {
-      "date": "New language model evaluation · 16 Sept",
+      "date": "New article published · 16 Sept",
       "slug": "ling-3-0-flash-fin",
       "modelName": "Ling-3.0-flash-Fin"
     },
@@ -882,11 +882,6 @@
       "date": "New language model evaluation · 3 Sept",
       "slug": "gpt-6-astra-xhigh",
       "modelName": "GPT-6 Astra (xhigh)"
-    },
-    {
-      "date": "New language model evaluation · 3 Sept",
-      "slug": "gpt-6-astra",
-      "modelName": "GPT-6 Astra (max)"
     }
   ],
   "models": [

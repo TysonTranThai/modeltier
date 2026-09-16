@@ -2,9 +2,6 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
-
 export async function GET() {
   try {
     const liveDataFile = path.join(process.cwd(), 'src', 'data', 'live_data.json');

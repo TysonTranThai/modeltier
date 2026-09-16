@@ -1,11 +1,21 @@
 import { NextResponse } from 'next/server';
 import { MODELS_DATA } from '@/data/models';
 
+export const dynamic = 'force-static';
+
 export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const tier = searchParams.get('tier');
-  const search = searchParams.get('search');
-  const sort = searchParams.get('sort');
+  let tier: string | null = null;
+  let search: string | null = null;
+  let sort: string | null = null;
+
+  try {
+    const { searchParams } = new URL(request.url);
+    tier = searchParams.get('tier');
+    search = searchParams.get('search');
+    sort = searchParams.get('sort');
+  } catch {
+    // static export fallback: return all models
+  }
 
   let models = [...MODELS_DATA];
 
