@@ -117,7 +117,7 @@ export const Footer: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-1 text-[11px] text-[#8A7262]">
-            <span>© 2026 ModelTier.vn</span>
+            <span>© 2026 modeltier.notlimitedteam.cloud</span>
             <span>•</span>
             <span>{language === 'vi' ? 'Hạ Tầng Đo Lường AI Độc Lập' : 'Independent AI Intelligence Infrastructure'}</span>
           </div>

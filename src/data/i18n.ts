@@ -149,7 +149,7 @@ export const TRANSLATIONS = {
       aboutTitle: 'Về ModelTier',
       aboutText: 'Dự án nguồn mở độc lập phi lợi nhuận nhằm giúp cộng đồng người Việt và người dùng toàn cầu tiếp cận công nghệ AI một cách đơn giản, minh bạch và hiệu quả nhất.',
       inspiredBy: 'Lấy cảm hứng từ các chỉ số đo lường độc lập của Artificial Analysis.',
-      copyright: 'ModelTier.vn • Nền tảng theo dõi và xếp hạng AI độc lập.',
+      copyright: 'modeltier.notlimitedteam.cloud • Nền tảng theo dõi và xếp hạng AI độc lập.',
     }
   },
   en: {
@@ -302,7 +302,7 @@ export const TRANSLATIONS = {
       aboutTitle: 'About ModelTier',
       aboutText: 'An independent open-source initiative designed to make AI benchmarking accessible, transparent, and practical for Vietnamese and global audiences.',
       inspiredBy: 'Inspired by independent benchmarks from Artificial Analysis.',
-      copyright: 'ModelTier.vn • Independent AI Model Leaderboard & Live Tracker.',
+      copyright: 'modeltier.notlimitedteam.cloud • Independent AI Model Leaderboard & Live Tracker.',
     }
   }
 };

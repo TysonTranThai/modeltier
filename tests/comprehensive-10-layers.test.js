@@ -229,3 +229,30 @@ test('LAYER 10: Production Bundle & Server Health - Clean 200 response with both
   assert.ok(res.text.includes('ModelTier') || res.text.includes('Model'), 'Server must serve branded ModelTier HTML');
   assert.ok(res.text.includes('scroll-mt-28') || res.text.includes('scroll-mt-36'), 'HTML must include standardized scroll margins');
 });
+
+// -------------------------------------------------------------
+// DOMAIN CONFIGURATION: modeltier.notlimitedteam.cloud
+// -------------------------------------------------------------
+test('Domain Configuration: modeltier.notlimitedteam.cloud is configured across sitemap, robots, layout, and footer', () => {
+  const expectedDomain = 'modeltier.notlimitedteam.cloud';
+
+  const layoutPath = path.join(__dirname, '../src/app/layout.tsx');
+  const layoutContent = fs.readFileSync(layoutPath, 'utf8');
+  assert.ok(layoutContent.includes(`https://${expectedDomain}`), 'layout.tsx must configure metadataBase and canonical with new domain');
+
+  const sitemapPath = path.join(__dirname, '../src/app/sitemap.ts');
+  const sitemapContent = fs.readFileSync(sitemapPath, 'utf8');
+  assert.ok(sitemapContent.includes(`https://${expectedDomain}`), 'sitemap.ts must contain new domain');
+
+  const robotsPath = path.join(__dirname, '../src/app/robots.ts');
+  const robotsContent = fs.readFileSync(robotsPath, 'utf8');
+  assert.ok(robotsContent.includes(`https://${expectedDomain}/sitemap.xml`), 'robots.ts must reference sitemap with new domain');
+
+  const footerPath = path.join(__dirname, '../src/components/Footer.tsx');
+  const footerContent = fs.readFileSync(footerPath, 'utf8');
+  assert.ok(footerContent.includes(expectedDomain), 'Footer.tsx must display new domain in copyright');
+
+  const i18nPath = path.join(__dirname, '../src/data/i18n.ts');
+  const i18nContent = fs.readFileSync(i18nPath, 'utf8');
+  assert.ok(i18nContent.includes(expectedDomain), 'i18n.ts must reference new domain in copyright strings');
+});

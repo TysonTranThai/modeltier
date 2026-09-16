@@ -11,7 +11,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'ModelTier.vn • Bảng Xếp Hạng & Theo Dõi AI Dễ Hiểu Cho Người Việt',
+  metadataBase: new URL('https://modeltier.notlimitedteam.cloud'),
+  title: 'ModelTier • Bảng Xếp Hạng & Theo Dõi AI Dễ Hiểu Cho Người Việt',
   description: 'Nền tảng theo dõi, so sánh và chọn mô hình AI trực quan nhất. Đơn giản hóa các chỉ số benchmark, quy đổi chi phí ra VNĐ và đánh giá độ nhuyễn tiếng Việt bản xứ.',
   keywords: [
     'AI Model Tier List',
@@ -28,9 +29,14 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
   },
+  alternates: {
+    canonical: 'https://modeltier.notlimitedteam.cloud',
+  },
   openGraph: {
-    title: 'ModelTier.vn • Bảng Xếp Hạng & Theo Dõi AI Dễ Hiểu',
+    title: 'ModelTier • Bảng Xếp Hạng & Theo Dõi AI Dễ Hiểu',
     description: 'Đơn giản hóa benchmark AI thế giới: Xếp hạng Tier S/A/B/C, tính tiền bằng VNĐ, giải thích bằng tiếng người thường.',
+    url: 'https://modeltier.notlimitedteam.cloud',
+    siteName: 'ModelTier',
     type: 'website',
     locale: 'vi_VN',
   },

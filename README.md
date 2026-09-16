@@ -1,6 +1,7 @@
-# 🌟 ModelTier.vn • Bảng Xếp Hạng & Theo Dõi AI Dễ Hiểu
+# 🌟 modeltier.notlimitedteam.cloud • Bảng Xếp Hạng & Theo Dõi AI Dễ Hiểu
 
 > **A simplified, human-friendly, multilingual AI model tracking & tier-list platform for Vietnamese and global users.**  
+> **Official Domain**: [https://modeltier.notlimitedteam.cloud](https://modeltier.notlimitedteam.cloud)  
 > *Lấy cảm hứng từ [Artificial Analysis](https://artificialanalysis.ai/), nhưng đơn giản hóa triệt để để ai cũng hiểu và chọn được AI phù hợp nhất mà không bị "ngợp" trước các biểu đồ phân tán phức tạp.*
 
 ---

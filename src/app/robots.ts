@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://modeltier.vn/sitemap.xml',
+    sitemap: 'https://modeltier.notlimitedteam.cloud/sitemap.xml',
   };
 }
