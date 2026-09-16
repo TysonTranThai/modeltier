@@ -23,6 +23,8 @@ import {
 interface IntelligenceIndexCardProps {
   models: ScrapedModel[];
   onSelectModel?: (model: ScrapedModel) => void;
+  searchQuery?: string;
+  activeCategory?: string;
 }
 
 type SubTab = 'open_weights' | 'reasoning' | 'modalities' | 'country';
@@ -30,6 +32,8 @@ type SubTab = 'open_weights' | 'reasoning' | 'modalities' | 'country';
 export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
   models,
   onSelectModel,
+  searchQuery,
+  activeCategory,
 }) => {
   const { language } = useLanguage();
   const [modelLimit, setModelLimit] = useState<number>(26);
@@ -47,6 +51,27 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
   // Filter and sort models by Intelligence Index
   const displayModels = useMemo(() => {
     let list = [...models].filter((m) => m.intelligenceScore > 0);
+
+    // Global Search Query
+    if (searchQuery && searchQuery.trim()) {
+      const q = searchQuery.toLowerCase().trim();
+      list = list.filter(
+        (m) =>
+          m.name.toLowerCase().includes(q) ||
+          m.creator.toLowerCase().includes(q) ||
+          m.slug.toLowerCase().includes(q)
+      );
+    }
+
+    // Global Category Filter
+    if (activeCategory && activeCategory !== 'all') {
+      if (activeCategory === 'open_weights') list = list.filter((m) => m.isOpenWeights);
+      if (activeCategory === 'reasoning') list = list.filter((m) => m.isReasoning || m.name.toLowerCase().includes('r1') || m.name.toLowerCase().includes('o1') || m.name.toLowerCase().includes('o3'));
+      if (activeCategory === 'speed') list = list.filter((m) => m.outputSpeed >= 100);
+      if (activeCategory === 'budget') list = list.filter((m) => m.costPerTaskUSD > 0 && m.costPerTaskUSD <= 1.0);
+      if (activeCategory === 'coding') list = list.filter((m) => m.name.toLowerCase().includes('code') || m.name.toLowerCase().includes('coder') || m.name.toLowerCase().includes('dev') || ((m as unknown as { codingScore?: number }).codingScore ?? 0) >= 70);
+      if (activeCategory === 'vietnamese') list = list.filter((m) => m.intelligenceScore >= 60);
+    }
 
     // Apply subtab filters
     if (activeSubTab === 'open_weights') {
@@ -66,7 +91,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
 
     list.sort((a, b) => b.intelligenceScore - a.intelligenceScore);
     return list.slice(0, modelLimit);
-  }, [models, modelLimit, activeSubTab, openWeightsFilter, reasoningFilter, modalityFilter, countryFilter]);
+  }, [models, modelLimit, activeSubTab, openWeightsFilter, reasoningFilter, modalityFilter, countryFilter, searchQuery, activeCategory]);
 
   const maxScore = useMemo(() => {
     if (displayModels.length === 0) return 60;
@@ -277,49 +302,63 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
 
             {/* Vertical Columns Stack */}
             <div className="relative flex items-end justify-start gap-3 sm:gap-4 px-4 h-[280px] z-10">
-              {displayModels.map((model, idx) => {
-                const heightPercent = Math.max(10, Math.min(100, (model.intelligenceScore / maxScore) * 100));
-                const barColor = getCreatorColor(model.creator, model.name);
-                const scoreInt = Math.round(model.intelligenceScore);
+              {displayModels.length === 0 ? (
+                <div className="flex flex-col items-center justify-center w-full h-full text-center py-12">
+                  <Info className="h-8 w-8 text-[#FF8452] mb-3 opacity-80" />
+                  <p className="text-sm font-semibold text-[#FFF6EE]">
+                    {language === 'vi' ? 'Không tìm thấy mô hình phù hợp với bộ lọc' : 'No matching models found'}
+                  </p>
+                  <p className="text-xs text-[#A89280] mt-1">
+                    {language === 'vi' ? 'Hãy thử điều chỉnh từ khóa tìm kiếm hoặc chọn danh mục khác.' : 'Try adjusting your search query or selecting a different filter.'}
+                  </p>
+                </div>
+              ) : (
+                displayModels.map((model, idx) => {
+                  const heightPercent = Math.max(10, Math.min(100, (model.intelligenceScore / maxScore) * 100));
+                  const barColor = getCreatorColor(model.creator, model.name);
+                  const scoreInt = Math.round(model.intelligenceScore);
 
-                return (
-                  <div
-                    key={model.slug || model.id || idx}
-                    onClick={() => onSelectModel && onSelectModel(model)}
-                    className="group relative flex flex-col items-center cursor-pointer w-9 sm:w-10 h-full justify-end flex-shrink-0"
-                  >
-                    {/* Hover Floating Tooltip with Smooth Scale & Backdrop Blur */}
-                    <div className="opacity-0 group-hover:opacity-100 pointer-events-none absolute -top-14 z-30 transition-all duration-200 transform scale-95 group-hover:scale-100 group-hover:-translate-y-1.5 bg-[#120703]/95 backdrop-blur-md border border-[#FF6B35]/60 text-[#FFF6EE] rounded-sm px-3.5 py-2 text-xs shadow-2xl whitespace-nowrap">
-                      <div className="font-bold text-[#FFF6EE] flex items-center gap-1.5">
-                        <span className="text-[#FF8452]">#{idx + 1}</span>
-                        <span>{model.name}</span>
-                      </div>
-                      <div className="text-[11px] text-[#C7B299] mt-0.5">
-                        {language === 'vi' ? 'Điểm Trí tuệ:' : 'Score:'} <strong className="text-[#FF8452] font-mono">{model.intelligenceScore.toFixed(1)}</strong> • {model.creator}
-                      </div>
-                    </div>
-
-                    {/* Score Number Floating ABOVE the bar (No collision) */}
-                    <div className="mb-1.5 flex items-center justify-center">
-                      <span className="font-mono text-[11px] font-bold text-[#FFF6EE] group-hover:text-[#FF8452] group-hover:scale-110 transition-all drop-shadow-sm select-none">
-                        {scoreInt}
-                      </span>
-                    </div>
-
-                    {/* Vertical Bar with Solid Color & Luxury Rounded Tip */}
+                  return (
                     <div
-                      style={{
-                        height: `${heightPercent}%`,
-                        backgroundColor: barColor,
-                      }}
-                      className="w-full rounded-t-lg transition-all duration-500 ease-out group-hover:brightness-125 group-hover:scale-y-[1.02] group-hover:shadow-glow-orange shadow-sm relative"
+                      key={model.slug || model.id || idx}
+                      onClick={() => onSelectModel && onSelectModel(model)}
+                      className="group relative flex flex-col items-center cursor-pointer w-9 sm:w-10 h-full justify-end flex-shrink-0"
                     >
-                      {/* Subtle Glassmorphic Highlight inside top of bar */}
-                      <div className="absolute top-0 inset-x-0 h-1 bg-white/25 rounded-t-lg pointer-events-none" />
+                      {/* Hover Floating Tooltip with Smooth Scale & Backdrop Blur */}
+                      <div className="opacity-0 group-hover:opacity-100 pointer-events-none absolute -top-14 z-30 transition-all duration-200 transform scale-95 group-hover:scale-100 group-hover:-translate-y-1.5 bg-[#120703]/95 backdrop-blur-md border border-[#FF6B35]/60 text-[#FFF6EE] rounded-sm px-3.5 py-2 text-xs shadow-2xl whitespace-nowrap">
+                        <div className="font-bold text-[#FFF6EE] flex items-center gap-1.5">
+                          <span className="text-[#FF8452]">#{idx + 1}</span>
+                          <span>{model.name}</span>
+                        </div>
+                        <div className="text-[11px] text-[#C7B299] mt-0.5">
+                          {language === 'vi' ? 'Điểm Trí tuệ:' : 'Score:'} <strong className="text-[#FF8452] font-mono">{model.intelligenceScore.toFixed(1)}</strong> • {model.creator}
+                        </div>
+                      </div>
+
+                      {/* Score Number Floating ABOVE the bar (Fixed height container) */}
+                      <div className="mb-1.5 flex items-center justify-center shrink-0 h-5">
+                        <span className="font-mono text-[11px] font-bold text-[#FFF6EE] group-hover:text-[#FF8452] group-hover:scale-110 transition-all drop-shadow-sm select-none">
+                          {scoreInt}
+                        </span>
+                      </div>
+
+                      {/* Vertical Bar with Solid Color & Headroom-bounded Height */}
+                      <div className="w-full h-[225px] flex items-end">
+                        <div
+                          style={{
+                            height: `${heightPercent}%`,
+                            backgroundColor: barColor,
+                          }}
+                          className="w-full rounded-t-lg transition-all duration-500 ease-out group-hover:brightness-125 group-hover:scale-y-[1.02] group-hover:shadow-glow-orange shadow-sm relative"
+                        >
+                          {/* Subtle Glassmorphic Highlight inside top of bar */}
+                          <div className="absolute top-0 inset-x-0 h-1 bg-white/25 rounded-t-lg pointer-events-none" />
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })
+              )}
             </div>
 
             {/* Technical Baseline Divider */}
@@ -340,7 +379,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
 
                   {/* 45-degree Angled Model Label text angled DOWNWARDS cleanly */}
                   <div className="relative h-28 w-full mt-2 flex justify-center">
-                    <div className="absolute top-0 left-1/2 origin-top-left -rotate-45 whitespace-nowrap pointer-events-none">
+                    <div className="absolute top-0 left-1/2 origin-top-left rotate-45 -rotate-45-label whitespace-nowrap pointer-events-none">
                       <span className="text-[11px] font-medium text-[#C7B299] group-hover:text-[#FF8452] group-hover:font-semibold transition-colors block max-w-[140px] truncate select-none">
                         {model.name} {model.effort ? `(${model.effort})` : ''}
                       </span>

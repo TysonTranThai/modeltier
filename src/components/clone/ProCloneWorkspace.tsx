@@ -9,6 +9,7 @@ import { ModelLeaderboard } from '../ModelLeaderboard';
 import { LiveTracker } from '../LiveTracker';
 import { ArticleItem, ChangelogItem } from '../../types';
 import { useLanguage } from '../../context/LanguageContext';
+import { ArticlesAndChangelog } from '../ArticlesAndChangelog';
 
 interface ProCloneWorkspaceProps {
   models: ScrapedModel[];
@@ -16,6 +17,7 @@ interface ProCloneWorkspaceProps {
   changelog: ChangelogItem[];
   searchQuery: string;
   setSearchQuery: (q: string) => void;
+  activeCategory?: string;
   onSelectModel: (model: ScrapedModel) => void;
   onSelectModelSlug?: (slug: string) => void;
 }
@@ -32,6 +34,7 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
   changelog,
   searchQuery,
   setSearchQuery,
+  activeCategory,
   onSelectModel,
   onSelectModelSlug,
 }) => {
@@ -85,6 +88,10 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
       id: 'providers', 
       label: language === 'vi' ? 'Hạ tầng Nhà cung cấp' : 'Providers' 
     },
+    { 
+      id: 'articles', 
+      label: language === 'vi' ? 'Bản tin & Đổi mới' : 'Articles & Changelog' 
+    },
   ], [language]);
 
   // ScrollSpy to update active sidebar link on scroll
@@ -119,7 +126,7 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start w-full max-w-full">
           {/* ================= LEFT STICKY SIDEBAR INDEX ================= */}
-          <aside className="hidden lg:block lg:col-span-3 sticky top-24 pt-2">
+          <aside className="hidden lg:block lg:col-span-3 sticky top-28 pt-2">
             <div className="mb-3 px-3">
               <span className="text-[10px] font-mono uppercase tracking-widest text-[#8A7262]">
                 {language === 'vi' ? 'MỤC LỤC CHỈ SỐ ĐO LƯỜNG' : 'BENCHMARK INDEX'}
@@ -165,7 +172,7 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
           </aside>
 
           {/* Mobile & iPad Horizontal Category Bar */}
-          <div className="lg:hidden col-span-12 sticky top-16 z-30 bg-[#160B06]/95 backdrop-blur-md py-2.5 px-4 sm:px-6 border-b border-[#3D2216] overflow-x-auto scrollbar-none flex items-center gap-2 w-full max-w-full">
+          <div className="lg:hidden col-span-12 sticky top-[72px] sm:top-[76px] z-30 bg-[#160B06]/95 backdrop-blur-md py-2.5 px-4 sm:px-6 border-b border-[#3D2216] overflow-x-auto scrollbar-none flex items-center gap-2 w-full max-w-full">
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
               return (
@@ -187,7 +194,7 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
           {/* ================= RIGHT MAIN BENCHMARK WORKSPACE ================= */}
           <div className="col-span-12 lg:col-span-9 space-y-16 min-w-0 w-full max-w-full">
             {/* SECTION 1: INTELLIGENCE */}
-            <section id="intelligence" className="scroll-mt-24">
+            <section id="intelligence" className="scroll-mt-36 sm:scroll-mt-40 lg:scroll-mt-28">
               {/* Main Heading */}
               <div className="flex flex-col gap-2 mb-6">
                 <div className="flex items-center gap-3">
@@ -207,14 +214,19 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
               </div>
 
               {/* Exact Intelligence Index Bar Chart Card in Espresso/Orange */}
-              <IntelligenceIndexCard models={models} onSelectModel={onSelectModel} />
+              <IntelligenceIndexCard
+                models={models}
+                searchQuery={searchQuery}
+                activeCategory={activeCategory}
+                onSelectModel={onSelectModel}
+              />
             </section>
 
             {/* SECTIONS 2 to 11 (All other categories in luxury espresso with 100% Vietnamese support) */}
             <CloneSections models={models} onSelectModel={onSelectModel} />
 
             {/* Interactive 2D Scatter Plot & Pareto Frontier */}
-            <div id="scatterplot" className="scroll-mt-24 pt-8 border-t border-[#3D2216]">
+            <div id="scatterplot" className="scroll-mt-36 sm:scroll-mt-40 lg:scroll-mt-28 pt-8 border-t border-[#3D2216]">
               <div className="mb-4">
                 <h3 className="text-2xl font-serif font-bold text-[#FFF6EE] flex items-center gap-2">
                   <span>{language === 'vi' ? 'Phân tích Đường Biên Hiệu Quả Pareto' : 'Pareto Frontier Analysis'}</span>
@@ -229,7 +241,7 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
             </div>
 
             {/* Complete 650+ Models Leaderboard Table */}
-            <div id="leaderboard" className="scroll-mt-24 pt-8 border-t border-[#3D2216]">
+            <div id="leaderboard" className="scroll-mt-36 sm:scroll-mt-40 lg:scroll-mt-28 pt-8 border-t border-[#3D2216]">
               <ModelLeaderboard
                 models={models}
                 searchQuery={searchQuery}
@@ -239,8 +251,17 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
             </div>
 
             {/* Provider Radar Latency Tracker */}
-            <div id="live" className="scroll-mt-24 pt-8 border-t border-[#3D2216]">
+            <div id="live" className="scroll-mt-36 sm:scroll-mt-40 lg:scroll-mt-28 pt-8 border-t border-[#3D2216]">
               <LiveTracker />
+            </div>
+
+            {/* Independent Research Articles & Evaluation Changelog */}
+            <div id="articles" className="scroll-mt-36 sm:scroll-mt-40 lg:scroll-mt-28 pt-8 border-t border-[#3D2216]">
+              <ArticlesAndChangelog
+                articles={articles}
+                changelog={changelog}
+                onSelectModelSlug={onSelectModelSlug}
+              />
             </div>
           </div>
         </div>

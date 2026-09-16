@@ -25,6 +25,7 @@ export const getCreatorColor = (creator: string, modelName: string = ''): string
   if (c.includes('minimax')) return '#E11D48'; // Rose/Pink
   if (c.includes('nvidia') || m.includes('nemotron')) return '#84CC16'; // Lime
   if (c.includes('mistral')) return '#EA580C'; // Amber
+  if (c.includes('cognition') || m.includes('devin')) return '#10B981'; // Cognition emerald
   if (c.includes('inkling')) return '#475569'; // Slate
   return '#6366F1'; // Default Indigo
 };
@@ -129,6 +130,14 @@ export const CompanyLogo: React.FC<CompanyLogoProps> = ({ creator, className = '
     return (
       <div className="flex items-center justify-center font-bold text-[9px] text-white bg-pink-600 rounded-sm w-4 h-4 leading-none">
         MM
+      </div>
+    );
+  }
+
+  if (c.includes('cognition') || c.includes('devin')) {
+    return (
+      <div className="flex items-center justify-center font-bold text-[9px] text-white bg-emerald-600 rounded-sm w-4 h-4 leading-none">
+        CG
       </div>
     );
   }

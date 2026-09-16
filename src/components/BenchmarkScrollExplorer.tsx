@@ -33,11 +33,15 @@ export type BenchmarkMetric =
 interface BenchmarkScrollExplorerProps {
   models: ScrapedModel[];
   onSelectModel: (model: ScrapedModel) => void;
+  searchQuery?: string;
+  activeCategory?: string;
 }
 
 export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = ({
   models,
   onSelectModel,
+  searchQuery,
+  activeCategory,
 }) => {
   const { language } = useLanguage();
   const { formatCost, currency } = useCurrency();
@@ -66,6 +70,26 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
   // Process and sort models for the active benchmark
   const rankedModels = useMemo(() => {
     let list = models.filter((m) => {
+      // Global search query
+      if (searchQuery && searchQuery.trim()) {
+        const q = searchQuery.toLowerCase().trim();
+        const matches =
+          m.name.toLowerCase().includes(q) ||
+          m.creator.toLowerCase().includes(q) ||
+          m.slug.toLowerCase().includes(q);
+        if (!matches) return false;
+      }
+
+      // Global category filter
+      if (activeCategory && activeCategory !== 'all') {
+        if (activeCategory === 'open_weights' && !m.isOpenWeights) return false;
+        if (activeCategory === 'reasoning' && !(m.isReasoning || m.name.toLowerCase().includes('r1') || m.name.toLowerCase().includes('o1') || m.name.toLowerCase().includes('o3'))) return false;
+        if (activeCategory === 'speed' && m.outputSpeed < 100) return false;
+        if (activeCategory === 'budget' && (m.costPerTaskUSD <= 0 || m.costPerTaskUSD > 1.0)) return false;
+        if (activeCategory === 'coding' && !(m.name.toLowerCase().includes('code') || m.name.toLowerCase().includes('coder') || m.name.toLowerCase().includes('dev') || ((m as unknown as { codingScore?: number }).codingScore ?? 0) >= 70)) return false;
+        if (activeCategory === 'vietnamese' && m.intelligenceScore < 60) return false;
+      }
+
       // Sub-filter
       if (filterType === 'open_weights' && !m.isOpenWeights) return false;
       if (filterType === 'proprietary' && m.isOpenWeights) return false;
@@ -104,7 +128,7 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
     });
 
     return list.slice(0, 40); // Top 40 models for horizontal scroll
-  }, [models, activeMetric, filterType]);
+  }, [models, activeMetric, filterType, searchQuery, activeCategory]);
 
   // Max value for bar scaling
   const maxValue = useMemo(() => {
@@ -265,7 +289,18 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
             className="flex items-end gap-3.5 overflow-x-auto pb-4 pt-8 w-full max-w-full scrollbar-thin scrollbar-thumb-[#4A2818] scrollbar-track-[#180D07]"
             style={{ minHeight: '340px' }}
           >
-            {rankedModels.map((model, index) => {
+            {rankedModels.length === 0 ? (
+              <div className="flex flex-col items-center justify-center w-full py-16 text-center">
+                <Info className="h-8 w-8 text-[#FF8452] mb-3 opacity-80" />
+                <p className="text-sm font-semibold text-[#FFF6EE]">
+                  {language === 'vi' ? 'Không tìm thấy mô hình phù hợp' : 'No matching models found'}
+                </p>
+                <p className="text-xs text-[#A89280] mt-1">
+                  {language === 'vi' ? 'Hãy thử điều chỉnh từ khóa tìm kiếm hoặc chọn danh mục khác.' : 'Try adjusting your search query or selecting a different filter.'}
+                </p>
+              </div>
+            ) : (
+              rankedModels.map((model, index) => {
               const { num, unit, ratio } = getMetricValueDisplay(model);
               const isTop3 = index < 3;
               const barColor = getCreatorColor(model.creator, model.name);
@@ -341,7 +376,8 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
                   </div>
                 </div>
               );
-            })}
+            })
+          )}
           </div>
 
           {/* Methodology Card at Bottom */}

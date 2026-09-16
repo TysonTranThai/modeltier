@@ -38,7 +38,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
   return (
     <div className="space-y-16 mt-16 text-[#FFF6EE]">
       {/* ================= SECTION 2: CODING AGENT INDEX ================= */}
-      <section id="coding-agents" className="scroll-mt-24 pt-8 border-t border-[#331A10]">
+      <section id="coding-agents" className="scroll-mt-36 sm:scroll-mt-40 lg:scroll-mt-28 pt-8 border-t border-[#331A10]">
         <div className="flex flex-col gap-2 mb-6">
           <div className="flex items-center gap-3">
             <span className="w-3.5 h-3.5 bg-[#FF6B35] rounded-sm shadow-glow-orange" aria-hidden="true" />
@@ -106,7 +106,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
       </section>
 
       {/* ================= SECTION 3: IMAGE & VIDEO ================= */}
-      <section id="media-leaderboards" className="scroll-mt-24 pt-8 border-t border-[#331A10]">
+      <section id="media-leaderboards" className="scroll-mt-36 sm:scroll-mt-40 lg:scroll-mt-28 pt-8 border-t border-[#331A10]">
         <div className="flex flex-col gap-2 mb-6">
           <div className="flex items-center gap-3">
             <span className="w-3.5 h-3.5 bg-[#FF6B35] rounded-sm shadow-glow-orange" aria-hidden="true" />
@@ -184,7 +184,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
       </section>
 
       {/* ================= SECTION 4: SPEECH ================= */}
-      <section id="speech-leaderboards" className="scroll-mt-24 pt-8 border-t border-[#331A10]">
+      <section id="speech-leaderboards" className="scroll-mt-36 sm:scroll-mt-40 lg:scroll-mt-28 pt-8 border-t border-[#331A10]">
         <div className="flex flex-col gap-2 mb-6">
           <div className="flex items-center gap-3">
             <span className="w-3.5 h-3.5 bg-[#FF6B35] rounded-sm shadow-glow-orange" aria-hidden="true" />
@@ -241,7 +241,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
       </section>
 
       {/* ================= SECTION 5: CAPABILITY INDICES ================= */}
-      <section id="capability-indices" className="scroll-mt-24 pt-8 border-t border-[#331A10]">
+      <section id="capability-indices" className="scroll-mt-36 sm:scroll-mt-40 lg:scroll-mt-28 pt-8 border-t border-[#331A10]">
         <div className="flex flex-col gap-2 mb-6">
           <div className="flex items-center gap-3">
             <span className="w-3.5 h-3.5 bg-[#FF6B35] rounded-sm shadow-glow-orange" aria-hidden="true" />
@@ -304,7 +304,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
       </section>
 
       {/* ================= SECTION 6: BENCHMARKS ================= */}
-      <section id="intelligence-breakdown" className="scroll-mt-24 pt-8 border-t border-[#331A10]">
+      <section id="intelligence-breakdown" className="scroll-mt-36 sm:scroll-mt-40 lg:scroll-mt-28 pt-8 border-t border-[#331A10]">
         <div className="flex flex-col gap-2 mb-6">
           <div className="flex items-center gap-3">
             <span className="w-3.5 h-3.5 bg-[#FF6B35] rounded-sm shadow-glow-orange" aria-hidden="true" />
@@ -388,7 +388,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
       </section>
 
       {/* ================= SECTION 7: OPENNESS INDEX ================= */}
-      <section id="openness" className="scroll-mt-24 pt-8 border-t border-[#331A10]">
+      <section id="openness" className="scroll-mt-36 sm:scroll-mt-40 lg:scroll-mt-28 pt-8 border-t border-[#331A10]">
         <div className="flex flex-col gap-2 mb-6">
           <div className="flex items-center gap-3">
             <span className="w-3.5 h-3.5 bg-[#FF6B35] rounded-sm shadow-glow-orange" aria-hidden="true" />
@@ -443,7 +443,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
       </section>
 
       {/* ================= SECTION 8: OUTPUT TOKENS ================= */}
-      <section id="output-tokens" className="scroll-mt-24 pt-8 border-t border-[#331A10]">
+      <section id="output-tokens" className="scroll-mt-36 sm:scroll-mt-40 lg:scroll-mt-28 pt-8 border-t border-[#331A10]">
         <div className="flex flex-col gap-2 mb-6">
           <div className="flex items-center gap-3">
             <span className="w-3.5 h-3.5 bg-[#FF6B35] rounded-sm shadow-glow-orange" aria-hidden="true" />
@@ -483,7 +483,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
       </section>
 
       {/* ================= SECTION 9: COST ================= */}
-      <section id="price-and-cost" className="scroll-mt-24 pt-8 border-t border-[#331A10]">
+      <section id="price-and-cost" className="scroll-mt-36 sm:scroll-mt-40 lg:scroll-mt-28 pt-8 border-t border-[#331A10]">
         <div className="flex flex-col gap-2 mb-6">
           <div className="flex items-center gap-3">
             <span className="w-3.5 h-3.5 bg-[#FF6B35] rounded-sm shadow-glow-orange" aria-hidden="true" />
@@ -539,7 +539,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
       </section>
 
       {/* ================= SECTION 10: SPEED & LATENCY ================= */}
-      <section id="speed" className="scroll-mt-24 pt-8 border-t border-[#331A10]">
+      <section id="speed" className="scroll-mt-36 sm:scroll-mt-40 lg:scroll-mt-28 pt-8 border-t border-[#331A10]">
         <div className="flex flex-col gap-2 mb-6">
           <div className="flex items-center gap-3">
             <span className="w-3.5 h-3.5 bg-[#FF6B35] rounded-sm shadow-glow-orange" aria-hidden="true" />
@@ -623,7 +623,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
       </section>
 
       {/* ================= SECTION 11: PROVIDERS ================= */}
-      <section id="providers" className="scroll-mt-24 pt-8 border-t border-[#331A10]">
+      <section id="providers" className="scroll-mt-36 sm:scroll-mt-40 lg:scroll-mt-28 pt-8 border-t border-[#331A10]">
         <div className="flex flex-col gap-2 mb-6">
           <div className="flex items-center gap-3">
             <span className="w-3.5 h-3.5 bg-[#FF6B35] rounded-sm shadow-glow-orange" aria-hidden="true" />

@@ -58,12 +58,12 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   const cloneNavLinks = [
-    { href: '#intelligence', label: 'Intelligence' },
-    { href: '#coding-agents', label: 'Coding Agents' },
-    { href: '#price-and-cost', label: 'Cost Index' },
-    { href: '#speed', label: 'Speed & Latency' },
-    { href: '#leaderboard', label: `${totalModels}+ Models` },
-    { href: '#providers', label: 'Providers' },
+    { href: '#intelligence', label: language === 'vi' ? 'Chỉ Số Trí Tuệ' : 'Intelligence' },
+    { href: '#coding-agents', label: language === 'vi' ? 'Coding Agents' : 'Coding Agents' },
+    { href: '#price-and-cost', label: language === 'vi' ? 'Chi Phí & Giá' : 'Cost Index' },
+    { href: '#speed', label: language === 'vi' ? 'Tốc Độ & Độ Trễ' : 'Speed & Latency' },
+    { href: '#leaderboard', label: language === 'vi' ? `${totalModels}+ Mô Hình` : `${totalModels}+ Models` },
+    { href: '#providers', label: language === 'vi' ? 'Nhà Cung Cấp' : 'Providers' },
   ];
 
   const currentNavLinks = viewMode === 'simplified' ? simplifiedNavLinks : cloneNavLinks;

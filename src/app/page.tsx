@@ -279,9 +279,11 @@ export default function HomePage() {
             />
 
             {/* Authentic Artificial Analysis Horizontal Scroll Benchmark Explorer */}
-            <div id="benchmarks" className="scroll-mt-20">
+            <div id="benchmarks" className="scroll-mt-28">
               <BenchmarkScrollExplorer
                 models={liveData.models}
+                searchQuery={searchQuery}
+                activeCategory={activeCategory}
                 onSelectModel={handleSelectScrapedModel}
               />
             </div>
@@ -293,6 +295,7 @@ export default function HomePage() {
               changelog={liveData.changelog}
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}
+              activeCategory={activeCategory}
               onSelectModel={handleSelectScrapedModel}
               onSelectModelSlug={handleSelectModelBySlug}
             />
