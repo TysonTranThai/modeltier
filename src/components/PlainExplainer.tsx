@@ -36,7 +36,7 @@ export const PlainExplainer: React.FC = () => {
   const ActiveIcon = getIcon(activeTerm.iconName);
 
   return (
-    <section id="glossary" className="py-14 lg:py-20 bg-[#180D07]/60 border-t border-[#3D2216] scroll-mt-16 relative w-full max-w-full overflow-hidden">
+    <section id="glossary" className="py-14 lg:py-20 bg-[#180D07]/60 border-t border-[#3D2216] scroll-mt-28 relative w-full max-w-full overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">

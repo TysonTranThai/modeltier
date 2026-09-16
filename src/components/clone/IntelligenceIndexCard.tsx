@@ -4,6 +4,7 @@ import React, { useState, useMemo, useRef } from 'react';
 import { ScrapedModel } from '../../types';
 import { CompanyLogo, getCreatorColor } from './CompanyLogo';
 import { useLanguage } from '../../context/LanguageContext';
+import { useCurrency } from '../../context/CurrencyContext';
 import { 
   Link2, 
   ImageDown, 
@@ -36,6 +37,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
   activeCategory,
 }) => {
   const { language } = useLanguage();
+  const { formatCost } = useCurrency();
   const [modelLimit, setModelLimit] = useState<number>(26);
   const [activeSubTab, setActiveSubTab] = useState<SubTab>('open_weights');
   const [openWeightsFilter, setOpenWeightsFilter] = useState<'all' | 'open' | 'proprietary'>('all');
@@ -421,7 +423,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
                 <th className="py-3 px-3">{language === 'vi' ? 'Nhà phát triển' : 'Creator'}</th>
                 <th className="py-3 px-3">{language === 'vi' ? 'Chỉ số Trí tuệ' : 'Intelligence Index'}</th>
                 <th className="py-3 px-3">{language === 'vi' ? 'Tốc độ (TPS)' : 'Speed'}</th>
-                <th className="py-3 px-3">{language === 'vi' ? 'Chi phí / 1M token' : 'Cost / 1M'}</th>
+                <th className="py-3 px-3">{language === 'vi' ? 'Chi phí / Task' : 'Cost / Task'}</th>
                 <th className="py-3 px-3">{language === 'vi' ? 'Bản quyền' : 'License'}</th>
               </tr>
             </thead>
@@ -440,7 +442,7 @@ export const IntelligenceIndexCard: React.FC<IntelligenceIndexCardProps> = ({
                   <td className="py-3 px-3 text-[#C7B299]">{m.creator}</td>
                   <td className="py-3 px-3 font-bold text-[#FF8452] font-mono text-sm">{m.intelligenceScore.toFixed(1)}</td>
                   <td className="py-3 px-3 text-[#C7B299]">{m.outputSpeed > 0 ? `${Math.round(m.outputSpeed)} tps` : '—'}</td>
-                  <td className="py-3 px-3 text-[#C7B299] font-mono">${m.costPerTaskUSD.toFixed(2)}</td>
+                  <td className="py-3 px-3 text-[#C7B299] font-mono">{formatCost(m.costPerTaskUSD)}</td>
                   <td className="py-3 px-3">
                     <span className={`px-2 py-0.5 rounded-sm font-mono text-[10px] font-semibold ${
                       m.isOpenWeights ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-[#160B06] text-[#A89280] border border-[#3D2216]'

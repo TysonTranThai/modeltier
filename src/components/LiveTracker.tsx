@@ -16,7 +16,11 @@ import {
   ExternalLink 
 } from 'lucide-react';
 
-export const LiveTracker: React.FC = () => {
+interface LiveTrackerProps {
+  id?: string;
+}
+
+export const LiveTracker: React.FC<LiveTrackerProps> = ({ id = 'live' }) => {
   const { language, t } = useLanguage();
   const [providers, setProviders] = useState<ProviderStatus[]>(PROVIDERS_DATA);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -66,7 +70,7 @@ export const LiveTracker: React.FC = () => {
   }, [handleRefresh]);
 
   return (
-    <section id="live" className="py-14 lg:py-20 scroll-mt-16 w-full max-w-full overflow-hidden">
+    <section id={id || undefined} className="py-14 lg:py-20 scroll-mt-28 w-full max-w-full overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full">
         {/* Title & Refresh Button */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">

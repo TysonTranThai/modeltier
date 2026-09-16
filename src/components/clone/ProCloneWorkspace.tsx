@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { ScrapedModel } from '../../types';
 import { IntelligenceIndexCard } from './IntelligenceIndexCard';
 import { CloneSections } from './CloneSections';
@@ -89,96 +89,148 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
       label: language === 'vi' ? 'Hạ tầng Nhà cung cấp' : 'Providers' 
     },
     { 
+      id: 'leaderboard', 
+      label: language === 'vi' ? 'Bảng xếp hạng (650+ Model)' : '650+ Models Leaderboard' 
+    },
+    { 
       id: 'articles', 
       label: language === 'vi' ? 'Bản tin & Đổi mới' : 'Articles & Changelog' 
     },
   ], [language]);
 
-  // ScrollSpy to update active sidebar link on scroll
+  const isManualScrollingRef = useRef(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const mobileBarRef = useRef<HTMLDivElement>(null);
+
+  // ScrollSpy using getBoundingClientRect for bulletproof viewport tracking
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPos = window.scrollY + 160;
-      for (let i = navItems.length - 1; i >= 0; i--) {
+      if (isManualScrollingRef.current) return;
+
+      // 1. Check if user reached the bottom of page
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60) {
+        setActiveSection(navItems[navItems.length - 1].id);
+        return;
+      }
+
+      // 2. Activation trigger threshold (180px from top, directly under sticky navbar & padding)
+      const activationOffset = 180;
+      let currentMatch = navItems[0]?.id || 'intelligence';
+      let maxTop = -Infinity;
+
+      for (let i = 0; i < navItems.length; i++) {
         const item = navItems[i];
         const el = document.getElementById(item.id);
-        if (el && el.offsetTop <= scrollPos) {
-          setActiveSection(item.id);
-          break;
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= activationOffset && rect.top > maxTop) {
+            maxTop = rect.top;
+            currentMatch = item.id;
+          }
         }
       }
+
+      setActiveSection(currentMatch);
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+    };
   }, [navItems]);
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+  // Keep mobile horizontal category bar centered on active section
+  useEffect(() => {
+    if (mobileBarRef.current) {
+      const activeBtn = mobileBarRef.current.querySelector<HTMLButtonElement>(`[data-active="true"]`);
+      if (activeBtn) {
+        activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+  }, [activeSection]);
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, id: string) => {
     e.preventDefault();
     setActiveSection(id);
+    isManualScrollingRef.current = true;
+    if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+
+    scrollTimeoutRef.current = setTimeout(() => {
+      isManualScrollingRef.current = false;
+    }, 800);
   };
 
   return (
-    <div className="bg-[#180D07] text-[#FFF6EE] min-h-screen py-10 transition-colors w-full max-w-full overflow-x-hidden">
+    <div className="bg-[#180D07] text-[#FFF6EE] min-h-screen py-10 transition-colors w-full max-w-full overflow-x-clip">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start w-full max-w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 w-full max-w-full">
           {/* ================= LEFT STICKY SIDEBAR INDEX ================= */}
-          <aside className="hidden lg:block lg:col-span-3 sticky top-28 pt-2">
-            <div className="mb-3 px-3">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-[#8A7262]">
-                {language === 'vi' ? 'MỤC LỤC CHỈ SỐ ĐO LƯỜNG' : 'BENCHMARK INDEX'}
-              </span>
-            </div>
-            <nav className="flex flex-col space-y-2.5 pl-3 border-l border-[#3D2216]">
-              {navItems.map((item) => {
-                const isActive = activeSection === item.id;
-                return (
-                  <a
-                    key={item.id}
-                    href={`#${item.id}`}
-                    onClick={(e) => scrollToSection(e, item.id)}
-                    className="group flex items-center gap-2.5 transition-colors py-1"
-                  >
-                    {/* Square Indicator */}
-                    <span
-                      className={`h-2 w-2 flex-shrink-0 transition-colors rounded-[2px] ${
-                        isActive ? 'bg-[#FF6B35] shadow-glow-orange scale-110' : 'bg-[#472718] group-hover:bg-[#8A4A28]'
-                      }`}
-                    />
-                    <span
-                      className={`text-xs transition-colors flex items-center gap-1.5 ${
-                        isActive
-                          ? 'font-bold text-[#FFF6EE]'
-                          : 'text-[#A89280] group-hover:text-[#FFF6EE]'
-                      }`}
+          <div className="hidden lg:block lg:col-span-3 h-full">
+            <aside className="sticky top-28 pt-2 max-h-[calc(100vh-8rem)] overflow-y-auto scrollbar-none">
+              <div className="mb-3 px-3">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#8A7262]">
+                  {language === 'vi' ? 'MỤC LỤC CHỈ SỐ ĐO LƯỜNG' : 'BENCHMARK INDEX'}
+                </span>
+              </div>
+              <nav className="flex flex-col space-y-2.5 pl-3 border-l border-[#3D2216]">
+                {navItems.map((item) => {
+                  const isActive = activeSection === item.id;
+                  return (
+                    <a
+                      key={item.id}
+                      href={`#${item.id}`}
+                      onClick={(e) => scrollToSection(e, item.id)}
+                      className="group flex items-center gap-2.5 transition-colors py-1"
                     >
-                      <span>{item.label}</span>
-                      {item.hasUpdatedTag && (
-                        <span className="flex items-center gap-1">
-                          <span className="inline-block h-1 w-1 rounded-full bg-[#FF6B35]" />
-                          <span className="text-[9px] font-mono font-bold text-[#FF8452] uppercase">
-                            {language === 'vi' ? 'Mới' : 'Updated'}
+                      {/* Square Indicator */}
+                      <span
+                        className={`h-2 w-2 flex-shrink-0 transition-all rounded-[2px] ${
+                          isActive ? 'bg-[#FF6B35] shadow-glow-orange scale-125' : 'bg-[#472718] group-hover:bg-[#8A4A28]'
+                        }`}
+                      />
+                      <span
+                        className={`text-xs transition-colors flex items-center gap-1.5 ${
+                          isActive
+                            ? 'font-bold text-[#FFF6EE]'
+                            : 'text-[#A89280] group-hover:text-[#FFF6EE]'
+                        }`}
+                      >
+                        <span>{item.label}</span>
+                        {item.hasUpdatedTag && (
+                          <span className="flex items-center gap-1">
+                            <span className="inline-block h-1 w-1 rounded-full bg-[#FF6B35]" />
+                            <span className="text-[9px] font-mono font-bold text-[#FF8452] uppercase">
+                              {language === 'vi' ? 'Mới' : 'Updated'}
+                            </span>
                           </span>
-                        </span>
-                      )}
-                    </span>
-                  </a>
-                );
-              })}
-            </nav>
-          </aside>
+                        )}
+                      </span>
+                    </a>
+                  );
+                })}
+              </nav>
+            </aside>
+          </div>
 
           {/* Mobile & iPad Horizontal Category Bar */}
-          <div className="lg:hidden col-span-12 sticky top-[72px] sm:top-[76px] z-30 bg-[#160B06]/95 backdrop-blur-md py-2.5 px-4 sm:px-6 border-b border-[#3D2216] overflow-x-auto scrollbar-none flex items-center gap-2 w-full max-w-full">
+          <div 
+            ref={mobileBarRef}
+            className="lg:hidden col-span-12 sticky top-[72px] sm:top-[76px] z-30 bg-[#160B06]/95 backdrop-blur-md py-2.5 px-4 sm:px-6 border-b border-[#3D2216] overflow-x-auto scrollbar-none flex items-center gap-2 w-full max-w-full"
+          >
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
               return (
                 <button
                   key={item.id}
-                  onClick={(e) => scrollToSection(e as any, item.id)}
+                  data-active={isActive ? 'true' : 'false'}
+                  onClick={(e) => scrollToSection(e, item.id)}
                   className={`px-3 py-1.5 rounded-sm font-mono text-xs whitespace-nowrap shrink-0 transition-all ${
                     isActive
                       ? 'bg-gradient-to-r from-[#FF6B35] to-[#E64A19] text-white font-bold shadow-glow-orange'
@@ -243,6 +295,7 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
             {/* Complete 650+ Models Leaderboard Table */}
             <div id="leaderboard" className="scroll-mt-36 sm:scroll-mt-40 lg:scroll-mt-28 pt-8 border-t border-[#3D2216]">
               <ModelLeaderboard
+                id=""
                 models={models}
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
@@ -252,7 +305,7 @@ export const ProCloneWorkspace: React.FC<ProCloneWorkspaceProps> = ({
 
             {/* Provider Radar Latency Tracker */}
             <div id="live" className="scroll-mt-36 sm:scroll-mt-40 lg:scroll-mt-28 pt-8 border-t border-[#3D2216]">
-              <LiveTracker />
+              <LiveTracker id="" />
             </div>
 
             {/* Independent Research Articles & Evaluation Changelog */}

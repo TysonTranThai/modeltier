@@ -96,7 +96,7 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({
   };
 
   return (
-    <section id="calculator" className="py-14 lg:py-20 scroll-mt-16 w-full max-w-full overflow-hidden">
+    <section id="calculator" className="py-14 lg:py-20 scroll-mt-28 w-full max-w-full overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">

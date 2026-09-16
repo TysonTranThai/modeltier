@@ -22,6 +22,7 @@ interface ModelLeaderboardProps {
   searchQuery: string;
   setSearchQuery: (q: string) => void;
   onSelectModel: (model: ScrapedModel) => void;
+  id?: string;
 }
 
 type SortField = 'intelligence' | 'cost' | 'speed' | 'latency' | 'name' | 'vietnamese';
@@ -32,6 +33,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
   searchQuery,
   setSearchQuery,
   onSelectModel,
+  id = 'leaderboard',
 }) => {
   const { language } = useLanguage();
   const { formatCost, currency } = useCurrency();
@@ -131,7 +133,7 @@ export const ModelLeaderboard: React.FC<ModelLeaderboardProps> = ({
   };
 
   return (
-    <section id="leaderboard" className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-20 overflow-hidden">
+    <section id={id || undefined} className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-28">
       {/* Table Header Controls */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#3D2216] pb-5 mb-6 w-full max-w-full">
         <div>

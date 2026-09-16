@@ -62,8 +62,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     { href: '#coding-agents', label: language === 'vi' ? 'Coding Agents' : 'Coding Agents' },
     { href: '#price-and-cost', label: language === 'vi' ? 'Chi Phí & Giá' : 'Cost Index' },
     { href: '#speed', label: language === 'vi' ? 'Tốc Độ & Độ Trễ' : 'Speed & Latency' },
-    { href: '#leaderboard', label: language === 'vi' ? `${totalModels}+ Mô Hình` : `${totalModels}+ Models` },
     { href: '#providers', label: language === 'vi' ? 'Nhà Cung Cấp' : 'Providers' },
+    { href: '#leaderboard', label: language === 'vi' ? `${totalModels}+ Mô Hình` : `${totalModels}+ Models` },
   ];
 
   const currentNavLinks = viewMode === 'simplified' ? simplifiedNavLinks : cloneNavLinks;
@@ -78,9 +78,44 @@ export const Navbar: React.FC<NavbarProps> = ({
     }
   };
 
+  const [activeNavSection, setActiveNavSection] = useState<string>('');
+
+  useEffect(() => {
+    const handleScrollNav = () => {
+      // Bottom of page check
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60) {
+        if (currentNavLinks.length > 0) {
+          setActiveNavSection(currentNavLinks[currentNavLinks.length - 1].href);
+          return;
+        }
+      }
+
+      const activationOffset = 180;
+      let match = '';
+      let maxTop = -Infinity;
+      for (let i = 0; i < currentNavLinks.length; i++) {
+        const link = currentNavLinks[i];
+        const el = document.querySelector(link.href);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= activationOffset && rect.top > maxTop) {
+            maxTop = rect.top;
+            match = link.href;
+          }
+        }
+      }
+      setActiveNavSection(match);
+    };
+
+    handleScrollNav();
+    window.addEventListener('scroll', handleScrollNav, { passive: true });
+    return () => window.removeEventListener('scroll', handleScrollNav);
+  }, [currentNavLinks]);
+
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+    setActiveNavSection(href);
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -191,16 +226,26 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Center: Clean Text Navigation - shown on XL screens to prevent mobile/iPad crowding */}
           <nav className="hidden xl:flex items-center gap-6 2xl:gap-8 mx-auto">
-            {currentNavLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => scrollToSection(e, link.href)}
-                className="text-sm font-normal text-[#C7B299] hover:text-[#FFF6EE] transition-colors whitespace-nowrap tracking-normal shrink-0"
-              >
-                {link.label}
-              </a>
-            ))}
+            {currentNavLinks.map((link) => {
+              const isActive = activeNavSection === link.href;
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => scrollToSection(e, link.href)}
+                  className={`relative text-sm transition-all whitespace-nowrap tracking-normal shrink-0 py-1 ${
+                    isActive
+                      ? 'font-bold text-[#FF8452]'
+                      : 'font-normal text-[#C7B299] hover:text-[#FFF6EE]'
+                  }`}
+                >
+                  <span>{link.label}</span>
+                  {isActive && (
+                    <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-gradient-to-r from-[#FF6B35] to-[#E64A19] shadow-glow-orange rounded-full animate-in fade-in duration-200" />
+                  )}
+                </a>
+              );
+            })}
           </nav>
 
           {/* Right: Mode Switcher & Ledger Signature Outlined Button */}
@@ -285,16 +330,23 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-1 font-mono text-xs">
-              {currentNavLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => scrollToSection(e, link.href)}
-                  className="rounded-sm border border-[#2D160B] bg-[#1B0D07] px-3 py-2 text-[#C7B299] hover:bg-[#25120A] hover:border-[#FF6B35]/40 hover:text-[#FFF6EE] transition-all"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {currentNavLinks.map((link) => {
+                const isActive = activeNavSection === link.href;
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => scrollToSection(e, link.href)}
+                    className={`rounded-sm border px-3 py-2 transition-all ${
+                      isActive
+                        ? 'border-[#FF6B35] bg-[#2E140A] text-[#FF8452] font-bold shadow-sm'
+                        : 'border-[#2D160B] bg-[#1B0D07] text-[#C7B299] hover:bg-[#25120A] hover:border-[#FF6B35]/40 hover:text-[#FFF6EE]'
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
             </div>
 
             {/* Mobile Live Sync CTA Button */}

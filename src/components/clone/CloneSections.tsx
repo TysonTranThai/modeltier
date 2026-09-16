@@ -4,6 +4,7 @@ import React from 'react';
 import { ScrapedModel } from '../../types';
 import { CompanyLogo, getCreatorColor } from './CompanyLogo';
 import { useLanguage } from '../../context/LanguageContext';
+import { useCurrency } from '../../context/CurrencyContext';
 import { 
   Code2, 
   Video, 
@@ -34,6 +35,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
   onSelectModel,
 }) => {
   const { language } = useLanguage();
+  const { formatCost } = useCurrency();
 
   return (
     <div className="space-y-16 mt-16 text-[#FFF6EE]">
@@ -76,12 +78,12 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
 
           <div className="space-y-3">
             {[
-              { name: 'Claude 3.7 Sonnet (Thinking) + Claude Code', creator: 'Anthropic', score: 70.3, cost: '$1.42', speed: '4m 12s' },
-              { name: 'Cursor Agent (Claude 3.7 Sonnet)', creator: 'Anthropic', score: 68.8, cost: '$1.25', speed: '3m 48s' },
-              { name: 'Devin 2.0 (Cognition)', creator: 'Cognition', score: 65.2, cost: '$2.10', speed: '5m 30s' },
-              { name: 'OpenAI Operator / Codex 5.6', creator: 'OpenAI', score: 64.9, cost: '$1.80', speed: '4m 05s' },
-              { name: 'Cline + DeepSeek V3', creator: 'DeepSeek', score: 58.4, cost: '$0.32', speed: '4m 50s' },
-              { name: 'Aider + Qwen 2.5 Coder 32B', creator: 'Alibaba', score: 54.6, cost: '$0.28', speed: '3m 15s' },
+              { name: 'Claude 3.7 Sonnet (Thinking) + Claude Code', creator: 'Anthropic', score: 70.3, costUSD: 1.42, speed: '4m 12s' },
+              { name: 'Cursor Agent (Claude 3.7 Sonnet)', creator: 'Anthropic', score: 68.8, costUSD: 1.25, speed: '3m 48s' },
+              { name: 'Devin 2.0 (Cognition)', creator: 'Cognition', score: 65.2, costUSD: 2.10, speed: '5m 30s' },
+              { name: 'OpenAI Operator / Codex 5.6', creator: 'OpenAI', score: 64.9, costUSD: 1.80, speed: '4m 05s' },
+              { name: 'Cline + DeepSeek V3', creator: 'DeepSeek', score: 58.4, costUSD: 0.32, speed: '4m 50s' },
+              { name: 'Aider + Qwen 2.5 Coder 32B', creator: 'Alibaba', score: 54.6, costUSD: 0.28, speed: '3m 15s' },
             ].map((item, idx) => (
               <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 sm:p-3.5 rounded-sm hover:bg-[#25120B] border border-[#2C160C] transition-colors">
                 <div className="flex items-center gap-2.5 sm:gap-3">
@@ -90,7 +92,7 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
                   <span className="text-sm font-semibold text-[#FFF6EE]">{item.name}</span>
                 </div>
                 <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs font-mono">
-                  <span className="text-[#A89280]">{language === 'vi' ? 'Chi phí:' : 'Cost:'} <strong className="text-[#FFF6EE]">{item.cost}</strong></span>
+                  <span className="text-[#A89280]">{language === 'vi' ? 'Chi phí:' : 'Cost:'} <strong className="text-[#FFF6EE]">{formatCost(item.costUSD)}</strong></span>
                   <span className="text-[#A89280]">{language === 'vi' ? 'Thời gian:' : 'Time:'} <strong className="text-[#FFF6EE]">{item.speed}</strong></span>
                   <div className="flex items-center gap-2 w-28 sm:w-32 justify-end">
                     <div className="w-14 sm:w-16 bg-[#120703] h-2.5 rounded-sm overflow-hidden">
@@ -514,23 +516,23 @@ export const CloneSections: React.FC<CloneSectionsProps> = ({
             </thead>
             <tbody className="divide-y divide-[#2C160C]">
               {[
-                { name: 'Gemini 2.5 Flash', creator: 'Google', in: '$0.075', out: '$0.30', cache: '$0.018', task: '$0.008' },
-                { name: 'DeepSeek V3', creator: 'DeepSeek', in: '$0.14', out: '$0.28', cache: '$0.014', task: '$0.012' },
-                { name: 'GPT-4o mini', creator: 'OpenAI', in: '$0.15', out: '$0.60', cache: '$0.075', task: '$0.019' },
-                { name: 'Claude 3.5 Haiku', creator: 'Anthropic', in: '$0.80', out: '$4.00', cache: '$0.08', task: '$0.085' },
-                { name: 'GPT-4o', creator: 'OpenAI', in: '$2.50', out: '$10.00', cache: '$1.25', task: '$0.245' },
-                { name: 'Claude 3.7 Sonnet', creator: 'Anthropic', in: '$3.00', out: '$15.00', cache: '$0.30', task: '$0.320' },
-                { name: 'Claude 3.5 Opus', creator: 'Anthropic', in: '$15.00', out: '$75.00', cache: '$1.50', task: '$1.850' },
+                { name: 'Gemini 2.5 Flash', creator: 'Google', inUSD: 0.075, outUSD: 0.30, cacheUSD: 0.018, taskUSD: 0.008 },
+                { name: 'DeepSeek V3', creator: 'DeepSeek', inUSD: 0.14, outUSD: 0.28, cacheUSD: 0.014, taskUSD: 0.012 },
+                { name: 'GPT-4o mini', creator: 'OpenAI', inUSD: 0.15, outUSD: 0.60, cacheUSD: 0.075, taskUSD: 0.019 },
+                { name: 'Claude 3.5 Haiku', creator: 'Anthropic', inUSD: 0.80, outUSD: 4.00, cacheUSD: 0.08, taskUSD: 0.085 },
+                { name: 'GPT-4o', creator: 'OpenAI', inUSD: 2.50, outUSD: 10.00, cacheUSD: 1.25, taskUSD: 0.245 },
+                { name: 'Claude 3.7 Sonnet', creator: 'Anthropic', inUSD: 3.00, outUSD: 15.00, cacheUSD: 0.30, taskUSD: 0.320 },
+                { name: 'Claude 3.5 Opus', creator: 'Anthropic', inUSD: 15.00, outUSD: 75.00, cacheUSD: 1.50, taskUSD: 1.850 },
               ].map((m, idx) => (
                 <tr key={idx} className="hover:bg-[#25120B] transition-colors">
                   <td className="py-3 px-3 font-semibold text-[#FFF6EE] font-sans flex items-center gap-2">
                     <CompanyLogo creator={m.creator} size={15} />
                     <span>{m.name}</span>
                   </td>
-                  <td className="py-3 px-3 text-[#C7B299]">{m.in}</td>
-                  <td className="py-3 px-3 text-[#C7B299]">{m.out}</td>
-                  <td className="py-3 px-3 text-emerald-400">{m.cache}</td>
-                  <td className="py-3 px-3 font-bold text-[#FF8452]">{m.task}</td>
+                  <td className="py-3 px-3 text-[#C7B299]">{formatCost(m.inUSD)}</td>
+                  <td className="py-3 px-3 text-[#C7B299]">{formatCost(m.outUSD)}</td>
+                  <td className="py-3 px-3 text-emerald-400">{formatCost(m.cacheUSD)}</td>
+                  <td className="py-3 px-3 font-bold text-[#FF8452]">{formatCost(m.taskUSD)}</td>
                 </tr>
               ))}
             </tbody>

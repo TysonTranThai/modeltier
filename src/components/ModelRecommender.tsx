@@ -148,7 +148,7 @@ export const ModelRecommender: React.FC<ModelRecommenderProps> = ({
   };
 
   return (
-    <section id="finder" className="py-14 lg:py-20 bg-[#180D07] border-y border-[#3D2216] scroll-mt-16 relative overflow-hidden w-full max-w-full">
+    <section id="finder" className="py-14 lg:py-20 bg-[#180D07] border-y border-[#3D2216] scroll-mt-28 relative overflow-hidden w-full max-w-full">
       {/* Subtle Glow */}
       <div className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-[#FF6B35]/10 blur-3xl" />
       <div className="pointer-events-none absolute left-0 bottom-0 h-80 w-80 rounded-full bg-emerald-600/10 blur-3xl" />

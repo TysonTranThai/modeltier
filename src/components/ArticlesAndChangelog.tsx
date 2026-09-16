@@ -26,7 +26,7 @@ export const ArticlesAndChangelog: React.FC<ArticlesAndChangelogProps> = ({
   const { language } = useLanguage();
 
   return (
-    <section id="articles" className="border-t border-[#3D2216] bg-[#180D07] py-16 scroll-mt-16">
+    <section className="bg-[#180D07] py-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">

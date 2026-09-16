@@ -161,7 +161,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#170C07] text-[#FFF6EE] font-sans selection:bg-[#FF6B35] selection:text-white w-full max-w-full overflow-x-hidden">
+    <div className="flex min-h-screen flex-col bg-[#170C07] text-[#FFF6EE] font-sans selection:bg-[#FF6B35] selection:text-white w-full max-w-full overflow-x-clip">
       {/* Top ModelTier Navbar */}
       <Navbar
         searchQuery={searchQuery}
@@ -191,7 +191,7 @@ export default function HomePage() {
         </div>
       )}
 
-      <main className="flex-1 w-full max-w-full overflow-x-hidden">
+      <main className="flex-1 w-full max-w-full overflow-x-clip">
         {viewMode === 'simplified' ? (
           /* ================= EASY MODE (DỄ HIỂU & THỰC TIỄN) ================= */
           <>
@@ -205,17 +205,15 @@ export default function HomePage() {
             />
 
             {/* Highlights 3-Card Grid (Intelligence, Speed, Cost) */}
-            <div id="highlights">
-              <Highlights
-                intelligenceData={liveData.highlights.intelligence}
-                speedData={liveData.highlights.speed}
-                costData={liveData.highlights.costPerTask}
-                onSelectModel={handleSelectModelBySlug}
-              />
-            </div>
+            <Highlights
+              intelligenceData={liveData.highlights.intelligence}
+              speedData={liveData.highlights.speed}
+              costData={liveData.highlights.costPerTask}
+              onSelectModel={handleSelectModelBySlug}
+            />
 
             {/* Interactive 2D Scatter Plot & Pareto Frontier */}
-            <div id="scatterplot" className="scroll-mt-20">
+            <div id="scatterplot" className="scroll-mt-28">
               <ScatterPlotArena
                 models={liveData.models}
                 onSelectModel={handleSelectScrapedModel}
@@ -279,14 +277,12 @@ export default function HomePage() {
             />
 
             {/* Authentic Artificial Analysis Horizontal Scroll Benchmark Explorer */}
-            <div id="benchmarks" className="scroll-mt-28">
-              <BenchmarkScrollExplorer
-                models={liveData.models}
-                searchQuery={searchQuery}
-                activeCategory={activeCategory}
-                onSelectModel={handleSelectScrapedModel}
-              />
-            </div>
+            <BenchmarkScrollExplorer
+              models={liveData.models}
+              searchQuery={searchQuery}
+              activeCategory={activeCategory}
+              onSelectModel={handleSelectScrapedModel}
+            />
 
             {/* Full High-Fidelity 11-Section Workspace with Left Sidebar & Intelligence Index Chart */}
             <ProCloneWorkspace

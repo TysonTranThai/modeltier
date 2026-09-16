@@ -191,7 +191,7 @@ export const BenchmarkScrollExplorer: React.FC<BenchmarkScrollExplorerProps> = (
   };
 
   return (
-    <section id="benchmarks" className="border-t border-[#3D2216] bg-[#180D07] py-16 scroll-mt-20 text-[#FFF6EE] w-full max-w-full overflow-hidden">
+    <section id="benchmarks" className="border-t border-[#3D2216] bg-[#180D07] py-16 scroll-mt-28 text-[#FFF6EE] w-full max-w-full overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full max-w-full">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
