@@ -150,6 +150,18 @@ export const TRANSLATIONS = {
       aboutText: 'Dự án nguồn mở độc lập phi lợi nhuận nhằm giúp cộng đồng người Việt và người dùng toàn cầu tiếp cận công nghệ AI một cách đơn giản, minh bạch và hiệu quả nhất.',
       inspiredBy: 'Lấy cảm hứng từ các chỉ số đo lường độc lập của Artificial Analysis.',
       copyright: 'modeltier.notlimitedteam.cloud • Nền tảng theo dõi và xếp hạng AI độc lập.',
+    },
+    community: {
+      githubRepo: 'Mã Nguồn GitHub',
+      starRepo: 'Tặng Sao Dự Án',
+      author: 'Tác Giả',
+      authorName: 'Tyson Tran',
+      followAuthor: 'Theo Dõi Tác Giả',
+      supportAuthor: 'Ủng Hộ Tác Giả',
+      openSourceBadge: 'Dự Án Nguồn Mở',
+      createdBy: 'Phát triển bởi Tyson Tran (@TysonTranThai)',
+      issues: 'Báo Cáo Sự Cố',
+      contribute: 'Đóng Góp Mã Nguồn',
     }
   },
   en: {
@@ -303,6 +315,18 @@ export const TRANSLATIONS = {
       aboutText: 'An independent open-source initiative designed to make AI benchmarking accessible, transparent, and practical for Vietnamese and global audiences.',
       inspiredBy: 'Inspired by independent benchmarks from Artificial Analysis.',
       copyright: 'modeltier.notlimitedteam.cloud • Independent AI Model Leaderboard & Live Tracker.',
+    },
+    community: {
+      githubRepo: 'GitHub Repository',
+      starRepo: 'Star on GitHub',
+      author: 'Author',
+      authorName: 'Tyson Tran',
+      followAuthor: 'Follow Author',
+      supportAuthor: 'Support Author',
+      openSourceBadge: 'Open Source Project',
+      createdBy: 'Created by Tyson Tran (@TysonTranThai)',
+      issues: 'Report an Issue',
+      contribute: 'Contribute Code',
     }
   }
 };

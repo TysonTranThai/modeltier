@@ -15,7 +15,10 @@ import {
   ChevronRight,
   TrendingUp,
   ShieldCheck,
-  Compass
+  Compass,
+  Github,
+  Heart,
+  Star
 } from 'lucide-react';
 import { CategoryFilter } from '../types';
 
@@ -64,13 +67,40 @@ export const ProCloneHero: React.FC<ProCloneHeroProps> = ({
             </span>
           </div>
 
-          <button
-            onClick={() => setViewMode('simplified')}
-            className="group inline-flex items-center gap-2 rounded-sm border border-[#FF6B35]/40 bg-[#24130C] hover:bg-[#331C10] px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-wider text-[#FF8452] transition-all shadow-sm"
-          >
-            <span>⚡ {language === 'vi' ? 'Xem chế độ Dễ hiểu (Giao diện Tinh hoa)' : 'Switch to Easy Mode'}</span>
-            <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-          </button>
+          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+            {/* GitHub Repo Button */}
+            <a
+              href="https://github.com/TysonTranThai/modeltier"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-sm border border-[#472718] bg-[#24130C] hover:bg-[#331C10] hover:border-[#FF6B35]/70 px-3 py-1.5 font-mono text-xs font-medium text-[#D8C4B6] hover:text-[#FFF6EE] transition-all shadow-sm group"
+              title="GitHub Repository: TysonTranThai/modeltier"
+            >
+              <Github className="h-3.5 w-3.5 text-[#FF8452] group-hover:text-white transition-colors" />
+              <span>GitHub Repo</span>
+              <Star className="h-3 w-3 text-[#FF8452] fill-[#FF8452]/40" />
+            </a>
+
+            {/* Follow Author Button */}
+            <a
+              href="https://github.com/TysonTranThai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-sm border border-[#FF6B35]/40 bg-[#FF6B35]/10 hover:bg-[#FF6B35]/20 hover:border-[#FF6B35] px-3 py-1.5 font-mono text-xs font-bold text-[#FF8452] hover:text-white transition-all shadow-sm group"
+              title={language === 'vi' ? 'Theo dõi & Ủng hộ tác giả Tyson Tran (@TysonTranThai)' : 'Follow & Support author Tyson Tran (@TysonTranThai)'}
+            >
+              <Heart className="h-3.5 w-3.5 text-[#FF6B35] fill-[#FF6B35]/40" />
+              <span>{language === 'vi' ? 'Follow Tác giả' : 'Follow Author'}</span>
+            </a>
+
+            <button
+              onClick={() => setViewMode('simplified')}
+              className="group inline-flex items-center gap-2 rounded-sm border border-[#FF6B35]/40 bg-[#24130C] hover:bg-[#331C10] px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-wider text-[#FF8452] transition-all shadow-sm"
+            >
+              <span>⚡ {language === 'vi' ? 'Xem chế độ Dễ hiểu' : 'Switch to Easy Mode'}</span>
+              <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+            </button>
+          </div>
         </div>
 
         {/* Hero Title & Subtitle */}

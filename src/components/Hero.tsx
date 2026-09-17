@@ -13,7 +13,10 @@ import {
   ArrowUpRight,
   ShieldCheck,
   CheckCircle2,
-  BarChart2
+  BarChart2,
+  Github,
+  Heart,
+  Star
 } from 'lucide-react';
 import { CategoryFilter } from '../types';
 
@@ -59,10 +62,40 @@ export const Hero: React.FC<HeroProps> = ({
 
         {/* Hero Editorial Headline */}
         <div className="max-w-4xl mx-auto text-center">
-          {/* Live Empirical Badge */}
-          <div className="inline-flex items-center gap-2.5 rounded-sm border border-[#FF6B35]/40 bg-[#24130C]/90 px-3.5 py-1.5 text-xs font-mono text-[#FF8452] shadow-sm mb-6 backdrop-blur-md tracking-wider uppercase">
-            <span className="flex h-2 w-2 rounded-full bg-[#FF6B35] animate-ping" />
-            <span className="font-semibold">{language === 'vi' ? `DỮ LIỆU ĐỘC LẬP • ${modelCount}+ MÔ HÌNH` : `INDEPENDENT TELEMETRY • ${modelCount}+ MODELS`}</span>
+          {/* Live Empirical & Community Badges */}
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-6">
+            <div className="inline-flex items-center gap-2 rounded-sm border border-[#FF6B35]/40 bg-[#24130C]/90 px-3.5 py-1.5 text-xs font-mono text-[#FF8452] shadow-sm backdrop-blur-md tracking-wider uppercase">
+              <span className="flex h-2 w-2 rounded-full bg-[#FF6B35] animate-ping" />
+              <span className="font-semibold">{language === 'vi' ? `DỮ LIỆU ĐỘC LẬP • ${modelCount}+ MÔ HÌNH` : `INDEPENDENT TELEMETRY • ${modelCount}+ MODELS`}</span>
+            </div>
+
+            {/* GitHub Repo Pill */}
+            <a
+              href="https://github.com/TysonTranThai/modeltier"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-sm border border-[#472718] bg-[#24130C]/90 hover:bg-[#331A0F] hover:border-[#FF6B35]/70 px-3 py-1.5 text-xs font-mono text-[#D8C4B6] hover:text-[#FFF6EE] shadow-sm backdrop-blur-md transition-all group"
+              title="GitHub Repository: TysonTranThai/modeltier"
+            >
+              <Github className="h-3.5 w-3.5 text-[#FF8452] group-hover:text-white transition-colors" />
+              <span>TysonTranThai/modeltier</span>
+              <span className="inline-flex items-center gap-0.5 text-[#FF8452] text-[11px] font-bold">
+                <Star className="h-3 w-3 fill-[#FF8452]/40" />
+                <span>Star</span>
+              </span>
+            </a>
+
+            {/* Follow Author Pill */}
+            <a
+              href="https://github.com/TysonTranThai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-sm border border-[#FF6B35]/30 bg-[#FF6B35]/10 hover:bg-[#FF6B35]/20 hover:border-[#FF6B35] px-3 py-1.5 text-xs font-mono text-[#FF8452] hover:text-white shadow-sm backdrop-blur-md transition-all group"
+              title={language === 'vi' ? 'Theo dõi tác giả Tyson Tran (@TysonTranThai)' : 'Follow author Tyson Tran (@TysonTranThai)'}
+            >
+              <Heart className="h-3.5 w-3.5 text-[#FF6B35] fill-[#FF6B35]/30 group-hover:fill-[#FF6B35] transition-all" />
+              <span>{language === 'vi' ? 'Follow Tác giả' : 'Follow Author'}</span>
+            </a>
           </div>
 
           <h1 className="text-4xl font-serif font-normal tracking-tight text-[#FFF6EE] sm:text-6xl lg:text-7xl leading-[1.12]">
@@ -104,6 +137,18 @@ export const Hero: React.FC<HeroProps> = ({
               <BarChart2 className="h-4 w-4 text-[#FF6B35]" />
               <span>{language === 'vi' ? 'Xem Chuẩn Benchmark Pro' : 'Explore Pro Telemetry'}</span>
             </button>
+
+            {/* GitHub Repo Button in CTA row */}
+            <a
+              href="https://github.com/TysonTranThai/modeltier"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-sm border border-[#472718] bg-[#24130B]/80 hover:bg-[#331C10] px-5 py-3 text-xs font-mono font-semibold uppercase tracking-wider text-[#EFE2D6] hover:border-[#FF6B35]/70 hover:text-white active:scale-[0.98] transition-all shadow-sm backdrop-blur-sm group"
+            >
+              <Github className="h-4 w-4 text-[#FF8452] group-hover:text-white transition-colors" />
+              <span>GitHub Repo</span>
+              <Star className="h-3.5 w-3.5 text-[#FF8452] fill-[#FF8452]/40" />
+            </a>
           </div>
 
           {/* Terminal Search Box in Warm Espresso Style */}

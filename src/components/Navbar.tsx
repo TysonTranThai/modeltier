@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useCurrency } from '../context/CurrencyContext';
 import { useViewMode } from '../context/ViewModeContext';
-import { Menu, X, RefreshCw } from 'lucide-react';
+import { Menu, X, RefreshCw, Github, Heart, Star } from 'lucide-react';
 
 interface NavbarProps {
   searchQuery: string;
@@ -160,6 +160,28 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="text-[#8A7262] hidden md:inline truncate" suppressHydrationWarning>
                 {language === 'vi' ? 'Cập nhật:' : 'Updated:'} {mounted ? formatLastSync(lastSyncedAt) : 'Vừa xong'} (tự động mỗi 15 phút)
               </span>
+              <span className="text-[#4A2617] hidden lg:inline">•</span>
+              <a
+                href="https://github.com/TysonTranThai/modeltier"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden lg:inline-flex items-center gap-1 text-[#8A7262] hover:text-[#FF8452] transition-colors"
+                title="GitHub Repository"
+              >
+                <Github className="h-2.5 w-2.5" />
+                <span>TysonTranThai/modeltier</span>
+              </a>
+              <span className="text-[#4A2617] hidden xl:inline">•</span>
+              <a
+                href="https://github.com/TysonTranThai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden xl:inline-flex items-center gap-1 text-[#8A7262] hover:text-[#FF8452] transition-colors"
+                title={language === 'vi' ? 'Ủng hộ tác giả @TysonTranThai' : 'Support author @TysonTranThai'}
+              >
+                <Heart className="h-2.5 w-2.5 text-[#FF6B35] fill-[#FF6B35]/40" />
+                <span>by @TysonTranThai</span>
+              </a>
             </div>
 
             <div className="flex items-center gap-2 sm:gap-3 shrink-0">
@@ -288,6 +310,34 @@ export const Navbar: React.FC<NavbarProps> = ({
               </span>
             </button>
 
+            {/* GitHub Repo Button */}
+            <a
+              href="https://github.com/TysonTranThai/modeltier"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-sm border border-[#472718] bg-[#1E0F08] hover:bg-[#2A140B] hover:border-[#FF6B35]/70 px-2 sm:px-2.5 py-1 sm:py-1.5 text-xs font-mono text-[#D8C4B6] hover:text-[#FFF6EE] transition-all shadow-sm group shrink-0"
+              title={language === 'vi' ? 'Xem mã nguồn & Tặng sao trên GitHub' : 'View Source & Star on GitHub'}
+            >
+              <Github className="h-3.5 w-3.5 text-[#FF8452] group-hover:text-white transition-colors" />
+              <span className="hidden sm:inline font-medium">GitHub</span>
+              <span className="inline-flex items-center gap-0.5 text-[10px] text-[#A89280] group-hover:text-[#FF8452] font-semibold transition-colors">
+                <Star className="h-2.5 w-2.5 fill-[#FF8452]/40 text-[#FF8452]" />
+                <span className="hidden lg:inline">Star</span>
+              </span>
+            </a>
+
+            {/* Follow Author Button */}
+            <a
+              href="https://github.com/TysonTranThai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:inline-flex items-center gap-1.5 rounded-sm border border-[#FF6B35]/40 bg-[#FF6B35]/10 hover:bg-[#FF6B35]/20 hover:border-[#FF6B35] px-2.5 py-1.5 text-xs font-mono text-[#FF8452] hover:text-white transition-all shadow-sm group shrink-0"
+              title={language === 'vi' ? 'Theo dõi & Ủng hộ tác giả Tyson Tran (@TysonTranThai)' : 'Follow & Support author Tyson Tran (@TysonTranThai)'}
+            >
+              <Heart className="h-3.5 w-3.5 text-[#FF6B35] group-hover:scale-110 transition-transform fill-[#FF6B35]/30 group-hover:fill-[#FF6B35]" />
+              <span className="font-semibold">{language === 'vi' ? 'Follow Tác Giả' : 'Follow Author'}</span>
+            </a>
+
             {/* Mobile & iPad Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -358,6 +408,37 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className={`h-2 w-2 rounded-full ${isSyncing ? 'bg-amber-400 animate-ping' : 'bg-[#FF6B35]'}`} />
               <span>{isSyncing ? (language === 'vi' ? 'Đang đồng bộ...' : 'Syncing...') : (language === 'vi' ? 'Đồng bộ Dữ liệu Ngay' : 'Sync Live Data')}</span>
             </button>
+
+            {/* Mobile GitHub & Author Support Card */}
+            <div className="pt-3 border-t border-[#2C160C] space-y-2">
+              <div className="flex items-center justify-between px-1">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#8A7262]">
+                  {language === 'vi' ? 'Mã Nguồn Mở & Tác Giả' : 'Open Source & Author'}
+                </span>
+                <span className="text-[10px] font-mono text-[#FF8452]">@TysonTranThai</span>
+              </div>
+              <div className="grid grid-cols-2 gap-2 font-mono text-xs">
+                <a
+                  href="https://github.com/TysonTranThai/modeltier"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 rounded-sm border border-[#472718] bg-[#1B0D07] hover:bg-[#25120A] text-[#D8C4B6] hover:text-white py-2.5 px-3 transition-all font-medium"
+                >
+                  <Github className="h-4 w-4 text-[#FF8452]" />
+                  <span>Repo GitHub</span>
+                  <Star className="h-3 w-3 text-[#FF8452] fill-[#FF8452]/40" />
+                </a>
+                <a
+                  href="https://github.com/TysonTranThai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 rounded-sm border border-[#FF6B35]/50 bg-[#FF6B35]/15 hover:bg-[#FF6B35]/25 text-[#FF8452] hover:text-white py-2.5 px-3 transition-all font-bold"
+                >
+                  <Heart className="h-4 w-4 text-[#FF6B35] fill-[#FF6B35]/40" />
+                  <span>{language === 'vi' ? 'Follow Tác Giả' : 'Follow Author'}</span>
+                </a>
+              </div>
+            </div>
           </div>
         )}
       </header>
