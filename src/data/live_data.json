@@ -1,7 +1,7 @@
 {
   "source": "https://artificialanalysis.ai",
-  "syncedAt": "2026-09-25T10:43:06.021Z",
-  "durationMs": 880,
+  "syncedAt": "2026-09-25T16:02:50.012Z",
+  "durationMs": 427,
   "totalModels": 673,
   "highlights": {
     "intelligence": [],
@@ -8730,8 +8730,8 @@
       "releaseDate": "2026-08-18",
       "intelligenceScore": 34,
       "intelligenceScoreRaw": "34",
-      "costPerTaskUSD": 3.66,
-      "costPerTaskRaw": "$3.66",
+      "costPerTaskUSD": 0.85,
+      "costPerTaskRaw": "$0.85",
       "outputSpeed": 78,
       "outputSpeedRaw": "78",
       "latencyFirstChunk": 3.26,
