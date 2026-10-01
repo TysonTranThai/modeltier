@@ -1,8 +1,8 @@
 {
   "source": "https://artificialanalysis.ai",
-  "syncedAt": "2026-10-01T17:54:14.458Z",
-  "durationMs": 409,
-  "totalModels": 688,
+  "syncedAt": "2026-10-01T22:05:23.124Z",
+  "durationMs": 278,
+  "totalModels": 689,
   "highlights": {
     "intelligence": [],
     "speed": [],
@@ -32,6 +32,11 @@
     }
   ],
   "changelog": [
+    {
+      "date": "New language model evaluation · 1 Oct",
+      "slug": "grok-4-7-low",
+      "modelName": "Grok 4.7 (Low)"
+    },
     {
       "date": "New article published · 30 Sept",
       "slug": "solar-mini4",
@@ -101,11 +106,6 @@
       "date": "New language model evaluation · 28 Sept",
       "slug": "claude-sonnet-5-5",
       "modelName": "Claude Sonnet 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)"
-    },
-    {
-      "date": "New language model evaluation · 27 Sept",
-      "slug": "mimo-v2-6-flash",
-      "modelName": "MiMo-V2.6-Flash"
     }
   ],
   "models": [
@@ -7360,6 +7360,34 @@
       "vietnameseRating": 86,
       "url": "https://artificialanalysis.ai/models/grok-4-6-medium",
       "providersUrl": "https://artificialanalysis.ai/models/grok-4-6-medium/providers"
+    },
+    {
+      "id": "grok-4-7-low",
+      "slug": "grok-4-7-low",
+      "name": "Grok 4.7 (Low)",
+      "creator": "AI Lab",
+      "creatorLogo": null,
+      "contextWindow": "128k",
+      "tier": "B",
+      "isOpenWeights": false,
+      "hasVision": false,
+      "isReasoning": false,
+      "effort": null,
+      "deprecated": false,
+      "releaseDate": null,
+      "intelligenceScore": 25,
+      "intelligenceScoreRaw": "--",
+      "costPerTaskUSD": 0.5,
+      "costPerTaskRaw": "--",
+      "outputSpeed": 60,
+      "outputSpeedRaw": "--",
+      "latencyFirstChunk": 1,
+      "latencyRaw": "--",
+      "totalResponseTime": 5,
+      "totalTimeRaw": "--",
+      "vietnameseRating": 86,
+      "url": "https://artificialanalysis.ai/models/grok-4-7-low",
+      "providersUrl": "https://artificialanalysis.ai/models/grok-4-7-low/providers"
     },
     {
       "id": "grok-4-5",
