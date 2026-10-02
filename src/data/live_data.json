@@ -1,7 +1,7 @@
 {
   "source": "https://artificialanalysis.ai",
-  "syncedAt": "2026-10-02T16:57:14.622Z",
-  "durationMs": 17271,
+  "syncedAt": "2026-10-02T21:31:12.994Z",
+  "durationMs": 318,
   "totalModels": 689,
   "highlights": {
     "intelligence": [],
@@ -85,27 +85,27 @@
     {
       "date": "New article published · 28 Sept",
       "slug": "claude-sonnet-5-5-low",
-      "modelName": "Claude Sonnet 5.5 (Adaptive Reasoning, Low Effort, Default Fallback)"
+      "modelName": "Claude Sonnet 5.5 (Low, Default Fallback)"
     },
     {
       "date": "New language model evaluation · 28 Sept",
       "slug": "claude-sonnet-5-5-medium",
-      "modelName": "Claude Sonnet 5.5 (Adaptive Reasoning, Medium Effort, Default Fallback)"
+      "modelName": "Claude Sonnet 5.5 (Medium, Default Fallback)"
     },
     {
       "date": "New language model evaluation · 28 Sept",
       "slug": "claude-sonnet-5-5-high",
-      "modelName": "Claude Sonnet 5.5 (Adaptive Reasoning, High Effort, Default Fallback)"
+      "modelName": "Claude Sonnet 5.5 (High, Default Fallback)"
     },
     {
       "date": "New language model evaluation · 28 Sept",
       "slug": "claude-sonnet-5-5-xhigh",
-      "modelName": "Claude Sonnet 5.5 (Adaptive Reasoning, Xhigh Effort, Default Fallback)"
+      "modelName": "Claude Sonnet 5.5 (Xhigh, Default Fallback)"
     },
     {
       "date": "New language model evaluation · 28 Sept",
       "slug": "claude-sonnet-5-5",
-      "modelName": "Claude Sonnet 5.5 (Adaptive Reasoning, Max Effort, Default Fallback)"
+      "modelName": "Claude Sonnet 5.5 (Max, Default Fallback)"
     }
   ],
   "models": [
@@ -364,7 +364,7 @@
     {
       "id": "claude-opus-5",
       "slug": "claude-opus-5",
-      "name": "Claude Opus 5 (Adaptive Reasoning, Max Effort)",
+      "name": "Claude Opus 5 (Max)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
@@ -392,7 +392,7 @@
     {
       "id": "claude-opus-5-xhigh",
       "slug": "claude-opus-5-xhigh",
-      "name": "Claude Opus 5 (Adaptive Reasoning, Xhigh Effort)",
+      "name": "Claude Opus 5 (Xhigh)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
@@ -420,7 +420,7 @@
     {
       "id": "claude-fable-5",
       "slug": "claude-fable-5",
-      "name": "Claude Fable 5 (Adaptive Reasoning, Max Effort, Opus 4.8 Fallback)",
+      "name": "Claude Fable 5 (Max, Opus 4.8 Fallback)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
@@ -476,7 +476,7 @@
     {
       "id": "claude-opus-5-high",
       "slug": "claude-opus-5-high",
-      "name": "Claude Opus 5 (Adaptive Reasoning, High Effort)",
+      "name": "Claude Opus 5 (High)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
@@ -560,7 +560,7 @@
     {
       "id": "claude-opus-5-medium",
       "slug": "claude-opus-5-medium",
-      "name": "Claude Opus 5 (Adaptive Reasoning, Medium Effort)",
+      "name": "Claude Opus 5 (Medium)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
@@ -616,7 +616,7 @@
     {
       "id": "claude-opus-4-8",
       "slug": "claude-opus-4-8",
-      "name": "Claude Opus 4.8 (Adaptive Reasoning, Max Effort)",
+      "name": "Claude Opus 4.8 (Max)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
@@ -672,7 +672,7 @@
     {
       "id": "claude-opus-4-7",
       "slug": "claude-opus-4-7",
-      "name": "Claude Opus 4.7 (Adaptive Reasoning, Max Effort)",
+      "name": "Claude Opus 4.7 (Max)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
@@ -700,7 +700,7 @@
     {
       "id": "claude-opus-5-low",
       "slug": "claude-opus-5-low",
-      "name": "Claude Opus 5 (Adaptive Reasoning, Low Effort)",
+      "name": "Claude Opus 5 (Low)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
@@ -728,7 +728,7 @@
     {
       "id": "claude-sonnet-5",
       "slug": "claude-sonnet-5",
-      "name": "Claude Sonnet 5 (Adaptive Reasoning, Max Effort)",
+      "name": "Claude Sonnet 5 (Max)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
@@ -784,7 +784,7 @@
     {
       "id": "claude-sonnet-5-xhigh",
       "slug": "claude-sonnet-5-xhigh",
-      "name": "Claude Sonnet 5 (Adaptive Reasoning, Xhigh Effort)",
+      "name": "Claude Sonnet 5 (Xhigh)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
@@ -812,7 +812,7 @@
     {
       "id": "claude-opus-4-6-adaptive",
       "slug": "claude-opus-4-6-adaptive",
-      "name": "Claude Opus 4.6 (Adaptive Reasoning, Max Effort)",
+      "name": "Claude Opus 4.6 (Max)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
@@ -840,7 +840,7 @@
     {
       "id": "claude-sonnet-5-high",
       "slug": "claude-sonnet-5-high",
-      "name": "Claude Sonnet 5 (Adaptive Reasoning, High Effort)",
+      "name": "Claude Sonnet 5 (High)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
@@ -868,7 +868,7 @@
     {
       "id": "claude-opus-4-7-non-reasoning",
       "slug": "claude-opus-4-7-non-reasoning",
-      "name": "Claude Opus 4.7 (Non-reasoning, High Effort)",
+      "name": "Claude Opus 4.7 (Non-reasoning, High)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
@@ -896,7 +896,7 @@
     {
       "id": "claude-sonnet-4-6-adaptive",
       "slug": "claude-sonnet-4-6-adaptive",
-      "name": "Claude Sonnet 4.6 (Adaptive Reasoning, Max Effort)",
+      "name": "Claude Sonnet 4.6 (Max)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
@@ -952,7 +952,7 @@
     {
       "id": "claude-sonnet-5-medium",
       "slug": "claude-sonnet-5-medium",
-      "name": "Claude Sonnet 5 (Adaptive Reasoning, Medium Effort)",
+      "name": "Claude Sonnet 5 (Medium)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
@@ -980,7 +980,7 @@
     {
       "id": "claude-opus-4-6",
       "slug": "claude-opus-4-6",
-      "name": "Claude Opus 4.6 (Non-reasoning, High Effort)",
+      "name": "Claude Opus 4.6 (Non-reasoning, High)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
@@ -1008,7 +1008,7 @@
     {
       "id": "claude-sonnet-4-6",
       "slug": "claude-sonnet-4-6",
-      "name": "Claude Sonnet 4.6 (Non-reasoning, High Effort)",
+      "name": "Claude Sonnet 4.6 (Non-reasoning, High)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
@@ -1036,7 +1036,7 @@
     {
       "id": "claude-sonnet-5-low",
       "slug": "claude-sonnet-5-low",
-      "name": "Claude Sonnet 5 (Adaptive Reasoning, Low Effort)",
+      "name": "Claude Sonnet 5 (Low)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
@@ -1092,7 +1092,7 @@
     {
       "id": "claude-sonnet-4-6-non-reasoning-low-effort",
       "slug": "claude-sonnet-4-6-non-reasoning-low-effort",
-      "name": "Claude Sonnet 4.6 (Non-reasoning, Low Effort)",
+      "name": "Claude Sonnet 4.6 (Non-reasoning, Low)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
@@ -1120,7 +1120,7 @@
     {
       "id": "claude-sonnet-5-non-reasoning",
       "slug": "claude-sonnet-5-non-reasoning",
-      "name": "Claude Sonnet 5 (Non-reasoning, High Effort)",
+      "name": "Claude Sonnet 5 (Non-reasoning, High)",
       "creator": "AI Lab",
       "creatorLogo": null,
       "contextWindow": "128k",
