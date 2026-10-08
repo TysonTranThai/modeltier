@@ -1,7 +1,7 @@
 {
   "source": "https://artificialanalysis.ai",
-  "syncedAt": "2026-10-08T03:18:22.666Z",
-  "durationMs": 959,
+  "syncedAt": "2026-10-08T12:22:32.773Z",
+  "durationMs": 397,
   "totalModels": 696,
   "highlights": {
     "intelligence": [],
@@ -19,15 +19,15 @@
       "url": "https://artificialanalysis.ai/articles/artificial-analysis-cyber-index"
     },
     {
-      "slug": "mistral-large-4-france-ai",
+      "slug": "claude-haiku-5-5",
       "title": "Intelligence of leading AI models based on our independent evaluations",
       "summary": "AA-Briefcase is a frontier agentic evaluation for long-horizon knowledge work, testing agents on realistic business workflows that require deliverables such as spreadsheets, presentations, and memos",
-      "url": "https://artificialanalysis.ai/articles/mistral-large-4-france-ai"
+      "url": "https://artificialanalysis.ai/articles/claude-haiku-5-5"
     }
   ],
   "changelog": [
     {
-      "date": "New language model evaluation · 7 Oct",
+      "date": "New article published · 7 Oct",
       "slug": "claude-haiku-5-5-high",
       "modelName": "Claude Haiku 5.5 (High)"
     },
@@ -95,11 +95,6 @@
       "date": "New language model evaluation · 29 Sept",
       "slug": "gpt-6-1-sol-low",
       "modelName": "GPT-6.1 Sol (Low)"
-    },
-    {
-      "date": "New language model evaluation · 29 Sept",
-      "slug": "gpt-6-1-sol-high",
-      "modelName": "GPT-6.1 Sol (High)"
     }
   ],
   "models": [
