@@ -1,7 +1,7 @@
 {
   "source": "https://artificialanalysis.ai",
-  "syncedAt": "2026-10-12T02:59:35.247Z",
-  "durationMs": 4700,
+  "syncedAt": "2026-10-12T13:43:45.202Z",
+  "durationMs": 485,
   "totalModels": 697,
   "highlights": {
     "intelligence": [],
@@ -21,7 +21,7 @@
   ],
   "changelog": [
     {
-      "date": "New article published · 8 Oct",
+      "date": "New Speech to Text model · 12 Oct",
       "slug": "gpt-6-sol-daybreak-blue",
       "modelName": "GPT-6 Sol (Daybreak Blue, max)"
     },
@@ -74,11 +74,6 @@
       "date": "New language model evaluation · 30 Sept",
       "slug": "gemini-4-argon",
       "modelName": "Gemini 4 Argon (High)"
-    },
-    {
-      "date": "New article published · 29 Sept",
-      "slug": "jt-4-1-flash-236b-a21b",
-      "modelName": "JT-4.1 Flash 236B A21B (Reasoning)"
     }
   ],
   "models": [
