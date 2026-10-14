@@ -1,7 +1,7 @@
 {
   "source": "https://artificialanalysis.ai",
-  "syncedAt": "2026-10-14T02:26:53.792Z",
-  "durationMs": 372,
+  "syncedAt": "2026-10-14T10:46:08.348Z",
+  "durationMs": 4536,
   "totalModels": 700,
   "highlights": {
     "intelligence": [],
@@ -15,20 +15,8 @@
     {
       "slug": "aa-3d",
       "title": "Announcing AA-3D: a benchmark for interactive 3D experiences",
-      "summary": "Measuring how well AI models turn a written brief into a working three.js scene",
-      "url": "https://artificialanalysis.ai/articles/aa-3d"
-    },
-    {
-      "slug": "artificial-analysis-decision-index",
-      "title": "Announcing the Artificial Analysis Decision Index",
-      "summary": "Benchmarking decision models on classification, tool calling, knowledge and reasoning",
-      "url": "https://artificialanalysis.ai/articles/artificial-analysis-decision-index"
-    },
-    {
-      "slug": "muse-wonder",
-      "title": "Intelligence of leading AI models based on our independent evaluations",
       "summary": "AA-Briefcase is a frontier agentic evaluation for long-horizon knowledge work, testing agents on realistic business workflows that require deliverables such as spreadsheets, presentations, and memos",
-      "url": "https://artificialanalysis.ai/articles/muse-wonder"
+      "url": "https://artificialanalysis.ai/articles/aa-3d"
     }
   ],
   "changelog": [
