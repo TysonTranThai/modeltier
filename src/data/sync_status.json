@@ -1,7 +1,7 @@
 {
   "status": "success",
-  "syncedAt": "2026-11-07T03:31:09.633Z",
-  "durationMs": 333,
+  "syncedAt": "2026-11-07T12:00:54.366Z",
+  "durationMs": 1412,
   "totalModels": 726,
-  "nextSyncScheduled": "2026-11-07T03:46:09.636Z"
+  "nextSyncScheduled": "2026-11-07T12:15:54.370Z"
 }
