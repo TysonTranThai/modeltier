@@ -1,7 +1,7 @@
 {
   "source": "https://artificialanalysis.ai",
-  "syncedAt": "2026-11-15T22:12:05.689Z",
-  "durationMs": 236,
+  "syncedAt": "2026-11-16T03:31:30.560Z",
+  "durationMs": 284,
   "totalModels": 0,
   "highlights": {
     "intelligence": [],
@@ -20,6 +20,11 @@
     }
   ],
   "changelog": [
+    {
+      "date": "New language model evaluation · 15 Nov",
+      "slug": "qwen4-max",
+      "modelName": "Qwen4 Max"
+    },
     {
       "date": "New language model evaluation · 13 Nov",
       "slug": "gemini-4-argon",
