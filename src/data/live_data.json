@@ -1,7 +1,7 @@
 {
   "source": "https://artificialanalysis.ai",
-  "syncedAt": "2026-11-18T14:43:19.819Z",
-  "durationMs": 223,
+  "syncedAt": "2026-11-18T23:40:32.321Z",
+  "durationMs": 324,
   "totalModels": 0,
   "highlights": {
     "intelligence": [],
@@ -13,13 +13,33 @@
   },
   "articles": [
     {
-      "slug": "openai-has-the-2-model-in-the-intelligence-index-with-the-release-of-gpt-6-2-astra-and-gpt-6-2-sol",
+      "slug": "gemini-4-neon-intelligence-gain",
       "title": "Intelligence, speed, and cost of leading language models, based on our independent evaluations",
       "summary": "Explore",
-      "url": "https://artificialanalysis.ai/articles/openai-has-the-2-model-in-the-intelligence-index-with-the-release-of-gpt-6-2-astra-and-gpt-6-2-sol"
+      "url": "https://artificialanalysis.ai/articles/gemini-4-neon-intelligence-gain"
     }
   ],
   "changelog": [
+    {
+      "date": "New article published · 18 Nov",
+      "slug": "gemini-4-neon",
+      "modelName": "Gemini 4 Neon (Low)"
+    },
+    {
+      "date": "New language model evaluation · 18 Nov",
+      "slug": "gemini-4-neon",
+      "modelName": "Gemini 4 Neon (Medium)"
+    },
+    {
+      "date": "New language model evaluation · 18 Nov",
+      "slug": "gemini-4-neon",
+      "modelName": "Gemini 4 Neon (High)"
+    },
+    {
+      "date": "New language model evaluation · 18 Nov",
+      "slug": "gemini-4-neon",
+      "modelName": "Gemini 4 Neon (Xhigh)"
+    },
     {
       "date": "New language model evaluation · 18 Nov",
       "slug": "k2-horizon-32b",
@@ -89,31 +109,6 @@
       "date": "New language model evaluation · 17 Nov",
       "slug": "gpt-6-2-sol",
       "modelName": "GPT-6.2 Sol (Xhigh)"
-    },
-    {
-      "date": "New language model evaluation · 17 Nov",
-      "slug": "gpt-6-2-sol",
-      "modelName": "GPT-6.2 Sol (High)"
-    },
-    {
-      "date": "New language model evaluation · 17 Nov",
-      "slug": "gpt-6-2-sol",
-      "modelName": "GPT-6.2 Sol (Medium)"
-    },
-    {
-      "date": "New language model evaluation · 17 Nov",
-      "slug": "gpt-6-2-sol",
-      "modelName": "GPT-6.2 Sol (Low)"
-    },
-    {
-      "date": "New language model evaluation · 15 Nov",
-      "slug": "qwen4-max",
-      "modelName": "Qwen4 Max"
-    },
-    {
-      "date": "New language model evaluation · 13 Nov",
-      "slug": "gemini-4-argon",
-      "modelName": "Gemini 4 Argon (Medium)"
     }
   ],
   "models": []
