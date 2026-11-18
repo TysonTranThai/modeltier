@@ -1,7 +1,7 @@
 {
   "source": "https://artificialanalysis.ai",
-  "syncedAt": "2026-11-18T00:07:59.885Z",
-  "durationMs": 365,
+  "syncedAt": "2026-11-18T14:43:19.819Z",
+  "durationMs": 223,
   "totalModels": 0,
   "highlights": {
     "intelligence": [],
@@ -21,7 +21,27 @@
   ],
   "changelog": [
     {
+      "date": "New language model evaluation · 18 Nov",
+      "slug": "k2-horizon-32b",
+      "modelName": "K2 Horizon 32B"
+    },
+    {
       "date": "New article published · 17 Nov",
+      "slug": "joyvl2_v27",
+      "modelName": "JoyAI-VL-Preview"
+    },
+    {
+      "date": "New language model evaluation · 17 Nov",
+      "slug": "inkling",
+      "modelName": "Inkling (High)"
+    },
+    {
+      "date": "New language model evaluation · 17 Nov",
+      "slug": "inkling-small",
+      "modelName": "Inkling Small (High)"
+    },
+    {
+      "date": "New language model evaluation · 17 Nov",
       "slug": "lfm3-1-7b",
       "modelName": "LFM3-1.7B"
     },
@@ -94,26 +114,6 @@
       "date": "New language model evaluation · 13 Nov",
       "slug": "gemini-4-argon",
       "modelName": "Gemini 4 Argon (Medium)"
-    },
-    {
-      "date": "New language model evaluation · 13 Nov",
-      "slug": "deepseek-v4-pro",
-      "modelName": "DeepSeek V4 Pro 0813 (High)"
-    },
-    {
-      "date": "New language model evaluation · 12 Nov",
-      "slug": "gemini-4-hydrogen",
-      "modelName": "Gemini 4 Hydrogen (Low)"
-    },
-    {
-      "date": "New language model evaluation · 12 Nov",
-      "slug": "gemini-4-hydrogen",
-      "modelName": "Gemini 4 Hydrogen (Medium)"
-    },
-    {
-      "date": "New language model evaluation · 12 Nov",
-      "slug": "gemini-4-hydrogen",
-      "modelName": "Gemini 4 Hydrogen (High)"
     }
   ],
   "models": []
