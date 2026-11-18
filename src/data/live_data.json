@@ -1,7 +1,7 @@
 {
   "source": "https://artificialanalysis.ai",
-  "syncedAt": "2026-11-17T15:02:51.668Z",
-  "durationMs": 231,
+  "syncedAt": "2026-11-18T00:07:59.885Z",
+  "durationMs": 365,
   "totalModels": 0,
   "highlights": {
     "intelligence": [],
@@ -13,13 +13,78 @@
   },
   "articles": [
     {
-      "slug": "google-deepmind-multimodal-knowledge-agent",
+      "slug": "openai-has-the-2-model-in-the-intelligence-index-with-the-release-of-gpt-6-2-astra-and-gpt-6-2-sol",
       "title": "Intelligence, speed, and cost of leading language models, based on our independent evaluations",
       "summary": "Explore",
-      "url": "https://artificialanalysis.ai/articles/google-deepmind-multimodal-knowledge-agent"
+      "url": "https://artificialanalysis.ai/articles/openai-has-the-2-model-in-the-intelligence-index-with-the-release-of-gpt-6-2-astra-and-gpt-6-2-sol"
     }
   ],
   "changelog": [
+    {
+      "date": "New article published · 17 Nov",
+      "slug": "lfm3-1-7b",
+      "modelName": "LFM3-1.7B"
+    },
+    {
+      "date": "New language model evaluation · 17 Nov",
+      "slug": "lfm3-vl-2b",
+      "modelName": "LFM3-VL-2B"
+    },
+    {
+      "date": "New language model evaluation · 17 Nov",
+      "slug": "astra-for-law-6-2",
+      "modelName": "Astra for Law 6.2 (Max)"
+    },
+    {
+      "date": "New language model evaluation · 17 Nov",
+      "slug": "gpt-6-2-astra",
+      "modelName": "GPT-6.2 Astra (Max)"
+    },
+    {
+      "date": "New language model evaluation · 17 Nov",
+      "slug": "gpt-6-2-astra",
+      "modelName": "GPT-6.2 Astra (Xhigh)"
+    },
+    {
+      "date": "New language model evaluation · 17 Nov",
+      "slug": "gpt-6-2-astra",
+      "modelName": "GPT-6.2 Astra (High)"
+    },
+    {
+      "date": "New language model evaluation · 17 Nov",
+      "slug": "gpt-6-2-astra",
+      "modelName": "GPT-6.2 Astra (Medium)"
+    },
+    {
+      "date": "New language model evaluation · 17 Nov",
+      "slug": "gpt-6-2-astra",
+      "modelName": "GPT-6.2 Astra (Low)"
+    },
+    {
+      "date": "New language model evaluation · 17 Nov",
+      "slug": "gpt-6-2-sol",
+      "modelName": "GPT-6.2 Sol (Max)"
+    },
+    {
+      "date": "New language model evaluation · 17 Nov",
+      "slug": "gpt-6-2-sol",
+      "modelName": "GPT-6.2 Sol (Xhigh)"
+    },
+    {
+      "date": "New language model evaluation · 17 Nov",
+      "slug": "gpt-6-2-sol",
+      "modelName": "GPT-6.2 Sol (High)"
+    },
+    {
+      "date": "New language model evaluation · 17 Nov",
+      "slug": "gpt-6-2-sol",
+      "modelName": "GPT-6.2 Sol (Medium)"
+    },
+    {
+      "date": "New language model evaluation · 17 Nov",
+      "slug": "gpt-6-2-sol",
+      "modelName": "GPT-6.2 Sol (Low)"
+    },
     {
       "date": "New language model evaluation · 15 Nov",
       "slug": "qwen4-max",
@@ -49,56 +114,6 @@
       "date": "New language model evaluation · 12 Nov",
       "slug": "gemini-4-hydrogen",
       "modelName": "Gemini 4 Hydrogen (High)"
-    },
-    {
-      "date": "New language model evaluation · 12 Nov",
-      "slug": "gemini-4-hydrogen",
-      "modelName": "Gemini 4 Hydrogen (Xhigh)"
-    },
-    {
-      "date": "New language model evaluation · 11 Nov",
-      "slug": "jt-4-1-flash-236b-a21b",
-      "modelName": "JT-4.1 Flash 236B A21B"
-    },
-    {
-      "date": "New article published · 10 Nov",
-      "slug": "claude-fable-5-2",
-      "modelName": "Claude Fable 5.2 (Max, Default Fallback)"
-    },
-    {
-      "date": "New language model evaluation · 9 Nov",
-      "slug": "claude-fable-5-2",
-      "modelName": "Claude Fable 5.2 (Low, Default Fallback)"
-    },
-    {
-      "date": "New language model evaluation · 9 Nov",
-      "slug": "claude-fable-5-2",
-      "modelName": "Claude Fable 5.2 (Medium, Default Fallback)"
-    },
-    {
-      "date": "New language model evaluation · 9 Nov",
-      "slug": "claude-fable-5-2",
-      "modelName": "Claude Fable 5.2 (High, Default Fallback)"
-    },
-    {
-      "date": "New language model evaluation · 9 Nov",
-      "slug": "claude-fable-5-2",
-      "modelName": "Claude Fable 5.2 (Xhigh, Default Fallback)"
-    },
-    {
-      "date": "New language model evaluation · 9 Nov",
-      "slug": "muse-ember",
-      "modelName": "Muse Ember (Xhigh)"
-    },
-    {
-      "date": "New language model evaluation · 9 Nov",
-      "slug": "muse-ember",
-      "modelName": "Muse Ember (Max)"
-    },
-    {
-      "date": "New article published · 8 Nov",
-      "slug": "agnes-2-5-pro-theta",
-      "modelName": "Agnes 2.5 Pro Theta"
     }
   ],
   "models": []
