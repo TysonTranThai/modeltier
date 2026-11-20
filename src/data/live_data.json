@@ -1,7 +1,7 @@
 {
   "source": "https://artificialanalysis.ai",
-  "syncedAt": "2026-11-20T14:31:17.350Z",
-  "durationMs": 271,
+  "syncedAt": "2026-11-20T23:27:45.711Z",
+  "durationMs": 340,
   "totalModels": 0,
   "highlights": {
     "intelligence": [],
@@ -13,13 +13,18 @@
   },
   "articles": [
     {
-      "slug": "gemini-4-neon-intelligence-gain",
+      "slug": "inkling-2-mini",
       "title": "Intelligence, speed, and cost of leading language models, based on our independent evaluations",
       "summary": "Explore",
-      "url": "https://artificialanalysis.ai/articles/gemini-4-neon-intelligence-gain"
+      "url": "https://artificialanalysis.ai/articles/inkling-2-mini"
     }
   ],
   "changelog": [
+    {
+      "date": "New article published · 20 Nov",
+      "slug": "inkling-2-mini",
+      "modelName": "Inkling 2 Mini"
+    },
     {
       "date": "New article published · 18 Nov",
       "slug": "gemini-4-neon",
@@ -99,16 +104,6 @@
       "date": "New language model evaluation · 17 Nov",
       "slug": "gpt-6-2-astra",
       "modelName": "GPT-6.2 Astra (Low)"
-    },
-    {
-      "date": "New language model evaluation · 17 Nov",
-      "slug": "gpt-6-2-sol",
-      "modelName": "GPT-6.2 Sol (Max)"
-    },
-    {
-      "date": "New language model evaluation · 17 Nov",
-      "slug": "gpt-6-2-sol",
-      "modelName": "GPT-6.2 Sol (Xhigh)"
     }
   ],
   "models": []
