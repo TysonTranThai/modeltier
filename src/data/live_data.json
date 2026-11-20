@@ -1,7 +1,7 @@
 {
   "source": "https://artificialanalysis.ai",
-  "syncedAt": "2026-11-20T05:41:34.826Z",
-  "durationMs": 457,
+  "syncedAt": "2026-11-20T14:31:17.350Z",
+  "durationMs": 271,
   "totalModels": 0,
   "highlights": {
     "intelligence": [],
@@ -47,7 +47,7 @@
     },
     {
       "date": "New article published · 17 Nov",
-      "slug": "joyvl2_v27",
+      "slug": "joyai-vl",
       "modelName": "JoyAI-VL-Preview"
     },
     {
