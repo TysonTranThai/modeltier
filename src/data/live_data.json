@@ -1,7 +1,7 @@
 {
   "source": "https://artificialanalysis.ai",
-  "syncedAt": "2026-11-23T04:26:51.230Z",
-  "durationMs": 347,
+  "syncedAt": "2026-11-23T16:42:30.162Z",
+  "durationMs": 432,
   "totalModels": 0,
   "highlights": {
     "intelligence": [],
@@ -20,6 +20,11 @@
     }
   ],
   "changelog": [
+    {
+      "date": "New language model evaluation · 23 Nov",
+      "slug": "ling-3-2-air",
+      "modelName": "Ling-3.2-air"
+    },
     {
       "date": "New language model evaluation · 22 Nov",
       "slug": "lingsante-3-1-flash-1119",
@@ -99,11 +104,6 @@
       "date": "New language model evaluation · 17 Nov",
       "slug": "gpt-6-2-astra",
       "modelName": "GPT-6.2 Astra (High)"
-    },
-    {
-      "date": "New language model evaluation · 17 Nov",
-      "slug": "gpt-6-2-astra",
-      "modelName": "GPT-6.2 Astra (Medium)"
     }
   ],
   "models": []
