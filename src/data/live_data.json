@@ -1,7 +1,7 @@
 {
   "source": "https://artificialanalysis.ai",
-  "syncedAt": "2026-11-27T01:14:09.126Z",
-  "durationMs": 512,
+  "syncedAt": "2026-11-27T15:44:28.588Z",
+  "durationMs": 618,
   "totalModels": 0,
   "highlights": {
     "intelligence": [],
@@ -20,6 +20,16 @@
     }
   ],
   "changelog": [
+    {
+      "date": "New language model evaluation · 27 Nov",
+      "slug": "quasar-1-2-358b",
+      "modelName": "Quasar 1.2 358B (Max, Based on GLM-5.3)"
+    },
+    {
+      "date": "New language model evaluation · 26 Nov",
+      "slug": "ernie-5-5-flash",
+      "modelName": "ERNIE 5.5 Flash Preview"
+    },
     {
       "date": "Methodology updated · 24 Nov",
       "slug": "ling-3-2-air",
@@ -89,16 +99,6 @@
       "date": "New language model evaluation · 17 Nov",
       "slug": "astra-for-law-6-2",
       "modelName": "Astra for Law 6.2 (Max)"
-    },
-    {
-      "date": "New language model evaluation · 17 Nov",
-      "slug": "gpt-6-2-astra",
-      "modelName": "GPT-6.2 Astra (Max)"
-    },
-    {
-      "date": "New language model evaluation · 17 Nov",
-      "slug": "gpt-6-2-astra",
-      "modelName": "GPT-6.2 Astra (Xhigh)"
     }
   ],
   "models": []
